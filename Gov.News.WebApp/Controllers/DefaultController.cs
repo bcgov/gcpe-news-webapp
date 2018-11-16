@@ -286,6 +286,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.facebook.com/ServiceBC", Title = "Service BC" },
                         new Link() { Url = "http://www.facebook.com/HelloBC", Title = "Tourism British Columbia" },
                         new Link() { Url = "http://www.facebook.com/WorkBC", Title = "WorkBC" },
+                        new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" }
             }.OrderBy(t => t.Title).ToArray();
 
 
@@ -323,7 +324,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://twitter.com/AboriginalEdBC", Title = "@AboriginalEdBC", Summary = "Discuss barriers and challenges faced by BC's Aboriginal students" },
                         new Link() { Url = "http://twitter.com/bcedplan", Title = "@BCEdPlan", Summary = "How education is changing to meet the needs of today's learners" },
                         new Link() { Url = "http://twitter.com/bcgovfireinfo", Title = "@BCGovFireInfo", Summary = "Find updates on significant wildfires around the province" },
-                        new Link() { Url = "http://twitter.com/BCGovRangelands", Title = "@BCGovRangelands" , Summary = "Get info on cutting and grazing on Crown range lands across BC" },
                         new Link() { Url = "http://twitter.com/BCgovtjobs", Title = "@BCGovtJobs", Summary = "Looking for a job? Find links to BC Public Service job postings" },
                         new Link() { Url = "http://twitter.com/BC_Housing", Title = "@BC_Housing", Summary = "Learn about housing solutions and the latest projects in BC" },
                         new Link() { Url = "https://twitter.com/innovate_bc", Title = "@Innovate_BC", Summary = "Info on developing entrepreneurial talent and commercializing technology in BC" },
