@@ -1,5 +1,4 @@
 ﻿@using Gov.News.Website.Models.Subscribe
-@using Gov.News.Website.Helpers
 @model SubscribeViewModel
 
 <div class="connect subscribe">
@@ -20,11 +19,11 @@
 
             @if (Model.Display == "selected")
             {
-                @Html.Partial("_RegisterPartial")
+                <partial name="_RegisterPartial" />
             }
             else
             {
-                @Html.Partial("_SelectionPartial")
+                <partial name="_SelectionPartial" />
             }
 
             <div id="noticeOfCollection">
@@ -72,7 +71,7 @@
             $('.expandable-section').removeClass('collapsed').addClass('expanded');
             $('.link-button.collapse').hide();
 
-            hookSubscribeToAllNewsOnDemand();           
+            hookSubscribeToAllNewsOnDemand();
         });
     </script>
 }

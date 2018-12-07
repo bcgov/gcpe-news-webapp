@@ -15,10 +15,6 @@
         <h4 class="col-xs-12 col-sm-4">Alternate Contact</h4>
     </div>
 
-    @{
-        var EMBC = Model.Ministries.First(m => m.Index.Name == "Emergency Preparedness");
-        Model.Ministries.Remove(EMBC);
-    }
 
     @foreach (var categoryModel in Model.Ministries)
     {
@@ -35,12 +31,12 @@
                 <div>@ministry.MinisterName</div>
             </div>
             <div class="col-xs-12 col-sm-4">
-                @Html.Partial("CommContact", ministry.ContactUser)
+                <partial name="CommContact" model="ministry.ContactUser" />
             </div>
             @if (ministry.SecondContactUser != null)
             {
             <div class="col-xs-12 col-sm-4">
-                @Html.Partial("CommContact", ministry.SecondContactUser)
+                <partial name="CommContact" model="ministry.SecondContactUser" />"
             </div>
             }
             @if (!string.IsNullOrEmpty(ministry.WeekendContactNumber))
@@ -50,40 +46,6 @@
             </div>
             }
         </div>
-        }
-        /* add EMBC after PSSG */
-        if (ministry.Name == "Public Safety and Solicitor General")
-        {
-                var EMBCMinistry = EMBC.Index as Ministry;
-                if (EMBCMinistry.ContactUser != null)
-                {
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="@EMBCMinistry.GetUri()">@EMBCMinistry.Name</a>
-                            @if (!string.IsNullOrEmpty(EMBCMinistry.DisplayAdditionalName))
-                            {
-                                <div><i>(@EMBCMinistry.DisplayAdditionalName)</i></div>
-                            }
-                            <div>@EMBCMinistry.MinisterName</div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            @Html.Partial("CommContact", EMBCMinistry.ContactUser)
-                        </div>
-                        @if (EMBCMinistry.SecondContactUser != null)
-                        {
-                            <div class="col-xs-12 col-sm-4">
-                                @Html.Partial("CommContact", EMBCMinistry.SecondContactUser)
-                            </div>
-                        }
-                        @if (!string.IsNullOrEmpty(EMBCMinistry.WeekendContactNumber))
-                        {
-                            <div class="col-xs-12 col-sm-6 pull-right">
-                                <div><i>Weekends/Holidays: @EMBCMinistry.WeekendContactNumber</i></div>
-                            </div>
-                        }
-                    </div>
-                }
-
         }
     }
     <div class="clear"></div>

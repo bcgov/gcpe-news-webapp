@@ -179,7 +179,7 @@
 
                     @foreach (var ministry in Model.Ministries.Where(m => ((Ministry)m.Index).ParentMinistryKey == null))
                     {
-                        @Html.Partial("MenuContent", ministry)
+                        <partial name="MenuContent" model="ministry" />
                     }
                 </div>
             </div>
@@ -509,7 +509,7 @@
 
     @RenderSection("Scripts", false)
 
-    @Html.Partial("_WebtrendsScript")
+    <partial name="_WebtrendsScript" />
     <!--googleon: all-->
 </body>
 </html>

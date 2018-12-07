@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Gov.News.Api.Models;
 using Microsoft.Extensions.Hosting;
 
 namespace Gov.News.Website.Hubs
@@ -18,7 +17,7 @@ namespace Gov.News.Website.Hubs
         private Task _pollingTask;
         private CancellationTokenSource _cts;
         private Repository _repository;
-        private static volatile bool _isWebcasting = false;
+        //private static volatile bool _isWebcasting = false;
 
         public LiveHub(Repository repository)
         {
@@ -141,7 +140,7 @@ namespace Gov.News.Website.Hubs
         // Call all the clients and let them know there Webcasting is not live
         private static void SetDead()
         {
-            _isWebcasting = false;
+            //_isWebcasting = false;
             _webcastingPlaylists = null;
 #if USE_SIGNALR
             if (!Properties.Settings.Default.SignalREnabled)
@@ -155,7 +154,7 @@ namespace Gov.News.Website.Hubs
         // Call all the clients and let them know there Webcasting is live and pass the urls
         private static void SetLive(IEnumerable<string> links)
         {
-            _isWebcasting = true;
+            //_isWebcasting = true;
             _webcastingPlaylists = links;
 #if USE_SIGNALR
             if (!Properties.Settings.Default.SignalREnabled)
