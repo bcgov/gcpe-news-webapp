@@ -320,6 +320,7 @@ namespace Gov.News.Website.Controllers
 
             model.TwitterLinks = new Link[]
             {
+                        new Link() { Url = "https://twitter.com/ComplianceBC", Title = "@ComplianceBC", Summary = "Environmental compliance in BC: changes, enforcement and education" },
                         new Link() { Url = "https://twitter.com/BCGovNews", Title = "@BCGovNews", Summary = "Read daily news tweets from the Government of British Columbia" },
                         new Link() { Url = "http://twitter.com/AboriginalEdBC", Title = "@AboriginalEdBC", Summary = "Discuss barriers and challenges faced by BC's Aboriginal students" },
                         new Link() { Url = "http://twitter.com/bcedplan", Title = "@BCEdPlan", Summary = "How education is changing to meet the needs of today's learners" },
