@@ -15,16 +15,16 @@
 @{
     if (Model.Category is Ministry)
     {
-        @Html.Partial("Ministry")
+        <partial name="Ministry" />
     }
     else //Sector, Tag, Theme, etc.
     {
-        @Html.Partial("Sector")
+        <partial name="Sector" />
     }
 }
 
 @section AssortedMedia {
-    @Html.Partial("EmbeddedMediaBanner", Model.Footer)
+    <partial name="EmbeddedMediaBanner" model="Model.Footer" />
 }
 
 @section Scripts {

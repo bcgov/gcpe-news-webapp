@@ -85,7 +85,7 @@
                     }
                 </div>
                 <div class="segment share">
-                    @Html.Partial("ShareSocialMedia")
+                    <partial name="ShareSocialMedia" />
                 </div>
                 <div class="segment search">
                     <a href="#" class="search-panel-trigger"> </a>
@@ -126,11 +126,11 @@
                     <div class="more-menu-side">
                         @if (Model.Minister != null)
                         {
-                            @Html.Partial("Minister", new Tuple<Ministry, Minister>(leadMinistry, Model.Minister))
+                            <partial name="Minister" model="new Tuple<Ministry, Minister>(leadMinistry, Model.Minister)" />
                         }
                     </div>
                     <div class="more-menu-content">
-                        @Html.Partial("MenuContent", Model.LeadMinistry)
+                        <partial name="MenuContent" model="Model.LeadMinistry" />
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -176,7 +176,7 @@
     }
 
     <div class="story-info">
-        @Html.Partial("ShareSocialMedia")
+        <partial name="ShareSocialMedia" />
 
         <div class="resource-links">
             <h6 class="story-lang primary">@firstDoc.PageTitle</h6>
@@ -211,10 +211,10 @@
 
         @*@if (Model.Sectors.Any())
             {
-                @Html.Partial("RelatedSectors", Model.Sectors)
+                <partial name="RelatedSectors", Model.Sectors)
             }*@
 
-        @Html.Partial("ShareSocialMedia")
+        <partial name="ShareSocialMedia" />
 
         <div class="resource-links location-and-date">
             <h5 class="story-lang primary">@firstDoc.PageTitle</h5>
@@ -256,21 +256,21 @@
             </div>
         }
 
-        @Html.Partial("MoreFromThis", leadMinistry)
+        <partial name="MoreFromThis" model="leadMinistry" />
 
         @if (leadMinistry.TopicLinks.Any())
         {
-            @Html.Partial("PopularTopics", leadMinistry.TopicLinks)
+            <partial name="PopularTopics" model="leadMinistry.TopicLinks" />
         }
 
         @if (leadMinistry.ServiceLinks.Any())
         {
-            @Html.Partial("Resources", leadMinistry.ServiceLinks)
+            <partial name="Resources" model="leadMinistry.ServiceLinks" />
         }
 
         @if (leadMinistry.NewsletterLinks.Any())
         {
-            @Html.Partial("NewsLetterLinks", leadMinistry.NewsletterLinks)
+            <partial name="NewsLetterLinks" model="leadMinistry.NewsletterLinks" />
         }
 
     </div>
@@ -540,7 +540,7 @@
         @if (Model.Post.GetUri() != Model.Post.GetPermanentUri())
         {
             @*TODO: Consider behavior of Share links; e.g. display when story is expanded.*@
-            @*@Html.Partial("ShareSocialMedia")*@
+            @*<partial name="ShareSocialMedia" />*@
             if (!string.IsNullOrWhiteSpace(Model.Post.Reference))
             {
                 <div class="share-options">

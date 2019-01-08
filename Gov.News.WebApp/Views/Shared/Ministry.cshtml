@@ -8,7 +8,7 @@
 
         @if (Model.Minister != null)
         {
-            @Html.Partial("Minister", new Tuple<Ministry, Minister>(Model.Ministry, Model.Minister))
+            <partial name="Minister" model="new Tuple<Ministry, Minister>(Model.Ministry, Model.Minister)" />
         }
         <!-- collapsible-regions are cloned here by _Layout-->
     </div>
@@ -21,14 +21,14 @@
             @if (Model.IndexModel.TopPost != null)
             {
                 <div class="top-article">
-                    @Html.Partial("PostCard", Model.IndexModel.TopPost)
+                    <partial name="PostCard" model="Model.IndexModel.TopPost" />
                 </div>
             }
 
             @if (Model.IndexModel.FeaturePost != null)
             {
                 <div class="feature-article">
-                    @Html.Partial("PostCard", Model.IndexModel.FeaturePost)
+                    <partial name="PostCard" model="Model.IndexModel.FeaturePost" />
                 </div>
             }
         }
@@ -41,11 +41,11 @@
             <div class="regular-articles">
                 @foreach (var article in Model.IndexModel.LatestNews.Take(3))
                 {
-                    @Html.Partial("PostCard", article)
+                    <partial name="PostCard" model="article" />
                 }
                 @foreach (var post in Model.IndexModel.LatestNews.Skip(3))
                 {
-                    @Html.Partial("PostCard", post, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Display", "false" } })
+                    <partial name="PostCard" model="post" view-data='new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Display", "false" } }' />
                 }
             </div>
 
@@ -73,12 +73,12 @@
                     <div class="resource-links">
                         <h5>Media Contacts</h5>
                         <div>
-                            @Html.Partial("CommContact", ministry.ContactUser)
+                            <partial name="CommContact" model="ministry.ContactUser" />
                             @if (ministry.SecondContactUser != null)
                             {
                                 <br />
                                 <span>Alternate:</span>
-                                @Html.Partial("CommContact", ministry.SecondContactUser)
+                                <partial name="CommContact" model="ministry.SecondContactUser" />
                             }
                             @if (!string.IsNullOrEmpty(ministry.WeekendContactNumber))
                             {
@@ -87,23 +87,23 @@
                         </div>
                     </div>
                 }
-                @Html.Partial("MoreFromThis", Model.Category)
+                <partial name="MoreFromThis" model="Model.Category" />
 
                 @if (ministry.TopicLinks.Any())
                 {
-                    @Html.Partial("PopularTopics", ministry.TopicLinks)
+                    <partial name="PopularTopics" model="ministry.TopicLinks" />
                 }
                 @if (ministry.ServiceLinks.Any())
                 {
-                    @Html.Partial("Resources", ministry.ServiceLinks)
+                    <partial name="Resources" model="ministry.ServiceLinks" />
                 }
                 @if (ministry.NewsletterLinks.Any())
                 {
-                    @Html.Partial("NewsLetterLinks", ministry.NewsletterLinks)
+                    <partial name="NewsLetterLinks" model="ministry.NewsletterLinks" />
                 }
                 @if (Model.ChildMinistry != null)
                 {
-                    @Html.Partial("MinisterOfState", new Tuple<Ministry, Minister>(Model.ChildMinistry, Model.ChildMinistryMinister))
+                    <partial name="MinisterOfState" model="new Tuple<Ministry, Minister>(Model.ChildMinistry, Model.ChildMinistryMinister)" />
                 }
                 <div class="clear"></div>
             </div>
