@@ -5,7 +5,7 @@
 <div class="ministry-listing sector-listing@((ViewBag.Type != null && ViewBag.Type == "factsheets") ? " fact-sheets" : "")">
     <div class="home-features">
         <h4>@Model.Title</h4>
-        @Html.Partial("ConnectSocialMedia")
+        <partial name="ConnectSocialMedia" />
         <!-- collapsible-regions are cloned here by _Layout-->
     </div>
 
@@ -15,13 +15,13 @@
             @if (Model.IndexModel.TopPost != null)
             {
                 <div class="top-article">
-                    @Html.Partial("PostCard", Model.IndexModel.TopPost)
+                    <partial name="PostCard" model="Model.IndexModel.TopPost" />"
                 </div>
             }
             @if (Model.IndexModel.FeaturePost != null)
             {
                 <div class="feature-article">
-                    @Html.Partial("PostCard", Model.IndexModel.FeaturePost)
+                    <partial name="PostCard" model="Model.IndexModel.FeaturePost" />"
                 </div>
             }
         }
@@ -38,11 +38,11 @@
             <div class="regular-articles">
                 @foreach (var article in Model.IndexModel.LatestNews.Take(3))
                 {
-                    @Html.Partial("PostCard", article)
+                    <partial name="PostCard" model="article" />
                 }
                 @foreach (var post in Model.IndexModel.LatestNews.Skip(3))
                 {
-                    @Html.Partial("PostCard", post, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Display", "false" } })
+                    <partial name="PostCard" model="post" view-data='new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Display", "false" } }' />
                 }
             </div>
 
@@ -69,7 +69,7 @@
             </div>
 
             <div class="collapsible-regions">
-                @Html.Partial("ResourceLinks")
+                <partial name="ResourceLinks" />
                 <vc:top-sectors />
                 <div class="clear"></div>
             </div>

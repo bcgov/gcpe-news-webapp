@@ -15,11 +15,11 @@
 }
 
 @section Carousel {
-    @Html.Partial("HomeCarousel")
+    <partial name="HomeCarousel" />
 }
 
 <div class="home-features">
-    @Html.Partial("ConnectSocialMedia")
+    <partial name="ConnectSocialMedia" />
     <!-- collapsible-regions are cloned here by _Layout-->
 </div>
 
@@ -27,7 +27,7 @@
     @if (Model.IndexModel.TopPost != null)
     {
         <div class="top-article">
-            @Html.Partial("PostCard", Model.IndexModel.TopPost)
+            <partial name="PostCard" model="Model.IndexModel.TopPost" />
         </div>
     }
     
@@ -35,19 +35,19 @@
         @if (Model.IndexModel.FeaturePost != null)
         {
             <div class="feature-article">
-                @Html.Partial("PostCard", Model.IndexModel.FeaturePost)
+                <partial name="PostCard" model="Model.IndexModel.FeaturePost" />"
             </div>
         }
 
         <div class="regular-articles">
             @foreach (var post in Model.IndexModel.LatestNews.Take(3))
             {
-                @Html.Partial("PostCard", post)
+                <partial name="PostCard" model="post" />
             }
 
              @foreach (var post in Model.IndexModel.LatestNews.Skip(3))
              {
-                    @Html.Partial("PostCard", post, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Display", "false"} })
+                <partial name="PostCard" model="post" view-data='new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Display", "false"} }' />
              }
         </div>
 
@@ -59,14 +59,14 @@
     </div>
 
     <div class="collapsible-regions">
-        @Html.Partial("ResourceLinks")
+        <partial name="ResourceLinks" />
         <vc:top-sectors />  @*@await Component.InvokeAsync("TopSectors")*@
     </div>
 
 </div>
 
 @section AssortedMedia {
-    @Html.Partial("EmbeddedMediaBanner", Model.Footer)
+    <partial name="EmbeddedMediaBanner" model="Model.Footer" />"
 }
 
 @section Scripts {
