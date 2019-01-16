@@ -126,7 +126,7 @@
       "displayName": "Docker File Path",
       "description": "The path to the docker file defining the build.",
       "required": false,
-      "value": "Dockerfile.RHEL"
+      "value": "Dockerfile.rhel7"
     },
     {
       "name": "OUTPUT_IMAGE_TAG",
