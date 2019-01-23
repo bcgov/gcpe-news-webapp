@@ -24,12 +24,7 @@ namespace Gov.News.Website
             if (env.IsDevelopment())
                 builder.AddUserSecrets<Startup>();
             if (!System.Diagnostics.Debugger.IsAttached)
-                builder.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-            builder.AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-            }
+                builder.AddEnvironmentVariables(); // for openshift
 
             Configuration = builder.Build();
 

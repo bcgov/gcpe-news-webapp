@@ -112,7 +112,7 @@
       "displayName": "Source Image Name",
       "description": "The name of the source image.",
       "required": true,
-      "value": "registry.access.redhat.com/dotnet/dotnet-20-rhel7"
+      "value": "registry.access.redhat.com/dotnet/dotnet-22-rhel7"
     },
     {
       "name": "SOURCE_IMAGE_TAG",
@@ -126,7 +126,7 @@
       "displayName": "Docker File Path",
       "description": "The path to the docker file defining the build.",
       "required": false,
-      "value": "Dockerfile.RHEL"
+      "value": "Dockerfile.rhel7"
     },
     {
       "name": "OUTPUT_IMAGE_TAG",
