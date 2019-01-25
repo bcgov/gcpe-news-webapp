@@ -774,8 +774,13 @@
         padding-left: 0px;
     }
 
-    .search .search-filters {
+    .search h3 {
         display: none;
+    }
+
+    .search .search-panel {
+        display: none;
+        width: 100%;
     }
     .search .search-results {
         float: none;

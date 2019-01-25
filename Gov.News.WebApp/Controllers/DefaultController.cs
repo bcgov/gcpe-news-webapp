@@ -108,16 +108,34 @@ namespace Gov.News.Website.Controllers
         }
 
         [Noindex]
-        public async Task<ActionResult> Search(string q = null, string ministry = null, string sector = null, string content = null, string daterange = null, int first = 0)
+        public async Task<ActionResult> Search(string q = null, string ministry = null, string sector = null, string city = null, string content = null,
+            DateTime? date = null, string dateWithin = null, string page = null)
         {
+            var filters = new Dictionary<string, string>();
+            if (ministry != null)
+            {
+                filters.Add("Ministry", ministry);
+            }
+            if (sector != null)
+            {
+                filters.Add("Sector", sector);
+            }
+            if (content != null)
+            {
+                filters.Add("Content", content);
+            }
+            if (!string.IsNullOrEmpty(city))
+            {
+                filters.Add("City", city);
+            }
+
             var model = await Search(new SearchViewModel.SearchQuery()
             {
                 Text = q,
-                Ministry = ministry,
-                Sector = sector,
-                DateRange = daterange,
-                NewsType = content
-            }, first);
+                Filters = filters,
+                Date = date ?? DateTime.Today,
+                DateWithin = dateWithin ?? "2 years"
+            }, page);
 
             return View("SearchView", model);
         }

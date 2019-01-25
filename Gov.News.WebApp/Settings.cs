@@ -26,7 +26,9 @@ namespace Gov.News.Website.Properties
 
         public string EnableDynamicFooter { get; set; } = "false";
 
-        public Uri GoogleSearchApplianceUri { get; set; }
+        public Uri AzureSearchUri { get; set; }
+
+        public string AzureSearchKey { get; set; }
 
         public DateTimeOffset RssFeedCutoffDate { get; set; }
 
