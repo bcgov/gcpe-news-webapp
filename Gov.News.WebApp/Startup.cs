@@ -1,16 +1,21 @@
 ﻿using System;
+using System.Net.Http;
 using Gov.News.WebApp;
 using Gov.News.Website.Middleware;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
+
+using Polly;
+using Polly.Caching.Memory;
 
 namespace Gov.News.Website
 {
@@ -73,7 +78,7 @@ namespace Gov.News.Website
                 return client;
             }));
 
-            
+
 
             /*
             services.AddSingleton(new Func<IServiceProvider, Gcpe.Hub.Services.Legacy.INewslettersClient>((serviceProvider) =>
@@ -87,7 +92,7 @@ namespace Gov.News.Website
             services.Configure<Data.RepositoryOptions>(Configuration.GetSection("Options:Gov.News.Data:Repository"));
                 */
 
-            
+
             services.AddSingleton<Repository, Repository>();
             services.AddSingleton<IHostedService, Hubs.LiveHub>();
 
@@ -97,10 +102,18 @@ namespace Gov.News.Website
             services.Replace(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(TimestampLogger<>)));
 
             // add a health check for the news api service.
-            services.AddHealthChecks(checks =>
-            {
-                checks.AddUrlCheck(Configuration["NewsApi"] + "/hc", new TimeSpan (0, 1, 0 )); // check the news client connection every minute.
-            });
+            services
+                .AddHealthChecks()
+                .AddUrlGroup(new Uri(Configuration["NewsApi"] + "/hc"));
+
+            IAsyncPolicy<HttpResponseMessage> cachePolicy =
+               Policy.CacheAsync<HttpResponseMessage>(
+                   cacheProvider: new MemoryCacheProvider(new MemoryCache(new MemoryCacheOptions())),
+                   ttl: new TimeSpan(0, 1, 0)
+               );
+
+            services.AddHttpClient("uri-group") // default healthcheck registration name for uri ( you can change it on AddUrlGroup )
+             .AddPolicyHandler(cachePolicy);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -122,8 +135,10 @@ namespace Gov.News.Website
                 app.UseExceptionHandler("/error");
             }
 
+            app.UseHealthChecks("/hc", new HealthCheckOptions { AllowCachingResponses = false });
+
             app.UseRedirect();
-            
+
             // set headers for static files
             app.UseStaticFiles(new StaticFileOptions
             {

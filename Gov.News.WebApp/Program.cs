@@ -23,7 +23,6 @@ namespace Gov.News.Website
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel(options => options.AddServerHeader = false)
-                .UseHealthChecks("/hc")
                 .UseContentRoot(Directory.GetCurrentDirectory())
 #if DEBUG
                 .UseUrls("http://localhost:53488/")
