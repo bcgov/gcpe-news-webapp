@@ -23,15 +23,15 @@ namespace Gov.News.Website
 
         public static Uri GetThumbnailUri(this Post post)
         {
-            if (post.FacebookPictureUri != null)
-            {
-                return new Uri(post.FacebookPictureUri);
-            }
-            return GetThumbnailUri(post.AssetUrl);
+            return GetThumbnailUri(post.AssetUrl, post.FacebookPictureUri);
         }
 
-        public static Uri GetThumbnailUri(string assetUrl)
+        public static Uri GetThumbnailUri(string assetUrl, string facebookPictureUri)
         {
+            if (facebookPictureUri != null)
+            {
+                return new Uri(facebookPictureUri);
+            }
             Uri assetUri;
             if (!Uri.TryCreate(assetUrl, UriKind.Absolute, out assetUri)) return null;
 
