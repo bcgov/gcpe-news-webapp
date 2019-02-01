@@ -199,7 +199,7 @@ namespace Gov.News.Website.Controllers.Shared
                     IEnumerable<object> titles = result["documentsHeadline"];
 
                     string assetUrl = result["assetUrl"];
-                    bool isFB = assetUrl.Contains("facebook");
+                    var postForFB = assetUrl.Contains("facebook") ? await Repository.GetPostAsync(key) : null;
 
                     model.Results.Add(new SearchViewModel.Result()
                     {
@@ -208,9 +208,8 @@ namespace Gov.News.Website.Controllers.Shared
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
                         PublishDate = result["publishDateTime"],
-                        ThumbnailUri = isFB ? new Uri((await Repository.GetFacebookPostAsync(assetUrl))?.PictureUri)
-                                            : NewsroomExtensions.GetThumbnailUri(assetUrl)
-                });
+                        ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl, postForFB?.FacebookPictureUri)
+                    });
                 }
             }
 
