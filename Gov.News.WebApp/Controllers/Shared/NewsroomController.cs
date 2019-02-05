@@ -91,21 +91,18 @@ namespace Gov.News.Website.Controllers.Shared
 
                 int howMuch = int.Parse(dateWithin[0]);
                 bool weeks = dateWithin[1].StartsWith("week");
+                filters.Add(toFilter + query.Date.AddDays(1).ToString("yyyy-MM-dd")); // include the selected day too
                 if (weeks || dateWithin[1].StartsWith("day"))
                 {
-                    howMuch = weeks ? howMuch * 7 : howMuch;
-                    filters.Add(toFilter + query.Date.AddDays(1 + howMuch / 2.0).ToString("yyyy-MM-dd"));
-                    filters.Add(fromFilter + query.Date.AddDays(-howMuch / 2.0).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date.AddDays(weeks ? -howMuch * 7 : -howMuch).ToString("yyyy-MM-dd"));
                 }
                 else if (dateWithin[1].StartsWith("month"))
                 {
-                    filters.Add(toFilter + query.Date.AddMonths(howMuch / 2).ToString("yyyy-MM-dd"));
-                    filters.Add(fromFilter + query.Date.AddMonths(-howMuch / 2).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date.AddMonths(-howMuch).ToString("yyyy-MM-dd"));
                 }
                 else if (dateWithin[1].StartsWith("year"))
                 {
-                    filters.Add(toFilter + query.Date.AddYears(howMuch / 2).ToString("yyyy-MM-dd"));
-                    filters.Add(fromFilter + query.Date.AddYears(-howMuch / 2).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date.AddYears(-howMuch).ToString("yyyy-MM-dd"));
                 }
             }
             foreach (var filter in query.Filters)

@@ -13,52 +13,7 @@
             <br /><br />
         }
 
-        @*<div class="search-panel">
-                @using (Html.BeginForm("Search", "Default"))
-                {
-                    <label>You searched for</label>
-                    <input type="text" value="@Model.Query.Text" css="search-box" />
-                }
-            </div>*@
-
-
-        @*<div class="search-numbers">*@
-        @*<p>Showing results @Model.FirstResult - @Model.LastResult for <strong>@Model.Query.Text</strong></p>*@
-
-        @*@if (Model.Query.Text != null)
-            {
-                <span> Text: <strong>@Model.Query.Text </strong></span>
-            }
-
-            @if (Model.Query.NewsType != null)
-            {
-                <span> News: <strong>@Model.Query.NewsType </strong></span>
-            }
-
-            @if (Model.Query.Ministry != null)
-            {
-                <span> Ministry: <strong>@Model.Query.Ministry </strong></span>
-            }
-            @if (Model.Query.Sector != null)
-            {
-                <span> Sector: <strong>@Model.Query.Sector</strong></span>
-            }
-            @if (Model.Query.DateRange != null)
-            {
-                <span>Month: <strong>@Model.Query.DateRange</strong></span>
-            }*@
-
-        @*</div>*@
     </div>
-
-    @*<div class="search-pagination">
-            <ul>
-                @foreach (var page in Model.Pages)
-                {
-                    <li><a href="#" class="@(page == Model.CurrentPage ? "active" : string.Empty)">@page</a></li>
-                }
-            </ul>
-        </div>*@
 
     <div class="clear"></div>
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
@@ -75,7 +30,7 @@
                             </span>
                         </div>
                     </div>
-                    <span>Within:</span>
+                    <span>Within the last:</span>
                     <select class="form-control" name="dateWithin">
                         <option>1 week</option>
                         <option>4 weeks</option>
@@ -216,8 +171,12 @@
                 useCurrent: false,
                 maxDate: '@DateTime.Today.ToString("MM/dd/yyyy")',
                 minDate: '03/12/2011'
+            }).on('dp.change', function (e) {
+                $(this).closest('form').submit();
             });
-            $('[name="dateWithin"]').val('@Model.Query.DateWithin');
+            $('[name="dateWithin"]').val('@Model.Query.DateWithin').on('change', function () {
+                $(this).closest('form').submit();
+            });
 
             $(".search-filters .search-filter h5").on('click', function () {
                 var headerToggler = $(this);
