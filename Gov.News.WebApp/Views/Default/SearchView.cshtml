@@ -18,69 +18,72 @@
     <div class="clear"></div>
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
-        <div class="search-panel search-filters">
-            <div class="search-filter">
-                <h5 class="open">Date</h5>
-                <div class="search-filter-content" style="display:block">
-                    <div class="form-group">
-                        <div class='input-group date' id='publishDate'>
-                            <input type='text' class="form-control" name="date" value='@(Model.Query.Date.ToString("MM/dd/yyyy"))' />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <span>Within the last:</span>
-                    <select class="form-control" name="dateWithin">
-                        <option>1 week</option>
-                        <option>4 weeks</option>
-                        <option>6 months </option>
-                        <option>2 years</option>
-                        <option>8 years</option>
-                    </select>
-
-                    <h6 class="external-link">Archives</h6>
-                    <ul>
-                        <li><a href="http://archive.news.gov.bc.ca/Default.aspx">June 10, 2013 to March 31, 2014</a></li>
-                        <li><a href="http://archive.news.gov.bc.ca/Default.aspx?archive=2009-2013">June 11, 2009 to June 9, 2013</a></li>
-                        <li><a href="http://archive.news.gov.bc.ca/archive/2005-2009/">May 18, 2005 to June 9, 2009</a></li>
-                        <li><a href="http://archive.news.gov.bc.ca/archive/2001-2005/">June 5, 2001 to May 10, 2005</a></li>
-                        <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            @foreach (var facetResult in Model.FacetResults)
-            {
-                <div class="search-filter">
-                    <h5 class="open">@facetResult.Key</h5>
-                    <div class="search-filter-content" style="display:block">
-                        <ul>
-                            @{ string filterValue = Model.Query.Filters.ContainsKey(facetResult.Key) ? Model.Query.Filters[facetResult.Key] : null;}
-                            @foreach (var facetHit in facetResult.Value)
-                            {
-                                <li>
-                                    @if (filterValue != null)
-                                    {
-                                        <a href="#"><img src="~/Content/Images/close-icon.png" /></a><span>@facetHit.Value</span>
-                                    }
-                                    else
-                                    {
-                                        <a href="#">@facetHit.Value</a>
-                                    }
-                                    <span>: @facetHit.Count</span>
-                                </li>
-                            }
-                        </ul>
-                        <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
+    <div class="search-panel search-filters">
+        <div class="search-filter">
+            <h5 class="open">Date</h5>
+            <div class="search-filter-content" style="display:block">
+                <div class="form-group">
+                    <div class='input-group date' id='publishDate'>
+                        <input type='text' class="form-control" name="date" value='@(Model.Query.Date.ToString("MM/dd/yyyy"))' />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
                     </div>
                 </div>
-            }
-
-            <div style="margin-top: 10px">
-                <a href="/search" class="link-button">RESET SEARCH</a>
+                <span>Within the last:</span>
+                <select class="form-control" name="dateWithin">
+                    <option>1 week</option>
+                    <option>4 weeks</option>
+                    <option>6 months </option>
+                    <option>2 years</option>
+                    <option>8 years</option>
+                </select>
             </div>
         </div>
+
+        @foreach (var facetResult in Model.FacetResults)
+        {
+        <div class="search-filter">
+            <h5 class="open">@facetResult.Key</h5>
+            <div class="search-filter-content" style="display:block">
+                <ul>
+                    @{ string filterValue = Model.Query.Filters.ContainsKey(facetResult.Key) ? Model.Query.Filters[facetResult.Key] : null;}
+                    @foreach (var facetHit in facetResult.Value)
+                    {
+                        <li>
+                            @if (filterValue != null)
+                            {
+                                <a href="#"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHit.Value</span>
+                            }
+                            else
+                            {
+                                <a href="#">@facetHit.Value</a>
+                            }
+                            <span>: @facetHit.Count</span>
+                        </li>
+                    }
+                </ul>
+                <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
+            </div>
+        </div>
+        }
+
+        <div class="search-filter">
+            <h5 class="open">Archives</h5>
+            <div class="search-filter-content" style="display:block">
+                <ul>
+                    <li><a href="http://archive.news.gov.bc.ca/Default.aspx?archive=2009-2013">June 11, 2009 to June 9, 2013</a></li>
+                    <li><a href="http://archive.news.gov.bc.ca/archive/2005-2009/">May 18, 2005 to June 9, 2009</a></li>
+                    <li><a href="http://archive.news.gov.bc.ca/archive/2001-2005/">June 5, 2001 to May 10, 2005</a></li>
+                    <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 10px">
+            <a href="/search" class="link-button">RESET SEARCH</a>
+        </div>
+    </div>
 
         @*  DEVNOTE: For no filters, add the no-filters class*@
         <div class="home-body search-results">
@@ -155,10 +158,10 @@
             </ul>
             <input name='page' type='hidden' disabled='disabled' />
         </div>
-    }
+        }
 
-    <div class="clear"></div>
-</div>
+        <div class="clear"></div>
+    </div>
 
 @section Scripts {
     <script type="text/javascript" src="~/Scripts/moment.min.js"></script>

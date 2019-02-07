@@ -276,8 +276,6 @@ namespace Gov.News.Website.Controllers.Shared
                     return MinistryFilter(index.Key); ;
                 case "sectors":
                     return SectorFilter(index.Key); ;
-                case "services":
-                    return ServiceFilter(index.Key); ;
                 case "themes":
                     return ThemeFilter(index.Key); ;
                 case "tags":
@@ -294,10 +292,6 @@ namespace Gov.News.Website.Controllers.Shared
         internal static Func<Post, bool> SectorFilter(string sectorKey)
         {
             return post => post.SectorKeys.Any(k => k == sectorKey);
-        }
-        internal static Func<Post, bool> ServiceFilter(string sectorKey)
-        {
-            return post => post.ServiceKeys.Any(k => k == sectorKey);
         }
         internal static Func<Post, bool> TagFilter(string sectorKey)
         {
@@ -327,8 +321,6 @@ namespace Gov.News.Website.Controllers.Shared
                     return await Repository.GetMinistriesAsync();
                 case "sectors":
                     return await Repository.GetSectorsAsync();
-                case "services":
-                    return await Repository.GetServicesAsync();
                 case "tags":
                     return await Repository.GetTagsAsync();
                 case "themes":

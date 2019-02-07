@@ -58,19 +58,6 @@
         }
     }
 
-    @if (Model.Selection.Services != null)
-    {
-        foreach(var service in Model.Services)
-        {
-            <label><input type="checkbox" value="@service.Key" name="Services" checked="@Model.Selection.Contains("services", service.Key)" />&nbsp;@service.Name</label>
-            // Stack up the selected Tag names
-            if (Model.Selection.Contains("services", service.Key))
-            {
-                selectedTags.Add(service.Name);
-            }
-        }
-    }
-
     @if (Model.Selection.Newsletters != null)
     {
         @foreach (var newsletter in Model.Newsletters)

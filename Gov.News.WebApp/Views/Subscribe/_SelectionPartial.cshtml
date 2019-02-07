@@ -159,52 +159,6 @@
     </div>
 }
 
-@if (Model.Selection.Services != null)
-{
-    <div id="services" class="expandable-section collapsed">
-        <a name="services"></a>
-        <h4>Featured Program and Service Updates</h4>
-        <div class="expandable-section-content" style="padding-left: 10px; padding-bottom: 0px;">
-            <div class="expander-body">
-
-                <p>The Government of B.C. delivers programs and services so British Columbians can benefit from our diverse, strong and growing economy.  To stay informed on the B.C. government’s policies, programs and services, you can subscribe to email updates about programs and services that may benefit you or your family.</p>
-
-                <span style="font-weight:bold">Let us know what programs and services you're interested in.</span>
-
-                <div style="clear:both"></div>
-
-                <div style="float:left;padding-right:60px">
-                    @{int halfList = (Model.Services.Count() + 1) / 2;}
-                    <ul class="external-links">
-                        @for (int i = 0; i < halfList; i++)
-                        {
-                            var service = Model.Services.ElementAt(i);
-                            <li><label><input type="checkbox" value="@service.Key" name="Services" checked="@Model.Selection.Contains("services", service.Key)" />&nbsp;@service.Name</label></li>
-                        }
-                    </ul>
-                </div>
-                <div>
-                    <ul class="external-links">
-                        @for (int i = halfList; i < Model.Services.Count(); i++)
-                        {
-                            var service = Model.Services.ElementAt(i);
-                            <li><label><input type="checkbox" value="@service.Key" name="Services" checked="@Model.Selection.Contains("services", service.Key)" />&nbsp;@service.Name</label></li>
-                        }
-                    </ul>
-                </div>
-                <div style="clear:left"> </div>
-                <div class="article-fade"> </div>
-
-            </div>
-
-        </div>
-
-        <a href="#" class="link-button expand" id="subscribeToServices">Show More about Updates</a>
-        <a href="#" class="link-button collapse" onclick="">Show Less about Updates</a>
-
-    </div>
-}
-
 @if (Model.Selection.Newsletters != null)
 {
     <div id="newsletters" class="expandable-section collapsed">
@@ -239,7 +193,7 @@
 
         </div>
 
-        <a href="#" class="link-button expand" id="subscribeToServices">Show More About Newsletters</a>
+        <a href="#" class="link-button expand" id="subscribeToNewsletters">Show More About Newsletters</a>
         <a href="#" class="link-button collapse" onclick="">Show Less About Newsletters</a>
 
     </div>

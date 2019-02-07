@@ -67,7 +67,6 @@ namespace Gov.News.Website
 
                     RegisterNotification<Slide>(api, (ignore) => GetSlidesAsync().GetAwaiter().GetResult());
                     RegisterNotification<ResourceLink>(api, (ignore) => GetResourceLinksAsync().GetAwaiter().GetResult());
-                    RegisterNotification<Service>(api, (ignore) => GetServicesAsync().GetAwaiter().GetResult());
                     RegisterNotification<Theme>(api, (ignore) => GetThemesAsync().GetAwaiter().GetResult());
                     RegisterNotification<Tag>(api, (ignore) => GetTagsAsync().GetAwaiter().GetResult());
                     RegisterNotification<Sector>(api, (ignore) => GetSectorsAsync().GetAwaiter().GetResult());
@@ -471,11 +470,6 @@ namespace Gov.News.Website
             return posts;
         }
 
-        public async Task<IList<Service>> GetServicesAsync()
-        {
-            return await GetListAsync(() => ApiClient.Services.GetAllWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
-        }
-
         public async Task<IList<Theme>> GetThemesAsync()
         {
             return await GetListAsync(() => ApiClient.Themes.GetAllWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
@@ -543,7 +537,7 @@ namespace Gov.News.Website
         /// <param name="indexModel">home or one of categories</param>
         /// <param name="count">number of posts to get</param>
         /// <param name="postKind">One of: releases, stories, factsheets, updates or default (releases+stories except top/feature)</param>
-        /// <param name="categoryFilter">filter on Ministry, Sector, Themes, Service or Tag</param>
+        /// <param name="categoryFilter">filter on Ministry, Sector, Themes or Tag</param>
         /// <param name="skip">number of posts to skip (ignoring top/feature posts</param>
         /// <returns></returns>
         public async Task<IEnumerable<Post>> GetLatestPostsAsync(DataIndex index, int count, string postKind = null, Func<Post, bool> categoryFilter = null, int skip = 0)
