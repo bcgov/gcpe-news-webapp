@@ -12,8 +12,6 @@ namespace Gov.News.Website.Models.Subscribe
 
         public IEnumerable<DataIndex> Sectors { get; set; }
 
-        public IEnumerable<DataIndex> Services { get; set; }
-
         public IEnumerable<KeyValuePair2> Tags { get; set; }
 
         public IEnumerable<KeyValuePair2> Emergencies { get; set; }
@@ -21,8 +19,6 @@ namespace Gov.News.Website.Models.Subscribe
         public SelectionModel Selection { get; set; }
 
         public bool ShowNews { get; set; }
-
-        public bool ShowServices { get; set; }
 
         public string Display { get; set; }
     }

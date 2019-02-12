@@ -1,4 +1,4 @@
-﻿#if USE_SIGNALR
+﻿#if USE_JAVASCRIPT_SIGNALR
 using Microsoft.AspNet.SignalR;
 # endif
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 namespace Gov.News.Website.Hubs
 {
     public class LiveHub : IHostedService
-#if USE_SIGNALR
+#if USE_JAVASCRIPT_SIGNALR
         : Hub
 #endif
     {
@@ -142,7 +142,7 @@ namespace Gov.News.Website.Hubs
         {
             //_isWebcasting = false;
             _webcastingPlaylists = null;
-#if USE_SIGNALR
+#if USE_JAVASCRIPT_SIGNALR
             if (!Properties.Settings.Default.SignalREnabled)
                 return;
             var context = GlobalHost.ConnectionManager.GetHubContext<LiveHub>();
@@ -156,7 +156,7 @@ namespace Gov.News.Website.Hubs
         {
             //_isWebcasting = true;
             _webcastingPlaylists = links;
-#if USE_SIGNALR
+#if USE_JAVASCRIPT_SIGNALR
             if (!Properties.Settings.Default.SignalREnabled)
                 return;
             var context = GlobalHost.ConnectionManager.GetHubContext<LiveHub>();
