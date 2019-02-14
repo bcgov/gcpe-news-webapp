@@ -41,7 +41,7 @@ namespace Gov.News.Website.Models
         {
             public string Text { get; set; }
             public IDictionary<string, string> Filters;
-            public DateTime Date { get; set; }
+            public DateTime? Date { get; set; }
             public string DateWithin { get; set; }
         }
 

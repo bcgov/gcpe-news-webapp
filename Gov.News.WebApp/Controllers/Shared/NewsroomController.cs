@@ -46,6 +46,15 @@ namespace Gov.News.Website.Controllers.Shared
 
         protected async Task<SearchViewModel> Search(SearchViewModel.SearchQuery query, string page = null)
         {
+            if (query.DateWithin == null)
+            {
+                query.DateWithin = "2 years";
+            }
+            if (!query.Date.HasValue)
+            {
+                query.Date = DateTime.Today;
+            }
+
             var model = new SearchViewModel();
             int ResultsPerPage = 10;
             model.ResultsPerPage = ResultsPerPage;
@@ -76,39 +85,42 @@ namespace Gov.News.Website.Controllers.Shared
 
             foreach (var facet in facets)
             {
-                if (!query.Filters.ContainsKey(facet.Value))
+                if (query.Filters?.ContainsKey(facet.Value) != true)
                 {
                     requestPath += string.Format("&{0}={1}", "facet", facet.Key);
                 }
             }
 
             var filters = new List<string>();
-            string[] dateWithin = query.DateWithin?.Split(' ');
-            if (dateWithin != null && dateWithin.Length == 2)
+            string[] dateWithin = query.DateWithin.Split(' ');
+            if (dateWithin.Length == 2)
             {
                 string toFilter = "publishDateTime le ";
                 string fromFilter = "publishDateTime ge ";
 
                 int howMuch = int.Parse(dateWithin[0]);
                 bool weeks = dateWithin[1].StartsWith("week");
-                filters.Add(toFilter + query.Date.AddDays(1).ToString("yyyy-MM-dd")); // include the selected day too
+                filters.Add(toFilter + query.Date?.AddDays(1).ToString("yyyy-MM-dd")); // include the selected day too
                 if (weeks || dateWithin[1].StartsWith("day"))
                 {
-                    filters.Add(fromFilter + query.Date.AddDays(weeks ? -howMuch * 7 : -howMuch).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date?.AddDays(weeks ? -howMuch * 7 : -howMuch).ToString("yyyy-MM-dd"));
                 }
                 else if (dateWithin[1].StartsWith("month"))
                 {
-                    filters.Add(fromFilter + query.Date.AddMonths(-howMuch).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date?.AddMonths(-howMuch).ToString("yyyy-MM-dd"));
                 }
                 else if (dateWithin[1].StartsWith("year"))
                 {
-                    filters.Add(fromFilter + query.Date.AddYears(-howMuch).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date?.AddYears(-howMuch).ToString("yyyy-MM-dd"));
                 }
             }
-            foreach (var filter in query.Filters)
+            if (query.Filters != null)
             {
-                string facetKey = facets.SingleOrDefault(f => f.Value == filter.Key).Key;
-                filters.Add(string.Format(facetKey.EndsWith('s') ? "{0}/any(t: t eq '{1}')" : "{0} eq '{1}'", facetKey, filter.Value));
+                foreach (var filter in query.Filters)
+                {
+                    string facetKey = facets.SingleOrDefault(f => f.Value == filter.Key).Key;
+                    filters.Add(string.Format(facetKey.EndsWith('s') ? "{0}/any(t: t eq '{1}')" : "{0} eq '{1}'", facetKey, filter.Value));
+                }
             }
             if (filters.Count != 0)
             {
@@ -172,7 +184,7 @@ namespace Gov.News.Website.Controllers.Shared
                             });
                         }
                     }
-                    else if (query.Filters.TryGetValue(facet.Value, out filteredFacet))
+                    else if (query.Filters != null && query.Filters.TryGetValue(facet.Value, out filteredFacet))
                     {
                         facetHits.Add(new SearchViewModel.FacetHit
                         {
@@ -186,6 +198,7 @@ namespace Gov.News.Website.Controllers.Shared
 
             if (searchServiceResult.value != null)
             {
+                var fBPostKeys = new List<string>();
                 foreach (var result in searchServiceResult.value)
                 {
                     string key = result["key"];
@@ -196,18 +209,30 @@ namespace Gov.News.Website.Controllers.Shared
                     IEnumerable<object> titles = result["documentsHeadline"];
 
                     string assetUrl = result["assetUrl"];
-                    var postForFB = assetUrl.Contains("facebook") ? await Repository.GetPostAsync(key) : null;
-
+                    bool isFBAsset = assetUrl.Contains("facebook");
                     model.Results.Add(new SearchViewModel.Result()
                     {
                         Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
-                        Uri = new Uri(Properties.Settings.Default.NewsHostUri.ToString() + postKind.ToLower() + "/" + key),
+                        Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
                         PublishDate = result["publishDateTime"],
-                        ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl, postForFB?.FacebookPictureUri)
+                        ThumbnailUri = isFBAsset ? null : NewsroomExtensions.GetThumbnailUri(assetUrl)
                     });
+                    if (isFBAsset)
+                    {
+                        fBPostKeys.Add(key);
+                    }
                 }
+
+                foreach(var postForFB in await Repository.GetPostsAsync(fBPostKeys))
+                {
+                    var result = model.Results.SingleOrDefault(r => postForFB.GetUri() == r.Uri);
+                    if (result != null)
+                    {
+                        result.ThumbnailUri = new Uri(postForFB.FacebookPictureUri);
+                    }
+                };
             }
 
 

@@ -133,8 +133,8 @@ namespace Gov.News.Website.Controllers
             {
                 Text = q,
                 Filters = filters,
-                Date = date ?? DateTime.Today,
-                DateWithin = dateWithin ?? "2 years"
+                Date = date,
+                DateWithin = dateWithin
             }, page);
 
             return View("SearchView", model);

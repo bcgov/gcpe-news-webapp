@@ -24,7 +24,7 @@
             <div class="search-filter-content" style="display:block">
                 <div class="form-group">
                     <div class='input-group date' id='publishDate'>
-                        <input type='text' class="form-control" name="date" value='@(Model.Query.Date.ToString("MM/dd/yyyy"))' />
+                        <input type='text' class="form-control" name="date" value='@(Model.Query.Date?.ToString("MM/dd/yyyy"))' />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -47,7 +47,7 @@
             <h5 class="open">@facetResult.Key</h5>
             <div class="search-filter-content" style="display:block">
                 <ul>
-                    @{ string filterValue = Model.Query.Filters.ContainsKey(facetResult.Key) ? Model.Query.Filters[facetResult.Key] : null;}
+                    @{ string filterValue = Model.Query.Filters?.ContainsKey(facetResult.Key) == true ? Model.Query.Filters[facetResult.Key] : null;}
                     @foreach (var facetHit in facetResult.Value)
                     {
                         <li>
