@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Gov.News.Api.Models;
 
 namespace Gov.News.Website.Models
 {
@@ -30,6 +29,25 @@ namespace Gov.News.Website.Models
 
         public IDictionary<string, IEnumerable<FacetHit>> FacetResults { get; set; }
 
+        public IDictionary<string, string> AllQueryFilters()
+        {
+            var filters = Query.Filters != null ? new Dictionary<string, string>(Query.Filters) 
+                                                : new Dictionary<string, string>();
+            if (Query.Date != DateTime.Today)
+            {
+                filters["Date"] = Query.Date.ToString("MM/dd/yyyy");
+            }
+            if (Query.DateWithin != SearchQuery.defaultDateWithin)
+            {
+                filters["DateWithin"] = Query.DateWithin;
+            }
+            if (FirstResult != 1)
+            {
+                filters["Page"] = Page.ToString();
+            }
+            return filters;
+        }
+
         public SearchViewModel()
         {
             Success = true;
@@ -39,12 +57,21 @@ namespace Gov.News.Website.Models
 
         public class SearchQuery
         {
-            public string Text { get; set; }
-            public IDictionary<string, string> Filters;
-            public DateTime? Date { get; set; }
-            public string DateWithin { get; set; }
-        }
+            internal const string defaultDateWithin = "2 years";
 
+            public SearchQuery(string text, DateTime? date = null, string dateWithin = null, IDictionary<string, string> filters = null)
+            {
+                this.Text = text;
+                this.Date = date ?? DateTime.Today; 
+                this.DateWithin = dateWithin ?? defaultDateWithin;
+                Filters = filters;
+            }
+
+            public string Text { get; }
+            public IDictionary<string, string> Filters { get; }
+            public DateTime Date { get; }
+            public string DateWithin { get; }
+        }
 
         public class Result
         {

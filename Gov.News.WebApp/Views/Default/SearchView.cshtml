@@ -1,4 +1,5 @@
 ﻿@using Gov.News.Website.Helpers;
+@using Newtonsoft.Json;
 @model Gov.News.Website.Models.SearchViewModel
 
 <div class="search">
@@ -24,7 +25,7 @@
             <div class="search-filter-content" style="display:block">
                 <div class="form-group">
                     <div class='input-group date' id='publishDate'>
-                        <input type='text' class="form-control" name="date" value='@(Model.Query.Date?.ToString("MM/dd/yyyy"))' />
+                        <input type='text' class="form-control" name="date" value='@(Model.Query.Date.ToString("MM/dd/yyyy"))' />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -214,6 +215,11 @@
         document.onkeypress = function enter(e) {
             if (e.which === 13) { document.forms[0].submit(); }
         };
+
+        window.snowplow('trackSiteSearch',
+            ['@Html.Raw(Model.Query.Text?.Replace(" ", "', '"))'],
+            @Html.Raw(JsonConvert.SerializeObject(Model.AllQueryFilters())),
+            @Model.Count);
 
     </script>
 }

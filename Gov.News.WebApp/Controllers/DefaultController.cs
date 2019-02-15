@@ -129,15 +129,9 @@ namespace Gov.News.Website.Controllers
                 filters.Add("City", city);
             }
 
-            var model = await Search(new SearchViewModel.SearchQuery()
-            {
-                Text = q,
-                Filters = filters,
-                Date = date,
-                DateWithin = dateWithin
-            }, page);
+            var queryModel = new SearchViewModel.SearchQuery(q, date, dateWithin, filters);
 
-            return View("SearchView", model);
+            return View("SearchView", await Search(queryModel, page));
         }
 
         public new Task<ActionResult> NotFound()
