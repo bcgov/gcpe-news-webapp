@@ -37,7 +37,7 @@ namespace Gov.News.Website.Controllers.Shared
         [Noindex]
         private async Task<ActionResult> SearchNotFound(string query)
         {
-            var model = await Search(new SearchViewModel.SearchQuery() { Text = query });
+            var model = await Search(new SearchViewModel.SearchQuery(query));
 
             Response.StatusCode = 404;
 
@@ -46,15 +46,6 @@ namespace Gov.News.Website.Controllers.Shared
 
         protected async Task<SearchViewModel> Search(SearchViewModel.SearchQuery query, string page = null)
         {
-            if (query.DateWithin == null)
-            {
-                query.DateWithin = "2 years";
-            }
-            if (!query.Date.HasValue)
-            {
-                query.Date = DateTime.Today;
-            }
-
             var model = new SearchViewModel();
             int ResultsPerPage = 10;
             model.ResultsPerPage = ResultsPerPage;
@@ -100,18 +91,18 @@ namespace Gov.News.Website.Controllers.Shared
 
                 int howMuch = int.Parse(dateWithin[0]);
                 bool weeks = dateWithin[1].StartsWith("week");
-                filters.Add(toFilter + query.Date?.AddDays(1).ToString("yyyy-MM-dd")); // include the selected day too
+                filters.Add(toFilter + query.Date.AddDays(1).ToString("yyyy-MM-dd")); // include the selected day too
                 if (weeks || dateWithin[1].StartsWith("day"))
                 {
-                    filters.Add(fromFilter + query.Date?.AddDays(weeks ? -howMuch * 7 : -howMuch).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date.AddDays(weeks ? -howMuch * 7 : -howMuch).ToString("yyyy-MM-dd"));
                 }
                 else if (dateWithin[1].StartsWith("month"))
                 {
-                    filters.Add(fromFilter + query.Date?.AddMonths(-howMuch).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date.AddMonths(-howMuch).ToString("yyyy-MM-dd"));
                 }
                 else if (dateWithin[1].StartsWith("year"))
                 {
-                    filters.Add(fromFilter + query.Date?.AddYears(-howMuch).ToString("yyyy-MM-dd"));
+                    filters.Add(fromFilter + query.Date.AddYears(-howMuch).ToString("yyyy-MM-dd"));
                 }
             }
             if (query.Filters != null)
