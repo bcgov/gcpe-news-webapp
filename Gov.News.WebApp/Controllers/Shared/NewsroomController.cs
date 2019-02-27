@@ -62,6 +62,7 @@ namespace Gov.News.Website.Controllers.Shared
             if (!string.IsNullOrEmpty(query.Text))
             {
                 requestPath += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+                requestPath += string.Format("&{0}={1}", "searchMode", "all");
             }
             //if (!string.IsNullOrEmpty(query.DateRange))
             //requestPath += string.Format("+{0}:{1}", "daterange", query.DateRange);
@@ -218,6 +219,7 @@ namespace Gov.News.Website.Controllers.Shared
 
                 foreach(var postForFB in await Repository.GetPostsAsync(fBPostKeys))
                 {
+                    if (postForFB.FacebookPictureUri == null) continue;
                     var result = model.Results.SingleOrDefault(r => postForFB.GetUri() == r.Uri);
                     if (result != null)
                     {

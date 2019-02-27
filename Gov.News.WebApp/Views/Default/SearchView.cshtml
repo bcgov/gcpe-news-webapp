@@ -116,7 +116,7 @@
                     {
                         <div class="item-medialink media-assets"><a href="@result.Uri#assets">Media Assets</a></div>
                     }
-                    <div class="item-date">@result.PublishDate.DateTime.FormatDateLong()</div>
+                    <div class="item-date">@result.PublishDate.ToLocalTime().FormatDateLong()</div>
                     <div class="item-content">
                         @if (result.ThumbnailUri != null)
                         {
