@@ -85,7 +85,7 @@ namespace Gov.News.Website.Models
 
             public Uri ThumbnailUri { get; set; }
 
-            public DateTimeOffset PublishDate { get; set; }
+            public DateTime PublishDate { get; set; }
         }
 
         public class FacetHit
