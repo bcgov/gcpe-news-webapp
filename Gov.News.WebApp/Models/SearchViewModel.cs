@@ -36,7 +36,7 @@ namespace Gov.News.Website.Models
                                                 : new Dictionary<string, string>();
             if (Query.FromDate != MinDate)
             {
-                filters["FromDate"] = Query.ToDate.ToString("MM/dd/yyyy");
+                filters["FromDate"] = Query.FromDate.ToString("MM/dd/yyyy");
             }
             if (Query.ToDate != DateTime.Today)
             {
