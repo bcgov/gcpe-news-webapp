@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Gov.News.Website.Models
@@ -29,23 +30,30 @@ namespace Gov.News.Website.Models
 
         public IDictionary<string, IEnumerable<FacetHit>> FacetResults { get; set; }
 
-        public IDictionary<string, string> AllQueryFilters()
+        public IDictionary<string, string> AllQueryFilters(bool includePage = true)
         {
             var filters = Query.Filters != null ? new Dictionary<string, string>(Query.Filters) 
                                                 : new Dictionary<string, string>();
-            if (Query.Date != DateTime.Today)
+            if (Query.FromDate != MinDate)
             {
-                filters["Date"] = Query.Date.ToString("MM/dd/yyyy");
+                filters["FromDate"] = Query.ToDate.ToString("MM/dd/yyyy");
             }
-            if (Query.DateWithin != SearchQuery.defaultDateWithin)
+            if (Query.ToDate != DateTime.Today)
             {
-                filters["DateWithin"] = Query.DateWithin;
+                filters["ToDate"] = Query.ToDate.ToString("MM/dd/yyyy");
             }
-            if (FirstResult != 1)
+            if (includePage && FirstResult != 1)
             {
                 filters["Page"] = Page.ToString();
             }
             return filters;
+        }
+        public string QueryString(string key, string value)
+        {
+            var queryFilters = AllQueryFilters(false);
+            queryFilters["q"] = Query.Text;
+            queryFilters[key] = value;
+            return string.Join("&", queryFilters.Where(f => f.Value != null).Select(f => f.Key + "=" + f.Value));
         }
 
         public SearchViewModel()
@@ -55,22 +63,32 @@ namespace Gov.News.Website.Models
             FacetResults = new Dictionary<string, IEnumerable<FacetHit>>();
         }
 
+        public static Dictionary<string, string> DateCollections = new Dictionary<string, string> {
+                { "2017-2021", "July 18, 2017 to current date" },
+                { "2017-2017", "June 12, 2017 to July 17, 2017" },
+                { "2013-2017", "June 10, 2013 to June 11, 2017" },
+                { "2009-2013", "March 12, 2011 to June 9, 2013" }
+            };
+        public static DateTime MinDate = DateTime.Parse("03/12/2011");
         public class SearchQuery
         {
-            internal const string defaultDateWithin = "2 years";
-
-            public SearchQuery(string text, DateTime? date = null, string dateWithin = null, IDictionary<string, string> filters = null)
+            public SearchQuery(string text, DateTime? fromDate = null, DateTime? toDate = null, IDictionary<string, string> filters = null)
             {
-                this.Text = text;
-                this.Date = date ?? DateTime.Today; 
-                this.DateWithin = dateWithin ?? defaultDateWithin;
+                Text = text;
+                FromDate = fromDate ?? MinDate;
+                ToDate = toDate ?? DateTime.Today;
                 Filters = filters;
             }
 
             public string Text { get; }
             public IDictionary<string, string> Filters { get; }
-            public DateTime Date { get; }
-            public string DateWithin { get; }
+            public DateTime ToDate { get; }
+            public DateTime FromDate { get; }
+
+            public bool UseCustomRange()
+            {
+                return FromDate != MinDate || ToDate != DateTime.Today;
+            }
         }
 
         public class Result

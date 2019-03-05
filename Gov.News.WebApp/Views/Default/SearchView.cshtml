@@ -1,6 +1,7 @@
 ﻿@using Gov.News.Website.Helpers;
+@using Gov.News.Website.Models
 @using Newtonsoft.Json;
-@model Gov.News.Website.Models.SearchViewModel
+@model SearchViewModel
 
 <div class="search">
     <div class="search-body">
@@ -19,72 +20,69 @@
     <div class="clear"></div>
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
-    <div class="search-panel search-filters">
-        <div class="search-filter">
-            <h5 class="open">Date</h5>
-            <div class="search-filter-content" style="display:block">
-                <div class="form-group">
-                    <div class='input-group date' id='publishDate'>
-                        <input type='text' class="form-control" name="date" value='@(Model.Query.Date.ToString("MM/dd/yyyy"))' />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+        <div class="search-panel search-filters">
+            @foreach (var facetResult in Model.FacetResults)
+            {
+                <div class="search-filter">
+                    <h5 class="open">@facetResult.Key</h5>
+                    <div class="search-filter-content" style="display:block">
+                        @{ string filterValue = Model.Query.Filters?.ContainsKey(facetResult.Key) == true ? Model.Query.Filters[facetResult.Key] : null;}
+                        @if (facetResult.Key == "Date" && filterValue == null)
+                        {
+                            <div>
+                                Custom Range
+                                <div class='input-group date' id='publishFromDate'>
+                                    <input type='text' class="form-control" name='fromDate' value='@(Model.Query.FromDate.ToString("MM/dd/yyyy"))' />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                                <div class='input-group date' id='publishToDate'>
+                                    <input type='text' class="form-control" name="toDate" value='@(Model.Query.ToDate.ToString("MM/dd/yyyy"))' />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <br />
+                        }
+                        <ul>
+                            @foreach (var facetHit in facetResult.Value)
+                            {
+                                string facetHitValue;
+                                if (facetResult.Key != "Date" || !SearchViewModel.DateCollections.TryGetValue(facetHit.Value, out facetHitValue))
+                                {
+                                    facetHitValue = facetHit.Value;
+                                }
+                                <li>
+                                    @if (filterValue != null)
+                                    {
+                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                    }
+                                    else
+                                    {
+                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
+                                    }
+                                    <span>: @facetHit.Count</span>
+                                </li>
+                            }
+                            @if (facetResult.Key == "Date" && filterValue == null && !Model.Query.UseCustomRange())
+                            {
+                                <li><a href="http://archive.news.gov.bc.ca/Default.aspx?archive=2009-2013">June 11, 2009 to March 11, 2011</a></li>
+                                <li><a href="http://archive.news.gov.bc.ca/archive/2005-2009/">May 18, 2005 to June 9, 2009</a></li>
+                                <li><a href="http://archive.news.gov.bc.ca/archive/2001-2005/">June 5, 2001 to May 10, 2005</a></li>
+                                <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
+                            }
+                        </ul>
+                        <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
                     </div>
                 </div>
-                <span>Within the last:</span>
-                <select class="form-control" name="dateWithin">
-                    <option>1 week</option>
-                    <option>4 weeks</option>
-                    <option>6 months </option>
-                    <option>2 years</option>
-                    <option>8 years</option>
-                </select>
+            }
+
+            <div style="margin-top: 10px">
+                <a href="/search" class="link-button">RESET SEARCH</a>
             </div>
         </div>
-
-        @foreach (var facetResult in Model.FacetResults)
-        {
-        <div class="search-filter">
-            <h5 class="open">@facetResult.Key</h5>
-            <div class="search-filter-content" style="display:block">
-                <ul>
-                    @{ string filterValue = Model.Query.Filters?.ContainsKey(facetResult.Key) == true ? Model.Query.Filters[facetResult.Key] : null;}
-                    @foreach (var facetHit in facetResult.Value)
-                    {
-                        <li>
-                            @if (filterValue != null)
-                            {
-                                <a href="#"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHit.Value</span>
-                            }
-                            else
-                            {
-                                <a href="#">@facetHit.Value</a>
-                            }
-                            <span>: @facetHit.Count</span>
-                        </li>
-                    }
-                </ul>
-                <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
-            </div>
-        </div>
-        }
-
-        <div class="search-filter">
-            <h5 class="open">Archives</h5>
-            <div class="search-filter-content" style="display:block">
-                <ul>
-                    <li><a href="http://archive.news.gov.bc.ca/Default.aspx?archive=2009-2013">June 11, 2009 to June 9, 2013</a></li>
-                    <li><a href="http://archive.news.gov.bc.ca/archive/2005-2009/">May 18, 2005 to June 9, 2009</a></li>
-                    <li><a href="http://archive.news.gov.bc.ca/archive/2001-2005/">June 5, 2001 to May 10, 2005</a></li>
-                    <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div style="margin-top: 10px">
-            <a href="/search" class="link-button">RESET SEARCH</a>
-        </div>
-    </div>
 
         @*  DEVNOTE: For no filters, add the no-filters class*@
         <div class="home-body search-results">
@@ -137,7 +135,7 @@
 
                 @if (Model.Page > 1)
                 {
-                    <li> <a id="prev" href="#">&laquo;prev</a></li>
+                    <li> <a id="prev" href="Search?@Model.QueryString("Page", (Model.Page - 1).ToString())">&laquo;prev</a></li>
                 }
 
                 @for (long i = Math.Max(1, Model.Page - 4); i <= Math.Min(Model.LastPage, Model.Page + 4); i++)
@@ -148,37 +146,36 @@
                     }
                     else
                     {
-                        <li><a href="#">@i</a></li>
+                        <li><a href="Search?@Model.QueryString("Page", i.ToString())">@i</a></li>
                     }
                 }
 
                 @if (Model.Page < Model.LastPage)
                 {
-                    <li><a id="next" href="#">next &raquo;</a></li>
+                    <li><a id="next" href="Search?@Model.QueryString("Page", (Model.Page + 1).ToString())">next &raquo;</a></li>
                 }
             </ul>
             <input name='page' type='hidden' disabled='disabled' />
         </div>
-        }
+    }
 
-        <div class="clear"></div>
-    </div>
+    <div class="clear"></div>
+</div>
 
 @section Scripts {
     <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap-datetimepicker.min.css" media="screen" type="text/css" />
     <script type="text/javascript">
+        var minDate = '@SearchViewModel.MinDate.ToString("MM/dd/yyyy")';
+        var maxDate = '@DateTime.Today.ToString("MM/dd/yyyy")';
         $(function () {
-            $("#publishDate").datetimepicker({
+            $(".input-group.date").datetimepicker({
                 format: 'MM/DD/YYYY',
                 useCurrent: false,
-                maxDate: '@DateTime.Today.ToString("MM/dd/yyyy")',
-                minDate: '03/12/2011'
+                maxDate: maxDate,
+                minDate: minDate,
             }).on('dp.change', function (e) {
-                $(this).closest('form').submit();
-            });
-            $('[name="dateWithin"]').val('@Model.Query.DateWithin').on('change', function () {
                 $(this).closest('form').submit();
             });
 
@@ -190,8 +187,7 @@
             $("li a").on('click', function (e) {
                 var hiddenInput = $(this).closest("ul").siblings("input");
                 if (hiddenInput.attr("disabled")) {
-                    var pageInc = e.target.id === "prev" ? -1 : e.target.id === "next" ? 1 : 0;
-                    hiddenInput.val(pageInc ? @Model.Page + pageInc : e.target.text);
+                    hiddenInput.val(decodeURIComponent(e.target.href.substr(e.target.href.lastIndexOf('=') + 1)));
                     hiddenInput.removeAttr("disabled");
                 } else {
                     hiddenInput.remove();
@@ -215,7 +211,17 @@
         document.onkeypress = function enter(e) {
             if (e.which === 13) { document.forms[0].submit(); }
         };
-
+        $(document).on('submit', 'form', function () {
+            // remove default parameters from the url
+            var fromDate = $("[name='fromDate']");
+            if (fromDate.val() == minDate) {
+                fromDate.attr("disabled", "disabled");
+            }
+            var toDate = $("[name='toDate']");
+            if (toDate.val() == maxDate) {
+                toDate.attr("disabled", "disabled");
+            }
+        });
         window.snowplow('trackSiteSearch',
             ['@Html.Raw(Model.Query.Text?.Replace(" ", "', '"))'],
             @Html.Raw(JsonConvert.SerializeObject(Model.AllQueryFilters())),
