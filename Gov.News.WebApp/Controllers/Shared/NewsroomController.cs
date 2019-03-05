@@ -73,10 +73,12 @@ namespace Gov.News.Website.Controllers.Shared
 
             requestPath += string.Format("&{0}={1}", "$orderby", "publishDateTime desc");
 
-            var facets = new Dictionary<string, string> {{ "ministries", "Ministry" }, { "sectors", "Sector" }, { "releaseType", "Content" }, { "location", "City" }};
+            var facets = new Dictionary<string, string> { { "collection", "Date" }, { "ministries", "Ministry" }, { "sectors", "Sector" }, { "location", "City" }, { "releaseType", "Content" } };
 
+            bool useCustomRange = query.UseCustomRange();
             foreach (var facet in facets)
             {
+                if (facet.Value == "Date" && useCustomRange) continue;
                 if (query.Filters?.ContainsKey(facet.Value) != true)
                 {
                     requestPath += string.Format("&{0}={1}", "facet", facet.Key);
@@ -84,27 +86,10 @@ namespace Gov.News.Website.Controllers.Shared
             }
 
             var filters = new List<string>();
-            string[] dateWithin = query.DateWithin.Split(' ');
-            if (dateWithin.Length == 2)
+            if (useCustomRange)
             {
-                string toFilter = "publishDateTime le ";
-                string fromFilter = "publishDateTime ge ";
-
-                int howMuch = int.Parse(dateWithin[0]);
-                bool weeks = dateWithin[1].StartsWith("week");
-                filters.Add(toFilter + query.Date.AddDays(1).ToString("yyyy-MM-dd")); // include the selected day too
-                if (weeks || dateWithin[1].StartsWith("day"))
-                {
-                    filters.Add(fromFilter + query.Date.AddDays(weeks ? -howMuch * 7 : -howMuch).ToString("yyyy-MM-dd"));
-                }
-                else if (dateWithin[1].StartsWith("month"))
-                {
-                    filters.Add(fromFilter + query.Date.AddMonths(-howMuch).ToString("yyyy-MM-dd"));
-                }
-                else if (dateWithin[1].StartsWith("year"))
-                {
-                    filters.Add(fromFilter + query.Date.AddYears(-howMuch).ToString("yyyy-MM-dd"));
-                }
+                filters.Add("publishDateTime le " + query.ToDate.AddDays(1).ToString("yyyy-MM-dd")); // include the selected day too
+                filters.Add("publishDateTime ge " + query.FromDate.ToString("yyyy-MM-dd")); // include the selected day too
             }
             if (query.Filters != null)
             {
@@ -184,7 +169,8 @@ namespace Gov.News.Website.Controllers.Shared
                             Count = model.Count
                         });
                     }
-                    model.FacetResults.Add(facet.Value, facetHits.OrderByDescending(f => f.Count));
+                    bool isDateCollection = facet.Key == "collection";
+                    model.FacetResults.Add(facet.Value, isDateCollection ? facetHits.OrderByDescending(f => f.Value) : facetHits.OrderByDescending(f => f.Count));
                 }
             }
 
