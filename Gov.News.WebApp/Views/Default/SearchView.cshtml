@@ -20,18 +20,18 @@
     <div class="clear"></div>
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
-        <div class="search-panel search-filters">
-            @foreach (var facetResult in Model.FacetResults)
-            {
-                <div class="search-filter">
-                    <h5 class="open">@facetResult.Key</h5>
-                    <div class="search-filter-content" style="display:block">
-                        @{ string filterValue = Model.Query.Filters?.ContainsKey(facetResult.Key) == true ? Model.Query.Filters[facetResult.Key] : null;}
-                        @if (facetResult.Key == "Date" && filterValue == null)
-                        {
-                            <div>
-                                Custom Range
-                                <div class='input-group date' id='publishFromDate'>
+    <div class="search-panel search-filters">
+        @foreach (var facetResult in Model.FacetResults)
+        {
+            <div class="search-filter">
+                <h5 class="open">@facetResult.Key</h5>
+                <div class="search-filter-content" style="display:block">
+                    @{ string filterValue = Model.Query.Filters?.ContainsKey(facetResult.Key) == true ? Model.Query.Filters[facetResult.Key] : null;}
+                    @if (facetResult.Key == "Date" && filterValue == null)
+                    {
+                        <div>
+                            Custom Range
+                            <div class='input-group date' id='publishFromDate'>
                                     <input type='text' class="form-control" name='fromDate' value='@(Model.Query.FromDate.ToString("MM/dd/yyyy"))' />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -75,14 +75,16 @@
                             }
                         </ul>
                         <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
-                    </div>
                 </div>
-            }
-
-            <div style="margin-top: 10px">
+            </div>
+            @if (facetResult.Key == "Date")
+            {
+            <div style="margin-bottom: 10px">
                 <a href="/search" class="link-button">RESET SEARCH</a>
             </div>
-        </div>
+            }
+        }
+    </div>
 
         @*  DEVNOTE: For no filters, add the no-filters class*@
         <div class="home-body search-results">
