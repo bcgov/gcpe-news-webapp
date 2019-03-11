@@ -69,7 +69,7 @@ namespace Gov.News.Website.Models
                 { "2013-2017", "June 10, 2013 to June 11, 2017" },
                 { "2009-2013", "March 12, 2011 to June 9, 2013" }
             };
-        public static DateTime MinDate = DateTime.Parse("03/12/2011");
+        public static DateTime MinDate = DateTime.Parse("2011/03/12");
         public class SearchQuery
         {
             public SearchQuery(string text, DateTime? fromDate = null, DateTime? toDate = null, IDictionary<string, string> filters = null)
