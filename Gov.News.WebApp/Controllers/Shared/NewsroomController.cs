@@ -96,7 +96,7 @@ namespace Gov.News.Website.Controllers.Shared
                 foreach (var filter in query.Filters)
                 {
                     string facetKey = facets.SingleOrDefault(f => f.Value == filter.Key).Key;
-                    filters.Add(string.Format(facetKey.EndsWith('s') ? "{0}/any(t: t eq '{1}')" : "{0} eq '{1}'", facetKey, filter.Value));
+                    filters.Add(string.Format(facetKey.EndsWith('s') ? "{0}/any(t: t eq '{1}')" : "{0} eq '{1}'", facetKey, filter.Value.Replace("'", "''")));
                 }
             }
             if (filters.Count != 0)
