@@ -3522,7 +3522,7 @@ ul.inline li {
 }
 
 /* disable years and decade views*/
-.bootstrap-datetimepicker-widget .datepicker-months thead .picker-switch {
+.datepicker-dropdown .datepicker-months thead .datepicker-switch {
     cursor: default;
     pointer-events: none;
 }
