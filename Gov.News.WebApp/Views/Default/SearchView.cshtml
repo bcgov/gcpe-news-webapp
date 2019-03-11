@@ -165,21 +165,20 @@
 </div>
 
 @section Scripts {
-    <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js"></script>
-    <link rel="stylesheet" href="~/Content/bootstrap-datetimepicker.min.css" media="screen" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/bootstrap-datepicker.js"></script>
+    <link rel="stylesheet" href="~/Content/bootstrap-datepicker.min.css" media="screen" type="text/css" />
     <script type="text/javascript">
         var minDate = '@SearchViewModel.MinDate.ToString("yyyy/MM/dd")';
         var maxDate = '@DateTime.Today.ToString("yyyy/MM/dd")';
         $(function () {
             $(".input-group.date").datepicker({
-                format: 'YYYY/MM/DD',
+                format: 'yyyy/mm/dd',
                 useCurrent: false,
-                maxDate: maxDate,
-                minDate: minDate,
-            }).on('dp.change', function (e) {
-                $(this).closest('form').submit();
-            });
+                endDate: maxDate,
+                startDate: minDate,
+            }).on('changeDate', function (e) {
+                $('form:first').submit();
+                });
 
             $(".search-filters .search-filter h5").on('click', function () {
                 var headerToggler = $(this);
@@ -194,10 +193,10 @@
                 } else {
                     hiddenInput.remove();
                 }
-                $(this).closest('form').submit();
+                $('form:first').submit();
             });
             $(".search-trigger").on('click', function () {
-                $(this).closest('form').submit();
+                $('form:first').submit();
             });
             $(".mini-search-trigger").on('click', function (e) {
                 // for mobiles
@@ -208,22 +207,24 @@
                     searchPanels.show();
                 }
             });
+
+            $(document).on('submit', 'form', function () {
+                // remove default parameters from the url
+                var fromDate = $("[name='fromDate']");
+                if (fromDate.val() == minDate) {
+                    fromDate.attr("disabled", "disabled");
+                }
+                var toDate = $("[name='toDate']");
+                if (toDate.val() == maxDate) {
+                    toDate.attr("disabled", "disabled");
+                }
+            }).keypress(function enter(e) {
+                if (e.which === 13) {
+                    $('form:first').submit();
+                }
+            });
         });
 
-        document.onkeypress = function enter(e) {
-            if (e.which === 13) { document.forms[0].submit(); }
-        };
-        $(document).on('submit', 'form', function () {
-            // remove default parameters from the url
-            var fromDate = $("[name='fromDate']");
-            if (fromDate.val() == minDate) {
-                fromDate.attr("disabled", "disabled");
-            }
-            var toDate = $("[name='toDate']");
-            if (toDate.val() == maxDate) {
-                toDate.attr("disabled", "disabled");
-            }
-        });
         window.snowplow('trackSiteSearch',
             ['@Html.Raw(Model.Query.Text?.Replace(" ", "', '"))'],
             @Html.Raw(JsonConvert.SerializeObject(Model.AllQueryFilters())),
