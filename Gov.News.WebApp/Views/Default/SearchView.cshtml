@@ -32,49 +32,49 @@
                         <div>
                             Custom Range
                             <div class='input-group date' id='publishFromDate'>
-                                    <input type='text' class="form-control" name='fromDate' value='@(Model.Query.FromDate.ToString("MM/dd/yyyy"))' />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                                <div class='input-group date' id='publishToDate'>
-                                    <input type='text' class="form-control" name="toDate" value='@(Model.Query.ToDate.ToString("MM/dd/yyyy"))' />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
+                                <input type='text' class="form-control" name='fromDate' value='@(Model.Query.FromDate.ToString("yyyy/MM/dd"))' />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                             </div>
-                            <br />
-                        }
-                        <ul>
-                            @foreach (var facetHit in facetResult.Value)
+                            <div class='input-group date' id='publishToDate'>
+                                <input type='text' class="form-control" name="toDate" value='@(Model.Query.ToDate.ToString("yyyy/MM/dd"))' />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <br />
+                    }
+                    <ul>
+                        @foreach (var facetHit in facetResult.Value)
+                        {
+                            string facetHitValue;
+                            if (facetResult.Key != "Date" || !SearchViewModel.DateCollections.TryGetValue(facetHit.Value, out facetHitValue))
                             {
-                                string facetHitValue;
-                                if (facetResult.Key != "Date" || !SearchViewModel.DateCollections.TryGetValue(facetHit.Value, out facetHitValue))
+                                facetHitValue = facetHit.Value;
+                            }
+                            <li>
+                                @if (filterValue != null)
                                 {
-                                    facetHitValue = facetHit.Value;
+                                    <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
                                 }
-                                <li>
-                                    @if (filterValue != null)
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
-                                    }
-                                    else
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
-                                    }
-                                    <span>: @facetHit.Count</span>
-                                </li>
-                            }
-                            @if (facetResult.Key == "Date" && filterValue == null && !Model.Query.UseCustomRange())
-                            {
-                                <li><a href="http://archive.news.gov.bc.ca/Default.aspx?archive=2009-2013">June 11, 2009 to March 11, 2011</a></li>
-                                <li><a href="http://archive.news.gov.bc.ca/archive/2005-2009/">May 18, 2005 to June 9, 2009</a></li>
-                                <li><a href="http://archive.news.gov.bc.ca/archive/2001-2005/">June 5, 2001 to May 10, 2005</a></li>
-                                <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
-                            }
-                        </ul>
-                        <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
+                                else
+                                {
+                                    <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
+                                }
+                                <span>: @facetHit.Count.ToString("N0")</span>
+                            </li>
+                        }
+                        @if (facetResult.Key == "Date" && filterValue == null && !Model.Query.UseCustomRange())
+                        {
+                            <li><a href="http://archive.news.gov.bc.ca/Default.aspx?archive=2009-2013">June 11, 2009 to March 11, 2011</a></li>
+                            <li><a href="http://archive.news.gov.bc.ca/archive/2005-2009/">May 18, 2005 to June 9, 2009</a></li>
+                            <li><a href="http://archive.news.gov.bc.ca/archive/2001-2005/">June 5, 2001 to May 10, 2005</a></li>
+                            <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
+                        }
+                    </ul>
+                    <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
                 </div>
             </div>
             @if (facetResult.Key == "Date")
@@ -104,7 +104,7 @@
             else
             {
                 <div class="search-numbers">
-                    Showing results @Model.FirstResult - @Model.LastResult of @Model.Count
+                    Showing results @Model.FirstResult - @Model.LastResult of @Model.Count.ToString("N0")
                 </div>
             }
 
@@ -169,11 +169,11 @@
     <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap-datetimepicker.min.css" media="screen" type="text/css" />
     <script type="text/javascript">
-        var minDate = '@SearchViewModel.MinDate.ToString("MM/dd/yyyy")';
-        var maxDate = '@DateTime.Today.ToString("MM/dd/yyyy")';
+        var minDate = '@SearchViewModel.MinDate.ToString("yyyy/MM/dd")';
+        var maxDate = '@DateTime.Today.ToString("yyyy/MM/dd")';
         $(function () {
-            $(".input-group.date").datetimepicker({
-                format: 'MM/DD/YYYY',
+            $(".input-group.date").datepicker({
+                format: 'YYYY/MM/DD',
                 useCurrent: false,
                 maxDate: maxDate,
                 minDate: minDate,
