@@ -13,7 +13,7 @@ node('master') {
     stage('Build Image') {
         echo "Building..."
         openshiftBuild bldCfg: 'news-webapp-master', showBuildLogs: 'true'
-        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'MASTER-$BUILD_ID', srcStream: 'news-webapp', srcTag: 'latest'
+        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'MASTER-$BUILD_ID', srcStream: 'news-webapp', srcTag: 'uat'
     }
 
 	stage('Deploy to UAT') {
