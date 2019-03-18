@@ -171,14 +171,21 @@
         var minDate = '@SearchViewModel.MinDate.ToString("yyyy/MM/dd")';
         var maxDate = '@DateTime.Today.ToString("yyyy/MM/dd")';
         $(function () {
+            var pickerOpen = false;
             $(".input-group.date").datepicker({
                 format: 'yyyy/mm/dd',
-                useCurrent: false,
+                showOnFocus: false,
+                todayHighlight: true,
                 endDate: maxDate,
                 startDate: minDate,
-            }).on('changeDate', function (e) {
+            }).on('changeDate', function () {
+                if (!pickerOpen) return;
                 $('form:first').submit();
-                });
+            }).on('show', function () {
+                pickerOpen = true;
+            }).on('hide', function () {
+                pickerOpen = false;
+            });
 
             $(".search-filters .search-filter h5").on('click', function () {
                 var headerToggler = $(this);
