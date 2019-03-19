@@ -152,11 +152,12 @@ namespace Gov.News.Website
                 }
             });
 
-            if ((Properties.Settings.Default.SignalREnabled != null && Properties.Settings.Default.SignalREnabled.ToLower().Equals("true")))
+#if USE_JAVASCRIPT_SIGNALR
+            if (Properties.Settings.Default.SignalREnabled != null && Properties.Settings.Default.SignalREnabled=="true")
             {
                 app.UseSignalR();
             }
-
+#endif
             app.UseMvc(routes =>
             {
                 routes.RegisterRoutes();

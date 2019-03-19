@@ -9,8 +9,6 @@ namespace Gov.News.Website.Models.Subscribe
     {
         public string EmailAddress { get; set; }
 
-        public IEnumerable<string> Services { get; set; }
-
         public IEnumerable<string> Ministries { get; set; }
 
         public IEnumerable<string> Sectors { get; set; }
@@ -38,9 +36,6 @@ namespace Gov.News.Website.Models.Subscribe
             if (category == "tags")
                 return Tags != null && Tags.Contains(key);
 
-            if (category == "services")
-                return Services != null && Services.Contains(key);
-
             if (category == "newsletters")
                 return Newsletters != null && Newsletters.Contains(key);
 
@@ -52,7 +47,7 @@ namespace Gov.News.Website.Models.Subscribe
 
         public bool Any()
         {
-            return (Ministries?.Any() ?? false) || (Sectors?.Any() ?? false) || (Tags?.Any() ?? false) || (Services?.Any() ?? false) || (Newsletters?.Any() ?? false) || (Emergency?.Any() ?? false);
+            return (Ministries?.Any() ?? false) || (Sectors?.Any() ?? false) || (Tags?.Any() ?? false) || (Newsletters?.Any() ?? false) || (Emergency?.Any() ?? false);
         }
     }
 }

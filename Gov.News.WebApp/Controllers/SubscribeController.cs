@@ -20,7 +20,7 @@ namespace Gov.News.Website.Controllers
         {
         }
 
-        public async Task<SubscribeViewModel> LoadSubscribeViewModel(bool loadTags = true, bool loadNewsletters = true, bool loadServices = true)
+        public async Task<SubscribeViewModel> LoadSubscribeViewModel(bool loadTags = true, bool loadNewsletters = true)
         {
             var model = new SubscribeViewModel();
             await LoadAsync(model);
@@ -35,7 +35,6 @@ namespace Gov.News.Website.Controllers
             }
             catch (Exception) { }
 
-            if (loadServices) model.Services = await Repository.GetServicesAsync();
             if (loadNewsletters) model.Newsletters = await Repository.GetNewslettersAsync();
 
             // As per Michael's instructions we're hard-coding these values and not fetching them from a table in a DB
@@ -48,25 +47,21 @@ namespace Gov.News.Website.Controllers
 
         // Having these parameters will make ASP MVC create (auto magically) them
         // using the request query parameters
-        public async Task<ActionResult> Index(string[] ministries, string[] sectors, string[] tags, string[] services, string[] emergency, string[] newsletters, string display)
+        public async Task<ActionResult> Index(string[] ministries, string[] sectors, string[] tags, string[] emergency, string[] newsletters, string display)
         {
-            bool servicesSelected = services.Any();
-            if (servicesSelected || newsletters.Any())
+            if (newsletters.Any())
             {
                 // do not show Ministries and Sectors
                 ministries = null;
                 sectors = null;
                 emergency = null;
-                if (servicesSelected) newsletters = null;
-                else services = null;
             }
             else
             {
                 newsletters = null;
-                services = null;
             }
 
-            if ((ministries?.Length ?? 0) == 0 && (sectors?.Length ?? 0) == 0 && (services?.Length ?? 0) == 0 && (emergency?.Length ?? 0) == 0 && (newsletters?.Length ?? 0) == 0)
+            if ((ministries?.Length ?? 0) == 0 && (sectors?.Length ?? 0) == 0 && (emergency?.Length ?? 0) == 0 && (newsletters?.Length ?? 0) == 0)
             {
                 if ((tags?.Length ?? 0) == 0)
                 {
@@ -82,9 +77,9 @@ namespace Gov.News.Website.Controllers
                 }
             }
             
-            SubscribeViewModel model = await LoadSubscribeViewModel(ministries != null, newsletters != null, services != null);
+            SubscribeViewModel model = await LoadSubscribeViewModel(ministries != null, newsletters != null);
 
-            model.Selection = new SelectionModel { Ministries = ministries, Sectors = sectors, Tags = tags, Services = services, NewsAsItHappens = true, Emergency = emergency, Newsletters = newsletters };
+            model.Selection = new SelectionModel { Ministries = ministries, Sectors = sectors, Tags = tags, NewsAsItHappens = true, Emergency = emergency, Newsletters = newsletters };
 
             model.Display = display;
 
@@ -157,8 +152,6 @@ namespace Gov.News.Website.Controllers
                         model.Selection.Sectors = info.SubscribedCategories.TryGetValue("sectors", out lists) ? lists : new string[0];
                         model.Selection.Tags = info.SubscribedCategories.TryGetValue("tags", out lists) ? lists : new string[0];
                     }
-
-                    model.Selection.Services = info.SubscribedCategories.TryGetValue("services", out lists) ? lists : new string[0];
 
                     model.Selection.Emergency = info.SubscribedCategories.TryGetValue("emergency", out lists) ? lists : new string[0];
 
@@ -239,7 +232,6 @@ namespace Gov.News.Website.Controllers
                     { "ministries", options.Ministries?.ToArray()},
                     { "sectors", options.Sectors?.ToArray() },
                     { "tags", options.Tags?.ToArray() },
-                    { "services", options.Services?.ToArray() },
                     { "emergency", options.Emergency?.ToArray() },
                     { "newsletters", options.Newsletters?.ToArray() },
                     { "media-distribution-lists", options.MediaDistributionLists?.Split(';') }

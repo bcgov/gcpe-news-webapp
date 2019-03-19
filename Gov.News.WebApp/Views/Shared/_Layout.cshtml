@@ -55,13 +55,16 @@
         </div>
         <div id="header-bottom">
             <div class="content">
-                <div class="search" style="@(Model is SearchViewModel ? "display:none" : "")">
-                    @using (Html.BeginForm("Search", "Default", FormMethod.Get))
-                    {
-                        <input name="q" type="text" placeholder="Search news.gov.bc.ca" />
-                        <div class="search-trigger"> </div>
-                    }
-                </div>
+                @if (!(Model is SearchViewModel))
+                {
+                    <div class="search">
+                        @using (Html.BeginForm("Search", "Default", FormMethod.Get))
+                        {
+                            <input name="q" type="text" placeholder="Search news.gov.bc.ca" />
+                            <div class="search-trigger"> </div>
+                        }
+                    </div>
+                }
                 <div>
                     <h1><a id="headerNewsHome" href="/">BC Gov News</a></h1>
                 </div>
@@ -73,13 +76,16 @@
     <div class="mini-search-trigger"> </div>
 
     <div id="mini-menu-container">
-        <div class="search mini-menu-search">
-            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
-            {
-                <input name="q" id="mini-menu-search-box" class="searchbox" type="text" placeholder="Search news.gov.bc.ca">
-                <div class="search-trigger"> </div>
-            }
-        </div>
+        @if (!(Model is SearchViewModel))
+        {
+            <div class="search mini-menu-search">
+                @using (Html.BeginForm("Search", "Default", FormMethod.Get))
+                {
+                    <input name="q" id="mini-menu-search-box" class="searchbox" type="text" placeholder="Search news.gov.bc.ca">
+                    <div class="search-trigger"> </div>
+                }
+            </div>
+        }
         <div id="mini-menu">
             <div class="site-menu">
                 <ul>
@@ -262,14 +268,14 @@
     <script type="text/javascript">
         window.allowFade = true;
         window.showFacebookComment = function () {
-          window.allowFade = false;
-          $('.facebook-comment-dialog').show();
-        }
+            window.allowFade = false;
+            $('.facebook-comment-dialog').show();
+        };
 
         window.hideFacebookComment = function () {
-          window.allowFade = true;
-          $('.facebook-comment-dialog').hide();
-        }
+            window.allowFade = true;
+            $('.facebook-comment-dialog').hide();
+        };
 
     $(function () {
         $('.facebook-comment').on('click', window.showFacebookComment);
@@ -507,11 +513,9 @@
     });
     </script>
 
-    @RenderSection("Scripts", false)
-
     <partial name="_WebAnalytics" />
-    <partial name="_WebAnalytics_Search" />
     <partial name="_WebtrendsScript" />
+    @RenderSection("Scripts", false)
     <!--googleon: all-->
 </body>
 </html>

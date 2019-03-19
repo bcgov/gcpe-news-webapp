@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Gov.News.Api.Models;
 
 namespace Gov.News.Website
@@ -29,8 +27,13 @@ namespace Gov.News.Website
             {
                 return new Uri(post.FacebookPictureUri);
             }
+            return GetThumbnailUri(post.AssetUrl);
+        }
+
+        public static Uri GetThumbnailUri(string assetUrl)
+        {
             Uri assetUri;
-            if (!Uri.TryCreate(post.AssetUrl, UriKind.Absolute, out assetUri)) return null;
+            if (!Uri.TryCreate(assetUrl, UriKind.Absolute, out assetUri)) return null;
 
             Uri thumbnailUri = null;
 
@@ -62,7 +65,7 @@ namespace Gov.News.Website
                     thumbnailUri = assetUri;
                 }
             }
-            else if (post.AssetUrl.ToLower() == "https://news.gov.bc.ca/live")
+            else if (assetUrl.ToLower() == "https://news.gov.bc.ca/live")
             {
                 thumbnailUri = new Uri("https://news.gov.bc.ca/Content/Images/Gov/Live_Webcast.png");
             }

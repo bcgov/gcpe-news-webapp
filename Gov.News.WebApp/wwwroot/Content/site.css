@@ -3520,3 +3520,9 @@ ul.inline li {
 .comm-contacts .row .contact-name {
     font-weight: bold;
 }
+
+/* disable years and decade views*/
+.datepicker-dropdown .datepicker-months thead .datepicker-switch {
+    cursor: default;
+    pointer-events: none;
+}
