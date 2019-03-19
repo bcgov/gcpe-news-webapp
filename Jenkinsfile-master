@@ -13,19 +13,19 @@ node('master') {
     stage('Build Image') {
         echo "Building..."
         openshiftBuild bldCfg: 'news-webapp-master', showBuildLogs: 'true'
-        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: '$BUILD_ID', srcStream: 'news-webapp', srcTag: 'latest'
+        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'MASTER-$BUILD_ID', srcStream: 'news-webapp', srcTag: 'uat'
     }
 
 	stage('Deploy to UAT') {
         echo "Deploying to uat..."
-		openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'uat', srcStream: 'news-webapp', srcTag: '$BUILD_ID'
+		openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'uat', srcStream: 'news-webapp', srcTag: 'MASTER-$BUILD_ID'
     }	
 }
 
 stage('Deploy on Prod') {
     input "Deploy to Prod?"
     node('master') {
-        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'prod', srcStream: 'news-webapp', srcTag: '$BUILD_ID'
+        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'prod', srcStream: 'news-webapp', srcTag: 'MASTER-$BUILD_ID'
     }
 }
 
