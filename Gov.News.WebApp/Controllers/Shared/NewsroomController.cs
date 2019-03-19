@@ -88,8 +88,8 @@ namespace Gov.News.Website.Controllers.Shared
             var filters = new List<string>();
             if (useCustomRange)
             {
-                filters.Add("publishDateTime le " + query.ToDate.AddDays(1).ToString("yyyy-MM-dd")); // include the selected day too
-                filters.Add("publishDateTime ge " + query.FromDate.ToString("yyyy-MM-dd")); // include the selected day too
+                filters.Add("publishDateTime le " + query.ToDate.ToUniversalTime().AddDays(1).ToString("s") + "Z"); // include the selected day too
+                filters.Add("publishDateTime ge " + query.FromDate.ToUniversalTime().ToString("s") +"Z");
             }
             if (query.Filters != null)
             {
