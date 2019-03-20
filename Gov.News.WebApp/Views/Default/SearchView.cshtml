@@ -233,7 +233,7 @@
         });
 
         window.snowplow('trackSiteSearch',
-            ['@Html.Raw(Model.Query.Text?.Replace(" ", "', '"))'],
+            ['@Html.Raw(Model.Query.Text?.Replace("'", "\\'").Replace(" ", "', '"))'],
             @Html.Raw(JsonConvert.SerializeObject(Model.AllQueryFilters())),
             @Model.Count);
 
