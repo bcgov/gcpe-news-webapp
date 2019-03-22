@@ -513,7 +513,15 @@
     });
     </script>
 
-    <partial name="_WebAnalytics" />
+    @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
+    {
+        <partial name="_WebAnalytics" />
+    }
+    else
+    {
+        <partial name="_WebAnalytics_Search" />
+    }
+
     <partial name="_WebtrendsScript" />
     @RenderSection("Scripts", false)
     <!--googleon: all-->
