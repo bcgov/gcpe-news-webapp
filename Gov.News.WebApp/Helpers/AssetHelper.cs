@@ -377,12 +377,12 @@ namespace Gov.News.Website.Helpers
                 else if (uri.Host.EndsWith("staticflickr.com"))
                 {
 
-                    var flickrRegex = new Regex(@"https?:\/\/farm([0-9]+)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
+                    var flickrRegex = new Regex(@"https?:\/\/(farm([0-9]+)|live)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
                     var flickrMatch = flickrRegex.Match(uri.ToString());
 
                     if (flickrMatch.Success)
                     {
-                        var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[3].Value);
+                        var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[4].Value);
                         assetHtml = string.Format(
                                         "<div class='asset flickr'>" +
                                             "<a href='{0}'>" +
