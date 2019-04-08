@@ -52,7 +52,7 @@ namespace Gov.News.Website
             }
             else if (assetUri.Host.EndsWith("staticflickr.com"))
             {
-                var flickrRegex = new Regex(@"https?:\/\/farm([0-9]+)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)_([a-z]\.jpg)");
+                var flickrRegex = new Regex(@"https?:\/\/(farm([0-9]+)|live)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
 
                 var flickrMatch = flickrRegex.Match(assetUri.ToString());
 
