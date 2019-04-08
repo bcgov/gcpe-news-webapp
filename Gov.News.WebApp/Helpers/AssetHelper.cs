@@ -37,7 +37,7 @@ namespace Gov.News.Website.Helpers
                     mediaType = "video";
                     break;
             }
-            
+
             wrapper.AppendFormat("<div class=\"{0}-wrapper asset {0} {1}\" data-media-type=\"{0}\" data-media-id=\"{2}\">", mediaProvider, mediaType, mediaId);
             wrapper.Append("<div class=\"media-player-container\">");
             wrapper.Append("</div>");
@@ -160,12 +160,12 @@ namespace Gov.News.Website.Helpers
                     else if (uri.Host.EndsWith("staticflickr.com"))
                     {
 
-                        var flickrRegex = new Regex(@"https?:\/\/farm([0-9]+)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
+                        var flickrRegex = new Regex(@"https?:\/\/(farm([0-9]+)|live)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
                         var flickrMatch = flickrRegex.Match(url);
 
                         if (flickrMatch.Success)
                         {
-                            var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[3].Value);
+                            var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[4].Value);
                             result = string.Format(
                                          "<div>" +
                                               "<a href='{0}'>" +
@@ -274,14 +274,14 @@ namespace Gov.News.Website.Helpers
                 }
                 else if (uri.Host.EndsWith("staticflickr.com"))
                 {
-                    var flickrRegex = new Regex(@"https?:\/\/farm([0-9]+)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
+                    var flickrRegex = new Regex(@"https?:\/\/(farm([0-9]+)|live)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
                     var flickrMatch = flickrRegex.Match(uri.ToString());
 
                     if (flickrMatch.Success)
                     {
                         // Get the "n" size flickr image (320x320)
                         //assetUrl = assetUrl.Replace(flickrMatch.Groups[5].Value, "n.jpg");
-                        var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[3].Value);
+                        var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[4].Value);
                         if (renderFlickrAsBackground)
                         {
                             assetHtml = string.Format(
@@ -377,12 +377,12 @@ namespace Gov.News.Website.Helpers
                 else if (uri.Host.EndsWith("staticflickr.com"))
                 {
 
-                    var flickrRegex = new Regex(@"https?:\/\/farm([0-9]+)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
+                    var flickrRegex = new Regex(@"https?:\/\/(farm([0-9]+)|live)\.staticflickr\.com\/([0-9]+)\/([0-9]+)_([0-9a-f]+)(_[a-z])?\.jpg");
                     var flickrMatch = flickrRegex.Match(uri.ToString());
 
                     if (flickrMatch.Success)
                     {
-                        var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[3].Value);
+                        var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[4].Value);
                         assetHtml = string.Format(
                                         "<div class='asset flickr'>" +
                                             "<a href='{0}'>" +
