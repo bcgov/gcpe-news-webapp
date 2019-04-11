@@ -302,7 +302,8 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.facebook.com/ServiceBC", Title = "Service BC" },
                         new Link() { Url = "http://www.facebook.com/HelloBC", Title = "Tourism British Columbia" },
                         new Link() { Url = "http://www.facebook.com/WorkBC", Title = "WorkBC" },
-                        new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" }
+                        new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" },
+                        new Link() { Url = "https://www.facebook.com/PreparedBC/", Title = "PreparedBC" }
             }.OrderBy(t => t.Title).ToArray();
 
 
