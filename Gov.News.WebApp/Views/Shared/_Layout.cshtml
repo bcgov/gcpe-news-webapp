@@ -24,20 +24,22 @@
         <link rel="canonical" href="@Model.CanonicalUri" />
     }
 
-    <environment names="Testing,Development">
-        <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" asp-append-version="true" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
-    </environment>
+        <environment names="Testing,Development">
+            <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" media="screen" type="text/css" />
+            <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
+            <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
+            <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
+            <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
+            <link rel="stylesheet" href="~/Content/granville-bridge.css" media="screen" type="text/css" />
+        </environment>
+        <environment names="Staging,Production">
+            <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" asp-append-version="true" media="screen" type="text/css" />
+            <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
+            <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
+            <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
+            <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
+            <link rel="stylesheet" href="~/Content/granville-bridge.css" asp-append-version="true" media="screen" type="text/css" />
+        </environment>
 
     @RenderSection("Meta", false)
 
@@ -45,7 +47,7 @@
 </head>
 <body>
     <!--googleoff: all-->
-    <div id="header">
+    <div id="header" class="@(@Startup.granvilleConfig ? "granville-bridge-header": "" )">
         <div id="header-top">
             <div class="content">
                 <div id="logo">
@@ -71,7 +73,6 @@
             </div>
         </div>
     </div>
-
     <div class="mini-menu-trigger"> </div>
     <div class="mini-search-trigger"> </div>
 
@@ -122,7 +123,7 @@
         </div>
     </div>
 
-    <div id="nav-container">
+    <div id="nav-container" class="@(@Startup.granvilleConfig ? "granville-bridge-header": "" ) >
         <div class="shadow-box">
             <div class="content">
                 <div class="nav">
