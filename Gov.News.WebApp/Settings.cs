@@ -47,5 +47,7 @@ namespace Gov.News.Website.Properties
         public Uri NewslettersHostUri { get; set; }
 
         public Uri NewsroomHostUri { get; set; }
+
+        public String Granville { get; set; }
     }
 }
