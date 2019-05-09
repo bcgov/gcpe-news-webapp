@@ -286,10 +286,9 @@ namespace Gov.News.Website.Controllers
             {
                         new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" },
                         new Link() { Url = "http://www.facebook.com/johnhorganbc", Title = "Premier John Horgan", Summary = "Connect with the Premier of British Columbia" },
-                        new Link() { Url = "http://www.facebook.com/AboriginalEdBC", Title = "Aboriginal Education BC" },
+                        new Link() { Url = "https://www.facebook.com/IndigenousEdBC/", Title = "Indigenous Education BC" },
                         new Link() { Url = "http://www.facebook.com/BizPaLBC", Title = "BC BizPaL" },
                         new Link() { Url = "http://www.facebook.com/ImmunizeBC", Title = "BC Centre for Disease Control: ImmunizeBC" },
-                        new Link() { Url = "http://www.facebook.com/BCEducationandLiteracy", Title = "BC Education and Literacy" },
                         new Link() { Url = "http://www.facebook.com/pages/BCIC/124363430933347", Title = "Innovate BC" },
                         new Link() { Url = "http://www.facebook.com/YourBCParks", Title = "BC Parks" },
                         new Link() { Url = "http://www.facebook.com/TranBC", Title = "BC Transportation and Infrastructure" },
@@ -339,8 +338,7 @@ namespace Gov.News.Website.Controllers
             {
                         new Link() { Url = "https://twitter.com/ComplianceBC", Title = "@ComplianceBC", Summary = "Environmental compliance in BC: changes, enforcement and education" },
                         new Link() { Url = "https://twitter.com/BCGovNews", Title = "@BCGovNews", Summary = "Read daily news tweets from the Government of British Columbia" },
-                        new Link() { Url = "http://twitter.com/AboriginalEdBC", Title = "@AboriginalEdBC", Summary = "Discuss barriers and challenges faced by BC's Aboriginal students" },
-                        new Link() { Url = "http://twitter.com/bcedplan", Title = "@BCEdPlan", Summary = "How education is changing to meet the needs of today's learners" },
+                        new Link() { Url = "https://twitter.com/IndigenousEdBC", Title = "@IndigenousEducationBC", Summary = "Discuss barriers and challenges faced by BC's Aboriginal students" },
                         new Link() { Url = "http://twitter.com/bcgovfireinfo", Title = "@BCGovFireInfo", Summary = "Find updates on significant wildfires around the province" },
                         new Link() { Url = "http://twitter.com/BCgovtjobs", Title = "@BCGovtJobs", Summary = "Looking for a job? Find links to BC Public Service job postings" },
                         new Link() { Url = "http://twitter.com/BC_Housing", Title = "@BC_Housing", Summary = "Learn about housing solutions and the latest projects in BC" },
@@ -361,12 +359,11 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://twitter.com/emergencyinfobc", Title = "@EmergencyInfoBC" , Summary = "Receive information during extreme weather and natural disasters" },
                         new Link() { Url = "https://twitter.com/PreparedBC", Title = "@PreparedBC" , Summary = "Ready for a disaster? Get preparedness tips & recovery info here." },
                         new Link() { Url = "http://www.twitter.com/EnvReportBC", Title = "@EnvReportBC", Summary = "Get environmental data and information for British Columbia" },
-                        new Link() { Url = "https://twitter.com/ERASEbullyingBC", Title = "@ERASEbullyingBC", Summary = "Important info on bullying prevention and safer schools" },
+                        new Link() { Url = "https://twitter.com/safeeducationbc", Title = "@SafeEducationBC", Summary = "Important info on bullying prevention and safer schools" },
                         new Link() { Url = "http://twitter.com/govTogetherBC", Title = "@govTogetherBC" , Summary = "Find consultation and engagement opportunities in BC" },
                         new Link() { Url = "http://twitter.com/HealthyFamilyBC", Title = "@HealthyFamilyBC" , Summary = "Join the Healthy Families discussion and share your ideas" },
                         new Link() { Url = "http://twitter.com/HelloBC", Title = "@HelloBC", Summary = "Find and share tourism and travel tips for British Columbia" },
                         new Link() { Url = "https://twitter.com/immunizebc", Title = "@ImmunizeBC" , Summary = "Find info about immunization as best protection against many diseases" },
-                        new Link() { Url = "http://twitter.com/MyBCLibrary", Title = "@MyBCLibrary" , Summary = "Promoting the value of libraries in your community" },
                         new Link() { Url = "http://twitter.com/quitnowbc", Title = "@QuitNowBC", Summary = "Want to quit smoking? We can help!" },
                         new Link() { Url = "http://twitter.com/RoadSafetyBC", Title = "@RoadSafetyBC" , Summary = "Get information on road safety and driver behaviour" },
                         new Link() { Url = "https://twitter.com/SBRoundtableBC", Title = "@SBRoundtableBC" , Summary = "Consulting with small businesses on issues, strategies & actions" },
@@ -399,7 +396,6 @@ namespace Gov.News.Website.Controllers
 
             model.BlogsLinks = new Link[]
             {
-                        new Link() { Url = "http://www.bcic.ca/blog#", Title = "Innovate BC" },
                         new Link() { Url = "http://www.britishcolumbia.ca/Global/Blog/", Title = "BC Trade and Invest" },
                         new Link() { Url = "http://blog.data.gov.bc.ca/", Title = "DataBC" },
                         new Link() { Url = "http://emergencyinfobc.gov.bc.ca/", Title = "EmergencyInfoBC" },
