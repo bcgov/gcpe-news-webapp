@@ -5,7 +5,7 @@ node('master') {
         openshiftBuild bldCfg: 'news-webapp-sonar-master', showBuildLogs: 'true'
     }
 
-	/*stage('Dependency Security Check') {
+/*stage('Dependency Security Check') {
         echo "Running Snyk analysis of dependencies"
         openshiftBuild bldCfg: 'news-webapp-snyk-master', showBuildLogs: 'true'
     }*/
