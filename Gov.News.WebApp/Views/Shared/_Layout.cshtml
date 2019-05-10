@@ -47,11 +47,22 @@
 </head>
 <body>
     <!--googleoff: all-->
-    <div id="header" class="@(@Startup.granvilleConfig ? "granville-bridge-header": "" )">
+    <div id="header" class="@(@Startup.granvilleConfig ? "granville-bridge-grey": "" )">
         <div id="header-top">
             <div class="content">
                 <div id="logo">
-                    <a id="headerBCGov" href="http://gov.bc.ca"><img src="~/Content/Images/Gov/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C."></a>
+                    <a id="headerBCGov" href="http://gov.bc.ca">
+                        @{
+                            if (!Startup.granvilleConfig)
+                            {
+                                <img src="~/Content/Images/Gov/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C.">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." title="Government of B.C.">
+                            }
+                        }
+                    </a>
                 </div>
             </div>
         </div>
@@ -123,7 +134,7 @@
         </div>
     </div>
 
-    <div id="nav-container" class="@(@Startup.granvilleConfig ? "granville-bridge-header": "" ) >
+    <div id="nav-container" class="@(@Startup.granvilleConfig ? "granville-bridge-grey" : "" )">
         <div class="shadow-box">
             <div class="content">
                 <div class="nav">
@@ -137,7 +148,7 @@
                         <li><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a></li>
                         @if (Model.WebcastingLive)
                         {
-                            <li style="float:right;"><a href="/live" class="live_button live_button_show">Live Webcast</a></li>
+                            <li style="float:right;"><a href="/live" class="@(@Startup.granvilleConfig ? "granville-bridge-black" : "live_button live_button_show" )" >Live Webcast</a></li>
                         }
                         else
                         {
@@ -204,7 +215,7 @@
 
     @RenderSection("AssortedMedia", false)
 
-    <div id="footer">
+    <div id="footer" class="@(@Startup.granvilleConfig ? "granville-bridge-grey": "" )">
         <div class="content">
             <div class="connect">
                 <h4>Connect with Us:</h4>
