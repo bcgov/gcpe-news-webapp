@@ -28,7 +28,7 @@
 
                                 @if (item.FacebookPostUri != null)
                                 {
-                                <div class="social-media-bar">
+                                <div class="social-media-bar @(@Startup.granvilleConfig ? "granville-bridge-grey" : "" )">
                                     <ul>
                                         <li class="facebook-info"><a href='@item.GetFacebookPostUri().ToString()' target="_blank">Like or Comment<span class="on-story"> on this story</span><span class="on-facebook"> on Facebook</span></a></li>
                                         <li class="facebook-action facebook-share"><a href="https://www.facebook.com/sharer/sharer.php?u=@item.GetActionUri().ToString()" onclick="window.open(this.href, 'newwindow', 'width=400, height=550'); return false;">Share</a></li>
