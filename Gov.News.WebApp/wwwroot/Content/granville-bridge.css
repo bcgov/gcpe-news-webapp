@@ -1,9 +1,14 @@
 ﻿body {
 }
-.granville-bridge-header{
+.granville-bridge-grey{
     background-color: #333333 !important;
 }
 
-.grandville-nv-nav-container {
-    background-color: #333333 !important;
+.granville-bridge-black {
+    background-color: #000000 !important;
+    color: #ffffff;
+    border: solid 1px #fab919;
+    border-left: 1px solid rgba(250, 185,25,1) !important;
 }
+
+
