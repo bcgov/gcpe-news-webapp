@@ -27,6 +27,14 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../Content/fonts/fontawesome-webfont.eot?v=4.7.0');
+    src: url('../Content/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../Content/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../Content/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../Content/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: MyriadProRegular, Calibri, Arial, sans serif;
     background-color: #fff;
@@ -2634,14 +2642,16 @@ ul.inline li {
     padding: 10px 10px 0 10px;
 }
 
-.expandable-section.facebook h4 {
+/*
+    .expandable-section.facebook h4 {
     background-image: url(Images/SocialMedia/24x24-facebook-feed.png);
+
 }
 
 .expandable-section.twitter h4 {
     background-image: url(Images/SocialMedia/24x24-twitter-feed.png);
 }
-
+    
 .expandable-section.flickr h4 {
     background-image: url(Images/SocialMedia/24x24-flickr.png);
 }
@@ -2649,6 +2659,13 @@ ul.inline li {
 .expandable-section.youtube h4 {
     background-image: url(Images/SocialMedia/24x24-youtube.png);
 }
+
+.expandable-section.rss h4 {
+    background-image: url(Images/SocialMedia/24x24-rss.png);
+}
+
+*/
+
 
 .expandable-section.ustream h4 {
     background-image: url(Images/SocialMedia/24x24-ustream.png);
@@ -2660,10 +2677,6 @@ ul.inline li {
 
 .expandable-section.blogs h4 {
     background-image: url(Images/SocialMedia/24x24-blogs.png);
-}
-
-.expandable-section.rss h4 {
-    background-image: url(Images/SocialMedia/24x24-rss.png);
 }
 
 .media-container {
