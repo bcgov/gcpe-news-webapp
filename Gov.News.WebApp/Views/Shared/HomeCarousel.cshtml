@@ -28,10 +28,10 @@
 
                                 @if (item.FacebookPostUri != null)
                                 {
-                                <div class="social-media-bar @(@Startup.granvilleConfig ? "granville-bridge-grey" : "" )">
+                                <div class="social-media-bar@(@Startup.granvilleConfig ? " granville-bridge-light-grey" : "" )">
                                     <ul>
-                                        <li class="facebook-info"><a href='@item.GetFacebookPostUri().ToString()' target="_blank">Like or Comment<span class="on-story"> on this story</span><span class="on-facebook"> on Facebook</span></a></li>
-                                        <li class="facebook-action facebook-share"><a href="https://www.facebook.com/sharer/sharer.php?u=@item.GetActionUri().ToString()" onclick="window.open(this.href, 'newwindow', 'width=400, height=550'); return false;">Share</a></li>
+                                        <li class="facebook-info"><a href='@item.GetFacebookPostUri().ToString()' target="_blank"><i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i> Like or Comment<span class="on-story"> on this story</span><span class="on-facebook"> on Facebook</span></a></li>
+                                        <li class="facebook-action facebook-share"><a href="https://www.facebook.com/sharer/sharer.php?u=@item.GetActionUri().ToString()" onclick="window.open(this.href, 'newwindow', 'width=400, height=550'); return false;"><i class="fa fa-share-square-o fa-lg" aria-hidden="true"></i>  Share</a></li>
                                         @*<li class="facebook-action facebook-comment">Comment</li>
                                             <li class="facebook-action facebook-share" data-url="@item.ActionUrl" data-title="@item.Headline">Share</li>
                                             <li class="facebook-action facebook-like" data-facebook-object-id="@item.FacebookObjectId">Like</li>*@

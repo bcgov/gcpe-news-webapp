@@ -845,7 +845,9 @@ ul.inline li {
                     background-position: left center;
                     background-repeat: no-repeat;
                     display: inline-block;
-                    padding-left: 30px;
+                    /*
+                        padding-left: 30px;
+                    */
                     padding-top: 3px;
                 }
 
@@ -869,12 +871,16 @@ ul.inline li {
 
                     .home-banner .home-banner-content .social-media-bar ul li.facebook-info {
                         font-size: 18px;
-                        background-image: url(Images/24x24-facebook.png);
+                        /*
+                            background-image: url(Images/24x24-facebook.png);
+                        */
                         cursor: pointer;
                     }
 
                     .home-banner .home-banner-content .social-media-bar ul li.facebook-share {
-                        background-image: url(Images/24x24-share.png);
+                        /*
+                            background-image: url(Images/24x24-share.png);
+                        */
                     }
 
                     .home-banner .home-banner-content .social-media-bar ul li.facebook-like {
@@ -2641,31 +2647,6 @@ ul.inline li {
     margin: 0;
     padding: 10px 10px 0 10px;
 }
-
-/*
-    .expandable-section.facebook h4 {
-    background-image: url(Images/SocialMedia/24x24-facebook-feed.png);
-
-}
-
-.expandable-section.twitter h4 {
-    background-image: url(Images/SocialMedia/24x24-twitter-feed.png);
-}
-    
-.expandable-section.flickr h4 {
-    background-image: url(Images/SocialMedia/24x24-flickr.png);
-}
-
-.expandable-section.youtube h4 {
-    background-image: url(Images/SocialMedia/24x24-youtube.png);
-}
-
-.expandable-section.rss h4 {
-    background-image: url(Images/SocialMedia/24x24-rss.png);
-}
-
-*/
-
 
 .expandable-section.ustream h4 {
     background-image: url(Images/SocialMedia/24x24-ustream.png);
