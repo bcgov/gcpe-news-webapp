@@ -456,6 +456,8 @@
             // Create a function that the hub can call to broadcast messages.
             @:liveHub.client.isLive = isLiveCallback;
 
+            @:liveHub.client.isGranvilleLive = isGranvilleLiveCallback;
+
             // Start the connection.
             @:$.connection.hub.start();
         }
@@ -463,6 +465,7 @@
         {
             // Initiate polling mechanism to /api/live/playlist
             @:setTimeout(manualPolling, 60 * 1000);
+            @:setTimeout(manualGranvillePolling, 60 * 1000);
         }
     });
 
@@ -483,23 +486,49 @@
             setTimeout(manualPolling, 60 * 1000);
         });
 
-    }
-
-    function isLiveCallback(webcastingEnabled, links) {
-        var live_button = $('.live_button');
-
-        if (webcastingEnabled === true) {
-            live_button.removeClass("live_button_hide");
-            live_button.addClass("live_button_show");
-        }
-        else {
-            live_button.removeClass("live_button_show");
-            live_button.addClass("live_button_hide");
         }
 
-        //if (typeof secondaryIsLiveCallback !== "undefined")
-            //secondaryIsLiveCallback(webcastingEnabled, links);
-    };
+        function manualGranvillePolling() {
+            $.ajax({ url: "/api/live/granville" })
+                .done(function (result) {
+                    if (result) {
+                        isGranvilleLiveCallback(true);
+                    } else {
+                        isGranvilleLiveCallback(false);
+                    }
+                })
+                .fail(function (err) {
+                })
+                .always(function () {
+                    setTimeout(manualGranvillePolling, 60 * 1000);
+                });
+
+        }
+
+        function isLiveCallback(webcastingEnabled, links) {
+            var live_button = $('.live_button');
+
+            if (webcastingEnabled === true) {
+                live_button.removeClass("live_button_hide");
+                live_button.addClass("live_button_show");
+            }
+            else {
+                live_button.removeClass("live_button_show");
+                live_button.addClass("live_button_hide");
+            }
+
+            //if (typeof secondaryIsLiveCallback !== "undefined")
+            //  secondaryIsLiveCallback(webcastingEnabled, links);
+        };
+
+        function isGranvilleLiveCallback(isLive) {
+            if (isLive) {
+                // $("body").css("background-color", "#000000");
+            } else {
+                // $("body").css("background-color", "#FFFFFF");
+            }
+        };
+
 
     $('body').on('click touchend', '.footer a, .search-pagination a, #mini-menu a', function (e) {
         var el = $(this);
