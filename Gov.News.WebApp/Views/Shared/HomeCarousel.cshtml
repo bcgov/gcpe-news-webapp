@@ -12,11 +12,11 @@
         {
             <div class="home-banner" style="background-image: url(CarouselImage/@item.Key)">
                 <div class="home-banner-content">
-                    <div class="stories @(@Startup.granvilleConfig ? "granville-bridge-grey" : "" )">
+                    <div class="stories @(@Model.GranvilleLive ? "granville-bridge-grey" : "" )">
                         @if (@item.ActionUri != null)
                         {
                             //TODO: Replace (int)item.Justify == 2 with property in SlideItem model
-                            <div class="story@(item.Justify == "right" ? " right" : " left")@((item.FacebookPostUri != null) ? " facebook" : "") @(@Startup.granvilleConfig ? "granville-bridge-grey" : "" )">
+                            <div class="story@(item.Justify == "right" ? " right" : " left")@((item.FacebookPostUri != null) ? " facebook" : "") @(@Model.GranvilleLive ? "granville-bridge-grey" : "" )">
                                 <div onClick="dcsMultiTrack('DCS.dcssip', '@item.GetActionUri().Host', 'DCS.dcsuri', '@item.GetActionUri().LocalPath', 'WT.dl', 'slider2', 'DCSext.title', '@System.Text.Encodings.Web.JavaScriptEncoder.Default.Encode(item.Headline)', 'DCSext.position', '@slideIndex'); window.location.href='@item.ActionUri';" style="cursor:pointer;">
                                     <h2>@item.Headline</h2>
                                     @*<p class="item-date">@item.PublishFromDateTime.FormatDateLong()</p>*@
@@ -28,7 +28,7 @@
 
                                 @if (item.FacebookPostUri != null)
                                 {
-                                <div class="social-media-bar@(@Startup.granvilleConfig ? " granville-bridge-light-grey" : "" )">
+                                <div class="social-media-bar@(@Model.GranvilleLive ? " granville-bridge-light-grey" : "" )">
                                     <ul>
                                         <li class="facebook-info"><a href='@item.GetFacebookPostUri().ToString()' target="_blank"><i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i> Like or Comment<span class="on-story"> on this story</span><span class="on-facebook"> on Facebook</span></a></li>
                                         <li class="facebook-action facebook-share"><a href="https://www.facebook.com/sharer/sharer.php?u=@item.GetActionUri().ToString()" onclick="window.open(this.href, 'newwindow', 'width=400, height=550'); return false;"><i class="fa fa-share-square-o fa-lg" aria-hidden="true"></i>  Share</a></li>
