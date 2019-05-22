@@ -397,7 +397,6 @@ namespace Gov.News.Website.Controllers
             model.BlogsLinks = new Link[]
             {
                         new Link() { Url = "http://www.britishcolumbia.ca/Global/Blog/", Title = "BC Trade and Invest" },
-                        new Link() { Url = "http://blog.data.gov.bc.ca/", Title = "DataBC" },
                         new Link() { Url = "http://emergencyinfobc.gov.bc.ca/", Title = "EmergencyInfoBC" },
                         new Link() { Url = "http://www2.gov.bc.ca/govtogetherbc/index.page", Title = "GovTogetherBC" },
                         new Link() { Url = "http://blog.gov.bc.ca/livingwatersmart/", Title = "Living Water Smart" },
