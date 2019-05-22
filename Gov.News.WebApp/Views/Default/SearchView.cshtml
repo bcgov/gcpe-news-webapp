@@ -24,7 +24,7 @@
         @foreach (var facetResult in Model.FacetResults)
         {
             <div class="search-filter">
-                <h5 class="open">@facetResult.Key</h5>
+                <h5 class="open@(@Startup.granvilleConfig ? " granville-bridge-grey": "" )">@facetResult.Key</h5>
                 <div class="search-filter-content" style="display:block">
                     @{ string filterValue = Model.Query.Filters?.ContainsKey(facetResult.Key) == true ? Model.Query.Filters[facetResult.Key] : null;}
                     @if (facetResult.Key == "Date" && filterValue == null)

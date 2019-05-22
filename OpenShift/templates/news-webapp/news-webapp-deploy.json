@@ -197,6 +197,10 @@
                   {
                     "name": "ContactUri",
                     "value": "${CONTACT_URI}"
+                  },
+                  {
+                    "name": "Granville",
+                    "value": "${Granville}"
                   }
                 ],
                 "resources": {
@@ -419,6 +423,12 @@
       "displayName": "ContactUri",
       "description": "",
       "value": "https://changeme"
+    },
+    {
+      "name": "Granville",
+      "displayName": "Granville",
+      "description": "",
+      "value": "false"
     }
   ]
 }
