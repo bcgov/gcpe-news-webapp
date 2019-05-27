@@ -37,7 +37,7 @@ namespace Gov.News.Website
 
             Configuration.Bind(Properties.Settings.Default);
 
-            granvilleConfig = Configuration["Granville"].ToLower()=="true" ? true: false;
+            granvilleConfig = Configuration["Granville"]?.ToLower()=="true" ? true: false;
             
             //Data.Repository.RepositoryException += (ex) => Program.ReportException(null, ex);
         }
