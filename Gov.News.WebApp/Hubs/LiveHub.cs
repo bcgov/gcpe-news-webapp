@@ -18,16 +18,17 @@ namespace Gov.News.Website.Hubs
         private CancellationTokenSource _cts;
         private Repository _repository;
         //private static volatile bool _isWebcasting = false;
+        private static volatile bool _isGranvilleLive = false;
 
         public LiveHub(Repository repository)
         {
             _repository = repository;
         }
 
-        /*public static bool IsWebcasting
+        public static bool IsGranvilleLive
         {
-            get { return _isWebcasting; }
-        }*/
+            get { return _isGranvilleLive; }
+        }
 
         private static volatile IEnumerable<string> _webcastingPlaylists = null;
         public static IEnumerable<string> WebcastingPlaylists
@@ -81,7 +82,18 @@ namespace Gov.News.Website.Hubs
                 }
                 try
                 {
-                    var homeSettings= await _repository.GetHomeAsync();
+                    var homeSettings = await _repository.GetHomeAsync();
+
+                    var granville_setting = homeSettings?.Granville;
+                    if (granville_setting == null)
+                    {
+                        SetGranvilleDead();
+                    }
+                    else 
+                    {
+                        SetGranvilleLive();    
+                    }
+
                     var manifest_url_setting = homeSettings?.LiveWebcastFlashMediaManifestUrl;
                     if (manifest_url_setting == null)
                     {
@@ -161,6 +173,28 @@ namespace Gov.News.Website.Hubs
                 return;
             var context = GlobalHost.ConnectionManager.GetHubContext<LiveHub>();
             context.Clients.All.isLive(true, links);
+#endif
+        }
+
+        private static void SetGranvilleLive()
+        {
+            _isGranvilleLive = true;
+#if USE_JAVASCRIPT_SIGNALR
+            if (!Properties.Settings.Default.SignalREnabled)
+                return;
+            var context = GlobalHost.ConnectionManager.GetHubContext<LiveHub>();
+            context.Clients.All.isGranvilleLive(true);
+#endif
+        }
+
+        private static void SetGranvilleDead()
+        {
+            _isGranvilleLive = false;
+#if USE_JAVASCRIPT_SIGNALR
+            if (!Properties.Settings.Default.SignalREnabled)
+                return;
+            var context = GlobalHost.ConnectionManager.GetHubContext<LiveHub>();
+            context.Clients.All.isGranvilleLive(false);
 #endif
         }
     }
