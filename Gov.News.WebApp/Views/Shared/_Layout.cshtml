@@ -88,7 +88,7 @@
             <div class="content">
                 @if (!(Model is SearchViewModel))
                 {
-                    <div class="search" style="position: relative;">
+                    <div class="search">
                         @using (Html.BeginForm("Search", "Default", FormMethod.Get))
                         {
                             <input name="q" type="text" placeholder="Search news.gov.bc.ca" />

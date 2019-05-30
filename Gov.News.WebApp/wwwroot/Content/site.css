@@ -54,7 +54,6 @@ a {
 
 #header {
     background-color: #036;
-    /*background-color: var(--main-bg-color);*/
 }
 
     #header .content {
@@ -141,9 +140,6 @@ a {
     position: relative;
     z-index: 10;
     background-color: #38598a;
-    /*
-        background-color: var(--secordary-bg-color);
-    */
     -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
     -ms-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
