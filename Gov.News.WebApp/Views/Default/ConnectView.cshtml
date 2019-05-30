@@ -14,7 +14,7 @@
         @{bool expandableFacebook = Model.FacebookLinks.Count() >= 5;}
         <div class="expandable-section facebook @(expandableFacebook ? "collapsed" : "expanded" )">
             <a name="facebook"></a>
-            <h4 class="@(@Startup.granvilleConfig ? "granville-bridge-grey": "" )">Find us on Facebook <i class="fa fa-facebook-square pull-right" aria-hidden="true"></i></h4>
+            <h4>Find us on Facebook <i class="fa fa-facebook-square pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.FacebookLinks != null && Model.FacebookLinks.Any())
@@ -42,7 +42,7 @@
         @{bool expandableTwitter = Model.TwitterLinks.Count() >= 5;}
         <div class="expandable-section twitter @(expandableTwitter ? "collapsed" : "expanded" )">
             <a name="twitter"></a>
-            <h4 class="@(@Startup.granvilleConfig ? "granville-bridge-grey": "" )">Follow us on Twitter <i class="fa fa-twitter pull-right" aria-hidden="true"></i></h4>
+            <h4>Follow us on Twitter <i class="fa fa-twitter pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.TwitterLinks != null && Model.TwitterLinks.Any())
@@ -70,7 +70,7 @@
         @{bool expandableFlickr = Model.FlickrLinks.Count() >= 5;}
         <div class="expandable-section flickr @(expandableFlickr ? "collapsed" : "expanded" )">
             <a name="flickr"></a>
-            <h4 class="@(@Startup.granvilleConfig ? "granville-bridge-grey": "" )">See Photos in Flickr <i class="fa fa-flickr pull-right" aria-hidden="true"></i></h4>
+            <h4>See Photos in Flickr <i class="fa fa-flickr pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 @*<div class="feature-post">
                     <a href="http://www.flickr.com/photos/bcgovphotos"><img src="~/Content/Images/Placeholder/connect-flickr-banner.png" alt="Flickr" /></a>
@@ -101,7 +101,7 @@
         @{bool expandableYoutube = Model.YoutubeLinks.Count() >= 5;}
         <div class="expandable-section youtube @(expandableYoutube ? "collapsed" : "expanded" )">
             <a name="youtube"></a>
-            <h4 class="@(@Startup.granvilleConfig ? "granville-bridge-grey": "" )">Watch us on YouTube <i class="fa fa-youtube pull-right" aria-hidden="true"></i></h4>
+            <h4>Watch us on YouTube <i class="fa fa-youtube pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 @*<div class="feature-post">
                     <a href="http://www.youtube.com/ProvinceofBC"><img src="~/Content/Images/Placeholder/connect-youtube-banner.png" alt="Youtube" /></a>
@@ -190,7 +190,7 @@
         @{bool expandableBlogs = Model.BlogsLinks.Count() >= 5;}
         <div class="expandable-section blogs @(expandableBlogs ? "collapsed" : "expanded" )">
             <a name="blogs"></a>
-            <h4 class="@(@Startup.granvilleConfig ? "granville-bridge-grey": "" )">Blogs and Engagement Sites</h4>
+            <h4>Blogs and Engagement Sites</h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.BlogsLinks != null && Model.BlogsLinks.Any())
@@ -218,7 +218,7 @@
         @{bool expandableRss = Model.RssLinks.Count() >= 5;}
         <div class="expandable-section rss @(expandableRss ? "collapsed" : "expanded" )">
             <a name="rss"></a>
-            <h4 class="@(@Startup.granvilleConfig ? "granville-bridge-grey": "" )">RSS Feeds <i class="fa fa-rss pull-right" aria-hidden="true"></i></h4>
+            <h4>RSS Feeds <i class="fa fa-rss pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.RssLinks != null && Model.RssLinks.Any())
@@ -253,5 +253,4 @@
             hookSectionsExpandCollapse();
         });
     </script>
-
 }
