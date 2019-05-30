@@ -88,10 +88,12 @@ namespace Gov.News.Website.Hubs
                     if (granville_setting == null)
                     {
                         SetGranvilleDead();
-                        continue;
                     }
-                    SetGranvilleLive();
-
+                    else
+                    {
+                        SetGranvilleLive();
+                    }
+                    
                     var manifest_url_setting = homeSettings?.LiveWebcastFlashMediaManifestUrl;
                     if (manifest_url_setting == null)
                     {

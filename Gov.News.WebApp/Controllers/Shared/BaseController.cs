@@ -58,6 +58,7 @@ namespace Gov.News.Website.Controllers.Shared
             var homeSettings = await Repository.GetHomeAsync();
             model.WebcastingLive = !string.IsNullOrEmpty(homeSettings?.LiveWebcastM3uPlaylist);
             model.GranvilleLive = !string.IsNullOrEmpty(homeSettings?.Granville);
+            
         }
 
         public class NewsroomFilter : MemoryStream

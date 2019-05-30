@@ -1,6 +1,12 @@
 ﻿@using Gov.News.Website.Models.Subscribe
 @model SubscribeViewModel
 
+<style>
+    .expandable-section h4 {
+        background-color: var(--expandable-bg-headline-h4);
+    }
+</style>
+
 @if (Model.Selection.MediaDistributionLists != null)
 {
     <div id="mediadistributionlists" class="expandable-section collapsed">

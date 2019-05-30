@@ -21,8 +21,6 @@ namespace Gov.News.Website
 {
     public class Startup
     {
-        public static bool granvilleConfig = false;
-
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -36,8 +34,6 @@ namespace Gov.News.Website
             Configuration = builder.Build();
 
             Configuration.Bind(Properties.Settings.Default);
-
-            granvilleConfig = Configuration["Granville"]?.ToLower()=="true" ? true: false;
             
             //Data.Repository.RepositoryException += (ex) => Program.ReportException(null, ex);
         }
