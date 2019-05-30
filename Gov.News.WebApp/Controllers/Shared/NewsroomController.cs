@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Gov.News.Website.Helpers;
 using Gov.News.Website.Middleware;
 using Gov.News.Website.Models;
 using Microsoft.AspNetCore.Http;
@@ -186,15 +187,17 @@ namespace Gov.News.Website.Controllers.Shared
 
                     IEnumerable<object> titles = result["documentsHeadline"];
 
+
                     string assetUrl = result["assetUrl"];
                     bool isFBAsset = assetUrl.Contains("facebook");
+                    var date = (DateTimeOffset)DateTimeOffset.Parse(Convert.ToString(result["publishDateTime"]));
                     model.Results.Add(new SearchViewModel.Result()
                     {
                         Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
                         Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
-                        PublishDate = result["publishDateTime"],
+                        PublishDate = DateTime.Parse(date.FormatDateLong()),
                         ThumbnailUri = isFBAsset ? null : NewsroomExtensions.GetThumbnailUri(assetUrl)
                     });
                     if (isFBAsset)
