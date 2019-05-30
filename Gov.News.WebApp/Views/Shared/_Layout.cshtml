@@ -4,7 +4,7 @@
 @inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnv
 @model BaseViewModel
 @{
-    var dob = new System.DateTime(1926,4,21);
+    var dob = new System.DateTime(1926, 4, 21);
     var age = DateTime.Now.Year - dob.Year;
     if (DateTime.Now.DayOfYear < dob.DayOfYear)
     {
@@ -68,11 +68,13 @@
 </head>
 <body>
     <!--googleoff: all-->
-
-    <div id="granville-bridge-banner" class="granville-bridge-banner @(@Model.GranvilleLive ? "granville-bridge-on" : "granville-bridge-off")">
-        <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.</p>
-    </div>
-
+    @{ 
+        if (@Model.GranvilleLive) {
+            <div id="granville-bridge-banner" class="granville-bridge-banner">
+                <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.</p>
+            </div>
+        }
+    }
     <div id="header">
         <div id="header-top">
             <div class="content">
@@ -552,6 +554,7 @@
 
         function isGranvilleLiveCallback(isLive) {
             var banner = $('#granville-bridge-banner');
+            var header = $('#header');
             var logo = $('#BCGov-logo');
             var logo_granville = $('#BCGov-logo-granville');
             var mini_search_logo = $('#mini-menu-trigger');
@@ -559,11 +562,12 @@
             const hostingEnv = document.getElementById('hostingEnv').value;
 
             if (isLive) {
-                banner.removeClass("granville-bridge-off");
-                banner.addClass("granville-bridge-on");
+                if (!banner.length) {
+                    $('<div id="granville-bridge-banner" class="granville-bridge-banner"><p><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.</p></div>').insertBefore(header);
+                }
                 logo.hide();
                 logo_granville.show();
-              
+
                 if (!mini_search_logo.hasClass("granville-bridge-mini-search-menu")) {
                     mini_search_logo.addClass("granville-bridge-mini-search-menu")
                 }
@@ -575,11 +579,11 @@
                     }
                 }
             } else {
-
+                if (banner.length) {
+                    banner.remove();
+                }
                 logo_granville.hide();
                 logo.show();
-                banner.removeClass("granville-bridge-on");
-                banner.addClass("granville-bridge-off");  
                 if (mini_search_logo.hasClass("granville-bridge-mini-search-menu")) {
                     mini_search_logo.removeClass("granville-bridge-mini-search-menu")
                 }
