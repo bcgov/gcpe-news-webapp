@@ -5,8 +5,14 @@
 @model BaseViewModel
 @{
     var dob = new System.DateTime(1926, 4, 21);
-    var age = DateTime.Now.Year - dob.Year;
-    if (DateTime.Now.DayOfYear < dob.DayOfYear)
+    var now = DateTime.Now;
+    if (@Startup.granvilleTestDate != DateTime.MinValue)
+    {
+        now = @Startup.granvilleTestDate;
+    }
+    var age = now.Year - dob.Year;
+    
+    if (now.DayOfYear < dob.DayOfYear)
     {
         age = age - 1;
     }
