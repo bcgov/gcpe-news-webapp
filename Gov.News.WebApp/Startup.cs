@@ -21,7 +21,8 @@ namespace Gov.News.Website
 {
     public class Startup
     {
-        public static bool granvilleConfig = false;
+        // test date for granville age
+        public static DateTime granvilleTestDate;
 
         public Startup(IHostingEnvironment env)
         {
@@ -36,9 +37,18 @@ namespace Gov.News.Website
             Configuration = builder.Build();
 
             Configuration.Bind(Properties.Settings.Default);
-
-            granvilleConfig = Configuration["Granville"]?.ToLower()=="true" ? true: false;
             
+            if (Configuration["GranvilleTestDate"]!=null)
+            {
+                try
+                {
+                    granvilleTestDate = DateTime.Parse(Configuration["GranvilleTestDate"]);
+                }
+                catch (SystemException)
+                {
+                }   
+            }
+
             //Data.Repository.RepositoryException += (ex) => Program.ReportException(null, ex);
         }
 

@@ -655,9 +655,8 @@ a.news-control .read-more.left {
 
 .live_button_show {
     color: #ffffff;
-    border: solid 1px #fab919;
+    border: solid 1px #fab919 !important;
     background: #003366;
-    border-left: 1px solid rgba(250, 185,25,1) !important;
 }
 
 .live_button_hide {
@@ -3520,3 +3519,39 @@ ul.inline li {
     cursor: default;
     pointer-events: none;
 }
+
+/* For granville bridge 
+    should not move to granville-bridge-theme.css since it will be used when granville-bridge-theme.css is not loaded
+*/
+.granville-bridge-on {
+    display: block;
+}
+
+.granville-bridge-off {
+    display: none;
+}
+
+.granville-bridge-banner {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid black;
+    margin-bottom: 0;
+    padding-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.granville-bridge-banner p{
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+@media only screen and (max-width: 680px) {
+    .granville-bridge-banner {
+        height: 70px;
+        padding-left:10px;
+        padding-right:10px;
+    }
+}
+
+/* end of granville bridge styles*/

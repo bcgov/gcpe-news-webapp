@@ -607,7 +607,6 @@
         $(function() {
             $('.story-copy .expand').on('click', function(event) {
                 $(this).parent().removeClass('collapsed').addClass('expanded');
-                dcsMultiTrack('DCS.dcssip', '@Gov.News.Website.Properties.Settings.Default.NewsHostUri', 'DCS.dcsuri', '@Model.Post.GetUri().LocalPath', 'WT.dl', 'expand', 'DCSext.title', '@Model.Title');
                 event.preventDefault();
             });
 
