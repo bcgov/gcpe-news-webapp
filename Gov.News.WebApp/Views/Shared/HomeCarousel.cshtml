@@ -17,7 +17,7 @@
                         {
                             //TODO: Replace (int)item.Justify == 2 with property in SlideItem model
                             <div class="story@(item.Justify == "right" ? " right" : " left")@((item.FacebookPostUri != null) ? " facebook" : "")">
-                                <div onClick="dcsMultiTrack('DCS.dcssip', '@item.GetActionUri().Host', 'DCS.dcsuri', '@item.GetActionUri().LocalPath', 'WT.dl', 'slider2', 'DCSext.title', '@System.Text.Encodings.Web.JavaScriptEncoder.Default.Encode(item.Headline)', 'DCSext.position', '@slideIndex'); window.location.href='@item.ActionUri';" style="cursor:pointer;">
+                                <div onClick="window.location.href='@item.ActionUri';" style="cursor:pointer;">
                                     <h2>@item.Headline</h2>
                                     @*<p class="item-date">@item.PublishFromDateTime.FormatDateLong()</p>*@
                                     <p class="summary">@item.Summary</p> 
