@@ -70,15 +70,17 @@
 
     @RenderSection("Meta", false)
     <script src="~/Scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
-    
+    <script src="~/Scripts/jquery.cookie.js" type="text/javascript"></script>
 </head>
 <body>
     <!--googleoff: all-->
-    @{ 
-        if (@Model.GranvilleLive) {
-            <div id="granville-bridge-banner" class="granville-bridge-banner">
-                <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.</p>
-            </div>
+    @{
+        if (@Model.GranvilleLive)
+        {
+        <div id="granville-bridge-banner" class="alert granville-bridge-banner"  role="alert">
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
+            <button class="pull-right btn-link" id="btnCloseBanner"><strong>×</strong></button>
+        </div>
         }
     }
     <div id="header">
@@ -569,7 +571,7 @@
 
             if (isLive) {
                 if (!banner.length) {
-                    $('<div id="granville-bridge-banner" class="granville-bridge-banner"><p><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.</p></div>').insertBefore(header);
+                    $('<div id="granville-bridge-banner" class="alert granville-bridge-banner"  role="alert"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.<button class="pull-right btn-link" id="btnCloseBanner"><strong>×</strong></button></div>').insertBefore(header);
                 }
                 logo.hide();
                 logo_granville.show();
@@ -611,6 +613,21 @@
         $(".level-trigger").click();
         return false;
     });
+
+        $(document).ready(function () {
+            /* This is for closing the granville banner */
+            if ($.cookie(document.location.host + '-alert-granville') === 'closed') {
+                $("#granville-bridge-banner").hide();
+            }
+            
+            $("#btnCloseBanner").click(function (e) {
+                e.preventDefault();
+                /* The cookie will be expired in 100 days
+                 Set the path as root, so the cookie will be valid across the whole site */
+                $.cookie(document.location.host + '-alert-granville', 'closed', { path: '/', expires: 100 });
+                $("#granville-bridge-banner").hide();
+            });
+        });  
     </script>
 
     @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
