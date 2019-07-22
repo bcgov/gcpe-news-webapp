@@ -78,8 +78,10 @@
         if (@Model.GranvilleLive)
         {
         <div id="granville-bridge-banner" class="alert granville-bridge-banner"  role="alert">
-            <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
-            <button class="pull-right btn-link" id="btnCloseBanner"><strong>×</strong></button>
+            <div class="content">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
+                <button class="btn-link pull-right" id="btnCloseBanner"><strong>×</strong></button>
+            </div>
         </div>
         }
     }
@@ -571,7 +573,7 @@
 
             if (isLive) {
                 if (!banner.length) {
-                    $('<div id="granville-bridge-banner" class="alert granville-bridge-banner"  role="alert"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.<button class="pull-right btn-link" id="btnCloseBanner"><strong>×</strong></button></div>').insertBefore(header);
+                    $('<div id="granville-bridge-banner" class="alert granville-bridge-banner"  role="alert"><div class="content"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.<button class="btn-link pull-right" id="btnCloseBanner"><strong>×</strong></button></div></div>').insertBefore(header);
                 }
                 logo.hide();
                 logo_granville.show();
