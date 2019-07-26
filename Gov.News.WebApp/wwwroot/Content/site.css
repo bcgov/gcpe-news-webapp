@@ -3536,14 +3536,19 @@ ul.inline li {
     color: #ffffff;
     border: 1px solid black;
     margin-bottom: 0;
-    padding-top: 10px;
+    padding-top: 15px;
     font-size: 18px;
     text-align: center;
+    border-radius: 0;
 }
 
-.granville-bridge-banner p{
-    padding-top:5px;
-    padding-bottom:5px;
+#btnCloseBanner {
+    color: #ffffff !important;
+}
+
+.granville-bridge-banner p {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 @media only screen and (max-width: 680px) {
