@@ -323,7 +323,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.youtube.com/user/TourismBC", Title = "Tourism British Columbia" },
                          new Link() { Url = "http://www.youtube.com/user/WelcomeBCca", Title = "WelcomeBC" },
                          new Link() { Url = "http://www.youtube.com/workbc", Title = "WorkBC" },
-            }.OrderBy(t => t.Title).ToArray(); ;
+            }.OrderBy(t => t.Title).ToArray();
 
             model.FlickrLinks = new Link[]
             {
@@ -332,7 +332,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.flickr.com/photos/tranbc/", Title = "BC Ministry of Transportation & Infrastructure's photostream" },
                          new Link() { Url = "http://www.flickr.com/photos/emergencyinfobc", Title = "PreparedBC's photostream" },
                          new Link() { Url = "http://www.flickr.com/photos/bc_housing", Title = "BC Housing's photostream" },
-            }.OrderBy(t => t.Title).ToArray(); ;
+            }.OrderBy(t => t.Title).ToArray();
 
             model.TwitterLinks = new Link[]
             {
