@@ -109,7 +109,7 @@ namespace Gov.News.Website.Controllers
 
         [Noindex]
         public async Task<ActionResult> Search(string q = null, string date = null, string ministry = null, string sector = null, string city = null, string content = null,
-            DateTime? fromDate = null, DateTime ? toDate = null, string page = null)
+            DateTime? fromDate = null, DateTime? toDate = null, string page = null)
         {
             var filters = new Dictionary<string, string>();
             if (!string.IsNullOrEmpty(date))
@@ -323,7 +323,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.youtube.com/user/TourismBC", Title = "Tourism British Columbia" },
                          new Link() { Url = "http://www.youtube.com/user/WelcomeBCca", Title = "WelcomeBC" },
                          new Link() { Url = "http://www.youtube.com/workbc", Title = "WorkBC" },
-            }.OrderBy(t => t.Title).ToArray();;
+            }.OrderBy(t => t.Title).ToArray();
 
             model.FlickrLinks = new Link[]
             {
@@ -332,7 +332,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.flickr.com/photos/tranbc/", Title = "BC Ministry of Transportation & Infrastructure's photostream" },
                          new Link() { Url = "http://www.flickr.com/photos/emergencyinfobc", Title = "PreparedBC's photostream" },
                          new Link() { Url = "http://www.flickr.com/photos/bc_housing", Title = "BC Housing's photostream" },
-            }.OrderBy(t => t.Title).ToArray();;
+            }.OrderBy(t => t.Title).ToArray();
 
             model.TwitterLinks = new Link[]
             {
@@ -379,12 +379,13 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/TranBC_Skeena", Title = "@TranBC_Skeena" , Summary = "Keeping the Skeena area informed" },
                         new Link() { Url = "https://twitter.com/TranBCVanIsle", Title = "@TranBCVanIsle" , Summary = "Local road and transportation information for Vancouver Islanders" },
                         new Link() { Url = "http://twitter.com/WorkBC", Title = "@WorkBC", Summary = "Explore career paths and get tips for finding jobs in British Columbia" },
-            }.OrderBy(t => t.Title).ToArray();;
+                        new Link() { Url = "https://twitter.com/BCSheriffs", Title = "@BCSheriffs", Summary = "Learn about the diverse responsibilities and activities of the BC Sheriff Service" }
+            }.OrderBy(t => t.Title).ToArray();
 
             model.UstreamLinks = new Link[]
             {
                         new Link() {Url ="http://www.ustream.tv/user/EmergencyInfoBC", Title = "EmergencyInfoBC" }
-            }.OrderBy(t => t.Title).ToArray();;
+            }.OrderBy(t => t.Title).ToArray();
 
             model.PinterestLinks = new Link[]
             {
@@ -392,7 +393,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url ="http://pinterest.com/TranBC", Title = "TranBC" },
                         new Link() { Url ="http://pinterest.com/EmergencyInfoBC", Title = "PreparedBC" },
                         new Link() { Url ="http://www.pinterest.com/HealthyFamilyBC", Title = "Healthy Families BC" },
-            }.OrderBy(t => t.Title).ToArray();;
+            }.OrderBy(t => t.Title).ToArray();
 
             model.BlogsLinks = new Link[]
             {
@@ -403,7 +404,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.stopoverdose.gov.bc.ca/theweekly", Title = "StopOverdoseBC" },
                         new Link() { Url = "http://www.tranbc.ca/", Title = "TranBC" },
                         new Link() { Url = "https://www.workbc.ca/blog.aspx", Title = "WorkBC" },
-            }.OrderBy(t => t.Title).ToArray();;
+            }.OrderBy(t => t.Title).ToArray();
 
             var rssLinks = new List<Link>()
                     {
