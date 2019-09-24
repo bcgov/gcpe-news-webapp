@@ -330,7 +330,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.flickr.com/photos/bcgovphotos", Title = "Province of BC", Summary = "View and share the latest photos from the Government of British Columbia" },
                          new Link() { Url = "http://www.flickr.com/photos/tourism_bc/", Title = "Destination British Columbia's photostream" },
                          new Link() { Url = "http://www.flickr.com/photos/tranbc/", Title = "BC Ministry of Transportation & Infrastructure's photostream" },
-                         new Link() { Url = "http://www.flickr.com/photos/emergencyinfobc", Title = "PreparedBC's photostream" },
+                         new Link() { Url = "https://www.flickr.com/photos/preparedbc", Title = "PreparedBC's photostream" },
                          new Link() { Url = "http://www.flickr.com/photos/bc_housing", Title = "BC Housing's photostream" },
             }.OrderBy(t => t.Title).ToArray();
 
