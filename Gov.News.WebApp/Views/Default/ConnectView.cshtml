@@ -70,7 +70,7 @@
         @{bool expandableInstagram = Model.InstagramLinks.Count() >= 5;}
         <div class="expandable-section instagram @(expandableInstagram ? "collapsed" : "expanded" )">
             <a name="instagram"></a>
-            <h4>Follow us on Instagram <i class="fa fa-instagram pull-right" aria-hidden="true"></i></h4>
+            <h4>Find us on Instagram <i class="fa fa-instagram pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.InstagramLinks != null && Model.InstagramLinks.Any())
