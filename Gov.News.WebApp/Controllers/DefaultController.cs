@@ -370,7 +370,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://twitter.com/studentaidbc", Title = "@StudentAidBC" , Summary = "Learn more about student loans, grants and scholarships in BC" },
                         new Link() { Url = "http://twitter.com/TranBC", Title = "@TranBC" , Summary = "Engaging on BC transportation and infrastructure services, projects and safety" },
                         new Link() { Url = "https://twitter.com/TranBC_BVLDS", Title = "@TranBC_BVLDS" , Summary = "Keeping the Bulkley Valley, Lakes, and Stikine District informed" },
-                        new Link() { Url = "https://twitter.com/TranBC_Cariboo", Title = "@TranBC_Cariboo" , Summary = "Keeping the Cariboo District informed " },
+                        new Link() { Url = "https://twitter.com/TranBC_Cariboo", Title = "@TranBC_Cariboo" , Summary = "Keeping the Cariboo District informed" },
                         new Link() { Url = "https://twitter.com/TranBC_FtGeorge", Title = "@TranBC_FtGeorge" , Summary = "Keeping the Fort George District informed" },
                         new Link() { Url = "https://twitter.com/TranBC_LMD", Title = "@TranBC_LMD" , Summary = "Latest info from the Lower Mainland" },
                         new Link() { Url = "https://twitter.com/TranBC_Peace", Title = "@TranBC_Peace" , Summary = "Keeping the Peace District informed on local news and events" },
@@ -379,8 +379,21 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/TranBC_Skeena", Title = "@TranBC_Skeena" , Summary = "Keeping the Skeena area informed" },
                         new Link() { Url = "https://twitter.com/TranBCVanIsle", Title = "@TranBCVanIsle" , Summary = "Local road and transportation information for Vancouver Islanders" },
                         new Link() { Url = "http://twitter.com/WorkBC", Title = "@WorkBC", Summary = "Explore career paths and get tips for finding jobs in British Columbia" },
-                        new Link() { Url = "https://twitter.com/BCSheriffs", Title = "@BCSheriffs", Summary = "Learn about the diverse responsibilities and activities of the BC Sheriff Service" }
+                        new Link() { Url = "https://twitter.com/BCSheriffs", Title = "@BCSheriffs", Summary = "Learn about the diverse responsibilities and activities of the BC Sheriff Service" },
+                        new Link() { Url = "https://twitter.com/creativebcs", Title = "@CreativeBCs", Summary = "Find information on BC's film, TV, music, interactive & digital media, books & magazines" }
             }.OrderBy(t => t.Title).ToArray();
+
+          model.InstagramLinks = new Link[]
+          {
+                        new Link() { Url = "https://www.instagram.com/bchousing/", Title = "BC Housing", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/yourbcparks/", Title = "BC Parks", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/ministryoftranbc/", Title = "BC Ministry of Transportation", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/creativebcs/", Title = "Creative BC", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/hellobc/", Title = "Destination British Columbia", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/innovate_bc/", Title = "Innovate BC", Summary = "" },
+          }.OrderBy(t => t.Title).ToArray();
+
 
             model.UstreamLinks = new Link[]
             {

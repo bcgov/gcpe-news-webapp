@@ -37,7 +37,7 @@
                     <a href="#" class="link-button collapse">Contract Facebook List</a>
                 }
             </div>
-         </div>
+        </div>
 
         @{bool expandableTwitter = Model.TwitterLinks.Count() >= 5;}
         <div class="expandable-section twitter @(expandableTwitter ? "collapsed" : "expanded" )">
@@ -63,6 +63,34 @@
                 {
                     <a href="#" class="link-button expand">Expand Twitter List</a>
                     <a href="#" class="link-button collapse">Contract Twitter List</a>
+                }
+            </div>
+        </div>
+
+        @{bool expandableInstagram = Model.InstagramLinks.Count() >= 5;}
+        <div class="expandable-section instagram @(expandableInstagram ? "collapsed" : "expanded" )">
+            <a name="instagram"></a>
+            <h4>Follow us on Instagram <i class="fa fa-instagram pull-right" aria-hidden="true"></i></h4>
+            <div class="expandable-section-content">
+                <div class="expander-body">
+                    @if (Model.InstagramLinks != null && Model.InstagramLinks.Any())
+                    {
+                        <ul class="external-links">
+                            @foreach (var link in Model.InstagramLinks)
+                            {
+                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                            }
+                        </ul>
+                    }
+                    @if (expandableInstagram)
+                    {
+                        <div class="article-fade"> </div>
+                    }
+                </div>
+                @if (@expandableInstagram)
+                {
+                    <a href="#" class="link-button expand">Expand Instagram List</a>
+                    <a href="#" class="link-button collapse">Contract Instagram List</a>
                 }
             </div>
         </div>
@@ -131,7 +159,7 @@
 
         @*@{bool expandableUstream = Model.UstreamLinks.Count() >= 5;}
         <div class="expandable-section ustream @(expandableUstream ? "collapsed" : "expanded" )">
-            <h4>Watch us on Ustream</h4>  
+            <h4>Watch us on Ustream</h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.UstreamLinks != null && Model.UstreamLinks.Any())
