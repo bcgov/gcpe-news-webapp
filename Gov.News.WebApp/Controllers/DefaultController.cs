@@ -285,7 +285,6 @@ namespace Gov.News.Website.Controllers
             model.FacebookLinks = new Link[]
             {
                         new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" },
-                        new Link() { Url = "http://www.facebook.com/johnhorganbc", Title = "Premier John Horgan", Summary = "Connect with the Premier of British Columbia" },
                         new Link() { Url = "https://www.facebook.com/IndigenousEdBC/", Title = "Indigenous Education BC" },
                         new Link() { Url = "http://www.facebook.com/BizPaLBC", Title = "BC BizPaL" },
                         new Link() { Url = "http://www.facebook.com/ImmunizeBC", Title = "BC Centre for Disease Control: ImmunizeBC" },
