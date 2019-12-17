@@ -4,6 +4,7 @@ using Gov.News.WebApp;
 using Gov.News.Website.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -24,7 +25,7 @@ namespace Gov.News.Website
         // test date for granville age
         public static DateTime granvilleTestDate;
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath);
@@ -37,8 +38,8 @@ namespace Gov.News.Website
             Configuration = builder.Build();
 
             Configuration.Bind(Properties.Settings.Default);
-            
-            if (Configuration["GranvilleTestDate"]!=null)
+
+            if (Configuration["GranvilleTestDate"] != null)
             {
                 try
                 {
@@ -46,7 +47,7 @@ namespace Gov.News.Website
                 }
                 catch (SystemException)
                 {
-                }   
+                }
             }
 
             //Data.Repository.RepositoryException += (ex) => Program.ReportException(null, ex);
@@ -61,7 +62,11 @@ namespace Gov.News.Website
 
             services.AddMemoryCache();
 
-            services.AddMvc().AddMvcOptions(options =>
+            services.AddMvc(opt =>
+                {
+                    opt.EnableEndpointRouting = false;
+                })
+                .AddMvcOptions(options =>
             {
 #if DEBUG
                 var cacheProfile = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
@@ -137,7 +142,7 @@ namespace Gov.News.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
