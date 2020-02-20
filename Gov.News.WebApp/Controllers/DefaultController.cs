@@ -13,15 +13,16 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Link = Gov.News.Website.Models.ConnectViewModel.ExternalConnectLink;
 
 namespace Gov.News.Website.Controllers
 {
     public class DefaultController : Shared.IndexController<Home>
     {
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
 
-        public DefaultController(Repository repository, IConfiguration configuration, IHostingEnvironment env) : base(repository, configuration)
+        public DefaultController(Repository repository, IConfiguration configuration, IWebHostEnvironment env) : base(repository, configuration)
         {
             _env = env;
         }
