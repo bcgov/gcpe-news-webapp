@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Gov.News.WebApp;
 using Gov.News.Website.Middleware;
 using Microsoft.AspNetCore.Builder;
@@ -7,16 +8,13 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-
-using Polly;
-using Polly.Caching.Memory;
 
 namespace Gov.News.Website
 {
@@ -120,19 +118,30 @@ namespace Gov.News.Website
 
             services.Replace(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(TimestampLogger<>)));
 
-            // add a health check for the news api service.
             services
                 .AddHealthChecks()
-                .AddUrlGroup(new Uri(Configuration["NewsApi"] + "/hc"));
+                .AddAsyncCheck("/hc", async () =>
+                {
+                    {
+                        using (HttpClient client = new HttpClient())
+                        {
+                            try
+                            {
+                                var response = await client.GetAsync(new Uri(Configuration["NewsApi"] + "hc"));
+                                if (!response.IsSuccessStatusCode)
+                                {
+                                    throw new Exception("Url not responding with 200 OK");
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                return await Task.FromResult(HealthCheckResult.Unhealthy());
+                            }
+                        }
+                        return await Task.FromResult(HealthCheckResult.Healthy());
+                    }
 
-            IAsyncPolicy<HttpResponseMessage> cachePolicy =
-               Policy.CacheAsync<HttpResponseMessage>(
-                   cacheProvider: new MemoryCacheProvider(new MemoryCache(new MemoryCacheOptions())),
-                   ttl: new TimeSpan(0, 1, 0)
-               );
-
-            services.AddHttpClient("uri-group") // default healthcheck registration name for uri ( you can change it on AddUrlGroup )
-             .AddPolicyHandler(cachePolicy);
+                }, new string[] { "health-check" });
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
