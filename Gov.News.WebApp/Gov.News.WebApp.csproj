@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+    <RuntimeFrameworkVersion>3.1.1</RuntimeFrameworkVersion>
     <AssemblyName>Gov.News.WebApp</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>Gov.News.WebApp</PackageId>
@@ -23,18 +24,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.App" Version="2.2.2" />
     <PackageReference Include="AngleSharp" Version="0.9.9" />
     <PackageReference Include="Gov.News.Api.Client" Version="1.0.104" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
-    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.2" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.2.1" />
-    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="2.2.0" />
-    <PackageReference Include="Polly.Caching.Memory" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.0.0" />
+    <PackageReference Include="Polly.Caching.Memory" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

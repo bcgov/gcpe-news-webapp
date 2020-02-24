@@ -3,6 +3,7 @@ using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 
 #if EXCEPTION_REPORTING_ENABLED
 using System.Collections.Generic;
@@ -17,18 +18,19 @@ namespace Gov.News.Website
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseKestrel(options => options.AddServerHeader = false)
-                .UseContentRoot(Directory.GetCurrentDirectory())
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+                webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
 #if DEBUG
-                .UseUrls("http://localhost:53488/")
+                webBuilder.UseUrls("http://localhost:53488/");
 #endif
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
+                webBuilder.UseIISIntegration();
+            });
     }
 }
