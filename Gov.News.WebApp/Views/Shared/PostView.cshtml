@@ -37,7 +37,7 @@
     <meta name="DC.date.issued" content="@Model.Post.PublishDate.Value.ToString("yyyy-MM-dd")" />
 
     @*TODO: Replace FullName with MetaLeadMinistry*@
-    <meta name="DCTERMS.creator" content="@leadMinistry.Name.Replace(",", " ")" />
+    <meta name="DCTERMS.creator" content="@leadMinistry.Name?.Replace(",", " ")" />
 
     <meta name="NEWSTERMS.contentPath" content="@Model.ContentPath" />
     <meta name="NEWSTERMS.ministryKeys" content="@string.Join(",", Model.RelatedMinistryKeys)" />
