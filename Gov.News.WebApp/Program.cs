@@ -21,16 +21,15 @@ namespace Gov.News.Website
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-                webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
 #if DEBUG
-                webBuilder.UseUrls("http://localhost:53488/");
+                .UseUrls("http://localhost:53488/")
 #endif
-                webBuilder.UseIISIntegration();
-            });
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseStartup<Startup>()
+                .UseIISIntegration();
+        }
     }
 }
