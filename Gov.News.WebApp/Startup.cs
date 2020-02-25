@@ -119,29 +119,29 @@ namespace Gov.News.Website
             services.Replace(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(TimestampLogger<>)));
 
             services
-                .AddHealthChecks()
-                .AddAsyncCheck("newsApi", async () =>
-                {
-                    {
-                        using (HttpClient client = new HttpClient())
-                        {
-                            try
-                            {
-                                var response = await client.GetAsync(new Uri(Configuration["NewsApi"] + "hc"));
-                                if (!response.IsSuccessStatusCode)
-                                {
-                                    throw new Exception("Url not responding with 200 OK");
-                                }
-                            }
-                            catch (Exception)
-                            {
-                                return await Task.FromResult(HealthCheckResult.Unhealthy());
-                            }
-                        }
-                        return await Task.FromResult(HealthCheckResult.Healthy());
-                    }
+                .AddHealthChecks();
+                //.AddAsyncCheck("newsApi", async () =>
+                //{
+                //    {
+                //        using (HttpClient client = new HttpClient())
+                //        {
+                //            try
+                //            {
+                //                var response = await client.GetAsync(new Uri(Configuration["NewsApi"] + "hc"));
+                //                if (!response.IsSuccessStatusCode)
+                //                {
+                //                    throw new Exception("Url not responding with 200 OK");
+                //                }
+                //            }
+                //            catch (Exception)
+                //            {
+                //                return await Task.FromResult(HealthCheckResult.Unhealthy());
+                //            }
+                //        }
+                //        return await Task.FromResult(HealthCheckResult.Healthy());
+                //    }
 
-                }, new string[] { "health-check" });
+                //}, new string[] { "health-check" });
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
