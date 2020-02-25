@@ -120,7 +120,7 @@ namespace Gov.News.Website
 
             services
                 .AddHealthChecks()
-                .AddAsyncCheck("/hc", async () =>
+                .AddAsyncCheck("newsApi", async () =>
                 {
                     {
                         using (HttpClient client = new HttpClient())
