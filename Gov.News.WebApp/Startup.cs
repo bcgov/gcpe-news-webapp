@@ -163,7 +163,7 @@ namespace Gov.News.Website
                 app.UseExceptionHandler("/error");
             }
 
-            app.UseHealthChecks("/hc", new HealthCheckOptions { AllowCachingResponses = false });
+            app.UseHealthChecks("/hc");
 
             app.UseRedirect();
 
