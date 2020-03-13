@@ -15,6 +15,10 @@
     padding-left:20px;
 }
 
+.covid-banner a {
+    color: white;
+}
+
 @media (min-width: 550px) and (max-width: 680px) {
     .mini-search-trigger, .mini-menu-trigger { 
         top: 100px !important;  
@@ -36,5 +40,7 @@
 #btnCloseCovidBanner {
     color:white !important;
 }
+
+
 
 
