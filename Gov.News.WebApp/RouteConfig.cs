@@ -152,6 +152,14 @@ namespace Gov.News.Website
                 constraints: new { action = "Top|Feature", format = formatConstraint }
             );
 
+            //(top | feature) feed [format]
+            routes.MapRoute(
+                name: "Newsroom-Special-Action-Feed",
+                template: "{action}/{key}/{type}/{format?}",
+                defaults: new { controller = "Default" },
+                constraints: new { action = "CategoryTop|CategoryFeature", format = formatConstraint }
+            );
+
             #endregion
 
             //biographies key
