@@ -90,6 +90,20 @@ namespace Gov.News.Website.Controllers
         }
 
         [ResponseCache(CacheProfileName = "Feed"), Noindex]
+        public async Task<ActionResult> CategoryTop(string key, string type, string format)
+        {
+            if (!string.Equals(type, "feed", StringComparison.OrdinalIgnoreCase))
+                throw new NotImplementedException();
+
+            var categories = await GetAllCategories();
+            var category = categories.Where(c => c.Key == key).ToList();
+            var topKeys = IndexModel.GetTopPostKeys(category);
+
+            var model = await GetSyndicationFeedViewModel("Top Stories", topKeys);
+            return await GetNewsFeedContent(format, model, false, false);
+        }
+
+        [ResponseCache(CacheProfileName = "Feed"), Noindex]
         public async Task<ActionResult> Feature(string type, string format)
         {
             if (!string.Equals(type, "feed", StringComparison.OrdinalIgnoreCase))
@@ -98,6 +112,20 @@ namespace Gov.News.Website.Controllers
             var featureKeys = IndexModel.GetFeaturePostKeys(await GetAllCategories());
 
             var model = await GetSyndicationFeedViewModel("Featured Stories", featureKeys);
+            return await GetNewsFeedContent(format, model, false, false);
+        }
+
+        [ResponseCache(CacheProfileName = "Feed"), Noindex]
+        public async Task<ActionResult> CategoryFeature(string key, string type, string format)
+        {
+            if (!string.Equals(type, "feed", StringComparison.OrdinalIgnoreCase))
+                throw new NotImplementedException();
+
+            var categories = await GetAllCategories();
+            var category = categories.Where(c => c.Key == key).ToList();
+            var topKeys = IndexModel.GetFeaturePostKeys(category);
+
+            var model = await GetSyndicationFeedViewModel("Top Stories", topKeys);
             return await GetNewsFeedContent(format, model, false, false);
         }
 
