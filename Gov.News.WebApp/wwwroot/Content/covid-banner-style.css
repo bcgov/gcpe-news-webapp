@@ -22,19 +22,19 @@
     }
 
 @media (min-width: 470px) and (max-width: 669px) {
-    .mini-search-trigger, .mini-menu-trigger {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
         top: 120px !important;
     }
 }
 
 @media (min-width: 386px) and (max-width: 470px) {
-    .mini-search-trigger, .mini-menu-trigger {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
         top: 155px !important;
     }
 }
 
 @media only screen and (max-width: 385px) {
-    .mini-search-trigger, .mini-menu-trigger {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
         top: 170px !important;
     }
 }

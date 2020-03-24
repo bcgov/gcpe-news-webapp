@@ -131,8 +131,8 @@
             </div>
         </div>
     </div>
-    <div class="mini-menu-trigger"> </div>
-    <div class="mini-search-trigger"> </div>
+    <div class="mini-menu-trigger covid-mini-menu-trigger"> </div>
+    <div class="mini-search-trigger covid-mini-search-trigger"> </div>
 
     <div id="mini-menu-container">
         @if (!(Model is SearchViewModel))
@@ -649,8 +649,15 @@
 
             $("#btnCloseCovidBanner").click(function (e) {
                 e.preventDefault();
-
+                var mini_menu_logo = $('#mini-menu-trigger');
+                var mini_search_logo = $('#mini-search-trigger');
                 $("#covid-banner").hide();
+                if (mini_search_logo.hasClass("covid-mini-search-menu")) {
+                    mini_search_logo.removeClass("covid-mini-search-menu")
+                }
+                if (mini_menu_logo.hasClass("covid-mini-menu-menu")) {
+                    mini_menu_logo.removeClass("covid-mini-menu-menu")
+                }
             });
         });  
     </script>
