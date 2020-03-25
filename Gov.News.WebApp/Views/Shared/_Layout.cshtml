@@ -1,7 +1,7 @@
 @using Gov.News.Website;
 @using Gov.News.Website.Models
 @using Gov.News.WebApp.Extensions
-@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnv
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
 @model BaseViewModel
 @{
     var dob = new System.DateTime(1926, 4, 21);
@@ -38,21 +38,24 @@
         <link rel="canonical" href="@Model.CanonicalUri" />
     }
 
-    <environment names="Testing,Development">
-        <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
-        <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" media="screen" type="text/css">
-        @{
-            if (@Model.GranvilleLive)
-            {
-                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
-            }
+<environment names="Testing,Development">
+    <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
+    <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" media="screen" type="text/css">
+    <!-- COVID style sheet-->
+    <link rel="stylesheet" href="~/Content/covid-banner-style.css" media="screen" type="text/css">
+    <!-- end of COVID style sheet-->
+    @{
+        if (@Model.GranvilleLive)
+        {
+            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
         }
+    }
 
-    </environment>
+</environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
@@ -60,6 +63,9 @@
         <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
         <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" asp-append-version="true" media="screen" type="text/css" />
+        <!-- COVID style sheet-->
+        <link rel="stylesheet" href="~/Content/covid-banner-style.css" asp-append-version="true" media="screen" type="text/css">
+        <!-- end of COVID style sheet-->
         @{
             if (@Model.GranvilleLive)
             {
@@ -85,6 +91,17 @@
         </div>
         }
     }
+    <!-- COVID banner -->
+        <div id="covid-banner" class="covid-banner">
+            <div class="content">
+                <button class="btn-link pull-right" id="btnCloseCovidBanner"><strong>×</strong></button>
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>   B.C. has declared a state of emergency. Learn about 
+                <a href=" http://www.bccdc.ca/health-info/diseases-conditions/covid-19?utm_campaign=20200318_GCPE_AM_COVID_3_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 health issues.</a>
+                 | Get <a href="https://www2.gov.bc.ca/gov/content/safety/emergency-preparedness-response-recovery/covid-19-provincial-support?utm_campaign=20200319_GCPE_AM_COVID_6_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 Provincial Support.</a>
+            </div>
+        </div>
+    <!-- end of COVID banner-->
+
     <div id="header">
         <div id="header-top">
             <div class="content">
@@ -114,8 +131,8 @@
             </div>
         </div>
     </div>
-    <div class="mini-menu-trigger"> </div>
-    <div class="mini-search-trigger"> </div>
+    <div class="mini-menu-trigger covid-mini-menu-trigger"> </div>
+    <div class="mini-search-trigger covid-mini-search-trigger"> </div>
 
     <div id="mini-menu-container">
         @if (!(Model is SearchViewModel))
@@ -628,6 +645,19 @@
                  Set the path as root, so the cookie will be valid across the whole site */
                 $.cookie(document.location.host + '-alert-granville', 'closed', { path: '/', expires: 100 });
                 $("#granville-bridge-banner").hide();
+            });
+
+            $("#btnCloseCovidBanner").click(function (e) {
+                e.preventDefault();
+                var mini_menu_logo = $('#mini-menu-trigger');
+                var mini_search_logo = $('#mini-search-trigger');
+                $("#covid-banner").hide();
+                if (mini_search_logo.hasClass("covid-mini-search-menu")) {
+                    mini_search_logo.removeClass("covid-mini-search-menu")
+                }
+                if (mini_menu_logo.hasClass("covid-mini-menu-menu")) {
+                    mini_menu_logo.removeClass("covid-mini-menu-menu")
+                }
             });
         });  
     </script>
