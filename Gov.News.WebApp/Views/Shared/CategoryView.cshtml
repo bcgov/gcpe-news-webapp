@@ -12,7 +12,12 @@
     }
 }
 
-<h1>@Context.Request.Host@Context.Request.Path</h1>
+@if (Context.Request.Host@Context.Request.Path.Contains("/tags/covid-19")) 
+{
+    <style>
+        background-color: #000000;     
+    </style>
+}
 
 @{
     if (Model.Category is Ministry)
