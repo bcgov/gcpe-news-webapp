@@ -12,7 +12,9 @@
     }
 }
 
-@if (Context.Request.Host@Context.Request.Path.Contains("/tags/covid-19")) 
+@{string isCovidTag = @Context.Request.Host@Context.Request.Path.Contains("/tags/covid-19");}
+
+@if (isCovidTag) 
 {
     <style>
         body {
