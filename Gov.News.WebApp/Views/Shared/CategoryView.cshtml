@@ -12,7 +12,7 @@
     }
 }
 
-<h1>@Request.Url.AbsoluteUri</h1>
+<h1>@Context.Request.Host@Context.Request.Path</h1>
 
 @{
     if (Model.Category is Ministry)
