@@ -1,4 +1,4 @@
-﻿@using Gov.News.Website.Models
+@using Gov.News.Website.Models
 @using Gov.News.Api.Models
 @using Gov.News.Website
 
@@ -10,6 +10,22 @@
     {
         <link rel="alternate" type="application/rss+xml" href="@Model.FeedUri" title="@Model.Title | BC Gov News" />
     }
+}
+
+@{bool isCovidTag = Context.Request.Path.ToString().Contains("/tags/covid-19");}
+
+@if (isCovidTag)
+{
+    <style type="text/css" scoped>
+        #header,
+        #covid-banner,
+        #nav-container,
+        #footer,
+        .media-container,
+        .home-features {
+            display: none;
+        }
+    </style>
 }
 
 @{
