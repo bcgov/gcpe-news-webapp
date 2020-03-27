@@ -11,11 +11,12 @@
         now = @Startup.granvilleTestDate;
     }
     var age = now.Year - dob.Year;
-    
+
     if (now.DayOfYear < dob.DayOfYear)
     {
         age = age - 1;
     }
+    bool isCovidTag = Context.Request.Path.ToString().Contains("/tags/covid-19");
 }
 
 <!DOCTYPE html>
@@ -54,25 +55,36 @@
             <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
         }
     }
-
-</environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" asp-append-version="true" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
-        <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
-        <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" asp-append-version="true" media="screen" type="text/css" />
-        <!-- COVID style sheet-->
-        <link rel="stylesheet" href="~/Content/covid-banner-style.css" asp-append-version="true" media="screen" type="text/css">
-        <!-- end of COVID style sheet-->
-        @{
-            if (@Model.GranvilleLive)
-            {
-                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
-            }
+    @{
+        if (@isCovidTag)
+        {
+            <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
         }
-    </environment>
+    }
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" asp-append-version="true" media="screen" type="text/css" />
+    <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
+    <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
+    <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
+    <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
+    <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" asp-append-version="true" media="screen" type="text/css" />
+    <!-- COVID style sheet-->
+    <link rel="stylesheet" href="~/Content/covid-banner-style.css" asp-append-version="true" media="screen" type="text/css">
+    <!-- end of COVID style sheet-->
+    @{
+        if (@Model.GranvilleLive)
+        {
+            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+        }
+    }
+    @{
+        if (@isCovidTag)
+        {
+            <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+        }
+    }
+</environment>
 
     @RenderSection("Meta", false)
     <script src="~/Scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -83,23 +95,23 @@
     @{
         if (@Model.GranvilleLive)
         {
-        <div id="granville-bridge-banner" class="alert granville-bridge-banner"  role="alert">
-            <div class="content">
-                <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
-                <button class="btn-link pull-right" id="btnCloseBanner"><strong>×</strong></button>
+            <div id="granville-bridge-banner" class="alert granville-bridge-banner" role="alert">
+                <div class="content">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
+                    <button class="btn-link pull-right" id="btnCloseBanner"><strong>×</strong></button>
+                </div>
             </div>
-        </div>
         }
     }
     <!-- COVID banner -->
-        <div id="covid-banner" class="covid-banner">
-            <div class="content">
-                <button class="btn-link pull-right" id="btnCloseCovidBanner"><strong>×</strong></button>
-                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>   B.C. has declared a state of emergency. Learn about 
-                <a href=" http://www.bccdc.ca/health-info/diseases-conditions/covid-19?utm_campaign=20200318_GCPE_AM_COVID_3_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 health issues.</a>
-                 | Get <a href="https://www2.gov.bc.ca/gov/content/safety/emergency-preparedness-response-recovery/covid-19-provincial-support?utm_campaign=20200319_GCPE_AM_COVID_6_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 Provincial Support.</a>
-            </div>
+    <div id="covid-banner" class="covid-banner">
+        <div class="content">
+            <button class="btn-link pull-right" id="btnCloseCovidBanner"><strong>×</strong></button>
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>   B.C. has declared a state of emergency. Learn about
+            <a href=" http://www.bccdc.ca/health-info/diseases-conditions/covid-19?utm_campaign=20200318_GCPE_AM_COVID_3_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 health issues.</a>
+            | Get <a href="https://www2.gov.bc.ca/gov/content/safety/emergency-preparedness-response-recovery/covid-19-provincial-support?utm_campaign=20200319_GCPE_AM_COVID_6_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 Provincial Support.</a>
         </div>
+    </div>
     <!-- end of COVID banner-->
 
     <div id="header">
@@ -638,7 +650,7 @@
             if ($.cookie(document.location.host + '-alert-granville') === 'closed') {
                 $("#granville-bridge-banner").hide();
             }
-            
+
             $("#btnCloseBanner").click(function (e) {
                 e.preventDefault();
                 /* The cookie will be expired in 100 days
@@ -659,7 +671,7 @@
                     mini_menu_logo.removeClass("covid-mini-menu-menu")
                 }
             });
-        });  
+        });
     </script>
 
     @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
