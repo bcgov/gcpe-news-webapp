@@ -1,6 +1,8 @@
 ﻿body {
 }
-
+.home-body .article img {
+    margin-right:0 !important;
+}
 @media only screen and (max-width: 400px) {
     #main-content {
         padding-left: 0 !important;
@@ -9,7 +11,7 @@
     .home-body, .story-body {
         width: 100% !important;
     }
-    .home-body .article .item-text.with-image {
+    .home-body .article .item-text.with-image, .home-body .article h2 {
         width: 180px !important;
     }
 }
@@ -29,8 +31,8 @@
         min-width: 300px !important;
         max-width: 300px !important;
     }
-    .home-body .article .item-text.with-image {
-        width: 280px !important;
+    .home-body .article .item-text.with-image, .home-body .article h2 {
+        width: 290px !important;
     }
 }
 
@@ -50,8 +52,8 @@
         min-width: 400px !important;
         max-width: 400px !important;
     }
-    .home-body .article .item-text.with-image {
-        width: 380px !important;
+    .home-body .article .item-text.with-image, .home-body .article h2 {
+        width: 390px !important;
     }
 }
 
@@ -68,8 +70,8 @@
         min-width: 500px !important;
         max-width: 500px !important;
     }
-    .home-body .article .item-text.with-image {
-        width: 480px !important;
+    .home-body .article .item-text.with-image, .home-body .article h2 {
+        width: 490px !important;
     }
 }
 
@@ -86,8 +88,8 @@
         min-width: 200px !important;
         max-width: 200px !important;
     }
-    .home-body .article .item-text.with-image{
-        width: 180px !important;
+    .home-body .article .item-text.with-image, .home-body .article h2 {
+        width: 190px !important;
     }
 }
 
