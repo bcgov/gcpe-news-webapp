@@ -9,9 +9,13 @@
     .home-body, .story-body {
         width: 100% !important;
     }
+<<<<<<< HEAD
     .home-body .article .item-text.with-image {
         width: 180px !important;
     }
+=======
+
+>>>>>>> dd3bb8f9b91fd6868833887e12261b2f3cae28fc
 }
 
 @media (min-width: 400px) and (max-width: 500px) {
@@ -29,9 +33,12 @@
         min-width: 300px !important;
         max-width: 300px !important;
     }
+<<<<<<< HEAD
     .home-body .article .item-text.with-image {
         width: 280px !important;
     }
+=======
+>>>>>>> dd3bb8f9b91fd6868833887e12261b2f3cae28fc
 }
 
 
@@ -50,9 +57,12 @@
         min-width: 400px !important;
         max-width: 400px !important;
     }
+<<<<<<< HEAD
     .home-body .article .item-text.with-image {
         width: 380px !important;
     }
+=======
+>>>>>>> dd3bb8f9b91fd6868833887e12261b2f3cae28fc
 }
 
 @media (min-width: 604px) and (max-width: 991px) {
@@ -68,9 +78,12 @@
         min-width: 500px !important;
         max-width: 500px !important;
     }
+<<<<<<< HEAD
     .home-body .article .item-text.with-image {
         width: 480px !important;
     }
+=======
+>>>>>>> dd3bb8f9b91fd6868833887e12261b2f3cae28fc
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -86,9 +99,12 @@
         min-width: 200px !important;
         max-width: 200px !important;
     }
+<<<<<<< HEAD
     .home-body .article .item-text.with-image{
         width: 180px !important;
     }
+=======
+>>>>>>> dd3bb8f9b91fd6868833887e12261b2f3cae28fc
 }
 
 
