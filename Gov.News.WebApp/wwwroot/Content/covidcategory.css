@@ -3,7 +3,7 @@
 .home-body .article img {
     margin-right:0 !important;
 }
-@media only screen and (max-width: 400px) {
+@media screen and (max-width: 400px) {
     #main-content {
         padding-left: 0 !important;
         width: 200px !important;
@@ -23,7 +23,7 @@
     }
 }
 
-@media (min-width: 400px) and (max-width: 500px) {
+@media screen and (min-width: 401px) and (max-width: 500px) {
     #main-content {
         padding-left: 0 !important;
         min-width: 300px !important;
@@ -45,8 +45,7 @@
     }
 }
 
-
-@media (min-width: 500px) and (max-width: 603px) {
+@media screen and (min-width: 501px) and (max-width: 603px) {
     #main-content {
         padding-left: 0 !important;
         min-width: 400px !important;
@@ -68,7 +67,7 @@
     }
 }
 
-@media (min-width: 604px) and (max-width: 991px) {
+@media screen and (min-width: 604px) and (max-width: 991px) {
     #main-content {
         padding-left: 0 !important;
         min-width: 500px !important;
@@ -89,7 +88,7 @@
 }
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+@media screen and (min-width: 992px) {
     #main-content {
         padding-left: 0 !important;
         min-width: 200px !important;
