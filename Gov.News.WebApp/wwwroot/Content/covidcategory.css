@@ -7,18 +7,27 @@
     #main-content {
         padding-left: 0 !important;
         width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
     }
     .home-body, .story-body {
         width: 100% !important;
     }
-    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img {
-        width: 180px !important;
+        .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img, .home-body .article .item-text {
+            width: 180px !important;
+        }
+    .content {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
     }
 }
 
 @media (min-width: 400px) and (max-width: 500px) {
     #main-content {
         padding-left: 0 !important;
+        min-width: 300px !important;
+        max-width: 300px !important;
     }
 
     .home-body, .story-body {
@@ -31,7 +40,7 @@
         min-width: 300px !important;
         max-width: 300px !important;
     }
-    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img {
+    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img, .home-body .article .item-text {
         width: 290px !important;
     }
 }
@@ -40,6 +49,8 @@
 @media (min-width: 500px) and (max-width: 603px) {
     #main-content {
         padding-left: 0 !important;
+        min-width: 400px !important;
+        max-width: 400px !important;
     }
 
     .home-body, .story-body {
@@ -52,7 +63,7 @@
         min-width: 400px !important;
         max-width: 400px !important;
     }
-    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img {
+    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img, .home-body .article .item-text {
         width: 390px !important;
     }
 }
@@ -60,6 +71,8 @@
 @media (min-width: 604px) and (max-width: 991px) {
     #main-content {
         padding-left: 0 !important;
+        min-width: 500px !important;
+        max-width: 500px !important;
     }
     .home-body, .story-body {
         width: 100% !important;
@@ -70,7 +83,7 @@
         min-width: 500px !important;
         max-width: 500px !important;
     }
-    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img {
+    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img, .home-body .article .item-text {
         width: 490px !important;
     }
 }
@@ -79,6 +92,8 @@
 @media (min-width: 992px) {
     #main-content {
         padding-left: 0 !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
     }
     .home-body, .story-body {
         width: 100%;
@@ -88,9 +103,10 @@
         min-width: 200px !important;
         max-width: 200px !important;
     }
-    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img {
+    .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img, .home-body .article .item-text {
         width: 190px !important;
     }
+    
 }
 
 
