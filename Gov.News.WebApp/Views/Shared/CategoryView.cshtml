@@ -31,7 +31,17 @@
     </style>
     <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css" asp-append-version="true">
     <script type="text/javascript">
-        console.log("on the covid page!");
+        
+        function inIframe () {
+            try {
+                return window.self !== window.top;
+            } catch (e) {
+                return true;
+            }
+        }
+        
+        if(inIframe())
+            console.log("in iframe!");
     </script>
 }
 
