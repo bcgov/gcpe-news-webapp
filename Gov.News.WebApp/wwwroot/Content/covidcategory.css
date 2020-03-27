@@ -9,7 +9,9 @@
     .home-body, .story-body {
         width: 100% !important;
     }
-
+    .home-body .article .item-text.with-image {
+        width: 180px !important;
+    }
 }
 
 @media (min-width: 400px) and (max-width: 500px) {
@@ -26,6 +28,9 @@
         width: 300px !important;
         min-width: 300px !important;
         max-width: 300px !important;
+    }
+    .home-body .article .item-text.with-image {
+        width: 280px !important;
     }
 }
 
@@ -45,6 +50,9 @@
         min-width: 400px !important;
         max-width: 400px !important;
     }
+    .home-body .article .item-text.with-image {
+        width: 380px !important;
+    }
 }
 
 @media (min-width: 604px) and (max-width: 991px) {
@@ -60,6 +68,9 @@
         min-width: 500px !important;
         max-width: 500px !important;
     }
+    .home-body .article .item-text.with-image {
+        width: 480px !important;
+    }
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -74,6 +85,9 @@
         width: 200px !important;
         min-width: 200px !important;
         max-width: 200px !important;
+    }
+    .home-body .article .item-text.with-image{
+        width: 180px !important;
     }
 }
 
