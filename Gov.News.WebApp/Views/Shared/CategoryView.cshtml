@@ -12,7 +12,7 @@
     }
 }
 
-@{bool isCovidTag = Context.Request.Path.ToString().Contains("/tags/covid-19");}
+@{bool isCovidTag = Context.Request.Path.ToString().Contains("/tags/covid-19") && Context.Request.Query["embed"] == "true";}
 
 @if (isCovidTag)
 {
@@ -36,18 +36,7 @@
 
 @section Scripts {
     <script type="text/javascript">
-        $(function () {      
-            function inIframe () {
-                try {
-                    return window.self !== window.top;
-                } catch (e) {
-                    return true;
-                }
-            }
-        
-            if(!inIframe())
-                $('#covidcategory').remove();
-
+        $(function () {
             var isLoading = false;
             var doubleClick = false;
             $(".load-more").on('click', function (event) {
