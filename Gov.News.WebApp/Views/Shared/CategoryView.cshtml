@@ -12,6 +12,8 @@
     }
 }
 
+@Context.Request.Query["embed"]
+
 @{bool isCovidTag = Context.Request.Path.ToString().Contains("/tags/covid-19") && Context.Request.Query["embed"] == "true";}
 
 @if (isCovidTag)
