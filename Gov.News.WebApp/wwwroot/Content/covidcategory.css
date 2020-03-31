@@ -1,5 +1,18 @@
-﻿body {
+body {
 }
+
+#header,
+   #covid-banner,
+   #nav-container,
+   #footer,
+   #end-cap,
+   .resource-links,
+   .media-container,
+   .news-control,
+   .home-features {
+      display: none;
+}
+
 .home-body .article img {
     margin-right:0 !important;
 }
