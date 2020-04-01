@@ -621,6 +621,15 @@
     <script type="text/javascript" src="~/Scripts/media-assets.js"></script>
     <script type="text/javascript">
         $(function() {
+
+            var text = $('.subheadline').text();
+            if(text && text.indexOf('translations') > -1) {
+                $('.subheadline').append(' <a href="#translations">(click to view)</a>');
+                $('<a name="translations"></a>').insertAfter('p:contains("Learn More:")');
+            }
+
+            // $("p:contains('Learn More:')").text()
+
             $('.story-copy .expand').on('click', function(event) {
                 $(this).parent().removeClass('collapsed').addClass('expanded');
                 event.preventDefault();
