@@ -624,9 +624,13 @@
 
             var text = $('.subheadline').text();
             if(text && text.indexOf('translations') > -1) {
-                $('<a name="translations"></a>').remove();
+                // $('<a name="translations"></a>').remove();
                 $('.subheadline').append(' <a href="#translations">(click to view)</a>');
-                $('<a name="translations"></a>').insertAfter('div.article-fade');
+                // $('<a name="translations"></a>').insertAfter('div.article-fade');
+                $('#translations').click(function(){
+                    var sharePermalink = $('div.share-permalink');
+                    sharePermalink.scrollTop(sharePermalink.height());
+                });
             }
 
             // $("p:contains('Learn More:')").text()
