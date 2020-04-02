@@ -624,6 +624,7 @@
 
             var text = $('.subheadline').text();
             if(text && text.indexOf('translations') > -1) {
+                $('<a name="translations"></a>').remove();
                 $('.subheadline').append(' <a href="#translations">(click to view)</a>');
                 $('<a name="translations"></a>').insertAfter('div.article-fade');
             }
