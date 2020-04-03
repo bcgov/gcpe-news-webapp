@@ -9,7 +9,7 @@
         @if (!string.IsNullOrWhiteSpace(Model.Documents?.FirstOrDefault()?.Subheadline)
            && Model.Documents.FirstOrDefault().Subheadline.Contains("translations", StringComparison.OrdinalIgnoreCase))
         {
-            <div class="item-medialink translations"><a href="@Model.GetUri()#translations"><i class="fa fa-language fa-lg" aria-hidden="true"></i> Translations</a></div>
+            <div class="item-medialink translations"><a href="@Model.GetUri()#translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600;" aria-hidden="true"></i> Translations</a></div>
         }
         @if (Model.HasMediaAssets.HasValue && Model.HasMediaAssets == true)
         {
