@@ -116,7 +116,7 @@
             {
                 <div class="item-medialink media-assets"><a href="@result.Uri#assets">Media Assets</a></div>
             }
-            @if (result.Headline.Contains("translation", StringComparison.OrdinalIgnoreCase))
+            @if (result.Headline != null && result.Headline.Contains("translation", StringComparison.OrdinalIgnoreCase))
             {
                 <div class="item-medialink translations"><a href="@result.Uri#translations"><i class="fa fa-language fa-lg" aria-hidden="true"></i> Translations</a></div>
             }
