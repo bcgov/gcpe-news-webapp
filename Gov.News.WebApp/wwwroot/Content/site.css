@@ -1988,6 +1988,14 @@ ul.inline li {
             font-size: 13px;
         }
 
+        .translations a {
+            display: inline-block;
+            text-transform: uppercase;
+            padding-left: 24px;
+            margin-right: 20px;
+            font-size: 13px;
+        }
+
 .search-results .media-assets a {
     float: right;
 }

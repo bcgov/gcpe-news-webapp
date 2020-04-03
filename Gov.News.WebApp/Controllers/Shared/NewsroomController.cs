@@ -186,6 +186,7 @@ namespace Gov.News.Website.Controllers.Shared
                     postKind = postKind.EndsWith("y") ? postKind.Substring(0, postKind.Length - 1) + "ies" : postKind + "s";
 
                     IEnumerable<object> titles = result["documentsHeadline"];
+                    IEnumerable<object> headlines = result["documentsSubheadline"];
 
 
                     string assetUrl = result["assetUrl"];
@@ -194,6 +195,7 @@ namespace Gov.News.Website.Controllers.Shared
                     model.Results.Add(new SearchViewModel.Result()
                     {
                         Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
+                        Headline = System.Net.WebUtility.HtmlDecode(headlines.FirstOrDefault().ToString()),
                         Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],

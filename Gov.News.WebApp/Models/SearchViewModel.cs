@@ -95,6 +95,8 @@ namespace Gov.News.Website.Models
         {
             public string Title { get; set; }
 
+            public string Headline { get; set; }
+
             public Uri Uri { get; set; }
 
             public string Description { get; set; }
