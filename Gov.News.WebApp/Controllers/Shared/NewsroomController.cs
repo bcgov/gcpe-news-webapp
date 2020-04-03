@@ -195,7 +195,7 @@ namespace Gov.News.Website.Controllers.Shared
                     model.Results.Add(new SearchViewModel.Result()
                     {
                         Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
-                        Headline = System.Net.WebUtility.HtmlDecode(headlines.FirstOrDefault().ToString()),
+                        Headline = System.Net.WebUtility.HtmlDecode(headlines?.FirstOrDefault().ToString()),
                         Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
