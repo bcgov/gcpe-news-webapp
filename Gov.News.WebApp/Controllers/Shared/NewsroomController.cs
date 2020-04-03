@@ -70,7 +70,7 @@ namespace Gov.News.Website.Controllers.Shared
 
             requestPath += string.Format("&{0}={1}", "$top", Convert.ToString(ResultsPerPage));
 
-            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,summary,publishDateTime,hasMediaAssets,assetUrl");
+            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,documentsSubheadline,summary,publishDateTime,hasMediaAssets,assetUrl");
 
             requestPath += string.Format("&{0}={1}", "$orderby", "publishDateTime desc");
 
