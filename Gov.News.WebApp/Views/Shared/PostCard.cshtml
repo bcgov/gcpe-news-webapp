@@ -7,7 +7,7 @@
     <div class="article@((ifShow != null && ifShow == "false") ? " hidden-article" : "")">
         <h2><a href="@Model.GetUri()">@Model.Headline()</a></h2>
         @if (!string.IsNullOrWhiteSpace(Model.Documents?.FirstOrDefault()?.Subheadline)
-           && Model.Documents.FirstOrDefault().Subheadline.Contains("translations", StringComparison.OrdinalIgnoreCase))
+           && Model.Documents.FirstOrDefault().Subheadline.Contains("translation", StringComparison.OrdinalIgnoreCase))
         {
             <div class="item-medialink translations"><a href="@Model.GetUri()#translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600;" aria-hidden="true"></i> Translations</a></div>
         }
