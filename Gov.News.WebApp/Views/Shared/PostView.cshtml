@@ -623,7 +623,10 @@
             if(text && text.indexOf('translation') > -1) {
                 $('<a name="translations"></a>').remove();
                 $('.subheadline').append(' <a href="#translations">(click to view)</a>');
-                $('<a name="translations"></a>').insertBefore("a:contains('Contract Story')");
+                var firstTranslation = $("p:contains('translation')").first().prev().prev();
+                if (firstTranslation.length > 0) {
+                    $('<a name="translations"></a>').insertBefore(firstTranslation);
+                }
             }
 
             // $("p:contains('Learn More:')").text()
