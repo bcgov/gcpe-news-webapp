@@ -19,20 +19,20 @@ body {
 @media screen and (max-width: 400px) {
     #main-content {
         padding-left: 0 !important;
-        width: 200px !important;
-        min-width: 200px !important;
-        max-width: 200px !important;
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
     }
     .home-body, .story-body {
         width: 100% !important;
     }
         .home-body .article .item-text.with-image, .home-body .article h2, .home-body .article img, .home-body .article .item-text {
-            width: 190px !important;
+            width: 230px !important;
         }
     .content {
-        width: 200px !important;
-        min-width: 200px !important;
-        max-width: 200px !important;
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
     }
 }
 
