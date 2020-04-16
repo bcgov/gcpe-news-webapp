@@ -97,6 +97,12 @@
     {
         <partial name="_WebAnalytics_Search" />
     }
+    <script type="text/javascript">
+        // inject font-awesome via CDN since IE 11 does not recognize the cached version
+        var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+        if (isIE11)
+            $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css" />');
+    </script>
 </head>
 <body>
     <!--googleoff: all-->
