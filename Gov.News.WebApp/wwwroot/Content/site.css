@@ -668,7 +668,7 @@ a.news-control .read-more.left {
 }
 
 #main-content {
-    min-height: 550px;
+    min-height: 350px;
     z-index: 5;
     position: relative;
     background: rgba(255,255,255,0.8);
