@@ -24,6 +24,9 @@ function initializeEmbeddedMediaPlaceholders(proxyUrl) {
         var placeholderContainerHeight = $(placeholder).height();
         if (asset.hasClass("wowza")) {
             placeholderContainerHeight = $(placeholder).find("img").height();
+            if (placeholderContainerHeight == 0) {
+                setTimeout('', 1000)
+            }         
         }
         var instructionsHeight = $(placeholder).find(".overlay-container .outer .inner").height();
         var offset = parseInt((placeholderContainerHeight - instructionsHeight) / 2);
@@ -55,6 +58,9 @@ function resizeEmbeddedMediaAssets() {
 
         if (asset.hasClass("wowza")) {
             placeholderContainerHeight = $(placeholder).find("img").height();
+            if (placeholderContainerHeight == 0) {
+                setTimeout('', 1000)
+            }
         }
 
         var instructionsHeight = $(placeholder).find(".overlay-container .outer .inner").height();
