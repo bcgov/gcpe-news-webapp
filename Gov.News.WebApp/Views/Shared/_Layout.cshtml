@@ -97,6 +97,12 @@
     {
         <partial name="_WebAnalytics_Search" />
     }
+    <script type="text/javascript">
+        // inject font-awesome via CDN since IE 11 does not recognize the cached version
+        var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+        if (isIE11)
+            $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css" />');
+    </script>
 </head>
 <body>
     <!--googleoff: all-->
@@ -189,11 +195,11 @@
 
                     @if (Model.WebcastingLive)
                     {
-                        <li style="float:right;"><a href="/live" class="live_button live_button_show">Live Webcast</a></li>
+                        <li><a href="/live" class="live_button live_button_show" style="width:auto; margin-left:5px;">Live Webcast</a></li>
                     }
                     else
                     {
-                        <li style="float:right;"><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
+                        <li><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
                     }
 
                 </ul>
@@ -201,7 +207,7 @@
         </div>
     </div>
 
-    <div id="nav-container">
+    <div id="nav-container" class="@(@Startup.granvilleConfig ? "granville-bridge-header": "" ) >
         <div class="shadow-box">
             <div class="content">
                 <div class="nav">

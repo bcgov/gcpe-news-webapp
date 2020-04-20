@@ -24,10 +24,13 @@ function initializeEmbeddedMediaPlaceholders(proxyUrl) {
         var placeholderContainerHeight = $(placeholder).height();
         if (asset.hasClass("wowza")) {
             placeholderContainerHeight = $(placeholder).find("img").height();
+            if (placeholderContainerHeight == 0) {
+                setTimeout('', 1000)
+            }         
         }
         var instructionsHeight = $(placeholder).find(".overlay-container .outer .inner").height();
         var offset = parseInt((placeholderContainerHeight - instructionsHeight) / 2);
-        $(placeholder).find(".overlay-container .outer .inner").css("top", offset + "px").css("visibility", "visible");
+        $(placeholder).find(".overlay-container .outer .inner").css("top", "40%").css("visibility", "visible");
         if ((asset.data("media-type") != undefined) && (asset.data("media-type") != "")) {
             mediaType = asset.data("media-type");
             if (getMediaAssetPreference(mediaType) == 1) {
@@ -55,11 +58,14 @@ function resizeEmbeddedMediaAssets() {
 
         if (asset.hasClass("wowza")) {
             placeholderContainerHeight = $(placeholder).find("img").height();
+            if (placeholderContainerHeight == 0) {
+                setTimeout('', 1000)
+            }
         }
 
         var instructionsHeight = $(placeholder).find(".overlay-container .outer .inner").height();
         var offset = parseInt((placeholderContainerHeight - instructionsHeight) / 2);
-        $(placeholder).find(".overlay-container .outer .inner").css("top", offset + "px").css("visibility", "visible");
+        $(placeholder).find(".overlay-container .outer .inner").css("top", "40%").css("visibility", "visible");
     }
 }
 

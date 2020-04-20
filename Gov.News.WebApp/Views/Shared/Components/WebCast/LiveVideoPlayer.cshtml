@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<string>
 
-<div id="container">
+<div id="container" class="container-fluid">
     <div class="wowza-wrapper asset wowza video" data-media-type="wowza">
         <div id="videoPlayer" style="display: none !important; position: absolute; top: 0; left: 0;">
             <video controls></video>
@@ -10,7 +10,8 @@
             <img id="placeholder-image" src="https://news.gov.bc.ca/Content/Images/Gov/Live_Webcast.png" />
             <div class="overlay-container">
                 <div class="outer">
-                    <div class="inner not-expanded">
+                    
+                    <div class="inner not-expanded" style="top:40%; position: relative;">
                         <div class="play-button">
                             <a href="javascript:void(0);" title="Play"></a>
                         </div>

@@ -208,10 +208,10 @@
     </div>
 
     <div class="story-features">
-        <!--<div class="resource-links">
+        @*<div class="resource-links">
             <h6 style="font-size: 18px;">Translate</h6>
             <div id="google_translate_element"></div>
-        </div>-->
+        </div>*@
         @*@if (Model.Sectors.Any())
             {
                 <partial name="RelatedSectors", Model.Sectors)
@@ -620,14 +620,14 @@
         $(function() {
 
             var text = $('.subheadline').text();
-            if(text && text.indexOf('translation') > -1) {
-                $('<a name="translations"></a>').remove();
-                $('.subheadline').append(' <a href="#translations">(click to view)</a>');
-                var firstTranslation = $("p:contains('translation')").first().prev().prev();
-                if (firstTranslation.length > 0) {
-                    $('<a name="translations"></a>').insertBefore(firstTranslation);
-                }
-            }
+            //if(text && text.indexOf('translation') > -1) {
+            //    $('<a name="translations"></a>').remove();
+            //    $('.subheadline').append(' <a href="#translations">(click to view)</a>');
+            //    var firstTranslation = $("p:contains('translation')").first().prev().prev();
+            //    if (firstTranslation.length > 0) {
+            //        $('<a name="translations"></a>').insertBefore(firstTranslation);
+            //    }
+            //}
 
             // $("p:contains('Learn More:')").text()
 

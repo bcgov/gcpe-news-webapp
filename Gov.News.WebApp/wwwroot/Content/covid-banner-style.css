@@ -21,9 +21,22 @@
         font-weight: 600;
     }
 
-@media (min-width: 470px) and (max-width: 669px) {
+@media (min-width: 470px) and (max-width: 613px) {
     .covid-mini-search-trigger, .covid-mini-menu-trigger {
         top: 120px !important;
+    }
+}
+
+@media (min-width: 614px) and (max-width: 669px) {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
+        top: 100px !important;
+    }
+}
+
+
+@media (min-width: 670px) and (max-width: 669px) {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
+        top: 100px !important;
     }
 }
 
