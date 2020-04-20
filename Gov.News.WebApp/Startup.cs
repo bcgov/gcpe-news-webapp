@@ -64,29 +64,29 @@ namespace Gov.News.Website
             services.AddMemoryCache();
 
             services.AddMvc(opt =>
-                {
-                    opt.EnableEndpointRouting = false;
-                })
-                .AddMvcOptions(options =>
             {
+                opt.EnableEndpointRouting = false;
+            })
+                .AddMvcOptions(options =>
+                {
 #if DEBUG
-                var cacheProfile = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
+                    var cacheProfile = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
 #else
                 var cacheProfile = new CacheProfile { Duration = 60 };
 #endif
 
-                options.CacheProfiles.Add("Default", cacheProfile);
-                options.CacheProfiles.Add("Feed", cacheProfile);
-                options.CacheProfiles.Add("Embed", cacheProfile);
-                options.CacheProfiles.Add("Page", cacheProfile);
-                options.CacheProfiles.Add("Archive", cacheProfile);
+                    options.CacheProfiles.Add("Default", cacheProfile);
+                    options.CacheProfiles.Add("Feed", cacheProfile);
+                    options.CacheProfiles.Add("Embed", cacheProfile);
+                    options.CacheProfiles.Add("Page", cacheProfile);
+                    options.CacheProfiles.Add("Archive", cacheProfile);
 
-                options.Filters.Add(new TypeFilterAttribute(typeof(XFrameOptionsAttribute)));
+                    options.Filters.Add(new TypeFilterAttribute(typeof(XFrameOptionsAttribute)));
 
-                options.Filters.Add(new TypeFilterAttribute(typeof(RequirePermanentHttpsAttribute)));
+                    options.Filters.Add(new TypeFilterAttribute(typeof(RequirePermanentHttpsAttribute)));
 
-                options.Filters.Add(new ExceptionReportingFilter());
-            });
+                    options.Filters.Add(new ExceptionReportingFilter());
+                });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -107,8 +107,6 @@ namespace Gov.News.Website
                 client.BaseUri = new Uri(Configuration.GetConnectionString("HubNewslettersClient"));
                 return client;
             }));
-
-
             services.Configure<Data.RepositoryOptions>(Configuration.GetSection("Options:Gov.News.Data:Repository"));
                 */
 
