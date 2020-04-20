@@ -4,21 +4,51 @@
         position: absolute;
         top: 65px;
         right: 10px;
-        background-image: url(Images/mini-menu/menu-open-mobile.png);
-        background-repeat: no-repeat;
+        /*background-color:#;*/
         width: 50px;
         height: 50px;
         cursor: pointer;
     }
+
+        .mini-menu-trigger:before {
+            font-family: "FontAwesome";
+            font-size: 32px;
+            content: "\f0c9";
+            color: #ffffff;
+            position: relative;
+            text-align: center;
+            padding-left: 10px;
+        }
+
     .mini-search-trigger {
         right: 70px;
-        background-image: url(Images/mini-menu/search-open-mobile.png);
     }
+
+        .mini-search-trigger:before {
+            font-family: "FontAwesome";
+            font-size: 32px;
+            content: "\f002";
+            color: #ffffff;
+            position: relative;
+            text-align: center;
+            padding-left: 10px;
+            font-weight: 300;
+        }
 
         .mini-search-trigger.triggered,
         .mini-menu-trigger.triggered {
-            background-image: url(Images/mini-menu/menu-close-mobile.png);
         }
+
+            .mini-menu-trigger.triggered:before,
+            .mini-search-trigger.triggered:before {
+                font-family: "FontAwesome";
+                font-size: 32px;
+                content: "\f00d";
+                color: #ffffff;
+                position: relative;
+                text-align: center;
+                padding-left: 10px;
+            }
 
     #mini-menu-container {
         background-color: #38598a;
@@ -76,19 +106,19 @@
                 position: relative;
             }
 
-#mini-menu .site-menu ul li:last-child {
-    border-bottom: none;
-}
+                #mini-menu .site-menu ul li:last-child {
+                    border-bottom: none;
+                }
 
 
-            #mini-menu .site-menu ul li.first-link {
-                background-color: #38598a;
-                border-bottom: 1px solid #7590b9;
-            }
+                #mini-menu .site-menu ul li.first-link {
+                    background-color: #38598a;
+                    border-bottom: 1px solid #7590b9;
+                }
 
-        #mini-menu .site-menu ul li ul {
-            border-top: 1px solid #7590b9;
-        }
+                #mini-menu .site-menu ul li ul {
+                    border-top: 1px solid #7590b9;
+                }
 
                 #mini-menu .site-menu ul li .level-trigger {
                     background-image: url(Images/mini-menu/menu-arrow-dn.png);
@@ -115,6 +145,7 @@
                     position: absolute;
                     right: 0;
                 }
+
                 #mini-menu .site-menu ul li.first-link .no-trigger {
                     border-left: 0;
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Gov.News.Website.Helpers;
 using Gov.News.Website.Middleware;
 using Gov.News.Website.Models;
 using Microsoft.AspNetCore.Http;
@@ -69,7 +70,7 @@ namespace Gov.News.Website.Controllers.Shared
 
             requestPath += string.Format("&{0}={1}", "$top", Convert.ToString(ResultsPerPage));
 
-            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,summary,publishDateTime,hasMediaAssets,assetUrl");
+            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,documentsSubheadline,summary,publishDateTime,hasMediaAssets,assetUrl");
 
             requestPath += string.Format("&{0}={1}", "$orderby", "publishDateTime desc");
 
@@ -185,16 +186,20 @@ namespace Gov.News.Website.Controllers.Shared
                     postKind = postKind.EndsWith("y") ? postKind.Substring(0, postKind.Length - 1) + "ies" : postKind + "s";
 
                     IEnumerable<object> titles = result["documentsHeadline"];
+                    IEnumerable<object> headlines = result["documentsSubheadline"];
+
 
                     string assetUrl = result["assetUrl"];
                     bool isFBAsset = assetUrl.Contains("facebook");
+                    var date = (DateTimeOffset)DateTimeOffset.Parse(Convert.ToString(result["publishDateTime"]));
                     model.Results.Add(new SearchViewModel.Result()
                     {
                         Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
+                        Headline = System.Net.WebUtility.HtmlDecode(headlines?.FirstOrDefault().ToString()),
                         Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
-                        PublishDate = result["publishDateTime"],
+                        PublishDate = DateTime.Parse(date.FormatDateLong()),
                         ThumbnailUri = isFBAsset ? null : NewsroomExtensions.GetThumbnailUri(assetUrl)
                     });
                     if (isFBAsset)

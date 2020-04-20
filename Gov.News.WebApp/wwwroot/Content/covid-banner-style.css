@@ -1,0 +1,57 @@
+﻿body {
+}
+
+.covid-banner {
+    background-color: #355992;
+    width: 100%;
+    z-index: 5;
+    font-size: 20px;
+    color: #fff;
+    padding: 15px;
+    padding-left: 30px;
+}
+
+    .covid-banner .content {
+        padding-left: 20px;
+    }
+
+    .covid-banner a {
+        color: white;
+        text-decoration: underline;
+        font-weight: 600;
+    }
+
+@media (min-width: 470px) and (max-width: 613px) {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
+        top: 120px !important;
+    }
+}
+
+@media (min-width: 614px) and (max-width: 669px) {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
+        top: 100px !important;
+    }
+}
+
+
+@media (min-width: 670px) and (max-width: 669px) {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
+        top: 100px !important;
+    }
+}
+
+@media (min-width: 386px) and (max-width: 470px) {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
+        top: 155px !important;
+    }
+}
+
+@media only screen and (max-width: 385px) {
+    .covid-mini-search-trigger, .covid-mini-menu-trigger {
+        top: 150px !important;
+    }
+}
+
+#btnCloseCovidBanner {
+    color: white !important;
+}

@@ -57,6 +57,8 @@ namespace Gov.News.Website.Controllers.Shared
             model.ResourceLinks = await Repository.GetResourceLinksAsync();
             var homeSettings = await Repository.GetHomeAsync();
             model.WebcastingLive = !string.IsNullOrEmpty(homeSettings?.LiveWebcastM3uPlaylist);
+            model.GranvilleLive = !string.IsNullOrEmpty(homeSettings?.Granville);
+            
         }
 
         public class NewsroomFilter : MemoryStream
@@ -96,7 +98,7 @@ namespace Gov.News.Website.Controllers.Shared
                 footer.YoutubeMoreUri = new Uri(category.YoutubeUri == null ? "https://www.youtube.com/user/ProvinceofBC/" : category.YoutubeUri);
                 footer.SoundcloudMoreUri = new Uri(category.AudioUri == null ? "https://soundcloud.com/bcgov/" : category.AudioUri);
 
-                if (category.Name.ToUpper() == "OFFICE OF THE PREMIER" || category.Name.ToUpper() == "SPEECHES")
+                if (category.Name?.ToUpper() == "OFFICE OF THE PREMIER" || category.Name?.ToUpper() == "SPEECHES")
                 {
                     footer.FlickrSource = "Office of the Premier";
                     footer.YoutubeSource = "Office of the Premier";

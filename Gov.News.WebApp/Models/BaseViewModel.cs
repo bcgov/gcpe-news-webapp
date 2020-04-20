@@ -18,6 +18,8 @@ namespace Gov.News.Website.Models
 
         public bool WebcastingLive { get; set;}
 
+        public bool GranvilleLive { get; set; }
+
         public BaseViewModel()
         {
             OGMetaImageUrl = new Uri(Properties.Settings.Default.NewsHostUri, "/Content/Images/Gov/default-og-image.jpg");

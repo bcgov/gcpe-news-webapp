@@ -11,5 +11,11 @@ namespace Gov.News.Website.Controllers
         {
             return Hubs.LiveHub.WebcastingPlaylists;
         }
+
+        [HttpGet("live/granville")]
+        public bool GetIsGranvilleLive()
+        {
+            return Hubs.LiveHub.IsGranvilleLive;
+        }
     }
 }

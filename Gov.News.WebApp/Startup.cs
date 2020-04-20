@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Gov.News.WebApp;
 using Gov.News.Website.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-
 using Polly;
 using Polly.Caching.Memory;
 
@@ -21,9 +23,10 @@ namespace Gov.News.Website
 {
     public class Startup
     {
-        public static bool granvilleConfig = false;
+        // test date for granville age
+        public static DateTime granvilleTestDate;
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath);
@@ -37,8 +40,17 @@ namespace Gov.News.Website
 
             Configuration.Bind(Properties.Settings.Default);
 
-            granvilleConfig = Configuration["Granville"].ToLower()=="true" ? true: false;
-            
+            if (Configuration["GranvilleTestDate"] != null)
+            {
+                try
+                {
+                    granvilleTestDate = DateTime.Parse(Configuration["GranvilleTestDate"]);
+                }
+                catch (SystemException)
+                {
+                }
+            }
+
             //Data.Repository.RepositoryException += (ex) => Program.ReportException(null, ex);
         }
 
@@ -51,7 +63,11 @@ namespace Gov.News.Website
 
             services.AddMemoryCache();
 
-            services.AddMvc().AddMvcOptions(options =>
+            services.AddMvc(opt =>
+                {
+                    opt.EnableEndpointRouting = false;
+                })
+                .AddMvcOptions(options =>
             {
 #if DEBUG
                 var cacheProfile = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
@@ -105,18 +121,17 @@ namespace Gov.News.Website
 
             services.Replace(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(TimestampLogger<>)));
 
-            // add a health check for the news api service.
             services
                 .AddHealthChecks()
-                .AddUrlGroup(new Uri(Configuration["NewsApi"] + "/hc"));
+                .AddUrlGroup(new Uri(Configuration["NewsApi"] + "hc"));
 
             IAsyncPolicy<HttpResponseMessage> cachePolicy =
-               Policy.CacheAsync<HttpResponseMessage>(
-                   cacheProvider: new MemoryCacheProvider(new MemoryCache(new MemoryCacheOptions())),
-                   ttl: new TimeSpan(0, 1, 0)
-               );
+              Policy.CacheAsync<HttpResponseMessage>(
+                  cacheProvider: new MemoryCacheProvider(new MemoryCache(new MemoryCacheOptions())),
+                  ttl: new TimeSpan(0, 1, 0)
+              );
 
-            services.AddHttpClient("uri-group") // default healthcheck registration name for uri ( you can change it on AddUrlGroup )
+            services.AddHttpClient("uri-group") // default healthcheck registration name for uri ( you can change it on AddUrlGroup )	 
              .AddPolicyHandler(cachePolicy);
         }
 
@@ -127,7 +142,7 @@ namespace Gov.News.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -139,7 +154,7 @@ namespace Gov.News.Website
                 app.UseExceptionHandler("/error");
             }
 
-            app.UseHealthChecks("/hc", new HealthCheckOptions { AllowCachingResponses = false });
+            app.UseHealthChecks("/hc");
 
             app.UseRedirect();
 

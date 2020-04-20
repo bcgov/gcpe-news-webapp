@@ -1,8 +1,23 @@
-﻿@using Gov.News.Website;
+@using Gov.News.Website;
 @using Gov.News.Website.Models
 @using Gov.News.WebApp.Extensions
-
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
 @model BaseViewModel
+@{
+    var dob = new System.DateTime(1926, 4, 21);
+    var now = DateTime.Now;
+    if (@Startup.granvilleTestDate != DateTime.MinValue)
+    {
+        now = @Startup.granvilleTestDate;
+    }
+    var age = now.Year - dob.Year;
+
+    if (now.DayOfYear < dob.DayOfYear)
+    {
+        age = age - 1;
+    }
+    bool isCovidTag = Context.Request.Path.ToString().Contains("/tags/covid-19") && Context.Request.Query["embed"] == "true";
+}
 
 <!DOCTYPE html>
 <html>
@@ -24,34 +39,103 @@
         <link rel="canonical" href="@Model.CanonicalUri" />
     }
 
-        <environment names="Testing,Development">
-            <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" media="screen" type="text/css" />
-            <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
-            <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
-            <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
-            <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
-            <link rel="stylesheet" href="~/Content/granville-bridge.css" media="screen" type="text/css" />
-        </environment>
-        <environment names="Staging,Production">
-            <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" asp-append-version="true" media="screen" type="text/css" />
-            <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
-            <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
-            <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
-            <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
-            <link rel="stylesheet" href="~/Content/granville-bridge.css" asp-append-version="true" media="screen" type="text/css" />
-        </environment>
+    <environment names="Testing,Development">
+        <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
+        <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" media="screen" type="text/css">
+        <!-- COVID style sheet-->
+        <link rel="stylesheet" href="~/Content/covid-banner-style.css" media="screen" type="text/css">
+        <!-- end of COVID style sheet-->
+        @{
+            if (@Model.GranvilleLive)
+            {
+                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+            }
+        }
+        @{
+            if (@isCovidTag)
+            {
+                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+            }
+        }
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" asp-append-version="true" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
+        <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" asp-append-version="true" media="screen" type="text/css" />
+        <!-- COVID style sheet-->
+        <link rel="stylesheet" href="~/Content/covid-banner-style.css" asp-append-version="true" media="screen" type="text/css">
+        <!-- end of COVID style sheet-->
+        @{
+            if (@Model.GranvilleLive)
+            {
+                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+            }
+        }
+        @{
+            if (@isCovidTag)
+            {
+                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+            }
+        }
+    </environment>
 
     @RenderSection("Meta", false)
-
     <script src="~/Scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
+    {
+        <partial name="_WebAnalytics" />
+    }
+    else
+    {
+        <partial name="_WebAnalytics_Search" />
+    }
+    <script type="text/javascript">
+        // inject font-awesome via CDN since IE 11 does not recognize the cached version
+        var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+        if (isIE11)
+            $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css" />');
+    </script>
 </head>
 <body>
     <!--googleoff: all-->
-    <div id="header" class="@(@Startup.granvilleConfig ? "granville-bridge-header": "" )">
+    @{
+        if (@Model.GranvilleLive)
+        {
+            <div id="granville-bridge-banner" class="alert granville-bridge-banner" role="alert">
+                <div class="content">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
+                    <button class="btn-link pull-right" id="btnCloseBanner"><strong>×</strong></button>
+                </div>
+            </div>
+        }
+    }
+    <!-- COVID banner -->
+    <div id="covid-banner" class="covid-banner">
+        <div class="content">
+            <button class="btn-link pull-right" id="btnCloseCovidBanner"><strong>×</strong></button>
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>   B.C. has declared a state of emergency. Learn about
+            <a href=" http://www.bccdc.ca/health-info/diseases-conditions/covid-19?utm_campaign=20200318_GCPE_AM_COVID_3_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 health issues.</a>
+            | Get <a href="https://www2.gov.bc.ca/gov/content/safety/emergency-preparedness-response-recovery/covid-19-provincial-support?utm_campaign=20200319_GCPE_AM_COVID_6_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 Provincial Support.</a>
+        </div>
+    </div>
+    <!-- end of COVID banner-->
+
+    <div id="header">
         <div id="header-top">
             <div class="content">
                 <div id="logo">
-                    <a id="headerBCGov" href="http://gov.bc.ca"><img src="~/Content/Images/Gov/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C."></a>
+                    <a id="headerBCGov" href="http://gov.bc.ca">
+                        <img id="BCGov-logo" src="~/Content/Images/Gov/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                        <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." title="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                    </a>
                 </div>
             </div>
         </div>
@@ -73,8 +157,8 @@
             </div>
         </div>
     </div>
-    <div class="mini-menu-trigger"> </div>
-    <div class="mini-search-trigger"> </div>
+    <div class="mini-menu-trigger covid-mini-menu-trigger"> </div>
+    <div class="mini-search-trigger covid-mini-search-trigger"> </div>
 
     <div id="mini-menu-container">
         @if (!(Model is SearchViewModel))
@@ -111,11 +195,11 @@
 
                     @if (Model.WebcastingLive)
                     {
-                        <li style="float:right;"><a href="/live" class="live_button live_button_show">Live Webcast</a></li>
+                        <li><a href="/live" class="live_button live_button_show" style="width:auto; margin-left:5px;">Live Webcast</a></li>
                     }
                     else
                     {
-                        <li style="float:right;"><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
+                        <li><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
                     }
 
                 </ul>
@@ -230,7 +314,7 @@
             <div class="clear"></div>
             <hr />
 
-            <ul class="inline">
+            <ul class="inline pull-left">
                 <li><a id="footerHome" href="https://news.gov.bc.ca">Home</a></li>
                 <li><a id="footerDisclaimer" href="http://www2.gov.bc.ca/gov/admin/disclaimer.page">Disclaimer</a></li>
                 <li><a id="footerPrivacy" href="/privacy">Privacy</a></li>
@@ -243,13 +327,14 @@
     <div id="end-cap">
         <ul>
             <li class="connect-label">Connect</li>
-            <li><a href="/connect#facebook"><img src="@Url.Content("~/Content/Images/SocialMedia/20x20-white-facebook.png")" alt="Facebook" /></a></li>
-            <li><a href="/connect#twitter"><img src="@Url.Content("~/Content/Images/SocialMedia/20x20-white-twitter.png")" alt="Twitter" /></a></li>
-            <li><a href="/connect#flickr"><img src="@Url.Content("~/Content/Images/SocialMedia/20x20-white-flickr.png")" alt="Flickr" /></a></li>
-            <li><a href="/connect#youtube"><img src="@Url.Content("~/Content/Images/SocialMedia/20x20-white-youtube.png")" alt="Youtube" /></a></li>
+            <li><a href="/connect#facebook"><i class="fa fa-facebook-official fa-lg" aria-hidden="false"></i></a></li>
+            <li><a href="/connect#twitter"><i class="fa fa-twitter fa-lg" aria-hidden="false"></i></a></li>
+            <li><a href="/connect#flickr"><i class="fa fa-flickr fa-lg" aria-hidden="false"></i></a></li>
+            <li><a href="/connect#youtube"><i class="fa fa-youtube fa-lg" aria-hidden="false"></i></a></li>
         </ul>
         <a href="/connect" class="read-more view-all-media">View all Social Media</a>
     </div>
+    <input id="hostingEnv" type="hidden" value=@hostingEnv.EnvironmentName />
 
     @if (Gov.News.Website.Properties.Settings.Default.SignalREnabled != null && Gov.News.Website.Properties.Settings.Default.SignalREnabled == "true")
     {
@@ -265,6 +350,7 @@
         <script src="~/Scripts/minimenu.js" asp-append-version="true" type="text/javascript"></script>
         <script src="~/Scripts/social-media.js" asp-append-version="true" type="text/javascript"></script>
     </environment>
+
 
     <script type="text/javascript">
         window.allowFade = true;
@@ -456,6 +542,8 @@
             // Create a function that the hub can call to broadcast messages.
             @:liveHub.client.isLive = isLiveCallback;
 
+            @:liveHub.client.isGranvilleLive = isGranvilleLiveCallback;
+
             // Start the connection.
             @:$.connection.hub.start();
         }
@@ -463,6 +551,7 @@
         {
             // Initiate polling mechanism to /api/live/playlist
             @:setTimeout(manualPolling, 60 * 1000);
+            @:setTimeout(manualGranvillePolling, 60 * 1000);
         }
     });
 
@@ -483,23 +572,81 @@
             setTimeout(manualPolling, 60 * 1000);
         });
 
-    }
-
-    function isLiveCallback(webcastingEnabled, links) {
-        var live_button = $('.live_button');
-
-        if (webcastingEnabled === true) {
-            live_button.removeClass("live_button_hide");
-            live_button.addClass("live_button_show");
-        }
-        else {
-            live_button.removeClass("live_button_show");
-            live_button.addClass("live_button_hide");
         }
 
-        //if (typeof secondaryIsLiveCallback !== "undefined")
-            //secondaryIsLiveCallback(webcastingEnabled, links);
-    };
+        function manualGranvillePolling() {
+            $.ajax({ url: "/api/live/granville" })
+                .done(function (result) {
+                    if (result) {
+                        isGranvilleLiveCallback(true);
+                    } else {
+                        isGranvilleLiveCallback(false);
+                    }
+                })
+                .fail(function (err) {
+                })
+                .always(function () {
+                    setTimeout(manualGranvillePolling, 60 * 1000);
+                });
+        }
+
+        function isLiveCallback(webcastingEnabled, links) {
+            var live_button = $('.live_button');
+
+            if (webcastingEnabled === true) {
+                live_button.removeClass("live_button_hide");
+                live_button.addClass("live_button_show");
+            }
+            else {
+                live_button.removeClass("live_button_show");
+                live_button.addClass("live_button_hide");
+            }
+
+            //if (typeof secondaryIsLiveCallback !== "undefined")
+            //  secondaryIsLiveCallback(webcastingEnabled, links);
+        };
+
+        function isGranvilleLiveCallback(isLive) {
+            var banner = $('#granville-bridge-banner');
+            var header = $('#header');
+            var logo = $('#BCGov-logo');
+            var logo_granville = $('#BCGov-logo-granville');
+            var mini_search_logo = $('#mini-menu-trigger');
+            var granville_style_sheet = $('link[rel=stylesheet][href~="/Content/granville-bridge-theme.css"]');
+            const hostingEnv = document.getElementById('hostingEnv').value;
+
+            if (isLive) {
+                if (!banner.length) {
+                    $('<div id="granville-bridge-banner" class="alert granville-bridge-banner"  role="alert"><div class="content"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.<button class="btn-link pull-right" id="btnCloseBanner"><strong>×</strong></button></div></div>').insertBefore(header);
+                }
+                logo.hide();
+                logo_granville.show();
+
+                if (!mini_search_logo.hasClass("granville-bridge-mini-search-menu")) {
+                    mini_search_logo.addClass("granville-bridge-mini-search-menu")
+                }
+                if (!granville_style_sheet.length) {
+                    if (hostingEnv == "Staging" || hostingEnv == "Production") {
+                        $('head').append('<link rel="stylesheet" type="text/css" media="screen" asp-append-version="true" href="/Content/granville-bridge-theme.css">');
+                    } else {
+                        $('head').append('<link rel="stylesheet" type="text/css" media="screen" href="/Content/granville-bridge-theme.css">');
+                    }
+                }
+            } else {
+                if (banner.length) {
+                    banner.remove();
+                }
+                logo_granville.hide();
+                logo.show();
+                if (mini_search_logo.hasClass("granville-bridge-mini-search-menu")) {
+                    mini_search_logo.removeClass("granville-bridge-mini-search-menu")
+                }
+                if (granville_style_sheet.length) {
+                    granville_style_sheet.remove();
+                }
+            }
+        };
+
 
     $('body').on('click touchend', '.footer a, .search-pagination a, #mini-menu a', function (e) {
         var el = $(this);
@@ -512,18 +659,36 @@
         $(".level-trigger").click();
         return false;
     });
+
+        $(document).ready(function () {
+            /* This is for closing the granville banner */
+            if ($.cookie(document.location.host + '-alert-granville') === 'closed') {
+                $("#granville-bridge-banner").hide();
+            }
+
+            $("#btnCloseBanner").click(function (e) {
+                e.preventDefault();
+                /* The cookie will be expired in 100 days
+                 Set the path as root, so the cookie will be valid across the whole site */
+                $.cookie(document.location.host + '-alert-granville', 'closed', { path: '/', expires: 100 });
+                $("#granville-bridge-banner").hide();
+            });
+
+            $("#btnCloseCovidBanner").click(function (e) {
+                e.preventDefault();
+                var mini_menu_logo = $('#mini-menu-trigger');
+                var mini_search_logo = $('#mini-search-trigger');
+                $("#covid-banner").hide();
+                if (mini_search_logo.hasClass("covid-mini-search-menu")) {
+                    mini_search_logo.removeClass("covid-mini-search-menu")
+                }
+                if (mini_menu_logo.hasClass("covid-mini-menu-menu")) {
+                    mini_menu_logo.removeClass("covid-mini-menu-menu")
+                }
+            });
+        });
     </script>
 
-    @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
-    {
-        <partial name="_WebAnalytics" />
-    }
-    else
-    {
-        <partial name="_WebAnalytics_Search" />
-    }
-
-    <partial name="_WebtrendsScript" />
     @RenderSection("Scripts", false)
     <!--googleon: all-->
 </body>

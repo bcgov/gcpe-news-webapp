@@ -1,4 +1,4 @@
-﻿@using Gov.News.Website.Models
+@using Gov.News.Website.Models
 @using Gov.News.Website.Helpers;
 @using Gov.News.Website;
 @using Gov.News.Api.Models;
@@ -37,7 +37,7 @@
     <meta name="DC.date.issued" content="@Model.Post.PublishDate.Value.ToString("yyyy-MM-dd")" />
 
     @*TODO: Replace FullName with MetaLeadMinistry*@
-    <meta name="DCTERMS.creator" content="@leadMinistry.Name.Replace(",", " ")" />
+    <meta name="DCTERMS.creator" content="@leadMinistry.Name?.Replace(",", " ")" />
 
     <meta name="NEWSTERMS.contentPath" content="@Model.ContentPath" />
     <meta name="NEWSTERMS.ministryKeys" content="@string.Join(",", Model.RelatedMinistryKeys)" />
@@ -208,7 +208,10 @@
     </div>
 
     <div class="story-features">
-
+        @*<div class="resource-links">
+            <h6 style="font-size: 18px;">Translate</h6>
+            <div id="google_translate_element"></div>
+        </div>*@
         @*@if (Model.Sectors.Any())
             {
                 <partial name="RelatedSectors", Model.Sectors)
@@ -602,12 +605,34 @@
 }
 
 @section Scripts {
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,fa,tl,ar,ko,zh-CN,zh-TW,pa'}, 'google_translate_element');
+}
+    </script>
+
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
     <script type="text/javascript" src="~/Scripts/media-assets.js"></script>
     <script type="text/javascript">
         $(function() {
+
+            var text = $('.subheadline').text();
+            //if(text && text.indexOf('translation') > -1) {
+            //    $('<a name="translations"></a>').remove();
+            //    $('.subheadline').append(' <a href="#translations">(click to view)</a>');
+            //    var firstTranslation = $("p:contains('translation')").first().prev().prev();
+            //    if (firstTranslation.length > 0) {
+            //        $('<a name="translations"></a>').insertBefore(firstTranslation);
+            //    }
+            //}
+
+            // $("p:contains('Learn More:')").text()
+
             $('.story-copy .expand').on('click', function(event) {
                 $(this).parent().removeClass('collapsed').addClass('expanded');
-                dcsMultiTrack('DCS.dcssip', '@Gov.News.Website.Properties.Settings.Default.NewsHostUri', 'DCS.dcsuri', '@Model.Post.GetUri().LocalPath', 'WT.dl', 'expand', 'DCSext.title', '@Model.Title');
                 event.preventDefault();
             });
 

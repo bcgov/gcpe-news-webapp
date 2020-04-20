@@ -1,11 +1,15 @@
 node('master') {
-
+/*
     stage('Code Quality') {
         echo "Running SonarQube static code analysis on master branch."
         openshiftBuild bldCfg: 'news-webapp-sonar-master', showBuildLogs: 'true'
-    }
+    }*/
 
+<<<<<<< HEAD
 /*stage('Dependency Security Check') {
+=======
+	/*stage('Dependency Security Check') {
+>>>>>>> 6587bba148ed8aa51e8fe6c8e7210177572a5860
         echo "Running Snyk analysis of dependencies"
         openshiftBuild bldCfg: 'news-webapp-snyk-master', showBuildLogs: 'true'
     }*/

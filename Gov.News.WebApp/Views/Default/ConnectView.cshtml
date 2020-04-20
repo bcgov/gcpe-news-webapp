@@ -14,7 +14,7 @@
         @{bool expandableFacebook = Model.FacebookLinks.Count() >= 5;}
         <div class="expandable-section facebook @(expandableFacebook ? "collapsed" : "expanded" )">
             <a name="facebook"></a>
-            <h4>Find us on Facebook</h4>
+            <h4>Find us on Facebook <i class="fa fa-facebook-square pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.FacebookLinks != null && Model.FacebookLinks.Any())
@@ -37,12 +37,12 @@
                     <a href="#" class="link-button collapse">Contract Facebook List</a>
                 }
             </div>
-         </div>
+        </div>
 
         @{bool expandableTwitter = Model.TwitterLinks.Count() >= 5;}
         <div class="expandable-section twitter @(expandableTwitter ? "collapsed" : "expanded" )">
             <a name="twitter"></a>
-            <h4>Follow us on Twitter</h4>
+            <h4>Follow us on Twitter <i class="fa fa-twitter pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.TwitterLinks != null && Model.TwitterLinks.Any())
@@ -67,10 +67,38 @@
             </div>
         </div>
 
+        @{bool expandableInstagram = Model.InstagramLinks.Count() >= 5;}
+        <div class="expandable-section instagram @(expandableInstagram ? "collapsed" : "expanded" )">
+            <a name="instagram"></a>
+            <h4>Find us on Instagram <i class="fa fa-instagram pull-right" aria-hidden="true"></i></h4>
+            <div class="expandable-section-content">
+                <div class="expander-body">
+                    @if (Model.InstagramLinks != null && Model.InstagramLinks.Any())
+                    {
+                        <ul class="external-links">
+                            @foreach (var link in Model.InstagramLinks)
+                            {
+                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                            }
+                        </ul>
+                    }
+                    @if (expandableInstagram)
+                    {
+                        <div class="article-fade"> </div>
+                    }
+                </div>
+                @if (@expandableInstagram)
+                {
+                    <a href="#" class="link-button expand">Expand Instagram List</a>
+                    <a href="#" class="link-button collapse">Contract Instagram List</a>
+                }
+            </div>
+        </div>
+
         @{bool expandableFlickr = Model.FlickrLinks.Count() >= 5;}
         <div class="expandable-section flickr @(expandableFlickr ? "collapsed" : "expanded" )">
             <a name="flickr"></a>
-            <h4>See Photos in Flickr</h4>
+            <h4>See Photos in Flickr <i class="fa fa-flickr pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 @*<div class="feature-post">
                     <a href="http://www.flickr.com/photos/bcgovphotos"><img src="~/Content/Images/Placeholder/connect-flickr-banner.png" alt="Flickr" /></a>
@@ -101,7 +129,7 @@
         @{bool expandableYoutube = Model.YoutubeLinks.Count() >= 5;}
         <div class="expandable-section youtube @(expandableYoutube ? "collapsed" : "expanded" )">
             <a name="youtube"></a>
-            <h4>Watch us on YouTube</h4>
+            <h4>Watch us on YouTube <i class="fa fa-youtube pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 @*<div class="feature-post">
                     <a href="http://www.youtube.com/ProvinceofBC"><img src="~/Content/Images/Placeholder/connect-youtube-banner.png" alt="Youtube" /></a>
@@ -131,7 +159,7 @@
 
         @*@{bool expandableUstream = Model.UstreamLinks.Count() >= 5;}
         <div class="expandable-section ustream @(expandableUstream ? "collapsed" : "expanded" )">
-            <h4>Watch us on Ustream</h4>  
+            <h4>Watch us on Ustream</h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.UstreamLinks != null && Model.UstreamLinks.Any())
@@ -218,7 +246,7 @@
         @{bool expandableRss = Model.RssLinks.Count() >= 5;}
         <div class="expandable-section rss @(expandableRss ? "collapsed" : "expanded" )">
             <a name="rss"></a>
-            <h4>RSS Feeds</h4>
+            <h4>RSS Feeds <i class="fa fa-rss pull-right" aria-hidden="true"></i></h4>
             <div class="expandable-section-content">
                 <div class="expander-body">
                     @if (Model.RssLinks != null && Model.RssLinks.Any())
@@ -253,5 +281,4 @@
             hookSectionsExpandCollapse();
         });
     </script>
-
 }
