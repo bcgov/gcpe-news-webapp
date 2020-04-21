@@ -9,14 +9,14 @@
 
     <div class="row" style="padding-left:15px; padding-right:15px; padding-bottom:10px;">
         <span class="item-date">@Model.PublishDate.Value.FormatDateLong()</span>
-        @if (!string.IsNullOrWhiteSpace(Model.Documents?.FirstOrDefault()?.Subheadline)
+        @*@if (!string.IsNullOrWhiteSpace(Model.Documents?.FirstOrDefault()?.Subheadline)
             && Model.Documents.FirstOrDefault().Subheadline.Contains("translation", StringComparison.OrdinalIgnoreCase))
         {
             <span class="item-medialink translations">
                 <a href="@Model.GetUri()#translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600;" aria-hidden="true"></i> Translations</a>
             </span>
 
-        }
+        }*@
         @if (Model.HasMediaAssets.HasValue && Model.HasMediaAssets == true)
         {
             <span class="item-medialink media-assets">
