@@ -208,10 +208,10 @@
     </div>
 
     <div class="story-features">
-        @*<div class="resource-links">
+        <div class="resource-links translate" style="display: none;">
             <h6 style="font-size: 18px;">Translate</h6>
-            <div id="google_translate_element"></div>
-        </div>*@
+            <span><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600;" aria-hidden="true"></i><a href="#translations" style="font-size: 13px; margin-left: 6px;">View translations</a></span>
+        </div>
         @*@if (Model.Sectors.Any())
             {
                 <partial name="RelatedSectors", Model.Sectors)
@@ -605,31 +605,48 @@
 }
 
 @section Scripts {
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,fa,tl,ar,ko,zh-CN,zh-TW,pa'}, 'google_translate_element');
-}
-    </script>
-
-    <script
-      type="text/javascript"
-      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    ></script>
     <script type="text/javascript" src="~/Scripts/media-assets.js"></script>
     <script type="text/javascript">
         $(function() {
 
-            var text = $('.subheadline').text();
-            //if(text && text.indexOf('translation') > -1) {
-            //    $('<a name="translations"></a>').remove();
-            //    $('.subheadline').append(' <a href="#translations">(click to view)</a>');
-            //    var firstTranslation = $("p:contains('translation')").first().prev().prev();
-            //    if (firstTranslation.length > 0) {
-            //        $('<a name="translations"></a>').insertBefore(firstTranslation);
-            //    }
-            //}
+            var subheadline = $('.subheadline').text();
+            if(subheadline && subheadline.indexOf('translation') > -1) {
+                $('<a name="translations"></a>').remove();
+                //$('.subheadline').append(' <a href="#translations">(click to view)</a>');
+                $('.resource-links.translate').removeAttr('style');
+                var firstTranslation = $("p:contains('translation')").first().prev().prev();
+                if (firstTranslation.length > 0) {
+                    $('<a name="translations"></a>').insertBefore(firstTranslation);
+                }
+            
 
-            // $("p:contains('Learn More:')").text()
+                var defaultTranslations = [
+                    "Arabic",
+                    "Chinese",
+                    "Chinese (Simplified)",
+                    "Chinese (Traditional)",
+                    "Farsi",
+                    "French",
+                    "Hebrew",
+                    "Hindi",
+                    "Korean",
+                    "Punjabi",
+                    "Tagalog",
+                    "Urdu",
+                ];
+
+            
+                $('.subheadline').html(function (index, text) {
+
+                    for (var i = 0; i < defaultTranslations.length; i++) {
+                        text = text.replace(defaultTranslations[i], '<a href="#translations">' + defaultTranslations[i] + '</a>');
+                    }
+
+                    return text;
+                });
+
+            }
+
 
             $('.story-copy .expand').on('click', function(event) {
                 $(this).parent().removeClass('collapsed').addClass('expanded');
