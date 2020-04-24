@@ -610,8 +610,7 @@
 @section Scripts {
     <script type="text/javascript" src="~/Scripts/media-assets.js"></script>
     <script type="text/javascript">
-        $(function() {
-
+        $(function () {
             var subheadline = $('.subheadline').text();
 
             // if the subheadline exists and mentions translations
@@ -620,6 +619,14 @@
 
                 // show the translate sidebar
                 $('.translate').removeAttr('style');
+
+                setTimeout(function () { $('.link-button.expand').trigger('click'); }, 0);
+                $(".translate a").on('click', function (e) {
+                    e.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $("p:contains('Translations:')").position().top
+                    });
+                });
 
                 // find the list of translations
                 var translationsHeader = $("p:contains('Translations:')").last();
