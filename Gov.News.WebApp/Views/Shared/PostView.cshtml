@@ -204,13 +204,16 @@
                     <a class="assets-link" href="#assets">Media Assets</a>
                 </div>
             }
+            <div class="translate" style="margin-top: 4px; display: none;">
+                <a href="#translations" style="font-size: 13px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i><span style="text-transform:uppercase;">View Translations</span></a>
+            </div>
         </div>
     </div>
 
     <div class="story-features">
         <div class="resource-links translate" style="display: none;">
             <h6 style="font-size: 18px;">Translate</h6>
-            <span><a href="#translations" style="font-size: 13px; margin-left: 6px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i>View translations</a></span>
+            <span><a href="#translations" style="font-size: 13px; margin-left: 6px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i><span style="text-transform:uppercase;">View Translations</span></a></span>
         </div>
         @*@if (Model.Sectors.Any())
             {
@@ -610,15 +613,21 @@
         $(function() {
 
             var subheadline = $('.subheadline').text();
+
+            // if the subheadline exists and mentions translations
             if(subheadline && subheadline.indexOf('translation') > -1) {
                 $('<a name="translations"></a>').remove();
-                //$('.subheadline').append(' <a href="#translations">(click to view)</a>');
-                $('.resource-links.translate').removeAttr('style');
-                var firstTranslation = $("p:contains('translation')").first().prev().prev();
-                if (firstTranslation.length > 0) {
-                    $('<a name="translations"></a>').insertBefore(firstTranslation);
+
+                // show the translate sidebar
+                $('.translate').removeAttr('style');
+
+                // find the list of translations
+                var translationsHeader = $("p:contains('Translations:')").last();
+
+                // add an anchor that the sidebar translate link can jump to
+                if (translationsHeader.length > 0) {
+                    $('<a name="translations"></a>').insertBefore(translationsHeader);
                 }
-            
 
                 var defaultTranslations = [
                     "Arabic",
@@ -635,18 +644,42 @@
                     "Urdu",
                 ];
 
-            
+                // add hyperlinks around the names of each translation
                 $('.subheadline').html(function (index, text) {
-
                     for (var i = 0; i < defaultTranslations.length; i++) {
-                        text = text.replace(defaultTranslations[i], '<a href="#translations">' + defaultTranslations[i] + '</a>');
+                        // add anchor tags around language names in the headline
+                        text = text.replace(defaultTranslations[i], '<a href="#'+ defaultTranslations[i] +'">' + defaultTranslations[i] + '</a>');
+                        // remove exisiting language anchors at the bottom of the page
+                        $('<a name="' + defaultTranslations[i] + '"></a>').remove();
+                        // add an anchor after each translation in the translations section
+                        var translation = $('p:contains("' + defaultTranslations[i] + '")').last();
+                        if (translation.length > 0) {
+                            $('<a name="' + defaultTranslations[i] + '"></a>').insertBefore(translation);
+                        }
                     }
-
                     return text;
                 });
-
             }
 
+            if ($(".language-selector").length > 0) {
+                // if the language selector is present, display the sidebar and remove the default html
+                var translateSidebar = $('.resource-links.translate');
+                translateSidebar.removeAttr('style');
+                translateSidebar.find('span').remove();
+
+                // clone the language selector and add it to the translate sidebar
+                var clonedLangSelector = $('.language-selector').clone(true);
+                clonedLangSelector.prepend('<i class="fa fa-language fa-lg" style="color: #1a5a96; font-size: 1.5em; font-weight: 600; margin-right:4px;" aria-hidden="true"></i>');
+                clonedLangSelector.appendTo('.translate').has('h6');
+
+                // modify the language selector text for the sidebar
+                translateSidebar.find('.secondary').html(function (idx, html) {
+                    return html.replace("This article also available in", "View translation in");
+                });
+                translateSidebar.find('.primary').html(function (idx, html) {
+                    return html.replace("Cet article est aussi disponible en", "Voir la traduction en");
+                });
+            }
 
             $('.story-copy .expand').on('click', function(event) {
                 $(this).parent().removeClass('collapsed').addClass('expanded');
@@ -718,8 +751,9 @@
                 checkForShortStories();
             }
 
-            if ($(".language-selector").length > 0)
+            if ($(".language-selector").length > 0) {
                 changeLanguage($(".language-selector a[data-story-selection='primary']"));
+            }
 
             $('.language-selector a').on('click', function(event) {
                 changeLanguage($(this));

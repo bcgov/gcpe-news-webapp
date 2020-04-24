@@ -2331,14 +2331,14 @@ ul.inline li {
     margin-bottom: 40px;
 }
 
-    .story-body .language-selector a {
+    .story-body .language-selector a, .translate .language-selector a {
         display: inline-block;
         padding: 0 4px;
         font-size: 14px;
         color: #1a5a96;
     }
 
-        .story-body .language-selector a.active {
+        .story-body .language-selector a.active, .translate .language-selector a.active {
             color: #494949;
             text-decoration: underline;
         }
