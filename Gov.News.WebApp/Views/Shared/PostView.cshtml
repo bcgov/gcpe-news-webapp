@@ -624,12 +624,12 @@
                 $(".translate a").on('click', function (e) {
                     e.preventDefault();
                     $('html, body').animate({
-                        scrollTop: $("p:contains('Translations:')").position().top
+                        scrollTop: $("p:contains('Translation')").position().top
                     });
                 });
 
                 // find the list of translations
-                var translationsHeader = $("p:contains('Translations:')").last();
+                var translationsHeader = $("p:contains('Translation')").last();
 
                 // add an anchor that the sidebar translate link can jump to
                 if (translationsHeader.length > 0) {
