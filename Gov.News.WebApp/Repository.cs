@@ -459,7 +459,7 @@ namespace Gov.News.Website
                 if (postKeysToFetch.Any() && apiConnected)
                 {
                     var customHeaders = revalidate ? MustRevalidateHeader() : null;
-                    IList<Post> postsAsked = await ConfigureAwaitFunction(() => ApiClient.Posts.GetWithHttpMessagesAsync(APIVersion, postKeysToFetch, customHeaders))();
+                    IList<Post> postsAsked = await ConfigureAwaitFunction(() => ApiClient.Posts.GetWithHttpMessagesAsync(postKeysToFetch, APIVersion, customHeaders))();
 
                     lock (cacheForType)
                     {
@@ -571,7 +571,7 @@ namespace Gov.News.Website
             {
                 // Ask for more when we can cache it.
                 int countToAsk = canBeCached ? ProviderHelpers.MaximumLatestNewsItemsLoadMore * 5 : count;
-                fetchedPosts = await ApiClient.Posts.GetLatestAsync(index.Kind, index.Key, APIVersion, postKind, countToAsk, skipToAsk);
+                fetchedPosts = await ApiClient.Posts.GetLatestAsync(index.Kind, index.Key, postKind, countToAsk, skipToAsk, APIVersion);
                 if (canBeCached)
                 {
                     CacheLatestPosts(fetchedPosts, cacheForPosts, postCountB4ApiCall); // we also cache top/feature posts (sorted by PublishDate)

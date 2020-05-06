@@ -6,6 +6,7 @@ using AngleSharp.Dom;
 using AngleSharp.Parser.Html;
 using Microsoft.AspNetCore.Html;
 using Gov.News.Api.Models;
+using TimeSpan = System.TimeSpan;
 
 namespace Gov.News.Website.Helpers
 {

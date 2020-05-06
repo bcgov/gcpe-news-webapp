@@ -10,6 +10,7 @@ using Gov.News.Website.Providers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using TimeSpan = System.TimeSpan;
 
 namespace Gov.News.Website.Controllers.Shared
 {
