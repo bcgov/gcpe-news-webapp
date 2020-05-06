@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Gov.News.Website.Models;
 using Gov.News.Api.Models;
+using TimeSpan = System.TimeSpan;
 
 namespace Gov.News.Website.Providers
 {
