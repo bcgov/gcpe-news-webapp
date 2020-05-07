@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
@@ -100,12 +101,28 @@ namespace Gov.News.Website
 
         public static Uri GetUri(this Asset asset)
         {
+            var translationLabels = new List<string> { "arabic", "chinese", "chinese (Simplified)", "chinese (Traditional)", "farsi", "french", "hebrew", "hindi", "korean", "punjabi", "tagalog", "urdu" };
+
+            if (translationLabels.Any(s => asset.Label.Contains(s)))
+                return GetTranslationUri(asset, Properties.Settings.Default.NewsHostUri);
+
             return GetUri(asset, Properties.Settings.Default.NewsHostUri);
         }
 
         public static Uri GetUri(this Asset asset, Uri uri)
         {
             uri = AppendUriSegment(uri, "assets");
+
+            uri = AppendUriSegment(uri, asset.Key.Substring(0, asset.Key.LastIndexOf('/') + 1));
+
+            uri = AppendUriSegment(uri, asset.Label); // Label has the correct casing
+
+            return uri;
+        }
+
+        public static Uri GetTranslationUri(this Asset asset, Uri uri)
+        {
+            uri = AppendUriSegment(uri, "translations");
 
             uri = AppendUriSegment(uri, asset.Key.Substring(0, asset.Key.LastIndexOf('/') + 1));
 
