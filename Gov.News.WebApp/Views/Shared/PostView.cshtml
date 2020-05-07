@@ -204,9 +204,40 @@
                     <a class="assets-link" href="#assets">Media Assets</a>
                 </div>
             }
-            <div class="translate" style="margin-top: 4px; display: none;">
-                <a href="#translations" style="font-size: 13px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i><span style="text-transform:uppercase;">View Translations</span></a>
-            </div>
+            @if (Model.Post.HasTranslations == true)
+            {
+        <div class="translate" style="margin-top: 4px;">
+                    <h4>Translations</h4>
+                    @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
+                    {
+                            <ul>
+                                @foreach (var azureTranslation in Model.Post.AzureTranslations)
+                                {
+                                    <li>
+                                        <div>
+                                            <b>@azureTranslation.Label</b>
+                                        </div>
+                                        @*<div>
+                                        @asset.Timestamp.FormatDateLong()
+                                    </div>*@
+                                        <div>
+                                            <a rel="nofollow" href="@azureTranslation.GetUri()" download>Download (<span>@azureTranslation.Length.Value.ToBytesReadable()</span>)</a>
+                                            @if (Repository.ContentDeliveryUri != null)
+                                            {
+                                                <span>|</span>
+                                                @FormattingExtensions.ShowLinks(new Microsoft.AspNetCore.Html.HtmlString($"<a rel='nofollow' href='{azureTranslation.GetUri(Repository.ContentDeliveryUri)}' download>Mirror</a>"))
+                                            }
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                    }
+                    else
+                    {
+                        <span>Translation files are incoming and will be available shortly.</span>
+                    }
+        </div>
+            }
         </div>
     </div>
 
@@ -323,12 +354,12 @@
                         { <span>Shares </span>}
                     </div>
                     @*<div class="sharing-options">
-                            <ul>
-                                <li class="facebook-action facebook-like"><a href="#">Like</a></li>
-                                <li class="facebook-action facebook-comment"><a href="#">Comment</a></li>
-                                <li class="facebook-action facebook-share"><a href="#">Share</a></li>
-                            </ul>
-                        </div>*@
+                        <ul>
+                            <li class="facebook-action facebook-like"><a href="#">Like</a></li>
+                            <li class="facebook-action facebook-comment"><a href="#">Comment</a></li>
+                            <li class="facebook-action facebook-share"><a href="#">Share</a></li>
+                        </ul>
+                    </div>*@
                 </div>
 
                 <div class="social-media-bar">
@@ -399,41 +430,41 @@
         </div>
 
         @*@if (!string.IsNullOrWhiteSpace(Model.Post.LearnMoreItems))
-            {
-                <!--googleon: all-->
-                <div class="learn-more collapsed">
-                    <h4>Learn More</h4>
-                    <div class="story-expander">
-                        @Html.Raw(Model.Post.LearnMoreItems)
-                        <div class="article-fade"> </div>
-                    </div>
-                    <a href="#" class="link-button expand">Expand Learn More</a>
-                    <a href="#" class="link-button collapse">Contract Learn More</a>
+        {
+            <!--googleon: all-->
+            <div class="learn-more collapsed">
+                <h4>Learn More</h4>
+                <div class="story-expander">
+                    @Html.Raw(Model.Post.LearnMoreItems)
+                    <div class="article-fade"> </div>
                 </div>
-                <!--googleoff: all-->
-            }
-
-            @if (!string.IsNullOrWhiteSpace(Model.Post.QuickFacts))
-            {
-                <!--googleon: all-->
-                <div class="quick-facts">
-                    <h4>Quick Facts</h4>
-                    <p>
-                        @Html.Raw(Model.Post.QuickFacts)
-                </p>
+                <a href="#" class="link-button expand">Expand Learn More</a>
+                <a href="#" class="link-button collapse">Contract Learn More</a>
             </div>
-                <!--googleoff: all-->
-            }
+            <!--googleoff: all-->
+        }
 
-            @if (!string.IsNullOrWhiteSpace(Model.Post.Quotes))
-            {
-                <!--googleon: all-->
-                <div class="quotes">
-                    <h4>Quotes</h4>
-                    @Html.Raw(Model.Post.Quotes)
-                </div>
-                <!--googleoff: all-->
-            }*@
+        @if (!string.IsNullOrWhiteSpace(Model.Post.QuickFacts))
+        {
+            <!--googleon: all-->
+            <div class="quick-facts">
+                <h4>Quick Facts</h4>
+                <p>
+                    @Html.Raw(Model.Post.QuickFacts)
+            </p>
+        </div>
+            <!--googleoff: all-->
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Post.Quotes))
+        {
+            <!--googleon: all-->
+            <div class="quotes">
+                <h4>Quotes</h4>
+                @Html.Raw(Model.Post.Quotes)
+            </div>
+            <!--googleoff: all-->
+        }*@
         <div class="comm-contacts-body-section">
             @if (firstDoc.Contacts.Any())
             {
@@ -490,7 +521,7 @@
                         <!--googleoff: all-->
 
                         @if (item.Contacts.Any() && (firstDoc.Contacts.Count() != item.Contacts.Count()
-                              || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
+                             || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
                         {
                             @Html.Raw(item.ContactsDetails())
                         }
@@ -515,8 +546,8 @@
                                         <b>@azureAsset.Label</b>
                                     </div>
                                     @*<div>
-                                            @asset.Timestamp.FormatDateLong()
-                                        </div>*@
+                                        @asset.Timestamp.FormatDateLong()
+                                    </div>*@
                                     <div>
                                         <a rel="nofollow" href="@azureAsset.GetUri()" download>Download (<span>@azureAsset.Length.Value.ToBytesReadable()</span>)</a>
                                         @if (Repository.ContentDeliveryUri != null)
@@ -539,6 +570,49 @@
                 else
                 {
                     <span>Media files are incoming and will be available shortly.</span>
+                }
+            </div>
+        }
+
+        @if (Model.Post.HasTranslations == true)
+        {
+            <div id="assets" class="assets collapsed">
+                <h4>Translations</h4>
+                @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
+                {
+                    <div class="media-assets-container">
+                        <ul>
+                            @foreach (var azureTranslation in Model.Post.AzureTranslations)
+                            {
+                                <li>
+                                    <div>
+                                        <b>@azureTranslation.Label</b>
+                                    </div>
+                                    @*<div>
+                                        @asset.Timestamp.FormatDateLong()
+                                    </div>*@
+                                    <div>
+                                        <a rel="nofollow" href="@azureTranslation.GetUri()" download>Download (<span>@azureTranslation.Length.Value.ToBytesReadable()</span>)</a>
+                                        @if (Repository.ContentDeliveryUri != null)
+                                        {
+                                            <span>|</span>
+                                            @FormattingExtensions.ShowLinks(new Microsoft.AspNetCore.Html.HtmlString($"<a rel='nofollow' href='{azureTranslation.GetUri(Repository.ContentDeliveryUri)}' download>Mirror</a>"))
+                                        }
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+
+                        <div>These assets are subject to the terms of the <a href="/assets/license">News Footage License - British Columbia</a>.</div>
+
+                    </div>
+
+
+                    <a href="#" class="link-button expand">SHOW TRANSLATIONS</a>
+                }
+                else
+                {
+                    <span>Translation files are incoming and will be available shortly.</span>
                 }
             </div>
         }
@@ -611,83 +685,6 @@
     <script type="text/javascript" src="~/Scripts/media-assets.js"></script>
     <script type="text/javascript">
         $(function () {
-            var subheadline = $('.subheadline').text();
-
-            // if the subheadline exists and mentions translations
-            if(subheadline && subheadline.indexOf('translation') > -1) {
-                $('<a name="translations"></a>').remove();
-
-                // show the translate sidebar
-                $('.translate').removeAttr('style');
-
-                setTimeout(function () { $('.link-button.expand').trigger('click'); }, 0);
-                $(".translate a").on('click', function (e) {
-                    e.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: $("p:contains('Translation')").position().top
-                    });
-                });
-
-                // find the list of translations
-                var translationsHeader = $("p:contains('Translation')").last();
-
-                // add an anchor that the sidebar translate link can jump to
-                if (translationsHeader.length > 0) {
-                    $('<a name="translations"></a>').insertBefore(translationsHeader);
-                }
-
-                var defaultTranslations = [
-                    "Arabic",
-                    "Chinese",
-                    "Chinese (Simplified)",
-                    "Chinese (Traditional)",
-                    "Farsi",
-                    "French",
-                    "Hebrew",
-                    "Hindi",
-                    "Korean",
-                    "Punjabi",
-                    "Tagalog",
-                    "Urdu",
-                ];
-
-                // add hyperlinks around the names of each translation
-                $('.subheadline').html(function (index, text) {
-                    for (var i = 0; i < defaultTranslations.length; i++) {
-                        // add anchor tags around language names in the headline
-                        text = text.replace(defaultTranslations[i], '<a href="#'+ defaultTranslations[i] +'">' + defaultTranslations[i] + '</a>');
-                        // remove exisiting language anchors at the bottom of the page
-                        $('<a name="' + defaultTranslations[i] + '"></a>').remove();
-                        // add an anchor after each translation in the translations section
-                        var translation = $('p:contains("' + defaultTranslations[i] + '")').last();
-                        if (translation.length > 0) {
-                            $('<a name="' + defaultTranslations[i] + '"></a>').insertBefore(translation);
-                        }
-                    }
-                    return text;
-                });
-            }
-
-            if ($(".language-selector").length > 0) {
-                // if the language selector is present, display the sidebar and remove the default html
-                var translateSidebar = $('.resource-links.translate');
-                translateSidebar.removeAttr('style');
-                translateSidebar.find('span').remove();
-
-                // clone the language selector and add it to the translate sidebar
-                var clonedLangSelector = $('.language-selector').clone(true);
-                clonedLangSelector.prepend('<i class="fa fa-language fa-lg" style="color: #1a5a96; font-size: 1.5em; font-weight: 600; margin-right:4px;" aria-hidden="true"></i>');
-                clonedLangSelector.appendTo('.translate').has('h6');
-
-                // modify the language selector text for the sidebar
-                translateSidebar.find('.secondary').html(function (idx, html) {
-                    return html.replace("This article also available in", "View translation in");
-                });
-                translateSidebar.find('.primary').html(function (idx, html) {
-                    return html.replace("Cet article est aussi disponible en", "Voir la traduction en");
-                });
-            }
-
             $('.story-copy .expand').on('click', function(event) {
                 $(this).parent().removeClass('collapsed').addClass('expanded');
                 event.preventDefault();
