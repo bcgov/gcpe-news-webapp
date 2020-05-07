@@ -101,11 +101,6 @@ namespace Gov.News.Website
 
         public static Uri GetUri(this Asset asset)
         {
-            var translationLabels = new List<string> { "arabic", "chinese", "chinese (Simplified)", "chinese (Traditional)", "farsi", "french", "hebrew", "hindi", "korean", "punjabi", "tagalog", "urdu" };
-
-            if (translationLabels.Any(s => asset.Label.Contains(s)))
-                return GetTranslationUri(asset, Properties.Settings.Default.NewsHostUri);
-
             return GetUri(asset, Properties.Settings.Default.NewsHostUri);
         }
 
@@ -118,6 +113,11 @@ namespace Gov.News.Website
             uri = AppendUriSegment(uri, asset.Label); // Label has the correct casing
 
             return uri;
+        }
+
+        public static Uri GetTranslationUri(this Asset asset)
+        {
+            return GetTranslationUri(asset, Properties.Settings.Default.NewsHostUri);
         }
 
         public static Uri GetTranslationUri(this Asset asset, Uri uri)

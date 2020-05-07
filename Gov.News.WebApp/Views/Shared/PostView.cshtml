@@ -592,11 +592,11 @@
                                         @asset.Timestamp.FormatDateLong()
                                     </div>*@
                                     <div>
-                                        <a rel="nofollow" href="@azureTranslation.GetUri()" download>Download (<span>@azureTranslation.Length.Value.ToBytesReadable()</span>)</a>
+                                        <a rel="nofollow" href="@azureTranslation.GetTranslationUri()" download>Download (<span>@azureTranslation.Length.Value.ToBytesReadable()</span>)</a>
                                         @if (Repository.ContentDeliveryUri != null)
                                         {
                                             <span>|</span>
-                                            @FormattingExtensions.ShowLinks(new Microsoft.AspNetCore.Html.HtmlString($"<a rel='nofollow' href='{azureTranslation.GetUri(Repository.ContentDeliveryUri)}' download>Mirror</a>"))
+                                            @FormattingExtensions.ShowLinks(new Microsoft.AspNetCore.Html.HtmlString($"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download>Mirror</a>"))
                                         }
                                     </div>
                                 </li>
