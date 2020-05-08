@@ -51,9 +51,9 @@
     <meta property="og:description" content="@(string.IsNullOrWhiteSpace(Model.Post.SocialMediaSummary) ? Model.Post.Summary : Model.Post.SocialMediaSummary)" />
     <meta property="fb:pages" content="@Model.FacebookOwnershipId" />
     @*@if (@Model.OGMetaImageUrl != null)
-    {
-        <meta name="og:image" content="@Html.Raw(Model.CanonicalUri + "/image")" />
-    }*@
+        {
+            <meta name="og:image" content="@Html.Raw(Model.CanonicalUri + "/image")" />
+        }*@
 }
 
 
@@ -210,97 +210,97 @@
     <div class="story-features">
         @if (Model.Post.HasTranslations == true)
         {
-        <div class="resource-links translate">
-            <h6 style="font-size: 18px;">Translate</h6>
-            @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
-            {
-                <ul style="list-style-type: none;">
-                    @foreach (var azureTranslation in Model.Post.AzureTranslations)
-                    {
-                        <li>
-                            <div>
-                                @if (Repository.ContentDeliveryUri != null)
-                                {
-                                    var link = $"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download><i class=\"fa fa-language fa-lg\" style=\"font-size: 1em; font-weight: 600; margin-right:6px;\" aria-hidden=\"true\"></i> View translation in {azureTranslation.Label.Remove(azureTranslation.Label.IndexOf("."))}</a>";
-                                    var linkToHtml = new Microsoft.AspNetCore.Html.HtmlString(link);
-                                    @linkToHtml
-                                }
-                            </div>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <span>Translation files are incoming and will be available shortly.</span>
-            }
-        </div>
+            <div class="resource-links translate">
+                <h6 style="font-size: 18px;">Translate</h6>
+                @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
+                {
+                    <ul style="list-style-type: none;">
+                        @foreach (var azureTranslation in Model.Post.AzureTranslations)
+                        {
+                            <li>
+                                <div>
+                                    @if (Repository.ContentDeliveryUri != null)
+                                    {
+                                        var link = $"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download><i class=\"fa fa-language fa-lg\" style=\"font-size: 1em; font-weight: 600; margin-right:6px;\" aria-hidden=\"true\"></i> View translation in {azureTranslation.Label.Remove(azureTranslation.Label.IndexOf("."))}</a>";
+                                        var linkToHtml = new Microsoft.AspNetCore.Html.HtmlString(link);
+                                        @linkToHtml
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <span>Translation files are incoming and will be available shortly.</span>
+                }
+            </div>
         }
-            @*@if (Model.Sectors.Any())
+        @*@if (Model.Sectors.Any())
             {
                 <partial name="RelatedSectors", Model.Sectors)
             }*@
 
-            <partial name="ShareSocialMedia" />
+        <partial name="ShareSocialMedia" />
 
-            <div class="resource-links location-and-date">
-                <h5 class="story-lang primary">@firstDoc.PageTitle</h5>
-                @if (firstFrenchDoc != null)
-                {
-                    <h5 class="story-lang secondary">@firstFrenchDoc.PageTitle</h5>
-                }
-                <h6>@Model.Post.Location</h6>
-                <div class="story-lang primary">
-                    @Model.Post.PublishDate.Value.DateTime.FormatDateLong()
-                </div>
-
-                @if (firstFrenchDoc != null)
-                {
-                    <div class="story-lang secondary">
-                        @Model.Post.PublishDate.Value.DateTime.FormatDateLong("fr-CA")
-                    </div>
-                }
-
-                @if (Model.Post.HasMediaAssets == true)
-                {
-                    <div class="media-assets">
-                        <a class="assets-link" href="#assets">Media Assets</a>
-                    </div>
-                }
+        <div class="resource-links location-and-date">
+            <h5 class="story-lang primary">@firstDoc.PageTitle</h5>
+            @if (firstFrenchDoc != null)
+            {
+                <h5 class="story-lang secondary">@firstFrenchDoc.PageTitle</h5>
+            }
+            <h6>@Model.Post.Location</h6>
+            <div class="story-lang primary">
+                @Model.Post.PublishDate.Value.DateTime.FormatDateLong()
             </div>
 
-            @if (firstDoc.Contacts.Any())
+            @if (firstFrenchDoc != null)
             {
-                <div class="resource-links comm-contacts story-lang primary">
-                    @Html.Raw(firstDoc.ContactsDetails())
+                <div class="story-lang secondary">
+                    @Model.Post.PublishDate.Value.DateTime.FormatDateLong("fr-CA")
                 </div>
             }
 
-            @if (firstFrenchDoc != null && firstFrenchDoc.Contacts.Any())
+            @if (Model.Post.HasMediaAssets == true)
             {
-                <div class="resource-links comm-contacts story-lang secondary">
-                    @Html.Raw(firstFrenchDoc.ContactsDetails())
+                <div class="media-assets">
+                    <a class="assets-link" href="#assets">Media Assets</a>
                 </div>
             }
-
-            <partial name="MoreFromThis" model="leadMinistry" />
-
-            @if (leadMinistry.TopicLinks.Any())
-            {
-                <partial name="PopularTopics" model="leadMinistry.TopicLinks" />
-            }
-
-            @if (leadMinistry.ServiceLinks.Any())
-            {
-                <partial name="Resources" model="leadMinistry.ServiceLinks" />
-            }
-
-            @if (leadMinistry.NewsletterLinks.Any())
-            {
-                <partial name="NewsLetterLinks" model="leadMinistry.NewsletterLinks" />
-            }
-
         </div>
+
+        @if (firstDoc.Contacts.Any())
+        {
+            <div class="resource-links comm-contacts story-lang primary">
+                @Html.Raw(firstDoc.ContactsDetails())
+            </div>
+        }
+
+        @if (firstFrenchDoc != null && firstFrenchDoc.Contacts.Any())
+        {
+            <div class="resource-links comm-contacts story-lang secondary">
+                @Html.Raw(firstFrenchDoc.ContactsDetails())
+            </div>
+        }
+
+        <partial name="MoreFromThis" model="leadMinistry" />
+
+        @if (leadMinistry.TopicLinks.Any())
+        {
+            <partial name="PopularTopics" model="leadMinistry.TopicLinks" />
+        }
+
+        @if (leadMinistry.ServiceLinks.Any())
+        {
+            <partial name="Resources" model="leadMinistry.ServiceLinks" />
+        }
+
+        @if (leadMinistry.NewsletterLinks.Any())
+        {
+            <partial name="NewsLetterLinks" model="leadMinistry.NewsletterLinks" />
+        }
+
+    </div>
 
     <div class="story-body">
 
@@ -344,12 +344,12 @@
                         { <span>Shares </span>}
                     </div>
                     @*<div class="sharing-options">
-                        <ul>
-                            <li class="facebook-action facebook-like"><a href="#">Like</a></li>
-                            <li class="facebook-action facebook-comment"><a href="#">Comment</a></li>
-                            <li class="facebook-action facebook-share"><a href="#">Share</a></li>
-                        </ul>
-                    </div>*@
+                            <ul>
+                                <li class="facebook-action facebook-like"><a href="#">Like</a></li>
+                                <li class="facebook-action facebook-comment"><a href="#">Comment</a></li>
+                                <li class="facebook-action facebook-share"><a href="#">Share</a></li>
+                            </ul>
+                        </div>*@
                 </div>
 
                 <div class="social-media-bar">
@@ -420,41 +420,41 @@
         </div>
 
         @*@if (!string.IsNullOrWhiteSpace(Model.Post.LearnMoreItems))
-        {
-            <!--googleon: all-->
-            <div class="learn-more collapsed">
-                <h4>Learn More</h4>
-                <div class="story-expander">
-                    @Html.Raw(Model.Post.LearnMoreItems)
-                    <div class="article-fade"> </div>
+            {
+                <!--googleon: all-->
+                <div class="learn-more collapsed">
+                    <h4>Learn More</h4>
+                    <div class="story-expander">
+                        @Html.Raw(Model.Post.LearnMoreItems)
+                        <div class="article-fade"> </div>
+                    </div>
+                    <a href="#" class="link-button expand">Expand Learn More</a>
+                    <a href="#" class="link-button collapse">Contract Learn More</a>
                 </div>
-                <a href="#" class="link-button expand">Expand Learn More</a>
-                <a href="#" class="link-button collapse">Contract Learn More</a>
-            </div>
-            <!--googleoff: all-->
-        }
+                <!--googleoff: all-->
+            }
 
-        @if (!string.IsNullOrWhiteSpace(Model.Post.QuickFacts))
-        {
-            <!--googleon: all-->
-            <div class="quick-facts">
-                <h4>Quick Facts</h4>
-                <p>
-                    @Html.Raw(Model.Post.QuickFacts)
-            </p>
-        </div>
-            <!--googleoff: all-->
-        }
-
-        @if (!string.IsNullOrWhiteSpace(Model.Post.Quotes))
-        {
-            <!--googleon: all-->
-            <div class="quotes">
-                <h4>Quotes</h4>
-                @Html.Raw(Model.Post.Quotes)
+            @if (!string.IsNullOrWhiteSpace(Model.Post.QuickFacts))
+            {
+                <!--googleon: all-->
+                <div class="quick-facts">
+                    <h4>Quick Facts</h4>
+                    <p>
+                        @Html.Raw(Model.Post.QuickFacts)
+                </p>
             </div>
-            <!--googleoff: all-->
-        }*@
+                <!--googleoff: all-->
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Post.Quotes))
+            {
+                <!--googleon: all-->
+                <div class="quotes">
+                    <h4>Quotes</h4>
+                    @Html.Raw(Model.Post.Quotes)
+                </div>
+                <!--googleoff: all-->
+            }*@
         <div class="comm-contacts-body-section">
             @if (firstDoc.Contacts.Any())
             {
@@ -511,7 +511,7 @@
                         <!--googleoff: all-->
 
                         @if (item.Contacts.Any() && (firstDoc.Contacts.Count() != item.Contacts.Count()
-                             || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
+                           || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
                         {
                             @Html.Raw(item.ContactsDetails())
                         }
@@ -536,8 +536,8 @@
                                         <b>@azureAsset.Label</b>
                                     </div>
                                     @*<div>
-                                        @asset.Timestamp.FormatDateLong()
-                                    </div>*@
+                                            @asset.Timestamp.FormatDateLong()
+                                        </div>*@
                                     <div>
                                         <a rel="nofollow" href="@azureAsset.GetUri()" download>Download (<span>@azureAsset.Length.Value.ToBytesReadable()</span>)</a>
                                         @if (Repository.ContentDeliveryUri != null)
@@ -579,8 +579,8 @@
                                         <b>@azureTranslation.Label</b>
                                     </div>
                                     @*<div>
-                                        @asset.Timestamp.FormatDateLong()
-                                    </div>*@
+                                            @asset.Timestamp.FormatDateLong()
+                                        </div>*@
                                     <div>
                                         <a rel="nofollow" href="@azureTranslation.GetTranslationUri()" download>Download (<span>@azureTranslation.Length.Value.ToBytesReadable()</span>)</a>
                                         @if (Repository.ContentDeliveryUri != null)
@@ -592,8 +592,6 @@
                                 </li>
                             }
                         </ul>
-
-                        <div>These assets are subject to the terms of the <a href="/assets/license">News Footage License - British Columbia</a>.</div>
 
                     </div>
 
