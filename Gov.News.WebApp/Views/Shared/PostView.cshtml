@@ -567,6 +567,7 @@
         @if (Model.Post.HasTranslations == true)
         {
             <div id="assets" class="assets collapsed">
+                <div id="translations"></div>
                 <h4>Translations</h4>
                 @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
                 {
@@ -689,11 +690,18 @@
             });
 
             function openAssetsExpander(element) {
+                if (element) {
+                    // if we clicked a "show assets" or "show translations" button, open the closest div, since they
+                    // both have an id of "assets" for styling and backwards compatibility reasons
+                    element.closest('#assets').removeClass('collapsed').addClass('expanded');
+                    return;
+                }
                 $("#assets").removeClass('collapsed').addClass('expanded');
             }
 
             $('.assets .expand').on('click', function (event) {
-                openAssetsExpander();
+                var el = $(this);
+                openAssetsExpander(el);
                 event.preventDefault();
             });
 
@@ -872,7 +880,7 @@
                 e.preventDefault();
                 openAssetsExpander();
                 $('html, body').animate({
-                    scrollTop: $("#assets").position().top - 40
+                    scrollTop: $("#assets").first().position().top - 40
                 });
             });
 
@@ -880,7 +888,7 @@
                 var hash = window.location.hash;
                 if (hash == "#read-more") {
                     $('.story-copy .expand').click();
-                } else if (hash.indexOf('#') === 0 && hash.length > 1 && hash != "#assets") {
+                } else if (hash.indexOf('#') === 0 && hash.length > 1 && hash != "#assets" && hash != "#translations") {
                     $('.story-copy .expand').parent().removeClass('collapsed').addClass('expanded');
                     if ($(hash).length <= 0) {
                         return;
@@ -889,7 +897,11 @@
                         scrollTop: $(hash).offset().top - 60
                     });
                 } else if (hash != '' && hash != '#') {
-                    $(hash + " a.expand").click();
+                    if (hash === '#assets') {
+                        $(hash + " a.expand").first().click();
+                        return;
+                    }
+                    $('a:contains("SHOW TRANSLATIONS")').click();
                 }
             }
 
