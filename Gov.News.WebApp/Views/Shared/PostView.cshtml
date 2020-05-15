@@ -571,13 +571,16 @@
                 <h4>Translations</h4>
                 @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
                 {
+                    var languageNameMappings = new Dictionary<string, string>() {
+                        { "Spanish", "Ver traducción en español" }
+                    };
                     <div class="media-assets-container">
                         <ul>
                             @foreach (var azureTranslation in Model.Post.AzureTranslations)
                             {
                                 <li>
                                     <div>
-                                        <b>@azureTranslation.Label</b>
+                                        <b>@azureTranslation.Label : @languageNameMappings["Spanish"]</b>
                                     </div>
                                     @*<div>
                                             @asset.Timestamp.FormatDateLong()
