@@ -408,7 +408,8 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = " https://twitter.com/TranBC_TN", Title = "@TranBC_TN" , Summary = "Keeping the Thompson Nicola area informed" },
                         new Link() { Url = "http://twitter.com/WorkBC", Title = "@WorkBC", Summary = "Explore career paths and get tips for finding jobs in British Columbia" },
                         new Link() { Url = "https://twitter.com/BCSheriffs", Title = "@BCSheriffs", Summary = "Learn about the diverse responsibilities and activities of the BC Sheriff Service" },
-                        new Link() { Url = "https://twitter.com/creativebcs", Title = "@CreativeBCs", Summary = "Find information on BC's film, TV, music, interactive & digital media, books & magazines" }
+                        new Link() { Url = "https://twitter.com/creativebcs", Title = "@CreativeBCs", Summary = "Find information on BC's film, TV, music, interactive & digital media, books & magazines" },
+                        new Link() { Url = "https://twitter.com/bc_eao", Title = "@BC_EAO", Summary = "Get project updates and environmental assessment information" }
             }.OrderBy(t => t.Title).ToArray();
 
           model.InstagramLinks = new Link[]
