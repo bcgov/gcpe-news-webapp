@@ -220,5 +220,37 @@ namespace Gov.News.Website
             }
             return new Uri(uri);
         }
+
+        public static String ToDefaultTranslationLanguage(this string label)
+        {
+            String rvl = "View translation";
+
+            var languageNameMappings = new Dictionary<string, string>() {
+                { "Arabic", "اعرض الترجمة باللغة العربية" },
+                { "Simplified_Chinese", "查看简体中文翻译" },
+                { "Traditional_Chinese", "查看繁體中文翻譯" },
+                { "Farsi", "ترجمه را به فارسی ببینید"  },
+                { "French", "Voir la traduction en français" },
+                { "Hebrew", "צפה בתרגום בעברית" },
+                { "Hindi", "हिंदी में अनुवाद देखें"},
+                { "Indonesian" , "Lihat terjemahan dalam bahasa Indonesia"},
+                { "Korean", "한국어로 번역보기" },
+                { "Punjabi", "ਪੰਜਾਬੀ ਵਿੱਚ ਅਨੁਵਾਦ ਦੇਖੋ"},
+                { "Spanish", "Ver traducción en español" },
+                { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
+                { "Urdu", "اردو میں ترجمہ دیکھیں" },
+                { "Vietnamese", "Xem bản dịch bằng tiếng việt" }
+            };
+
+            foreach (KeyValuePair<string, string> entry in languageNameMappings)
+            {
+                if (label.Contains(entry.Key, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    rvl = entry.Value;
+                }
+            }
+
+            return rvl;
+        }
     }
 }
