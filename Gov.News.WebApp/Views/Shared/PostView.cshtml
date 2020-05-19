@@ -221,7 +221,7 @@
                                 <div>
                                     @if (Repository.ContentDeliveryUri != null)
                                     {
-                                        var link = $"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download><i class=\"fa fa-language fa-lg\" style=\"font-size: 1em; font-weight: 600; margin-right:6px;\" aria-hidden=\"true\"></i> View translation in {azureTranslation.Label.Remove(azureTranslation.Label.IndexOf("."))}</a>";
+                                        var link = $"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download><i class=\"fa fa-language fa-lg\" style=\"font-size: 1em; font-weight: 600; margin-right:6px;\" aria-hidden=\"true\"></i>{azureTranslation.Label.ToDefaultTranslationLanguage()}</a>";
                                         var linkToHtml = new Microsoft.AspNetCore.Html.HtmlString(link);
                                         @linkToHtml
                                     }
@@ -571,16 +571,13 @@
                 <h4>Translations</h4>
                 @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
                 {
-                    var languageNameMappings = new Dictionary<string, string>() {
-                        { "Spanish", "Ver traducción en español" }
-                    };
                     <div class="media-assets-container">
                         <ul>
                             @foreach (var azureTranslation in Model.Post.AzureTranslations)
                             {
                                 <li>
                                     <div>
-                                        <b>@azureTranslation.Label : @languageNameMappings["Spanish"]</b>
+                                        <b>@azureTranslation.Label</b>
                                     </div>
                                     @*<div>
                                             @asset.Timestamp.FormatDateLong()
