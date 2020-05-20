@@ -221,7 +221,7 @@
                                 <div>
                                     @if (Repository.ContentDeliveryUri != null)
                                     {
-                                        var link = $"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download><i class=\"fa fa-language fa-lg\" style=\"font-size: 1em; font-weight: 600; margin-right:6px;\" aria-hidden=\"true\"></i>{azureTranslation.Label.ToDefaultTranslationLanguage()}</a>";
+                                        var link = $"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download><i class=\"fa fa-language fa-lg\" style=\"font-size: 1em; font-weight: 600; margin-right:6px;\" aria-hidden=\"true\"  target=\"_blank\"></i>{azureTranslation.Label.ToDefaultTranslationLanguage()}</a>";
                                         var linkToHtml = new Microsoft.AspNetCore.Html.HtmlString(link);
                                         @linkToHtml
                                     }
@@ -586,7 +586,7 @@
                                         @*<a rel="nofollow" href="@azureTranslation.GetTranslationUri()" download>Download (<span>@azureTranslation.Length.Value.ToBytesReadable()</span>)</a>*@
                                         @if (Repository.ContentDeliveryUri != null)
                                         {
-                                            @FormattingExtensions.ShowLinks(new Microsoft.AspNetCore.Html.HtmlString($"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download>Download</a>"))
+                                            @FormattingExtensions.ShowLinks(new Microsoft.AspNetCore.Html.HtmlString($"<a rel='nofollow' target='_blank' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download>Download</a>"))
                                         }
                                     </div>
                                 </li>
