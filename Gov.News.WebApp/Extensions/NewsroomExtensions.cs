@@ -230,6 +230,7 @@ namespace Gov.News.Website
                 { "Simplified_Chinese", "查看简体中文翻译" },
                 { "Traditional_Chinese", "查看繁體中文翻譯" },
                 { "Farsi", "ترجمه را به فارسی ببینید"  },
+                { "Filipino", "Tingnan ang pagsasalin sa Tagalog" },
                 { "French", "Voir la traduction en français" },
                 { "Hebrew", "צפה בתרגום בעברית" },
                 { "Hindi", "हिंदी में अनुवाद देखें"},
@@ -237,7 +238,6 @@ namespace Gov.News.Website
                 { "Korean", "한국어로 번역보기" },
                 { "Punjabi", "ਪੰਜਾਬੀ ਵਿੱਚ ਅਨੁਵਾਦ ਦੇਖੋ"},
                 { "Spanish", "Ver traducción en español" },
-                { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
                 { "Urdu", "اردو میں ترجمہ دیکھیں" },
                 { "Vietnamese", "Xem bản dịch bằng tiếng việt" }
             };
