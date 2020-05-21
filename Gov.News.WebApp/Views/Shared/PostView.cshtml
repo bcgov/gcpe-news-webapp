@@ -204,6 +204,11 @@
                     <a class="assets-link" href="#assets">Media Assets</a>
                 </div>
             }
+            @if (Model.Post.HasTranslations == true) { 
+                <div class="translate" style="margin-top: 4px;">
+                    <a href="#translations" style="font-size: 13px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i><span style="text-transform:uppercase;">View Translations</span></a>
+                </div>    
+            }
         </div>
     </div>
 
