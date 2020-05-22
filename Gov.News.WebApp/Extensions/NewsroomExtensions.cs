@@ -229,15 +229,16 @@ namespace Gov.News.Website
                 { "Arabic", "اعرض الترجمة باللغة العربية" },
                 { "Simplified_Chinese", "查看简体中文翻译" },
                 { "Traditional_Chinese", "查看繁體中文翻譯" },
-                { "Farsi", "ترجمه را به فارسی ببینید"  },
-                { "Filipino", "Tingnan ang pagsasalin sa Tagalog" },
+                { "Farsi", "ترجمه را به فارسی ببینید"  },               
                 { "French", "Voir la traduction en français" },
                 { "Hebrew", "צפה בתרגום בעברית" },
                 { "Hindi", "हिंदी में अनुवाद देखें"},
                 { "Indonesian" , "Lihat terjemahan dalam bahasa Indonesia"},
+                { "Japanese", "翻訳を日本語で表示" },
                 { "Korean", "한국어로 번역보기" },
                 { "Punjabi", "ਪੰਜਾਬੀ ਵਿੱਚ ਅਨੁਵਾਦ ਦੇਖੋ"},
                 { "Spanish", "Ver traducción en español" },
+                { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
                 { "Urdu", "اردو میں ترجمہ دیکھیں" },
                 { "Vietnamese", "Xem bản dịch bằng tiếng việt" }
             };
