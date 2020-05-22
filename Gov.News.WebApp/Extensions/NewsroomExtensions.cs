@@ -48,7 +48,7 @@ namespace Gov.News.Website
 
                     var youtubeIframeUrl = string.Format("//www.youtube.com/embed/{0}?rel=0&amp;modestbranding=1&amp;wmode=transparent", videoId);
 
-                    thumbnailUri = new Uri(string.Format("https://img.youtube.com/vi/{0}/0.jpg", videoId));
+                    thumbnailUri = new Uri(string.Format("https://img.youtube.com/vi/{0}/maxresdefault.jpg", videoId));
                 }
             }
             else if (assetUri.Host.EndsWith("staticflickr.com"))
