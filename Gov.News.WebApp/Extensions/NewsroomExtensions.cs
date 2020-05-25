@@ -227,8 +227,8 @@ namespace Gov.News.Website
 
             var languageNameMappings = new Dictionary<string, string>() {
                 { "Arabic", "اعرض الترجمة باللغة العربية" },
-                { "Simplified_Chinese", "查看简体中文翻译" },
-                { "Traditional_Chinese", "查看繁體中文翻譯" },
+                { "Chinese_Simplified", "查看简体中文翻译" },
+                { "Chinese_Traditional", "查看繁體中文翻譯" },
                 { "Farsi", "ترجمه را به فارسی ببینید"  },               
                 { "French", "Voir la traduction en français" },
                 { "Hebrew", "צפה בתרגום בעברית" },
