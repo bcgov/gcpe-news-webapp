@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Text.Encodings.Web;
@@ -91,11 +91,11 @@ namespace Gov.News.Website.Helpers
             return new HtmlString("<div class=\"comm-contacts\">" + contactsHtml + "</div>");
         }
 
-        public static HtmlString ShowLinks(this HtmlString bodyHtmlString)
+        public static HtmlString ShowLinks(this HtmlString bodyHtmlString, bool addSubscript = true)
         {
             try
             {
-                if (bodyHtmlString == null)
+                if (bodyHtmlString == null || !addSubscript)
                     return bodyHtmlString;
 
                 string bodyHtml = bodyHtmlString.ToString();
