@@ -581,9 +581,9 @@
                             @foreach (var azureTranslation in Model.Post.AzureTranslations)
                             {
                                 <li>
-                                    <div>
+                                    @*<div>
                                         <b>@azureTranslation.Label</b>
-                                    </div>
+                                    </div>*@
                                     @*<div>
                                             @asset.Timestamp.FormatDateLong()
                                         </div>*@
@@ -591,7 +591,7 @@
                                         @*<a rel="nofollow" href="@azureTranslation.GetTranslationUri()" download>Download (<span>@azureTranslation.Length.Value.ToBytesReadable()</span>)</a>*@
                                         @if (Repository.ContentDeliveryUri != null)
                                         {
-                                            @FormattingExtensions.ShowLinks(new Microsoft.AspNetCore.Html.HtmlString($"<a rel='nofollow' target='_blank' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download>View</a>"))
+                                            @FormattingExtensions.ShowLinks(new Microsoft.AspNetCore.Html.HtmlString($"<a rel='nofollow' target='_blank' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' download>{azureTranslation.Label}</a>"))
                                         }
                                     </div>
                                 </li>
