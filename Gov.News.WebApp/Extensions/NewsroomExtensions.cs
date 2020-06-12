@@ -231,7 +231,7 @@ namespace Gov.News.Website
                 { "Chinese(Simplified)", "查看简体中文翻译" },
                 { "Chinese_Traditional", "查看繁體中文翻譯" },
                 { "Chinese(Traditional)", "查看繁體中文翻譯" },
-                { "Farsi", "ترجمه را به فارسی ببینید"  },               
+                { "Farsi", "ترجمه را به فارسی ببینید"  },
                 { "French", "Voir la traduction en français" },
                 { "Hebrew", "ת בתרגום לצפייה" },
                 { "Hindi", "ह िंदी मेंअनुवाद देख"},
@@ -241,13 +241,13 @@ namespace Gov.News.Website
                 { "Punjabi", "ਪੰਜਾਬੀ ਵ ਿੱਚ ਅਨੁ ਾਦ ਦੇਖ"},
                 { "Spanish", "Ver la traducción en español" },
                 { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
-                { "Urdu", "دیکھیں ترجمہ میں اردو" },
+                { "Urdu", "ں ترجمہ میں اردو" },
                 { "Vietnamese", "Xem bản dịch bằng tiếng Việt" }
             };
 
             foreach (KeyValuePair<string, string> entry in languageNameMappings)
             {
-                if (label.Contains(entry.Key, StringComparison.OrdinalIgnoreCase)) 
+                if (label.Contains(entry.Key, StringComparison.OrdinalIgnoreCase))
                 {
                     rvl = entry.Value;
                 }
