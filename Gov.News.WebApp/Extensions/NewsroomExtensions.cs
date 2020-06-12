@@ -226,23 +226,23 @@ namespace Gov.News.Website
             String rvl = "View translation";
 
             var languageNameMappings = new Dictionary<string, string>() {
-                { "Arabic", "اعرض الترجمة باللغة العربية" },
+                { "Arabic", "ة باللغة الترجمة اعرض" },
                 { "Chinese_Simplified", "查看简体中文翻译" },
                 { "Chinese(Simplified)", "查看简体中文翻译" },
                 { "Chinese_Traditional", "查看繁體中文翻譯" },
                 { "Chinese(Traditional)", "查看繁體中文翻譯" },
                 { "Farsi", "ترجمه را به فارسی ببینید"  },               
                 { "French", "Voir la traduction en français" },
-                { "Hebrew", "צפה בתרגום בעברית" },
-                { "Hindi", "हिंदी में अनुवाद देखें"},
+                { "Hebrew", "ת בתרגום לצפייה" },
+                { "Hindi", "ह िंदी मेंअनुवाद देख"},
                 { "Indonesian" , "Lihat terjemahan dalam bahasa Indonesia"},
-                { "Japanese", "翻訳を日本語で表示" },
-                { "Korean", "한국어로 번역보기" },
-                { "Punjabi", "ਪੰਜਾਬੀ ਵਿੱਚ ਅਨੁਵਾਦ ਦੇਖੋ"},
-                { "Spanish", "Ver traducción en español" },
+                { "Japanese", "翻訳を日本語表示する" },
+                { "Korean", "한국어 번역 보기" },
+                { "Punjabi", "ਪੰਜਾਬੀ ਵ ਿੱਚ ਅਨੁ ਾਦ ਦੇਖ"},
+                { "Spanish", "Ver la traducción en español" },
                 { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
-                { "Urdu", "اردو میں ترجمہ دیکھیں" },
-                { "Vietnamese", "Xem bản dịch bằng tiếng việt" }
+                { "Urdu", "دیکھیں ترجمہ میں اردو" },
+                { "Vietnamese", "Xem bản dịch bằng tiếng Việt" }
             };
 
             foreach (KeyValuePair<string, string> entry in languageNameMappings)
