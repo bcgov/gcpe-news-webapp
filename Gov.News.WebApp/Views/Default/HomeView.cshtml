@@ -30,7 +30,7 @@
             <partial name="PostCard" model="Model.IndexModel.TopPost" />
         </div>
     }
-    
+
     <div class="other-articles">
         @if (Model.IndexModel.FeaturePost != null)
         {
@@ -45,10 +45,10 @@
                 <partial name="PostCard" model="post" />
             }
 
-             @foreach (var post in Model.IndexModel.LatestNews.Skip(3))
-             {
+            @foreach (var post in Model.IndexModel.LatestNews.Skip(3))
+            {
                 <partial name="PostCard" model="post" view-data='new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Display", "false"} }' />
-             }
+            }
         </div>
 
         <div class="news-control">
@@ -135,8 +135,9 @@
             var isLoading = false;
             var doubleClick = false;
             $(".load-more").on('click', function (event) {
-                
-                if (!isLoading) {
+
+                if (!isLoading)
+                {
                     isLoading = true;
                     var offset = $(".regular-articles .article").length;
                     var hiddenCount = $(".regular-articles .hidden-article").length;
@@ -149,13 +150,13 @@
                     $.ajax({
                         url: '@Url.Action("MoreArticles")?offset=' + offset,
                         success: function (data) {
-                            
+
                             if (data == '') {
                                 $(".load-more").hide();
                                 return;
                             }
                             $(".regular-articles").append(data);
-                            
+
                         }
                     }).done(function () {
                         isLoading = false;
@@ -165,7 +166,9 @@
                             $(".load-more").click();
                         }
                     });
-                
+                    $( "div[id^='youtube-asset-']").each(function( index ) {
+                      initializeEmbeddedYoutubePlaceholders(this, "https://dev.media.news.gov.bc.ca/embed/");
+                    });
                 } else {
                     doubleClick = true;
                 }
@@ -182,4 +185,42 @@
             });
         });
     </script>
+    <script type="text/javascript" src="~/Scripts/media-assets-youtube.js"></script>
+   
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            
+            $( "div[id^='youtube-asset-']").each(function( index ) {
+              initializeEmbeddedYoutubePlaceholders(this, "https://dev.media.news.gov.bc.ca/embed/");
+
+            });
+            
+            //initializeEmbeddedMediaPlaceholders("https://dev.media.news.gov.bc.ca/embed/");
+
+
+            $("div[id^='youtube-asset-']").find('.play-button').click(function () {
+                playMediaYoutube($(this), false);
+            });
+
+            $("div[id^='youtube-asset-']").find('.save-preference').click(function () {
+                playMediaYoutube(this, true);
+            });
+
+            $("div[id^='youtube-asset-']").find('.play-instructions a').click(function () {
+                
+                closeYoutubeInstructions(this);
+            });
+
+        });
+        $(window).resize(function () {
+            $( "div[id^='youtube-asset-']").each(function( index ) {
+              initializeEmbeddedYoutubePlaceholders(this, "https://dev.media.news.gov.bc.ca/embed/");
+            });
+        });
+
+    </script>
+
 }
