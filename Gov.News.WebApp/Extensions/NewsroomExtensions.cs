@@ -226,14 +226,14 @@ namespace Gov.News.Website
             String rvl = "View translation";
 
             var languageNameMappings = new Dictionary<string, string>() {
-                { "Arabic", "ة باللغة الترجمة اعرض" },
+                { "Arabic", "اعرض الترجمة باللغة العربية" },
                 { "Chinese_Simplified", "查看简体中文翻译" },
                 { "Chinese(Simplified)", "查看简体中文翻译" },
                 { "Chinese_Traditional", "查看繁體中文翻譯" },
                 { "Chinese(Traditional)", "查看繁體中文翻譯" },
-                { "Farsi", "ترجمه را به فارسی ببینید"  },
+                { "Farsi", "ترجمه را به فارسی ببینید" },
                 { "French", "Voir la traduction en français" },
-                { "Hebrew", "ת בתרגום לצפייה" },
+                { "Hebrew", "צפה בתרגום בעברית" },
                 { "Hindi", "ह िंदी मेंअनुवाद देख"},
                 { "Indonesian" , "Lihat terjemahan dalam bahasa Indonesia"},
                 { "Japanese", "翻訳を日本語表示する" },
@@ -241,7 +241,7 @@ namespace Gov.News.Website
                 { "Punjabi", "ਪੰਜਾਬੀ ਵ ਿੱਚ ਅਨੁ ਾਦ ਦੇਖ"},
                 { "Spanish", "Ver la traducción en español" },
                 { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
-                { "Urdu", "ں ترجمہ میں اردو" },
+                { "Urdu", "اردو میں ترجمہ دیکھیں" },
                 { "Vietnamese", "Xem bản dịch bằng tiếng Việt" }
             };
 
