@@ -177,7 +177,7 @@ namespace Gov.News.Website.Controllers
         {
             List<Uri> model = new List<Uri>();
 
-            var defaultPostKeys = await Repository.ApiClient.Posts.GetAllKeysAsync("home", "default", Repository.APIVersion);
+            var defaultPostKeys = await Repository.ApiClient.Posts.GetAllKeysAsync("home", "default", "default", null, 0, Repository.APIVersion);
 
             foreach (var pair in defaultPostKeys)
             {
