@@ -1,11 +1,12 @@
 ﻿
 $(document).ready(function () {
-    //var proxyUrl = $('#' + '@(ViewBag.ProxyUrl)').val();
+    var timeoutlength = 200;
 
-    console.log(youtubeProxyUrl);
+    setTimeout(function () {
         $("div[id^='youtube-asset-']").each(function (index) {
             initializeEmbeddedYoutubePlaceholders(this, youtubeProxyUrl);
-        })
+        });
+    }, timeoutlength);
 
         $("div[id^='youtube-asset-']").find('.play-button').click(function () {
             playMediaYoutube($(this), false);
@@ -21,7 +22,9 @@ $(document).ready(function () {
 
     });
     $(window).resize(function () {
-        $("div[id^='youtube-asset-']").each(function (index) {
-            initializeEmbeddedYoutubePlaceholders(this, youtubeProxyUrl);
-        });
+        setTimeout(function () {
+            $("div[id^='youtube-asset-']").each(function (index) {
+                initializeEmbeddedYoutubePlaceholders(this, youtubeProxyUrl);
+            });
+        }, timeoutlength);
     });

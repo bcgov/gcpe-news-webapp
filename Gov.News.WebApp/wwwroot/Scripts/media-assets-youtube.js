@@ -34,24 +34,12 @@ function initializeEmbeddedYoutubePlaceholders(div, proxyUrl) {
         var instructionsHeight = $(placeholder).find(".overlay-container .outer .inner").height();
         var offset = parseInt((placeholderContainerHeight - instructionsHeight) / 2);
 
-        console.log('container : ' + placeholderContainerHeight);
-        console.log('instruction : ' + instructionsHeight);
-        console.log('offset : ' + offset);
-
-        var instructionsWidth = $(placeholder).find(".overlay-container .outer .inner").width();
-        var offset_width = parseInt((placeholderContainerWidth - instructionsWidth) / 2);
-
-        console.log('container width : ' + placeholderContainerWidth);
-        console.log('instruction width : ' + instructionsWidth);
-        console.log('offset width : ' + offset_width);
-
         $(placeholder).find(".overlay-container .outer .inner").css("top", offset).css("visibility", "visible");
         if ((asset.data("media-type") != undefined) && (asset.data("media-type") != "")) {
             mediaType = asset.data("media-type");
 
             mediaId = asset.data("media-id");
             var youtube_consent = $.cookie("youtube-" + mediaId);
-            console.log(youtube_consent);
     
             if (youtube_consent != undefined) {
                 createMediaEmbed(asset, true);
@@ -70,7 +58,6 @@ function resizeEmbeddedYoutubeAssets() {
 }
 // resize embedded media assets
 function resizeEmbeddedMediaAssets() {
-    console.log('windows resize called');
     var assets = $(".asset.video, .asset.audio");
     for (j = 0; j < assets.length; j++) {
         var asset = $(assets[j]);
@@ -105,15 +92,12 @@ function resizeEmbeddedMediaAssets() {
 
 // plays the embedded media asset
 function playMediaYoutube(playButton, persistPreference) {
-    console.log()
-    console.log(persistPreference);
     if (persistPreference) {
         playButton = $(playButton).parents(".inner").find(".play-button");
     }
     var innerContainer = $(playButton).parent(".inner");
-    console.log($(innerContainer).find(".play-instructions").css("display"));
-    if ($(innerContainer).find(".play-instructions").css("display") != "block") {
 
+    if ($(innerContainer).find(".play-instructions").css("display") != "block") {
         var playButton = $(innerContainer).find(".play-button");
         var playInstructions = $(innerContainer).find(".play-instructions");
         $(function () {
@@ -260,10 +244,8 @@ function saveMediaAssetPreference(mediaType) {
 
 // returns the "enabled" property associated with a particular media asset preference
 function getMediaAssetPreference(mediaType) {
-    console.log('media type: ' + mediaType);
     var mediaAssetPreferences = returnMediaAssetCookie();
     for (i = 0; i < mediaAssetPreferences.length; i++) {
-        console.log(mediaAssetPreferences[i].name);
         if (mediaAssetPreferences[i].name == mediaType) {
             return mediaAssetPreferences[i].enabled;
         }
