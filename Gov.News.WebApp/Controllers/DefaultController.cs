@@ -50,7 +50,14 @@ namespace Gov.News.Website.Controllers
 
             ViewBag.GoogleSiteVerification = Properties.Settings.Default.GoogleSiteVerification;
             ViewBag.BingSiteVerification = Properties.Settings.Default.BingSiteVerification;
-
+            if (Properties.Settings.Default.NewsMediaHostUri != null)
+            {
+                ViewBag.ProxyUrl = Properties.Settings.Default.NewsMediaHostUri.ToString() + "embed/";
+            }
+            else {
+                ViewBag.ProxyUrl = new Uri("https://media.news.gov.bc.ca/embed/").ToString();
+            }
+           
             return View("HomeView", model);
         }
 
@@ -163,7 +170,14 @@ namespace Gov.News.Website.Controllers
             }
 
             var queryModel = new SearchViewModel.SearchQuery(q, fromDate, toDate, filters);
-
+            if (Properties.Settings.Default.NewsMediaHostUri != null)
+            {
+                ViewBag.ProxyUrl = Properties.Settings.Default.NewsMediaHostUri.ToString() + "embed/";
+            }
+            else
+            {
+                ViewBag.ProxyUrl = new Uri("https://media.news.gov.bc.ca/embed/").ToString();
+            }
             return View("SearchView", await Search(queryModel, page));
         }
 

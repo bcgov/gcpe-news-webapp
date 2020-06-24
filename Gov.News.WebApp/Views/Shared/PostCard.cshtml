@@ -80,7 +80,7 @@
             @if (thumbnailUri.Host.Contains("youtube"))
             {
 
-                @AssetHelper.RenderPostAsset(@Model.AssetUrl.ToUri()).ShowLinks()
+                @AssetHelper.RenderPostAsset(@Model.AssetUrl.ToUri().ToProxyUrl().ToUri()).ShowLinks()
             }
             else
             {

@@ -200,7 +200,8 @@ namespace Gov.News.Website.Controllers.Shared
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
                         PublishDate = DateTime.Parse(date.FormatDateLong()),
-                        ThumbnailUri = isFBAsset ? null : NewsroomExtensions.GetThumbnailUri(assetUrl)
+                        ThumbnailUri = isFBAsset ? null : NewsroomExtensions.GetThumbnailUri(assetUrl),
+                        AssetUrl = result["assetUrl"]
                     });
                     if (isFBAsset)
                     {

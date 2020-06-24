@@ -167,7 +167,7 @@
                         }
                     });
                     $( "div[id^='youtube-asset-']").each(function( index ) {
-                      initializeEmbeddedYoutubePlaceholders(this, "https://dev.media.news.gov.bc.ca/embed/");
+                      initializeEmbeddedYoutubePlaceholders(this, "@ViewBag.ProxyUrl");
                     });
                 } else {
                     doubleClick = true;
@@ -185,42 +185,38 @@
             });
         });
     </script>
+    <script> var youtubeProxyUrl = "@ViewBag.ProxyUrl" </script>
     <script type="text/javascript" src="~/Scripts/media-assets-youtube.js"></script>
-   
-    <script type="text/javascript">
+    <script type="text/javascript" src="~/Scripts/load-youtube-assets.js"></script>
+    <!--
+        <script type="text/javascript">
+         $(document).ready(function () {
+             $( "div[id^='youtube-asset-']").each(function( index ) {
+                 initializeEmbeddedYoutubePlaceholders(this, "@ViewBag.PorxyUrl");
+             });
 
+             $("div[id^='youtube-asset-']").find('.play-button').click(function () {
+                 playMediaYoutube($(this), false);
+             });
 
-        $(document).ready(function () {
+             $("div[id^='youtube-asset-']").find('.save-preference').click(function () {
+                 playMediaYoutube(this, true);
+             });
 
-            
-            $( "div[id^='youtube-asset-']").each(function( index ) {
-              initializeEmbeddedYoutubePlaceholders(this, "https://dev.media.news.gov.bc.ca/embed/");
+             $("div[id^='youtube-asset-']").find('.play-instructions a').click(function () {
 
-            });
-            
-            //initializeEmbeddedMediaPlaceholders("https://dev.media.news.gov.bc.ca/embed/");
+                 closeYoutubeInstructions(this);
+             });
 
+         });
+         $(window).resize(function () {
+             $( "div[id^='youtube-asset-']").each(function( index ) {
+               initializeEmbeddedYoutubePlaceholders(this, "@ViewBag.ProxyUrl");
+             });
+         });
 
-            $("div[id^='youtube-asset-']").find('.play-button').click(function () {
-                playMediaYoutube($(this), false);
-            });
+     </script>
+    -->
 
-            $("div[id^='youtube-asset-']").find('.save-preference').click(function () {
-                playMediaYoutube(this, true);
-            });
-
-            $("div[id^='youtube-asset-']").find('.play-instructions a').click(function () {
-                
-                closeYoutubeInstructions(this);
-            });
-
-        });
-        $(window).resize(function () {
-            $( "div[id^='youtube-asset-']").each(function( index ) {
-              initializeEmbeddedYoutubePlaceholders(this, "https://dev.media.news.gov.bc.ca/embed/");
-            });
-        });
-
-    </script>
 
 }
