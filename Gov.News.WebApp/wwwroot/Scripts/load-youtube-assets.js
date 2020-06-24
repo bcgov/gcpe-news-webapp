@@ -1,6 +1,6 @@
 ﻿
 $(document).ready(function () {
-    var timeoutlength = 200;
+    var timeoutlength = 400;
 
     setTimeout(function () {
         $("div[id^='youtube-asset-']").each(function (index) {
