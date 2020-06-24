@@ -238,7 +238,7 @@ namespace Gov.News.Website
                 { "Indonesian" , "Lihat terjemahan dalam bahasa Indonesia"},
                 { "Japanese", "翻訳を日本語表示する" },
                 { "Korean", "한국어 번역 보기" },
-                { "Punjabi", "ਪੰਜਾਬੀ ਵ ਿੱਚ ਅਨੁ ਾਦ ਦੇਖ"},
+                { "Punjabi", "ਪੰਜਾਬੀ ਵਿੱਚ ਅਨੁਵਾਦ ਦੇਖੋ"},
                 { "Spanish", "Ver la traducción en español" },
                 { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
                 { "Urdu", "اردو میں ترجمہ دیکھیں" },
