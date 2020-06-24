@@ -78,10 +78,10 @@
                 <!--
                 <a href='@Model.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' /></a>
                  -->
-                @if (thumbnailUri.ToString().Contains("youtube"))
+                @if (thumbnailUri.ToProxyUrl().Contains("youtube"))
                 {
 
-                    @AssetHelper.RenderPostAsset(@Model.AssetUrl.ToUri().ToProxyUrl().ToUri()).ShowLinks()
+                    @AssetHelper.RenderPostAsset(@Model.AssetUrl.ToUri()).ShowLinks()
                 }
                 else
                 {

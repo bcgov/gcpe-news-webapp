@@ -159,20 +159,17 @@
     -->
                         @if (result.ThumbnailUri != null)
                         {
-                            @if (result.ThumbnailUri.ToString().Contains("youtube"))
+                            @if (result.ThumbnailUri.ToProxyUrl().Contains("youtube"))
                             {
-
                                 <div class='item-asset asset flickr' id="youtube-asset-">
-                                    @AssetHelper.RenderPostAsset(@result.AssetUrl.ToUri().ToProxyUrl().ToUri()).ShowLinks()
+                                    @AssetHelper.RenderPostAsset(@result.AssetUrl.ToUri()).ShowLinks()
                                 </div>
-                                
                             }
                             else
                             {
                                 <div class='asset flickr' id="youtube-asset-">
                                     <a href='@result.Uri'><img src='@result.ThumbnailUri.ToProxyUrl()' /></a>
-                                </div>
-                                
+                                </div> 
                             }
                         }
                         <div class="item-text@(result.ThumbnailUri == null ? "" : " with-image")">
