@@ -2,10 +2,6 @@
 
 // initializes the embedded media assets
 function initializeEmbeddedYoutubePlaceholders(div, proxyUrl) {
-    //if (proxyUrl != null) {
-    //    mediaAssetProxyUrl = proxyUrl;
-    //}
-    console.log('proxyurl: ' + proxyUrl);
     var assets = $(div).find(".asset.video, .asset.audio");
     for (j = 0; j < assets.length; j++) {
         var asset = $(assets[j]);
