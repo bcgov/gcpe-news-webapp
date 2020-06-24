@@ -38,7 +38,14 @@ namespace Gov.News.Website.Controllers
             {
                 ViewBag.Type = "speeches";
             }
-
+            if (Properties.Settings.Default.NewsMediaHostUri != null)
+            {
+                ViewBag.ProxyUrl = Properties.Settings.Default.NewsMediaHostUri.ToString() + "embed/";
+            }
+            else
+            {
+                ViewBag.ProxyUrl = new Uri("https://media.news.gov.bc.ca/embed/").ToString();
+            }
             return View("CategoryView", model);
         }
 
@@ -143,6 +150,14 @@ namespace Gov.News.Website.Controllers
         {
             var model = await Init(category);
             model.Title = category.ToUpper()[0] + category.Substring(1);
+            if (Properties.Settings.Default.NewsMediaHostUri != null)
+            {
+                ViewBag.ProxyUrl = Properties.Settings.Default.NewsMediaHostUri.ToString() + "embed/";
+            }
+            else
+            {
+                ViewBag.ProxyUrl = new Uri("https://media.news.gov.bc.ca/embed/").ToString();
+            }
             return View("CategoriesView", model);
         }
     }

@@ -1,9 +1,51 @@
 ﻿@using Gov.News.Website;
 @using Gov.News.Website.Helpers;
+@using System.Web;
 
 @model Post
 
-@{ var ifShow = (string)ViewData["Display"]; }
+@{
+    var ifShow = (string)ViewData["Display"];
+
+
+    // you can check host here => uri.Host <= "www.youtube.com"
+
+    var videoId = "0";
+
+    if (!String.IsNullOrEmpty(Model.AssetUrl))
+    {
+        var uri = new Uri(Model.AssetUrl);
+        var query = HttpUtility.ParseQueryString(uri.Query);
+        videoId = query["v"];
+    }
+
+}
+
+
+<style>
+    .asset .placeholder-container .overlay-container .outer .inner .play-button a {
+        width: 64px !important;
+        height: 64px !important;
+    }
+
+    .asset .placeholder-container .overlay-container .outer .inner .play-button {
+        width: 64px !important;
+        height: 64px !important;
+    }
+
+    .asset .placeholder-container .overlay-container .outer .inner {
+        height: 64px !important;
+    }
+
+        .asset .placeholder-container .overlay-container .outer .inner.not-expanded {
+            height: 64px !important;
+            width: 64px !important;
+        }
+
+    .youtube-wrapper {
+        max-width: 100% !important;
+    }
+</style>
 <div class="article@((ifShow != null && ifShow == "false") ? " hidden-article" : "")">
     <h2><a href="@Model.GetUri()">@Model.Headline()</a></h2>
 
@@ -28,7 +70,37 @@
         @{ var thumbnailUri = Model.GetThumbnailUri(); }
         @if (thumbnailUri != null)
         {
-            <div class='item-asset asset flickr'><a href='@Model.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' /></a></div>
+            <div class='item-asset asset flickr' id="youtube-asset-@Model.Key">
+                <!--
+
+                <div class='story-copy primary-asset item-asset asset flickr' id="youtube-asset-@Model.Key">
+                   -->
+                <!--
+                <a href='@Model.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' /></a>
+                 -->
+                @if (thumbnailUri.Host.Contains("youtube"))
+                {
+
+                    @AssetHelper.RenderPostAsset(@Model.AssetUrl.ToUri().ToProxyUrl().ToUri()).ShowLinks()
+                }
+                else
+                {
+                    <a href='@Model.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' /></a>
+                }
+
+                <!--
+                     <div class="video">
+                    <div class="video-box">
+                        <a class="thumbnail-link">
+                            <img src="@thumbnailUri.ToProxyUrl()" class="video-thumbnail">
+                            <iframe class="video-frame" width="100%" height="100%" src="@Model.AssetUrl?vq=hd720&showinfo=0&autohide=1&color=white&controls=2&modestbranding=1&theme=light" frameborder="0" allowfullscreen>
+                            </iframe>
+                        </a>
+                    </div>
+                </div>
+                -->
+
+            </div>
         }
         <div class="item-text@(thumbnailUri == null ? "" : " with-image")">
             @Model.Summary.AsHtmlParagraphs()
@@ -39,3 +111,7 @@
     </div>
     <div class="clear"></div>
 </div>
+
+
+
+

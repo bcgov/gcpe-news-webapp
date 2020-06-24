@@ -30,18 +30,18 @@
 @section Scripts {
     <script type="text/javascript">
         $(function () {
-            function inIframe () {	
-                try {	
-                    return window.self !== window.top;	
-                } catch (e) {	
-                    return true;	
-                }	
-            }	
+            function inIframe () {
+                try {
+                    return window.self !== window.top;
+                } catch (e) {
+                    return true;
+                }
+            }
 
             if(inIframe()) {
                 $("a").attr("target","_blank");
             }
-            
+
             var isLoading = false;
             var doubleClick = false;
             $(".load-more").on('click', function (event) {
@@ -73,7 +73,9 @@
                             $(".load-more").click();
                         }
                     });
-
+                    $( "div[id^='youtube-asset-']").each(function( index ) {
+                      initializeEmbeddedYoutubePlaceholders(this, "@ViewBag.ProxyUrl");
+                    });
                 } else {
                     doubleClick = true;
                 }
@@ -81,4 +83,9 @@
             });
         });
     </script>
+
+    <script> var youtubeProxyUrl = "@ViewBag.ProxyUrl" </script>
+    <script type="text/javascript" src="~/Scripts/media-assets-youtube.js"></script>
+    <script type="text/javascript" src="~/Scripts/load-youtube-assets.js"></script>
 }
+

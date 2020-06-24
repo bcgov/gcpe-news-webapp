@@ -59,7 +59,7 @@ namespace Gov.News.Website.Helpers
             wrapper.Append("<div class=\"play-button\">");
             wrapper.Append("<a href=\"javascript:void(0);\" title=\"Play\"></a>");
             wrapper.Append("</div>");
-            wrapper.Append("<div class=\"play-instructions\">");
+            wrapper.AppendFormat("<div class=\"play-instructions\" id=\"play-instructions-{0}\">", mediaId);
             wrapper.Append("<div class=\"preface\">");
             wrapper.AppendFormat("Press play again to access content from <strong>{0}</strong>. For more information, please read our <a href=\"{1}\">Privacy</a> statement.", mediaProviderUrl, privacyUrl);
             wrapper.Append("</div>");
