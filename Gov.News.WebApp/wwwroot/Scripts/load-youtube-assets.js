@@ -26,5 +26,5 @@ $(document).ready(function () {
             $("div[id^='youtube-asset-']").each(function (index) {
                 initializeEmbeddedYoutubePlaceholders(this, youtubeProxyUrl);
             });
-        }, timeoutlength);
+        }, 400);
     });

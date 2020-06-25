@@ -3341,11 +3341,11 @@ ul.inline li {
 
             .asset .placeholder-container .overlay-container .outer .inner .play-button {
                 width: 60px;
-                height: 140px;
+                height: 60px;
             }
 
                 .asset .placeholder-container .overlay-container .outer .inner .play-button a {
-                    margin: 40px 0 0 0;
+                    margin: 0 0 0 0;
                     width: 60px;
                     height: 60px;
                 }

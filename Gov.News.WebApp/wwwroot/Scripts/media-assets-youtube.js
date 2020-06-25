@@ -2,51 +2,52 @@
 
 // initializes the embedded media assets
 function initializeEmbeddedYoutubePlaceholders(div, proxyUrl) {
-    var assets = $(div).find(".asset.video, .asset.audio");
-    for (j = 0; j < assets.length; j++) {
-        var asset = $(assets[j]);
-        var placeholder = asset.find(".placeholder-container");
-        var placeholderImage = $("#placeholder-image");
-        if (placeholderImage.length > 0) {
-            var assetPadding = 0;
-            try {
-                assetPadding = parseFloat($(asset).css("padding-bottom"))
-            }
-            catch (e) { }
-            // NOTE: the get(0).height is to access an item that is not visible in the browser.
-            //       In Chrome this is works generally but we did see some failures during testing.
-            var placeholderImageHeight = $("#placeholder-image").get(0).height - assetPadding;
-            $(asset).height(placeholderImageHeight);
+    var assets = $(div).find(".asset.video, .asset.audio").get(0);
+    var asset = $(assets);
+    var placeholder = asset.find(".placeholder-container");
+    var placeholderImage = $(placeholder).find("img");
+    if (placeholderImage.length > 0) {
+        var assetPadding = 0;
+        try {
+            assetPadding = parseFloat($(asset).css("padding-bottom"))
         }
-        var placeholderContainerHeight = $(placeholder).height();
-        var placeholderContainerWidth = $(placeholder).width();
-
-        if (asset.hasClass("wowza")) {
-            placeholderContainerHeight = $(placeholder).find("img").height();
-            if (placeholderContainerHeight == 0) {
-                setTimeout('', 2000)
-            }
-        }
-        var instructionsHeight = $(placeholder).find(".overlay-container .outer .inner").height();
-        var offset = parseInt((placeholderContainerHeight - instructionsHeight) / 2);
-
-        $(placeholder).find(".overlay-container .outer .inner").css("top", offset).css("visibility", "visible");
-        if ((asset.data("media-type") != undefined) && (asset.data("media-type") != "")) {
-            mediaType = asset.data("media-type");
-
-            mediaId = asset.data("media-id");
-            var youtube_consent = $.cookie("youtube-" + mediaId);
-    
-            if (youtube_consent != undefined) {
-                createMediaEmbed(asset, true);
-            }
-            /*
-            if (getMediaAssetPreference(mediaType) == 1) {
-                createMediaEmbed(asset, true);
-            }
-            */
-        }
+        catch (e) { }
+        // NOTE: the get(0).height is to access an item that is not visible in the browser.
+        //       In Chrome this is works generally but we did see some failures during testing.
+        var placeholderImageHeight = $(placeholderImage).get(0).height - assetPadding;
+        $(asset).height(placeholderImageHeight);
     }
+    var placeholderContainerHeight = $(placeholder).height();
+
+    placeholderContainerImageHeight = $(placeholder).find("img").height();
+    if (placeholderContainerImageHeight == 0) {
+        setTimeout('', 1000)
+    }
+    
+    var instructionsHeight = $(placeholder).find(".overlay-container .outer .inner").height();
+
+    var offset = parseInt((placeholderContainerHeight - instructionsHeight) / 2);
+    if (placeholderContainerImageHeight > 0) {
+        offset = parseInt((placeholderContainerImageHeight - instructionsHeight) / 2);
+    }
+
+    $(placeholder).find(".overlay-container .outer .inner").css("top", offset).css("visibility", "visible");
+    if ((asset.data("media-type") != undefined) && (asset.data("media-type") != "")) {
+        mediaType = asset.data("media-type");
+
+        mediaId = asset.data("media-id");
+        var youtube_consent = $.cookie("youtube-" + mediaId);
+
+        if (youtube_consent != undefined) {
+            createMediaEmbed(asset, true);
+        }
+        /*
+        if (getMediaAssetPreference(mediaType) == 1) {
+            createMediaEmbed(asset, true);
+        }
+        */
+    }
+   
 }
 
 function resizeEmbeddedYoutubeAssets() {
