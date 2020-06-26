@@ -34,18 +34,9 @@ function initializeEmbeddedYoutubePlaceholders(div, proxyUrl) {
     $(placeholder).find(".overlay-container .outer .inner").css("top", offset).css("visibility", "visible");
     if ((asset.data("media-type") != undefined) && (asset.data("media-type") != "")) {
         mediaType = asset.data("media-type");
-
-        mediaId = asset.data("media-id");
-        var youtube_consent = $.cookie("youtube-" + mediaId);
-
-        if (youtube_consent != undefined) {
-            createMediaEmbed(asset, true);
-        }
-        /*
         if (getMediaAssetPreference(mediaType) == 1) {
             createMediaEmbed(asset, true);
         }
-        */
     }
    
 }
