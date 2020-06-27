@@ -21,7 +21,6 @@
 
 }
 
-
 <style>
     .asset .placeholder-container .overlay-container .outer .inner .play-button a {
         width: 64px !important;
@@ -44,7 +43,9 @@
 
     .youtube-wrapper {
         max-width: 100% !important;
+        height:0 !important;
     }
+
 </style>
 <div class="article@((ifShow != null && ifShow == "false") ? " hidden-article" : "")">
     <h2><a href="@Model.GetUri()">@Model.Headline()</a></h2>
