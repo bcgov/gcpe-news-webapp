@@ -54,10 +54,11 @@ namespace Gov.News.Website.Controllers
             {
                 ViewBag.ProxyUrl = Properties.Settings.Default.NewsMediaHostUri.ToString() + "embed/";
             }
-            else {
+            else
+            {
                 ViewBag.ProxyUrl = new Uri("https://media.news.gov.bc.ca/embed/").ToString();
             }
-           
+
             return View("HomeView", model);
         }
 
@@ -154,11 +155,13 @@ namespace Gov.News.Website.Controllers
             }
             if (ministry != null)
             {
-                filters.Add("Ministry", ministry);
+                var ministries = await Repository.GetMinistriesAsync();
+                filters.Add("Ministry", ministries.FirstOrDefault(m => m.Key == ministry).Name);
             }
             if (sector != null)
             {
-                filters.Add("Sector", sector);
+                var sectors = await Repository.GetSectorsAsync();
+                filters.Add("Sector", sectors.FirstOrDefault(s => s.Key == sector).Name);
             }
             if (!string.IsNullOrEmpty(city))
             {
@@ -178,6 +181,7 @@ namespace Gov.News.Website.Controllers
             {
                 ViewBag.ProxyUrl = new Uri("https://media.news.gov.bc.ca/embed/").ToString();
             }
+
             return View("SearchView", await Search(queryModel, page));
         }
 
@@ -426,8 +430,8 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/bc_eao", Title = "@BC_EAO", Summary = "Get project updates and environmental assessment information" }
             }.OrderBy(t => t.Title).ToArray();
 
-          model.InstagramLinks = new Link[]
-          {
+            model.InstagramLinks = new Link[]
+            {
                         new Link() { Url = "https://www.instagram.com/bchousing/", Title = "BC Housing", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/yourbcparks/", Title = "BC Parks", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/ministryoftranbc/", Title = "BC Ministry of Transportation", Summary = "" },
@@ -435,7 +439,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/hellobc/", Title = "Destination British Columbia", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/innovate_bc/", Title = "Innovate BC", Summary = "" },
-          }.OrderBy(t => t.Title).ToArray();
+            }.OrderBy(t => t.Title).ToArray();
 
 
             model.UstreamLinks = new Link[]
