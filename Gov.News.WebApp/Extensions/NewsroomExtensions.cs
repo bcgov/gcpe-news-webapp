@@ -24,6 +24,10 @@ namespace Gov.News.Website
 
         public static Uri GetThumbnailUri(this Post post)
         {
+            if (post.FacebookPictureUri != null)
+            {
+                return new Uri(post.FacebookPictureUri);
+            }
             return GetThumbnailUri(post.AssetUrl);
         }
 
