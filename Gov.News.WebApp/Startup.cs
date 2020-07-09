@@ -62,6 +62,8 @@ namespace Gov.News.Website
             // Add framework services.
 
             services.AddMemoryCache();
+            services.AddResponseCaching();
+            services.AddRazorPages();
 
             services.AddMvc(opt =>
                 {
@@ -157,6 +159,7 @@ namespace Gov.News.Website
             app.UseHealthChecks("/hc");
 
             app.UseRedirect();
+            app.UseResponseCaching();
 
             // set headers for static files
             app.UseStaticFiles(new StaticFileOptions
