@@ -165,7 +165,12 @@ function createMediaEmbed(embeddedMedia, display) {
                 if (!(display)) {
                     mediaUrl += "&amp;autoPlay=true";
                 }
-                embedHtml = $("<iframe src='" + mediaUrl + "' frameborder='0' scrolling='no' allowfullscreen wmode='Opaque' width='100%' height='100%'></iframe><div class='clear'></div>");
+                if (mediaType = "youtube") {
+                    embedHtml = $("<iframe src='" + mediaUrl + "' id='" + mediaId + "' class='youtube_iframe' frameborder='0' scrolling='no' allowfullscreen wmode='Opaque' width='100%' height='100%'></iframe><div class='clear'></div>");
+                }
+                else {
+                    embedHtml = $("<iframe src='" + mediaUrl + "'  frameborder='0' scrolling='no' allowfullscreen wmode='Opaque' width='100%' height='100%'></iframe><div class='clear'></div>");
+                }
             }
             if (embedHtml != "") {
                 mediaPlaceholderContainer.append(embedHtml);
