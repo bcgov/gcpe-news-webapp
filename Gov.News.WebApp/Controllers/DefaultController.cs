@@ -156,12 +156,14 @@ namespace Gov.News.Website.Controllers
             if (ministry != null)
             {
                 var ministries = await Repository.GetMinistriesAsync();
-                filters.Add("Ministry", ministries.FirstOrDefault(m => m.Key == ministry).Name);
+                var ministryName = ministries.FirstOrDefault(m => m.Key == ministry)?.Name;
+                filters.Add("Ministry", ministryName ?? ministry);
             }
             if (sector != null)
             {
                 var sectors = await Repository.GetSectorsAsync();
-                filters.Add("Sector", sectors.FirstOrDefault(s => s.Key == sector).Name);
+                var sectorName = sectors.FirstOrDefault(s => s.Key == sector)?.Name;
+                filters.Add("Sector", sectorName ?? sector);
             }
             if (!string.IsNullOrEmpty(city))
             {
