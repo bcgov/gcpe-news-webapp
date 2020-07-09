@@ -40,7 +40,7 @@ namespace Gov.News.Website.Controllers
             return Redirect(NewsroomExtensions.GetPostUri(pair.Value, pair.Key).ToString());
         }
 
-        [ResponseCache(CacheProfileName = "Default"), Noarchive]
+        [ResponseCache(CacheProfileName = "Default"), Noindex]
         public async Task<ActionResult> Index(string postKind)
         {
             var model = await GetHomePosts(postKind);
