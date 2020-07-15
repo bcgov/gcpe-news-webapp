@@ -40,8 +40,6 @@ namespace Gov.News.Website
             _cache.Add(typeof(Asset), new Dictionary<string, object>());
             // changes to these objects can not be (efficiently) detected by the API, so we will have to poll for changes
             _cache.Add(typeof(Newsletter), new Dictionary<string, object>());
-            _cache.Add(typeof(FacebookPost), new Dictionary<string, object>());
-            //_cache.Add(typeof(TwitterFeed), new Dictionary<string, object>());
         }
 
         /// <summary>
@@ -393,11 +391,6 @@ namespace Gov.News.Website
         public async Task<Article> GetArticleAsync(string newsletterKey, string editionKey, string articleKey)
         {
             return await ApiClient.Newsletters.GetArticleAsync(newsletterKey, editionKey, articleKey, APIVersion);
-        }
-
-        public async Task<FacebookPost> GetFacebookPostAsync(string uri)
-        {
-            return await GetExpiringAsync(uri, () => ApiClient.FacebookPosts.GetByUriAsync(APIVersion, uri));
         }
 
         public async Task<Post> GetPostAsync(string key)

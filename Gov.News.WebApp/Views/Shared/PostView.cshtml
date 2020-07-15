@@ -313,58 +313,6 @@
         {
             <vc:web-cast />
         }
-        else if (Model.FacebookAsset != null)
-        {
-            <div class="facebook-post primary-asset">
-                @if (Model.FacebookAsset.PictureUri != null)
-                {
-                    @AssetHelper.RenderFacebookPostAsset(Model.FacebookAsset.Key, Model.FacebookAsset.PictureUri.ToUri())
-                }
-
-                <div class="facebook-article">
-                    <div class="feed-header">
-                        <h5>
-                            <img src="@Model.FacebookAsset.PosterLogo.ToUri().ToProxyUrl()" />
-                            @Html.Raw(Model.FacebookAsset.Poster)<br />
-                            <span>@Model.FacebookAsset.PosterSubtitle &#9679; @string.Format("{0:n0}", Model.FacebookAsset.PosterLikes) Likes</span>
-                        </h5>
-                        <a href="@Model.FacebookAsset.PosterUrl()" class="link-button facebook-like">Like on Facebook</a>
-                    </div>
-
-                    @AssetHelper.ConvertUrlsToLinks(Model.FacebookAsset.Content).AsHtmlParagraphs().ShowLinks()
-
-                    <div class="post-details">
-                        @Model.FacebookAsset.PostLikes
-                        @if (Model.FacebookAsset.PostLikes == 1)
-                        {<span>Like </span> }
-                        else
-                        { <span>Likes</span>} &#9679;
-                        @Model.FacebookAsset.PostComments @if (Model.FacebookAsset.PostComments == 1)
-                        {<span>Comment</span> }
-                        else
-                        { <span>Comments</span>} &#9679;
-                        @Model.FacebookAsset.PostShares @if (Model.FacebookAsset.PostShares == 1)
-                        {<span>Share</span> }
-                        else
-                        { <span>Shares </span>}
-                    </div>
-                    @*<div class="sharing-options">
-                            <ul>
-                                <li class="facebook-action facebook-like"><a href="#">Like</a></li>
-                                <li class="facebook-action facebook-comment"><a href="#">Comment</a></li>
-                                <li class="facebook-action facebook-share"><a href="#">Share</a></li>
-                            </ul>
-                        </div>*@
-                </div>
-
-                <div class="social-media-bar">
-                    <ul>
-                        <li class="facebook-info"><a href="@Model.Post.AssetUrl" target="_blank">Like or Comment<span class="on-story"> on this story</span><span class="on-facebook"> on Facebook</span></a></li>
-                        <li class="facebook-action facebook-share"><a href="https://www.facebook.com/sharer/sharer.php?u=@Model.Post.AssetUrl" onclick="window.open(this.href, 'newwindow', 'width=400, height=550'); return false;">Share</a></li>
-                    </ul>
-                </div>
-            </div>
-        }
         else
         {
             <div class="story-copy primary-asset">
@@ -401,7 +349,7 @@
                 <div class="story-expander">
                     <article>
                         <!--googleon: all-->
-                        @AssetHelper.RenderAssetsInHtml(firstFrenchDoc.DetailsHtml, 695, Model.FacebookPostDetailsDictionary).ShowLinks()
+                        @AssetHelper.RenderAssetsInHtml(firstFrenchDoc.DetailsHtml, 695).ShowLinks()
                         <!--googleoff: all-->
                         <div class="article-fade"> </div>
                     </article>
@@ -415,7 +363,7 @@
             <div class="story-expander">
                 <article>
                     <!--googleon: all-->
-                    @AssetHelper.RenderAssetsInHtml(firstDoc.DetailsHtml, 695, Model.FacebookPostDetailsDictionary).ShowLinks()
+                    @AssetHelper.RenderAssetsInHtml(firstDoc.DetailsHtml, 695).ShowLinks()
                     <!--googleoff: all-->
                     <div class="article-fade"> </div>
                 </article>
@@ -512,7 +460,7 @@
                             <p><b>@item.Byline</b></p>
                         }
 
-                        @AssetHelper.RenderAssetsInHtml(item.DetailsHtml, null, Model.FacebookPostDetailsDictionary)
+                        @AssetHelper.RenderAssetsInHtml(item.DetailsHtml, null)
                         <!--googleoff: all-->
 
                         @if (item.Contacts.Any() && (firstDoc.Contacts.Count() != item.Contacts.Count()

@@ -127,49 +127,9 @@ namespace Gov.News.Website.Controllers.Shared
             posts.AddRange(await Repository.GetLatestPostsAsync(ministry, RelatedArticlesLength - posts.Count + 1, null, MinistryFilter(ministry.Key)));
             model.RelatedArticles = posts.Where(e => e.Key != model.Post.Key).Take(RelatedArticlesLength);
 
-            if (post.AssetUrl != null)
-            {
-                if (post.AssetUrl.Contains("facebook"))
-                {
-                    model.FacebookAsset = await Repository.GetFacebookPostAsync(post.AssetUrl);
-                }
-            }
-
             model.Footer = await GetFooter(ministry);
 
-            model.FacebookPostDetailsDictionary = await GetFacebookAssetDetails(post.Documents);
-
             return model;
-        }
-        public async Task<IDictionary<string, FacebookPost>> GetFacebookAssetDetails(IEnumerable<Document> documents)
-        {
-            var assetHtmlDetails = new Dictionary<string, FacebookPost>();
-            foreach (var doc in documents)
-            {
-                MatchCollection matches = AssetHelper.AssetRegex.Matches(doc.DetailsHtml);
-                foreach (Match itemMatch in matches)
-                {
-                    string url = itemMatch.Groups["url"].Value;
-                    try
-                    {
-                        Uri uri = new Uri(url);
-
-                        if (uri.Host == "www.facebook.com" && !assetHtmlDetails.Any(a => a.Key == url))
-                        {
-                            var model = await Repository.GetFacebookPostAsync(url);
-                            if (model != null)
-                            {
-                                assetHtmlDetails.Add(url, model);
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                }
-            }
-            return assetHtmlDetails;
         }
 
     }

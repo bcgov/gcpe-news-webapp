@@ -74,7 +74,6 @@ namespace Gov.News.Website
 #else
                 var cacheProfile = new CacheProfile { Duration = 60 };
 #endif
-
                 options.CacheProfiles.Add("Default", cacheProfile);
                 options.CacheProfiles.Add("Feed", cacheProfile);
                 options.CacheProfiles.Add("Embed", cacheProfile);

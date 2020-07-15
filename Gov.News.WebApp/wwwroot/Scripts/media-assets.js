@@ -148,9 +148,6 @@ function createMediaEmbed(embeddedMedia, display) {
                     case "soundcloud":
                         mediaUrl = mediaAssetProxyUrl + "soundcloud?id=" + mediaId;
                         break;
-                    case "facebook":
-                        mediaUrl = mediaAssetProxyUrl + "facebook?id=" + mediaId;
-                        break;
                 }
                 if (!(display)) {
                     mediaUrl += "&amp;autoPlay=true";

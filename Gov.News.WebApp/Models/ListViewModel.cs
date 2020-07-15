@@ -13,7 +13,6 @@ namespace Gov.News.Website.Models
 
         public FooterViewModel Footer { get; set; }
 
-        public List<FacebookPost> FacebookPosts { get; set; }
         public List<TwitterPostModel> TwitterPosts { get; set; }
 
         /*public System.Uri MoreNewsUri { get; set; }
