@@ -54,10 +54,11 @@ namespace Gov.News.Website.Controllers
             {
                 ViewBag.ProxyUrl = Properties.Settings.Default.NewsMediaHostUri.ToString() + "embed/";
             }
-            else {
+            else
+            {
                 ViewBag.ProxyUrl = new Uri("https://media.news.gov.bc.ca/embed/").ToString();
             }
-           
+
             return View("HomeView", model);
         }
 
@@ -154,11 +155,15 @@ namespace Gov.News.Website.Controllers
             }
             if (ministry != null)
             {
-                filters.Add("Ministry", ministry);
+                var ministries = await Repository.GetMinistriesAsync();
+                var ministryName = ministries.FirstOrDefault(m => m.Key == ministry)?.Name;
+                filters.Add("Ministry", ministryName ?? ministry);
             }
             if (sector != null)
             {
-                filters.Add("Sector", sector);
+                var sectors = await Repository.GetSectorsAsync();
+                var sectorName = sectors.FirstOrDefault(s => s.Key == sector)?.Name;
+                filters.Add("Sector", sectorName ?? sector);
             }
             if (!string.IsNullOrEmpty(city))
             {
@@ -178,6 +183,7 @@ namespace Gov.News.Website.Controllers
             {
                 ViewBag.ProxyUrl = new Uri("https://media.news.gov.bc.ca/embed/").ToString();
             }
+
             return View("SearchView", await Search(queryModel, page));
         }
 
@@ -336,7 +342,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.facebook.com/QuitNowBC", Title = "QuitNowBC" },
                         new Link() { Url = "http://www.facebook.com/BCRecSitesandTrails", Title = "Rec Sites and Trails BC" },
                         new Link() { Url = "http://www.facebook.com/ServiceBC", Title = "Service BC" },
-                        new Link() { Url = "http://www.facebook.com/HelloBC", Title = "Tourism British Columbia" },
+                        new Link() { Url = "http://www.facebook.com/HelloBC", Title = "Destination British Columbia" },
                         new Link() { Url = "http://www.facebook.com/WorkBC", Title = "WorkBC" },
                         new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" },
                         new Link() { Url = "https://www.facebook.com/PreparedBC/", Title = "PreparedBC" }
@@ -357,7 +363,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.youtube.com/LiveSmartBC", Title = "LiveSmart BC" },
                          new Link() { Url = "https://www.youtube.com/user/QuitNowBC", Title = "QuitNowBC" },
                          new Link() { Url = "http://www.youtube.com/RoadSafetyBCGov", Title = "RoadSafetyBC" },
-                         new Link() { Url = "http://www.youtube.com/user/TourismBC", Title = "Tourism British Columbia" },
+                         new Link() { Url = "http://www.youtube.com/user/TourismBC", Title = "Destination British Columbia" },
                          new Link() { Url = "http://www.youtube.com/user/WelcomeBCca", Title = "WelcomeBC" },
                          new Link() { Url = "http://www.youtube.com/workbc", Title = "WorkBC" },
             }.OrderBy(t => t.Title).ToArray();
@@ -365,7 +371,7 @@ namespace Gov.News.Website.Controllers
             model.FlickrLinks = new Link[]
             {
                          new Link() { Url = "http://www.flickr.com/photos/bcgovphotos", Title = "Province of BC", Summary = "View and share the latest photos from the Government of British Columbia" },
-                         new Link() { Url = "http://www.flickr.com/photos/tourism_bc/", Title = "Destination British Columbia's photostream" },
+
                          new Link() { Url = "http://www.flickr.com/photos/tranbc/", Title = "BC Ministry of Transportation & Infrastructure's photostream" },
                          new Link() { Url = "https://www.flickr.com/photos/preparedbc", Title = "PreparedBC's photostream" },
                          new Link() { Url = "http://www.flickr.com/photos/bc_housing", Title = "BC Housing's photostream" },
@@ -421,8 +427,8 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/bc_eao", Title = "@BC_EAO", Summary = "Get project updates and environmental assessment information" }
             }.OrderBy(t => t.Title).ToArray();
 
-          model.InstagramLinks = new Link[]
-          {
+            model.InstagramLinks = new Link[]
+            {
                         new Link() { Url = "https://www.instagram.com/bchousing/", Title = "BC Housing", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/yourbcparks/", Title = "BC Parks", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/ministryoftranbc/", Title = "BC Ministry of Transportation", Summary = "" },
@@ -430,7 +436,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/hellobc/", Title = "Destination British Columbia", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/innovate_bc/", Title = "Innovate BC", Summary = "" },
-          }.OrderBy(t => t.Title).ToArray();
+            }.OrderBy(t => t.Title).ToArray();
 
 
             model.UstreamLinks = new Link[]
