@@ -24,10 +24,6 @@ namespace Gov.News.Website
 
         public static Uri GetThumbnailUri(this Post post)
         {
-            if (post.FacebookPictureUri != null)
-            {
-                return new Uri(post.FacebookPictureUri);
-            }
             return GetThumbnailUri(post.AssetUrl);
         }
 
@@ -200,16 +196,6 @@ namespace Gov.News.Website
                 }
             }
             return shortSummary;
-        }
-
-        public static string PosterUrl(this FacebookPost facebookPost)
-        {
-            int posterIdx = facebookPost.Key.IndexOf("facebook.com/"); // facebookPost.Key is the postUrl
-            if (posterIdx != -1)
-            {
-                posterIdx = facebookPost.Key.IndexOf('/', posterIdx + "facebook.com/".Length);
-            }
-            return posterIdx != -1 ? facebookPost.Key.Substring(0, posterIdx) : null;
         }
 
         public static Uri ToUri(this string uri)

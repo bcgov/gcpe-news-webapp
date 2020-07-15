@@ -270,11 +270,6 @@ namespace Gov.News.Website.Controllers
                 return Repository._cache[typeof(Post)].Count().ToString();
             }));
 
-            model.Add(SiteStatusString("Facebook Post cache size: ", showErrors, () =>
-            {
-                return Repository._cache[typeof(FacebookPost)].Count().ToString();
-            }));
-
             return View("SiteStatus", model);
         }
         public static string SiteStatusString(string s, bool? showErrors, Func<string> func)

@@ -177,7 +177,6 @@ namespace Gov.News.Website.Controllers.Shared
 
             if (searchServiceResult.value != null)
             {
-                var fBPostKeys = new List<string>();
                 foreach (var result in searchServiceResult.value)
                 {
                     string key = result["key"];
@@ -188,9 +187,7 @@ namespace Gov.News.Website.Controllers.Shared
                     IEnumerable<object> titles = result["documentsHeadline"];
                     IEnumerable<object> headlines = result["documentsSubheadline"];
 
-
                     string assetUrl = result["assetUrl"];
-                    bool isFBAsset = assetUrl.Contains("facebook");
                     var date = (DateTimeOffset)DateTimeOffset.Parse(Convert.ToString(result["publishDateTime"]));
                     model.Results.Add(new SearchViewModel.Result()
                     {
@@ -200,24 +197,11 @@ namespace Gov.News.Website.Controllers.Shared
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
                         PublishDate = DateTime.Parse(date.FormatDateLong()),
-                        ThumbnailUri = isFBAsset ? null : NewsroomExtensions.GetThumbnailUri(assetUrl),
+                        ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
                         AssetUrl = result["assetUrl"]
                     });
-                    if (isFBAsset)
-                    {
-                        fBPostKeys.Add(key);
-                    }
+                    
                 }
-
-                foreach(var postForFB in await Repository.GetPostsAsync(fBPostKeys))
-                {
-                    if (postForFB.FacebookPictureUri == null) continue;
-                    var result = model.Results.SingleOrDefault(r => postForFB.GetUri() == r.Uri);
-                    if (result != null)
-                    {
-                        result.ThumbnailUri = new Uri(postForFB.FacebookPictureUri);
-                    }
-                };
             }
 
 

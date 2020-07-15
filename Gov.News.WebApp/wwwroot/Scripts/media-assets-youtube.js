@@ -158,9 +158,6 @@ function createMediaEmbed(embeddedMedia, display) {
                     case "soundcloud":
                         mediaUrl = mediaAssetProxyUrl + "soundcloud?id=" + mediaId;
                         break;
-                    case "facebook":
-                        mediaUrl = mediaAssetProxyUrl + "facebook?id=" + mediaId;
-                        break;
                 }
                 if (!(display)) {
                     mediaUrl += "&amp;autoPlay=true";
@@ -216,7 +213,7 @@ function returnMediaAssetCookie() {
         }
     }
 
-    return [{ "name": "facebook", "enabled": 0 }, { "name": "soundcloud", "enabled": 0 }, { "name": "youtube", "enabled": 0 }, { "name": "wowza", "enabled": 0 }];
+    return [{ "name": "soundcloud", "enabled": 0 }, { "name": "youtube", "enabled": 0 }, { "name": "wowza", "enabled": 0 }];
 }
 
 // saves the media asset preferences cookies
