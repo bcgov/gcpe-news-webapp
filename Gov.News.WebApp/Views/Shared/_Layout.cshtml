@@ -353,22 +353,8 @@
 
     <script type="text/javascript">
         window.allowFade = true;
-        window.showFacebookComment = function () {
-            window.allowFade = false;
-            $('.facebook-comment-dialog').show();
-        };
-
-        window.hideFacebookComment = function () {
-            window.allowFade = true;
-            $('.facebook-comment-dialog').hide();
-        };
 
     $(function () {
-        $('.facebook-comment').on('click', window.showFacebookComment);
-        $('.facebook-comment-close').on('click', function (e) {
-            e.preventDefault();
-            window.hideFacebookComment();
-        });
 
         $('.back-to-top').on('click', function () {
             $('html, body').animate({
