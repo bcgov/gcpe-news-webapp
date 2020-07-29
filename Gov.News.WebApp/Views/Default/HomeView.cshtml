@@ -140,8 +140,11 @@
                 {
                     isLoading = true;
                     var offset = $(".regular-articles .article").length;
+                    var p = $(".regular-articles .article").last();
+                    var offsetPosition = p.offset();
                     var hiddenCount = $(".regular-articles .hidden-article").length;
                     $(".regular-articles .hidden-article").removeClass("hidden-article");
+                    window.scrollTo(offsetPosition.left, offsetPosition.top);
                     if(hiddenCount < @Gov.News.Website.Providers.ProviderHelpers.MaximumLatestNewsItemsLoadMore) {
                         $(".load-more").hide();
                         event.preventDefault();
