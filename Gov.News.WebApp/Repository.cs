@@ -78,8 +78,9 @@ namespace Gov.News.Website
                     ClearAllCaches();
                     return;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    _logger.LogError(e.Message.ToString());
                     Thread.Sleep(10000); // 10 seconds
                 }
             }
@@ -204,8 +205,9 @@ namespace Gov.News.Website
                 }
                 result = await task;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _logger.LogError(e.Message.ToString());
                 result = default(T);
             }
             if (taskAdded)
@@ -401,7 +403,7 @@ namespace Gov.News.Website
                 {
                     return (await GetPostsAsync(new List<string>() { key })).FirstOrDefault();
                 }
-                catch (Exception) { }
+                catch (Exception e) { _logger.LogError(e.Message.ToString()); }
             }
             return null;
         }
