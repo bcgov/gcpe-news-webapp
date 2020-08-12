@@ -186,7 +186,7 @@ namespace Gov.News.Website.Controllers.Shared
 
                     IEnumerable<object> titles = result["documentsHeadline"];
                     IEnumerable<object> headlines = result["documentsSubheadline"];
-                    IEnumerable<object> translations = result["translations"];
+                    string translations = result["translations"];
                     bool hasTranslations = result["hasTranslations"];
 
                     string assetUrl = result["assetUrl"];
@@ -198,7 +198,7 @@ namespace Gov.News.Website.Controllers.Shared
                         Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
-                        HasTranslations = translations.Any() && hasTranslations,
+                        HasTranslations = translations != null && hasTranslations,
                         PublishDate = DateTime.Parse(date.FormatDateLong()),
                         ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
                         AssetUrl = result["assetUrl"]
