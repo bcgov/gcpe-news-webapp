@@ -141,7 +141,7 @@
             {
                 <div class="article">
                     <h2><a href="@result.Uri">@result.Title</a></h2>
-                    @if (result.Headline != null && result.Headline.Contains("translation", StringComparison.OrdinalIgnoreCase))
+                    @if (result.HasTranslations || (result.Headline != null && result.Headline.Contains("translation", StringComparison.OrdinalIgnoreCase)))
                     {
                         <div class="item-medialink translations"><a href="@result.Uri#translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-left:6px;" aria-hidden="true"></i> Translations</a></div>
                     }
