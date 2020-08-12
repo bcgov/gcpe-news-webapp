@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
@@ -70,7 +70,7 @@ namespace Gov.News.Website.Controllers.Shared
 
             requestPath += string.Format("&{0}={1}", "$top", Convert.ToString(ResultsPerPage));
 
-            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,documentsSubheadline,summary,publishDateTime,hasMediaAssets,assetUrl,translations");
+            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,documentsSubheadline,summary,publishDateTime,hasMediaAssets,assetUrl,translations,hasTranslations");
 
             requestPath += string.Format("&{0}={1}", "$orderby", "publishDateTime desc");
 
@@ -186,7 +186,8 @@ namespace Gov.News.Website.Controllers.Shared
 
                     IEnumerable<object> titles = result["documentsHeadline"];
                     IEnumerable<object> headlines = result["documentsSubheadline"];
-                    IEnumerable<object> translations = result["translations"];
+                    string translations = result["translations"];
+                    bool hasTranslations = result["hasTranslations"];
 
                     string assetUrl = result["assetUrl"];
                     var date = (DateTimeOffset)DateTimeOffset.Parse(Convert.ToString(result["publishDateTime"]));
@@ -197,13 +198,13 @@ namespace Gov.News.Website.Controllers.Shared
                         Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
-                        HasTranslations = translations.Any(),
+                        HasTranslations = translations != null && hasTranslations,
                         PublishDate = DateTime.Parse(date.FormatDateLong()),
                         ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
                         AssetUrl = result["assetUrl"]
-                    });
-                    
+                    });                 
                 }
+
             }
 
 
