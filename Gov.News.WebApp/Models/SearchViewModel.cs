@@ -103,6 +103,8 @@ namespace Gov.News.Website.Models
 
             public bool HasMediaAssets { get; set; }
 
+            public bool HasTranslations { get; set; }
+
             public Uri ThumbnailUri { get; set; }
 
             public DateTime PublishDate { get; set; }
