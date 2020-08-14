@@ -90,7 +90,7 @@ namespace Gov.News.Website.Controllers.Shared
             if (useCustomRange)
             {
                 filters.Add("publishDateTime le " + query.ToDate.ToUniversalTime().AddDays(1).ToString("s") + "Z"); // include the selected day too
-                filters.Add("publishDateTime ge " + query.FromDate.ToUniversalTime().ToString("s") +"Z");
+                filters.Add("publishDateTime ge " + query.FromDate.ToUniversalTime().ToString("s") + "Z");
             }
             if (query.Filters != null)
             {
@@ -188,22 +188,41 @@ namespace Gov.News.Website.Controllers.Shared
                     IEnumerable<object> headlines = result["documentsSubheadline"];
                     string translations = result["translations"];
                     bool hasTranslations = result["hasTranslations"];
-                    // if the query is translation/translations only add results where has translations is true
 
                     string assetUrl = result["assetUrl"];
                     var date = (DateTimeOffset)DateTimeOffset.Parse(Convert.ToString(result["publishDateTime"]));
-                    model.Results.Add(new SearchViewModel.Result()
+
+                    bool onlyReturnResultsWithTranslations = query.Text == "translation" || query.Text == "translations";
+                    if (onlyReturnResultsWithTranslations && translations != null && hasTranslations == true)
                     {
-                        Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
-                        Headline = System.Net.WebUtility.HtmlDecode(headlines?.FirstOrDefault().ToString()),
-                        Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
-                        Description = result["summary"],
-                        HasMediaAssets = result["hasMediaAssets"],
-                        HasTranslations = translations != null && hasTranslations,
-                        PublishDate = DateTime.Parse(date.FormatDateLong()),
-                        ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
-                        AssetUrl = result["assetUrl"]
-                    });                 
+                        model.Results.Add(new SearchViewModel.Result()
+                        {
+                            Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
+                            Headline = System.Net.WebUtility.HtmlDecode(headlines?.FirstOrDefault().ToString()),
+                            Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
+                            Description = result["summary"],
+                            HasMediaAssets = result["hasMediaAssets"],
+                            HasTranslations = translations != null && hasTranslations,
+                            PublishDate = DateTime.Parse(date.FormatDateLong()),
+                            ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
+                            AssetUrl = result["assetUrl"]
+                        });
+                    }
+                    else
+                    {
+                        model.Results.Add(new SearchViewModel.Result()
+                        {
+                            Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
+                            Headline = System.Net.WebUtility.HtmlDecode(headlines?.FirstOrDefault().ToString()),
+                            Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
+                            Description = result["summary"],
+                            HasMediaAssets = result["hasMediaAssets"],
+                            HasTranslations = translations != null && hasTranslations,
+                            PublishDate = DateTime.Parse(date.FormatDateLong()),
+                            ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
+                            AssetUrl = result["assetUrl"]
+                        });
+                    }
                 }
 
             }
