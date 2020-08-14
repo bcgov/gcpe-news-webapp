@@ -59,10 +59,15 @@ namespace Gov.News.Website.Controllers.Shared
 #endif
             model.Title = "Search";
 
+            bool isTranslationsSearch = string.Equals(query.Text, "translation", StringComparison.CurrentCultureIgnoreCase) 
+                || string.Equals(query.Text, "translations", StringComparison.CurrentCultureIgnoreCase);
             string requestPath = Properties.Settings.Default.AzureSearchUri.ToString();
             if (!string.IsNullOrEmpty(query.Text))
             {
-                requestPath += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+                if (!isTranslationsSearch)
+                {
+                    requestPath += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+                }
                 requestPath += string.Format("&{0}={1}", "searchMode", "all");
             }
             //if (!string.IsNullOrEmpty(query.DateRange))
@@ -87,6 +92,12 @@ namespace Gov.News.Website.Controllers.Shared
             }
 
             var filters = new List<string>();
+            if (isTranslationsSearch)
+            {
+                filters.Add("hasTranslations eq true");
+                filters.Add("translations ne null");
+                filters.Add("translations ne ''");
+            }
             if (useCustomRange)
             {
                 filters.Add("publishDateTime le " + query.ToDate.ToUniversalTime().AddDays(1).ToString("s") + "Z"); // include the selected day too
@@ -192,39 +203,19 @@ namespace Gov.News.Website.Controllers.Shared
                     string assetUrl = result["assetUrl"];
                     var date = (DateTimeOffset)DateTimeOffset.Parse(Convert.ToString(result["publishDateTime"]));
 
-                    bool onlyReturnResultsWithTranslations = query.Text == "translation" || query.Text == "translations";
-                    if (onlyReturnResultsWithTranslations && translations != null && hasTranslations == true)
+                    model.Results.Add(new SearchViewModel.Result()
                     {
-                        model.Results.Add(new SearchViewModel.Result()
-                        {
-                            Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
-                            Headline = System.Net.WebUtility.HtmlDecode(headlines?.FirstOrDefault().ToString()),
-                            Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
-                            Description = result["summary"],
-                            HasMediaAssets = result["hasMediaAssets"],
-                            HasTranslations = translations != null && hasTranslations,
-                            PublishDate = DateTime.Parse(date.FormatDateLong()),
-                            ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
-                            AssetUrl = result["assetUrl"]
-                        });
-                    }
-                    else
-                    {
-                        model.Results.Add(new SearchViewModel.Result()
-                        {
-                            Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
-                            Headline = System.Net.WebUtility.HtmlDecode(headlines?.FirstOrDefault().ToString()),
-                            Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
-                            Description = result["summary"],
-                            HasMediaAssets = result["hasMediaAssets"],
-                            HasTranslations = translations != null && hasTranslations,
-                            PublishDate = DateTime.Parse(date.FormatDateLong()),
-                            ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
-                            AssetUrl = result["assetUrl"]
-                        });
-                    }
+                        Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
+                        Headline = System.Net.WebUtility.HtmlDecode(headlines?.FirstOrDefault().ToString()),
+                        Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
+                        Description = result["summary"],
+                        HasMediaAssets = result["hasMediaAssets"],
+                        HasTranslations = translations != null && hasTranslations,
+                        PublishDate = DateTime.Parse(date.FormatDateLong()),
+                        ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
+                        AssetUrl = result["assetUrl"]
+                    });
                 }
-
             }
 
 
