@@ -59,8 +59,8 @@ namespace Gov.News.Website.Controllers.Shared
 #endif
             model.Title = "Search";
 
-            bool isTranslationsSearch = string.Equals(query.Text, "translation", StringComparison.CurrentCultureIgnoreCase) 
-                || string.Equals(query.Text, "translations", StringComparison.CurrentCultureIgnoreCase);
+            bool isTranslationsSearch = string.Equals(query.Text, "translation", StringComparison.OrdinalIgnoreCase) 
+                || string.Equals(query.Text, "translations", StringComparison.OrdinalIgnoreCase);
             string requestPath = Properties.Settings.Default.AzureSearchUri.ToString();
             if (!string.IsNullOrEmpty(query.Text))
             {
