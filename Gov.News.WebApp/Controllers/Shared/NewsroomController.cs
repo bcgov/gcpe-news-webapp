@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
@@ -59,10 +59,15 @@ namespace Gov.News.Website.Controllers.Shared
 #endif
             model.Title = "Search";
 
+            bool isTranslationsSearch = string.Equals(query.Text, "translation", StringComparison.OrdinalIgnoreCase) 
+                || string.Equals(query.Text, "translations", StringComparison.OrdinalIgnoreCase);
             string requestPath = Properties.Settings.Default.AzureSearchUri.ToString();
             if (!string.IsNullOrEmpty(query.Text))
             {
-                requestPath += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+                if (!isTranslationsSearch)
+                {
+                    requestPath += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+                }
                 requestPath += string.Format("&{0}={1}", "searchMode", "all");
             }
             //if (!string.IsNullOrEmpty(query.DateRange))
@@ -70,7 +75,7 @@ namespace Gov.News.Website.Controllers.Shared
 
             requestPath += string.Format("&{0}={1}", "$top", Convert.ToString(ResultsPerPage));
 
-            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,documentsSubheadline,summary,publishDateTime,hasMediaAssets,assetUrl");
+            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,documentsSubheadline,summary,publishDateTime,hasMediaAssets,assetUrl,translations,hasTranslations");
 
             requestPath += string.Format("&{0}={1}", "$orderby", "publishDateTime desc");
 
@@ -87,10 +92,16 @@ namespace Gov.News.Website.Controllers.Shared
             }
 
             var filters = new List<string>();
+            if (isTranslationsSearch)
+            {
+                filters.Add("hasTranslations eq true");
+                filters.Add("translations ne null");
+                filters.Add("translations ne ''");
+            }
             if (useCustomRange)
             {
                 filters.Add("publishDateTime le " + query.ToDate.ToUniversalTime().AddDays(1).ToString("s") + "Z"); // include the selected day too
-                filters.Add("publishDateTime ge " + query.FromDate.ToUniversalTime().ToString("s") +"Z");
+                filters.Add("publishDateTime ge " + query.FromDate.ToUniversalTime().ToString("s") + "Z");
             }
             if (query.Filters != null)
             {
@@ -186,9 +197,12 @@ namespace Gov.News.Website.Controllers.Shared
 
                     IEnumerable<object> titles = result["documentsHeadline"];
                     IEnumerable<object> headlines = result["documentsSubheadline"];
+                    string translations = result["translations"];
+                    bool hasTranslations = result["hasTranslations"];
 
                     string assetUrl = result["assetUrl"];
                     var date = (DateTimeOffset)DateTimeOffset.Parse(Convert.ToString(result["publishDateTime"]));
+
                     model.Results.Add(new SearchViewModel.Result()
                     {
                         Title = System.Net.WebUtility.HtmlDecode(titles.FirstOrDefault().ToString()),
@@ -196,11 +210,11 @@ namespace Gov.News.Website.Controllers.Shared
                         Uri = NewsroomExtensions.GetPostUri(postKind.ToLower(), key),
                         Description = result["summary"],
                         HasMediaAssets = result["hasMediaAssets"],
+                        HasTranslations = translations != null && hasTranslations,
                         PublishDate = DateTime.Parse(date.FormatDateLong()),
                         ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
                         AssetUrl = result["assetUrl"]
                     });
-                    
                 }
             }
 
