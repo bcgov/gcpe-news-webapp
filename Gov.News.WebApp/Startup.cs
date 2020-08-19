@@ -74,7 +74,7 @@ namespace Gov.News.Website
                 var cacheProfileNoCache = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
 #else
                 var cacheProfile = new CacheProfile { Duration = 60 };
-                var cacheProfileAntiforgery = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
+                var cacheProfileNoCache = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
 #endif
                 options.CacheProfiles.Add("Default", cacheProfile);
                 options.CacheProfiles.Add("Feed", cacheProfile);
