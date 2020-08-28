@@ -50,8 +50,10 @@
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
         <div class="search-panel search-filters">
-            @foreach (var facetResult in Model.FacetResults)
+            @if(Model !=null && Model.FacetResults != null)
             {
+                @foreach (var facetResult in Model.FacetResults)
+                {
                 <div class="search-filter">
                     <h5 class="open">@facetResult.Key</h5>
                     <div class="search-filter-content" style="display:block">
@@ -113,6 +115,8 @@
                     </div>
                 }
             }
+         }
+            
         </div>
 
         @*  DEVNOTE: For no filters, add the no-filters class*@
