@@ -94,7 +94,7 @@ namespace Gov.News.Website.Controllers.Shared
             //TODO: This should be filtered by post kind e.g. Repository.Index.Factsheets
             if (category != null) // && (category.Kind == "ministries" || category.Kind == "sectors"))
             {
-                footer.FlickrMoreUri = new Uri(category.FlickrUri == null ? "http://www.flickr.com/photos/bcgovphotos/show/" : category.FlickrUri);
+                footer.FlickrMoreUri = new Uri(category.FlickrUri == null ? "http://www.flickr.com/photos/bcgovphotos" : category.FlickrUri);
                 footer.YoutubeMoreUri = new Uri(category.YoutubeUri == null ? "https://www.youtube.com/user/ProvinceofBC/" : category.YoutubeUri);
                 footer.SoundcloudMoreUri = new Uri(category.AudioUri == null ? "https://soundcloud.com/bcgov/" : category.AudioUri);
 
@@ -121,7 +121,7 @@ namespace Gov.News.Website.Controllers.Shared
             if (footer.FlickrMoreUri == null)
             {
                 footer.FlickrSource = "BC Government";
-                footer.FlickrMoreUri = new System.Uri("http://www.flickr.com/photos/bcgovphotos/show/");
+                footer.FlickrMoreUri = new System.Uri("http://www.flickr.com/photos/bcgovphotos");
             }
 
             if (footer.YoutubeMoreUri == null)
