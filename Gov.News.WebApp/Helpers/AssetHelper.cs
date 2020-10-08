@@ -13,7 +13,7 @@ namespace Gov.News.Website.Helpers
     {
         public static readonly Regex AssetRegex = new Regex("<asset>(?<url>[^<]+)</asset>");
 
-        private static string ReturnMediaAssetWrapper(string mediaProvider, string mediaId, string mediaUrl = "")
+        private static string ReturnMediaAssetWrapper(string mediaProvider, string mediaId, string mediaUrl = "", string altText = "")
         {
             System.Text.StringBuilder wrapper = new System.Text.StringBuilder();
             Uri youtubeImageUri = null;
@@ -42,7 +42,7 @@ namespace Gov.News.Website.Helpers
             if (mediaProvider == "youtube")
             {
                 youtubeImageUri = new Uri(string.Format("https://img.youtube.com/vi/{0}/maxresdefault.jpg", mediaId));
-                wrapper.AppendFormat("<img src=\"{0}\" onError=\"this.onerror=null; this.src='{1}';\"/>", youtubeImageUri.ToProxyUrl(), placeholderThumbnailUrl);
+                wrapper.AppendFormat("<img alt=\"{2}\" src=\"{0}\" onError=\"this.onerror=null; this.src='{1}';\"/>", youtubeImageUri.ToProxyUrl(), placeholderThumbnailUrl, altText);
             }
 
             wrapper.Append("<div class=\"overlay-container\">");
@@ -173,7 +173,7 @@ namespace Gov.News.Website.Helpers
         }
 
         [Obsolete]
-        public static HtmlString RenderPostAssetThumbnail(Uri uri, bool renderFlickrAsBackground = false)
+        public static HtmlString RenderPostAssetThumbnail(Uri uri, bool renderFlickrAsBackground = false, string altText = "")
         {
             string assetHtml = "";
 
@@ -198,10 +198,10 @@ namespace Gov.News.Website.Helpers
                     assetHtml = string.Format(
                                         "<div class='asset youtube'>" +
                                             "<a href='https://www.youtube.com/watch?v={0}'>" +
-                                                "<img src='{1}'/>" +
+                                                "<img src='{1}' alt='{2}' />" +
                                             "</a>" +
                                         "</div>"
-                                        , videoId, imgUri.ToProxyUrl());
+                                        , videoId, imgUri.ToProxyUrl(), altText);
                 }
                 else if (uri.Host.EndsWith("staticflickr.com"))
                 {
@@ -228,19 +228,19 @@ namespace Gov.News.Website.Helpers
                             assetHtml = string.Format(
                                             "<div class='asset flickr'>" +
                                                    // "<a href='{0}'>" +
-                                                   "<img src='{1}'/>" +
+                                                   "<img src='{1}' alt='{2}' />" +
                                             // "</a>" +
                                             "</div>"
-                                            , flickrUrl, uri.ToProxyUrl());
+                                            , flickrUrl, uri.ToProxyUrl(), altText);
                         }
                     }
                     else
                     {
                         assetHtml = string.Format(
                                         "<div>" +
-                                        "<img src='{0}'/>" +
+                                        "<img src='{0}' alt='{1}'/>" +
                                         "</div>"
-                                        , uri.ToProxyUrl());
+                                        , uri.ToProxyUrl(), altText);
                     }
                 }
             }
@@ -252,7 +252,7 @@ namespace Gov.News.Website.Helpers
             return new HtmlString(assetHtml);
         }
 
-        public static HtmlString RenderPostAsset(Uri uri, int? maxWidth = null)
+        public static HtmlString RenderPostAsset(Uri uri, int? maxWidth = null, string altText = "")
         {
             string assetHtml = "";
 
@@ -287,19 +287,19 @@ namespace Gov.News.Website.Helpers
                         assetHtml = string.Format(
                                         "<div class='asset flickr'>" +
                                             "<a href='{0}'>" +
-                                                "<img src='{1}'/>" +
+                                                "<img src='{1}' alt='{2}'/>" +
                                             "</a>" +
                                         "</div>"
-                                        , flickrUrl, uri.ToProxyUrl());
+                                        , flickrUrl, uri.ToProxyUrl(), altText);
                     }
                     else
                     {
 
                         assetHtml = string.Format(
                                        "<div>" +
-                                       "<img src='{0}'/>" +
+                                       "<img src='{0}' alt='{1}' />" +
                                        "</div>"
-                                       , uri.ToProxyUrl());
+                                       , uri.ToProxyUrl(), altText);
                     }
                 }
                 else if (uri.Host == "w.soundcloud.com")
