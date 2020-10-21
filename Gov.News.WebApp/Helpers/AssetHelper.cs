@@ -42,7 +42,7 @@ namespace Gov.News.Website.Helpers
             if (mediaProvider == "youtube")
             {
                 youtubeImageUri = new Uri(string.Format("https://img.youtube.com/vi/{0}/maxresdefault.jpg", mediaId));
-                wrapper.AppendFormat("<img alt=\"{2}\" src=\"{0}\" onError=\"this.onerror=null; this.src='{1}';\"/>", youtubeImageUri.ToProxyUrl(), placeholderThumbnailUrl, altText);
+                wrapper.AppendFormat("<img alt=\"{2}\" title=\"{2}\" src=\"{0}\" onError=\"this.onerror=null; this.src='{1}';\"/>", youtubeImageUri.ToProxyUrl(), placeholderThumbnailUrl, altText);
             }
 
             wrapper.Append("<div class=\"overlay-container\">");
@@ -228,7 +228,7 @@ namespace Gov.News.Website.Helpers
                             assetHtml = string.Format(
                                             "<div class='asset flickr'>" +
                                                    // "<a href='{0}'>" +
-                                                   "<img src='{1}' alt='{2}' />" +
+                                                   "<img src='{1}' alt='{2}' title='{2}'/>" +
                                             // "</a>" +
                                             "</div>"
                                             , flickrUrl, uri.ToProxyUrl(), altText);
@@ -238,7 +238,7 @@ namespace Gov.News.Website.Helpers
                     {
                         assetHtml = string.Format(
                                         "<div>" +
-                                        "<img src='{0}' alt='{1}'/>" +
+                                        "<img src='{0}' alt='{1}' title='{1}'/>" +
                                         "</div>"
                                         , uri.ToProxyUrl(), altText);
                     }
@@ -287,7 +287,7 @@ namespace Gov.News.Website.Helpers
                         assetHtml = string.Format(
                                         "<div class='asset flickr'>" +
                                             "<a href='{0}'>" +
-                                                "<img src='{1}' alt='{2}'/>" +
+                                                "<img src='{1}' alt='{2}' title='{2}'/>" +
                                             "</a>" +
                                         "</div>"
                                         , flickrUrl, uri.ToProxyUrl(), altText);
@@ -297,7 +297,7 @@ namespace Gov.News.Website.Helpers
 
                         assetHtml = string.Format(
                                        "<div>" +
-                                       "<img src='{0}' alt='{1}' />" +
+                                       "<img src='{0}' alt='{1}' title='{1}'/>" +
                                        "</div>"
                                        , uri.ToProxyUrl(), altText);
                     }
