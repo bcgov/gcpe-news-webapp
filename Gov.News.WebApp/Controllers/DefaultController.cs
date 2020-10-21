@@ -47,7 +47,6 @@ namespace Gov.News.Website.Controllers
 
             if (model == null)
                 return await SearchNotFound();
-
             ViewBag.GoogleSiteVerification = Properties.Settings.Default.GoogleSiteVerification;
             ViewBag.BingSiteVerification = Properties.Settings.Default.BingSiteVerification;
             if (Properties.Settings.Default.NewsMediaHostUri != null)

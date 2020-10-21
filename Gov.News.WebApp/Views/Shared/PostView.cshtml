@@ -303,7 +303,7 @@
         else
         {
             <div class="story-copy primary-asset">
-                @AssetHelper.RenderPostAsset(Model.Post.AssetUrl.ToUri(), 624).ShowLinks()
+                @AssetHelper.RenderPostAsset(Model.Post.AssetUrl.ToUri(), 624, string.IsNullOrEmpty(Model.Post.SocialMediaHeadline)? firstDoc.PageTitle : Model.Post.SocialMediaHeadline).ShowLinks()
             </div>
         }
 
@@ -584,7 +584,7 @@
             @if (leadMinistry != null && Model.Footer.LatestFlickrUri != null)
             {
                 <div class="related-image">
-                    @AssetHelper.RenderPostAsset(Model.Footer.LatestFlickrUri)
+                    @AssetHelper.RenderPostAsset(Model.Footer.LatestFlickrUri, null, string.IsNullOrEmpty(Model.Post.SocialMediaHeadline) ? firstDoc.PageTitle : Model.Post.SocialMediaHeadline)
                 </div>
             }
             else

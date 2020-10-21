@@ -86,7 +86,8 @@
                 }
                 else
                 {
-                    <a href='@Model.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' /></a>
+                    var altText = string.IsNullOrEmpty(Model.SocialMediaHeadline) ? Model.Headline() : Model.SocialMediaHeadline;
+                    <a href='@Model.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' alt="@altText" title="@altText"/></a>
                 }
 
                 <!--
