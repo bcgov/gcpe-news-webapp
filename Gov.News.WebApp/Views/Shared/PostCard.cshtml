@@ -86,7 +86,7 @@
                 }
                 else
                 {
-                    var altText = string.IsNullOrEmpty(Model.SocialMediaHeadline) ? Model.Headline() : Model.SocialMediaHeadline;
+                    var altText = string.IsNullOrEmpty(Model.SocialMediaHeadline) ? string.Empty : Model.SocialMediaHeadline;
                     <a href='@Model.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' alt="@altText" title="@altText"/></a>
                 }
 
