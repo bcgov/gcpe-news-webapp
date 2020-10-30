@@ -25,6 +25,7 @@ ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION  v8.9.1
 
 RUN INSTALL_PKGS="bzip2 fontconfig " && \
+    subscription-manager attach --auto && \
     yum install -y --setopt=tsflags=nodocs --disablerepo=\* \
     --enablerepo=rhel-7-server-rpms,rhel-server-rhscl-7-rpms,rhel-7-server-dotnet-rpms \
     $INSTALL_PKGS && \
