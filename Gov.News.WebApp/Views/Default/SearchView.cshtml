@@ -50,8 +50,10 @@
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
         <div class="search-panel search-filters">
-            @foreach (var facetResult in Model.FacetResults)
+            @if(Model !=null && Model.FacetResults != null)
             {
+                @foreach (var facetResult in Model.FacetResults)
+                {
                 <div class="search-filter">
                     <h5 class="open">@facetResult.Key</h5>
                     <div class="search-filter-content" style="display:block">
@@ -113,6 +115,8 @@
                     </div>
                 }
             }
+         }
+            
         </div>
 
         @*  DEVNOTE: For no filters, add the no-filters class*@
@@ -141,7 +145,7 @@
             {
                 <div class="article">
                     <h2><a href="@result.Uri">@result.Title</a></h2>
-                    @if (result.Headline != null && result.Headline.Contains("translation", StringComparison.OrdinalIgnoreCase))
+                    @if (result.HasTranslations || (result.Headline != null && result.Headline.Contains("translation", StringComparison.OrdinalIgnoreCase)))
                     {
                         <div class="item-medialink translations"><a href="@result.Uri#translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-left:6px;" aria-hidden="true"></i> Translations</a></div>
                     }

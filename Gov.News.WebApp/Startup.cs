@@ -71,14 +71,17 @@ namespace Gov.News.Website
             {
 #if DEBUG
                 var cacheProfile = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
+                var cacheProfileNoCache = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
 #else
                 var cacheProfile = new CacheProfile { Duration = 60 };
+                var cacheProfileNoCache = new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true };
 #endif
                 options.CacheProfiles.Add("Default", cacheProfile);
                 options.CacheProfiles.Add("Feed", cacheProfile);
                 options.CacheProfiles.Add("Embed", cacheProfile);
                 options.CacheProfiles.Add("Page", cacheProfile);
                 options.CacheProfiles.Add("Archive", cacheProfile);
+                options.CacheProfiles.Add("NoCache", cacheProfileNoCache);
 
                 options.Filters.Add(new TypeFilterAttribute(typeof(XFrameOptionsAttribute)));
 

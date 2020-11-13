@@ -89,6 +89,7 @@ namespace Gov.News.Website.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateReferer]
+        [ResponseCache(CacheProfileName = "NoCache")]
         public async Task<ActionResult> Index(SelectionModel options, bool? AllNews)
         {
             var model = new ContentViewModel()
@@ -242,6 +243,7 @@ namespace Gov.News.Website.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateReferer]
+        [ResponseCache(CacheProfileName = "NoCache")]
         public async Task<string> Save(Guid token, SelectionModel options, bool allNews)
         {
             SubscriberInfo info = GetSubscriberInfo(options, allNews);
@@ -275,6 +277,7 @@ namespace Gov.News.Website.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateReferer]
+        [ResponseCache(CacheProfileName = "NoCache")]
         public async Task<ActionResult> Manage(Guid? token, string EmailAddress)
         { // Unsubscribe or Renew
             if (!token.HasValue)
