@@ -120,9 +120,9 @@
     <div id="covid-banner" class="covid-banner">
         <div class="content">
             <button class="btn-link pull-right" id="btnCloseCovidBanner"><strong>×</strong></button>
-            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>   B.C. has declared a state of emergency. Learn about
-            <a href=" http://www.bccdc.ca/health-info/diseases-conditions/covid-19?utm_campaign=20200318_GCPE_AM_COVID_3_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">COVID-19 health issues.</a>
-            &nbsp; |&nbsp; <a href="https://www2.gov.bc.ca/gov/content/safety/emergency-preparedness-response-recovery/covid-19-provincial-support?utm_campaign=20200506_GCPE_AM_COVID_11_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">B.C.'s Response to COVID-19.</a>
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>   B.C. has declared a state of emergency.&nbsp; &nbsp;
+            <a href=" https://www2.gov.bc.ca/gov/content?id=D722D1BB85E74708A9EAEE036A21C568?utm_campaign=20200318_GCPE_AM_COVID_3_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">Our response to COVID-19</a>
+            &nbsp; |&nbsp; <a href=" https://www2.gov.bc.ca/gov/content/safety/emergency-preparedness-response-recovery/covid-19-provincial-support/lower-mainland?utm_campaign=20201113_GCPE_AM_COVID_3_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION">Fraser Valley, Lower Mainland restrictions</a>
         </div>
     </div>
     <!-- end of COVID banner-->
@@ -136,7 +136,10 @@
                         <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." title="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                     </a>
                 </div>
+                <div class="mini-menu-trigger covid-mini-menu-trigger"> </div>
+                <div class="mini-search-trigger covid-mini-search-trigger"> </div>
             </div>
+            
         </div>
         <div id="header-bottom">
             <div class="content">
@@ -156,8 +159,7 @@
             </div>
         </div>
     </div>
-    <div class="mini-menu-trigger covid-mini-menu-trigger"> </div>
-    <div class="mini-search-trigger covid-mini-search-trigger"> </div>
+    
 
     <div id="mini-menu-container">
         @if (!(Model is SearchViewModel))

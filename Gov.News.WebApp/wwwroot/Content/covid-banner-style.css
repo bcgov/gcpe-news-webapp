@@ -20,7 +20,7 @@
         text-decoration: underline;
         font-weight: 600;
     }
-
+/*
 @media (min-width: 470px) and (max-width: 613px) {
     .covid-mini-search-trigger, .covid-mini-menu-trigger {
         top: 120px !important;
@@ -51,6 +51,7 @@
         top: 150px !important;
     }
 }
+*/
 
 #btnCloseCovidBanner {
     color: white !important;
