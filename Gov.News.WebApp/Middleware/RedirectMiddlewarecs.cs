@@ -140,7 +140,7 @@ namespace Gov.News.Website.Middleware
             }
             if (path.StartsWith("/ministries/advanced-education") && !path.StartsWith("/ministries/advanced-education-skills")) //Need - otherwise it casues a redirect loop because the names are too similar.
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path .Replace("/ministries/advanced-education", "/ministries/advanced-education-and-skills-training") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path .Replace("/ministries/advanced-education", "/ministries/advanced-education-skills-and-training") + query);
             }
             if (path.StartsWith("/ministries/technology-innovation-and-citizens-services"))
             {
