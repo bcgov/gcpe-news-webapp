@@ -341,7 +341,7 @@ namespace Gov.News.Website.Middleware
             redirectMappings.Add("/ministries/energy-and-mines",
                                  "/ministries/energy-mines-and-petroleum-resources");
             redirectMappings.Add("/ministries/advanced-education",
-                                 "/ministries/advanced-education-skills-and-training");
+                                 "/ministries/advanced-education-and-skills-training");
             redirectMappings.Add("/ministries/environment",
                                  "/ministries/environment-and-climate-change-strategy");
             redirectMappings.Add("/ministries/intergovernmental-relations-secretariat-1",
