@@ -138,6 +138,10 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/justice", "/ministries/attorney-general") + query);
             }
+            if (path.StartsWith("/ministries/advanced-education") && !path.StartsWith("/ministries/advanced-education-skills")) //Need - otherwise it casues a redirect loop because the names are too similar.
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path .Replace("/ministries/advanced-education", "/ministries/advanced-education-skills-and-training") + query);
+            }
             if (path.StartsWith("/ministries/technology-innovation-and-citizens-services"))
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("technology-innovation-and-citizens-services", "citizens-services") + query);
@@ -341,7 +345,7 @@ namespace Gov.News.Website.Middleware
             redirectMappings.Add("/ministries/energy-and-mines",
                                  "/ministries/energy-mines-and-petroleum-resources");
             redirectMappings.Add("/ministries/advanced-education",
-                                 "/ministries/advanced-education-and-skills-training");
+                                 "/ministries/advanced-education-skills-and-training");
             redirectMappings.Add("/ministries/environment",
                                  "/ministries/environment-and-climate-change-strategy");
             redirectMappings.Add("/ministries/intergovernmental-relations-secretariat-1",
