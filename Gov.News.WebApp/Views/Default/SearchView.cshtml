@@ -85,17 +85,24 @@
                                 {
                                     facetHitValue = facetHit.Value;
                                 }
-                                <li>
-                                    @if (filterValue != null)
+                            <li>
+                                @if (filterValue != null)
+                                {
+                                    <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                }
+                                else
+                                {
+                                    if (facetResult.Key == "Date")
                                     {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()">@facetHitValue</a>
                                     }
                                     else
                                     {
                                         <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
                                     }
-                                    <span>: @facetHit.Count.ToString("N0")</span>
-                                </li>
+                                }
+                                <span>: @facetHit.Count.ToString("N0")</span>
+                            </li>
                             }
                             @if (facetResult.Key == "Date" && filterValue == null && !Model.Query.UseCustomRange())
                             {
