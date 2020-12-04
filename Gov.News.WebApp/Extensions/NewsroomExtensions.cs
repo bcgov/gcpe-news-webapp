@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -274,7 +275,9 @@ namespace Gov.News.Website
 
                 DateTime? endDateTime = endDate == "current date" ? DateTime.Now : DateTime.Parse(endDate);
                 DateTime? startDateTime = DateTime.Parse(startDate);
-                query = query.Replace($"Date={capturedDateRange}", $"fromDate={startDateTime.Value:yyyy/MM/dd}&toDate={endDateTime.Value:yyyy/MM/dd}");
+                query = query.Replace($"Date={capturedDateRange}", 
+                    $"fromDate={startDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F")}" +
+                    $"&toDate={endDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F")}");
             }
 
             return query;
