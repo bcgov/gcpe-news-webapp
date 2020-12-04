@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
+using System.Web;
 using Gov.News.Api.Models;
 
 namespace Gov.News.Website
@@ -240,6 +242,45 @@ namespace Gov.News.Website
             }
 
             return rvl;
+        }
+
+        public static string ToConstrainedDateRangeQueryString(this string query) 
+        {
+            Dictionary<string, string> dateCollections = new Dictionary<string, string> {
+                { "2020-2024", "November 26, 2020 to current date" },
+                { "2017-2021", "July 18, 2017 to November 25, 2020" },
+                { "2017-2017", "June 12, 2017 to July 17, 2017" },
+                { "2013-2017", "June 10, 2013 to June 11, 2017" },
+                { "2009-2013", "March 12, 2011 to June 9, 2013" }
+            };
+
+            // constrain the data returned to a specific start and end date rather than a start and end year
+            Regex regex = new Regex(@"Date=([0-9]{4}\-[0-9]{4})");
+            bool isMatch = regex.IsMatch(query);
+
+            string capturedDateRange = "";
+            if (isMatch)
+            {
+                Match match = regex.Match(query);
+                capturedDateRange = match.Groups[1].Captures[0].Value;
+            }
+
+            string dates;
+            if (dateCollections.TryGetValue(capturedDateRange, out dates))
+            {
+                var range = dates.Split("to");
+
+                var startDate = range[0].Trim();
+                var endDate = range[1].Trim();
+
+                DateTime? endDateTime = endDate == "current date" ? DateTime.Now : DateTime.Parse(endDate);
+                DateTime? startDateTime = DateTime.Parse(startDate);
+                query = query.Replace($"Date={capturedDateRange}", 
+                    $"fromDate={startDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F")}" +
+                    $"&toDate={endDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F")}");
+            }
+
+            return query;
         }
     }
 }
