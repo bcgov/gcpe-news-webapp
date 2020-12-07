@@ -276,7 +276,7 @@ namespace Gov.News.Website
                 DateTime? endDateTime = endDate == "current date" ? DateTime.Now : DateTime.Parse(endDate);
                 DateTime? startDateTime = DateTime.Parse(startDate);
                 query = query.Replace($"Date={capturedDateRange}", 
-                    $"fromDate={startDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F ")}" +
+                    $"fromDate={startDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F")}" +
                     $"&toDate={endDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F")}");
             }
 
