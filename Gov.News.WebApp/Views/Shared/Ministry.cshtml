@@ -6,7 +6,7 @@
     <div class="home-features">
         <h4>@Model.Title</h4>
 
-        @if (Model.Minister != null)
+        @if (Model.Minister != null && Model.Ministry.Name != "Intergovernmental Relations Secretariat")
         {
             <partial name="Minister" model="new Tuple<Ministry, Minister>(Model.Ministry, Model.Minister)" />
         }

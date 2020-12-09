@@ -68,10 +68,13 @@
             <ul>
                 <li><a href="@Model.Index.GetUri()/factsheets">Factsheets &amp; Opinion Editorials</a></li>
                 @*<li>@Html.ActionLink("Newsletters", "Newsletter", "Default")</li>*@
-                <li>@Html.ActionLink("Search News", "Search", "Default", new { ministry = Model.Index.Key}, null)</li>
-                @if(!string.IsNullOrEmpty(((Ministry)Model.Index).MinisterName))
+                <li>@Html.ActionLink("Search News", "Search", "Default", new { ministry = Model.Index.Key }, null)</li>
+                @if (!string.IsNullOrEmpty(((Ministry)Model.Index).MinisterName))
                 {
-                    <li><a href="@Model.Index.GetUri()/biography">@(Model.Index.Name == "Office of the Premier" ? "Premier" : "Minister")'s Bio</a></li>
+                    if (Model.Index.Name != "Intergovernmental Relations Secretariat")
+                    {
+                        <li><a href="@Model.Index.GetUri()/biography">@(Model.Index.Name == "Office of the Premier" ? "Premier" : "Minister")'s Bio</a></li>
+                    }
                 }
             </ul>
         }
