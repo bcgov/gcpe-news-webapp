@@ -1,4 +1,4 @@
-﻿@using Gov.News.Website;
+@using Gov.News.Website;
 @using Gov.News.Website.Models
 @using Gov.News.WebApp.Extensions
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
@@ -29,7 +29,7 @@
 
     @if (@Model.OGMetaImageUrl != null)
     {
-        <meta property="og:image" content="https://via.placeholder.com/1200x630" />
+        <meta property="og:image" content="@Html.Raw(Model.OGMetaImageUrl)" />
     }
     @RenderSection("TwitterMeta", false)
 
