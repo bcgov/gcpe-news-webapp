@@ -46,10 +46,17 @@
 
 @* Doc for the below twitter cards See - https://dev.twitter.com/cards/overview*@
 @section TwitterMeta {
+    @if (Model.PostThumbnailUri != null)
+    {
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@@BCGovNews">
         <meta name="twitter:title" content="@(string.IsNullOrWhiteSpace(Model.Post.SocialMediaHeadline) ? Model.Title : Model.Post.SocialMediaHeadline)">
         <meta name="twitter:description" content="@(string.IsNullOrWhiteSpace(Model.Post.SocialMediaSummary) ? Model.Post.Summary : Model.Post.SocialMediaSummary)">
+        @if (@Model.OGMetaImageUrl != null)
+        {
+            <meta name="twitter:image" content="@Html.Raw(Model.CanonicalUri + "/image")" />
+        }
+    }
 }
 
 @section StoryNavigator {
