@@ -36,6 +36,11 @@
 
     <meta name="DC.date.issued" content="@Model.Post.PublishDate.Value.ToString("yyyy-MM-dd")" />
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@@BCGovNews">
+    <meta name="twitter:title" content="@(string.IsNullOrWhiteSpace(Model.Post.SocialMediaHeadline) ? Model.Title : Model.Post.SocialMediaHeadline)">
+    <meta name="twitter:description" content="@(string.IsNullOrWhiteSpace(Model.Post.SocialMediaSummary) ? Model.Post.Summary : Model.Post.SocialMediaSummary)">
+
     @*TODO: Replace FullName with MetaLeadMinistry*@
     <meta name="DCTERMS.creator" content="@leadMinistry.Name?.Replace(",", " ")" />
 
