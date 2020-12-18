@@ -1,4 +1,4 @@
-﻿@using Gov.News.Website.Models
+@using Gov.News.Website.Models
 
 @model HomeViewModel
 
@@ -145,7 +145,7 @@
                     var hiddenCount = $(".regular-articles .hidden-article").length;
                     $(".regular-articles .hidden-article").removeClass("hidden-article");
                     window.scrollTo(offsetPosition.left, offsetPosition.top);
-                    if(hiddenCount < @Gov.News.Website.Providers.ProviderHelpers.MaximumLatestNewsItemsLoadMore) {
+                    if (hiddenCount < @Gov.News.Website.Providers.ProviderHelpers.MaximumLatestNewsItemsLoadMore) {
                         $(".load-more").hide();
                         event.preventDefault();
                         return;
