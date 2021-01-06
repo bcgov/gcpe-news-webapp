@@ -37,7 +37,7 @@
         var ministry = categoryModel.Index as Ministry;
         if (ministry.ContactUser != null)
         {
-            <div class="row">
+            <div style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px" : "")" class="row">
                 <div class="col-xs-12 col-sm-4">
                     <a href="@ministry.GetUri()">@ministry.Name</a>
                     @if (!string.IsNullOrEmpty(ministry.DisplayAdditionalName))
@@ -68,9 +68,9 @@
         }
         if (ministry.Name == "Health")
         { 
-            <div class="row">
+            <div style="margin-left: 25px;" class="row">
                 <div class="col-xs-12 col-sm-4">
-                    <a href="#">COVID-19 Communications</a>
+                    <a style="text-decoration: none; color: #494949;">COVID-19 Communications</a>
                 </div>
                 <div class="col-xs-12 col-sm-4">
                     <span class="contact-name">Carolynn Hunter</span>
