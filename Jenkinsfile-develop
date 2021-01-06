@@ -1,24 +1,31 @@
 node('master') {
+	stage('Build Image') {
+		openshift.withCluster() {
+                    openshift.withProject() {
+                        echo "building..."
+			def bc = openshift.selector('bc', 'news-webapp-develop')
+			def buildSelector = bc.startBuild()
+			openshift.tag("news-webapp-develop:latest", "news-webapp:dev")
+			openshift.tag("news-webapp-develop:latest", "news-webapp:test")
+                    }
+                }
+	}
 
-    stage('Build Image') {
-        echo "Building..."
-        openshiftBuild bldCfg: 'news-webapp-develop', showBuildLogs: 'true'
-        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: '$BUILD_ID', srcStream: 'news-webapp', srcTag: 'latest'
-    }
-	
-    stage('Deploy on Dev') {
-        echo "Deploying to dev..."
-        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'dev', srcStream: 'news-webapp', srcTag: '$BUILD_ID'
-	//Sleeping for a while to wait deployment completes
-    }
-	
+	stage('Deploy on Dev') {
+		openshift.withCluster() {
+                    openshift.withProject("47ba99-dev") {
+		    	echo "Deploying to dev..."
+			openshift.selector("dc", "news-webapp").rollout().latest()
+		     }
+		}
+	}
+
 	stage('Deploy on Test') {
-    input "Deploy to test?"
-   
-	openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'test', srcStream: 'news-webapp', srcTag: '$BUILD_ID'
-	   
+    		input "Deploy to test?"
+		openshift.withCluster() {
+                    openshift.withProject("47ba99-test") {
+			openshift.selector("dc", "news-webapp").rollout().latest()
+		     }
+		}
 	}
 }
-
-
-
