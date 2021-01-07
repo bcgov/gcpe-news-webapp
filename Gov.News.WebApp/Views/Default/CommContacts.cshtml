@@ -37,16 +37,16 @@
         var ministry = categoryModel.Index as Ministry;
         if (ministry.ContactUser != null)
         {
-            <div style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px" : "")" class="row">
+            <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                    <a href="@ministry.GetUri()">@ministry.Name</a>
+                    <a style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px; display:inline-block;" : "")" href="@ministry.GetUri()">@ministry.Name</a>
                     @if (!string.IsNullOrEmpty(ministry.DisplayAdditionalName))
                     {
-                        <div><i>(@ministry.DisplayAdditionalName)</i></div>
+                        <div style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px;" : "")"><i>(@ministry.DisplayAdditionalName)</i></div>
                     }
                     @if (ministry.Name != "Intergovernmental Relations Secretariat")
                     {
-                        <div>@ministry.MinisterName</div>
+                        <div style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px;" : "")">@ministry.MinisterName</div>
                     }
                 </div>
                 <div class="col-xs-12 col-sm-4">
@@ -68,23 +68,23 @@
         }
         if (ministry.Name == "Health")
         { 
-            <div style="margin-left: 25px;" class="row">
+            <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                    <a style="text-decoration: none; color: #494949;">COVID-19 Communications</a>
+                    <a style="text-decoration: none; color: #494949; display:inline-block; margin-left: 25px;">COVID-19 Communications</a>
                 </div>
                 <div class="col-xs-12 col-sm-4">
                     <span class="contact-name">Devon Smith</span>
                     <div>
                         <span>Cell: 250-880-5855</span>
                     </div>
-                    <a href="mailto:hello@gov.bc.ca">Devon.P.Smith@gov.bc.ca</a><br />
+                    <a href="mailto:Devon.P.Smith@gov.bc.ca">Devon.P.Smith@gov.bc.ca</a><br />
                 </div>
                 <div class="col-xs-12 col-sm-4">
                     <span class="contact-name">Chandler Grieve</span>
                     <div>
                         <span>Cell: 250-883-2237</span>
                     </div>
-                    <a href="mailto:hello@gov.bc.ca">Chandler.Grieve@gov.bc.ca</a><br />
+                    <a href="mailto:Chandler.Grieve@gov.bc.ca">Chandler.Grieve@gov.bc.ca</a><br />
                 </div>
                 @*<div class="col-xs-12 col-sm-6 pull-right">
                     <div><i>Weekends/Holidays: 250-555-1111</i></div>
