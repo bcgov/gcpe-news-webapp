@@ -1,30 +1,31 @@
 node('master') {
-/*
-    stage('Code Quality') {
-        echo "Running SonarQube static code analysis on master branch."
-        openshiftBuild bldCfg: 'news-webapp-sonar-master', showBuildLogs: 'true'
-    }*/
-
-	/*stage('Dependency Security Check') {
-        echo "Running Snyk analysis of dependencies"
-        openshiftBuild bldCfg: 'news-webapp-snyk-master', showBuildLogs: 'true'
-    }*/
-	
-    stage('Build Image') {
-        echo "Building..."
-        openshiftBuild bldCfg: 'news-webapp-master', showBuildLogs: 'true'
-        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'MASTER-$BUILD_ID', srcStream: 'news-webapp', srcTag: 'uat'
-    }
+	stage('Build Image') {
+		openshift.withCluster() {
+                    openshift.withProject() {
+                        echo "building..."
+			def bc = openshift.selector('bc', 'news-webapp-master')
+			def buildSelector = bc.startBuild()
+			openshift.tag("news-webapp-master:latest", "news-webapp:prod")
+			openshift.tag("news-webapp-master:latest", "news-webapp:uat")
+                    }
+                }
+	}
 
 	stage('Deploy to UAT') {
-        echo "Deploying to uat..."
-		openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'uat', srcStream: 'news-webapp', srcTag: 'MASTER-$BUILD_ID'
-    }	
-}
+		openshift.withCluster() {
+                    openshift.withProject("47ba99-test") {
+		    	echo "Deploying to uat..."
+			openshift.selector("dc", "news-webapp-uat").rollout().latest()
+		     }
+		}
+	}
 
-stage('Deploy on Prod') {
-    input "Deploy to Prod?"
-    node('master') {
-        openshiftTag destStream: 'news-webapp', verbose: 'true', destTag: 'prod', srcStream: 'news-webapp', srcTag: 'MASTER-$BUILD_ID'
-    }
+	stage('Deploy on Prod') {
+    		input "Deploy to prod?"
+		openshift.withCluster() {
+                    openshift.withProject("47ba99-prod") {
+			openshift.selector("dc", "news-webapp").rollout().latest()
+		     }
+		}
+	}
 }
