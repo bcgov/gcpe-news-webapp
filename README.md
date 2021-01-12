@@ -24,7 +24,7 @@ Developer Prerequisites
 -----------------------
 
 **Gov.News.WebApp**
-- Visual Studio 2017
+- Visual Studio 2019
 (or comparable IDE able to edit C# code)
 
 
