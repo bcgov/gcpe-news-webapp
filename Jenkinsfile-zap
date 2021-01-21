@@ -1,5 +1,3 @@
-
-
 node('zap') {
 	stage('ZAP Security Scan') {
 		dir('/zap') {

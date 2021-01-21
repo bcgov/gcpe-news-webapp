@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -137,10 +137,6 @@ namespace Gov.News.Website.Middleware
             if (path.StartsWith("/ministries/justice"))
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/justice", "/ministries/attorney-general") + query);
-            }
-            if (path.StartsWith("/ministries/advanced-education") && !path.StartsWith("/ministries/advanced-education-skills")) //Need - otherwise it casues a redirect loop because the names are too similar.
-            {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path .Replace("/ministries/advanced-education", "/ministries/advanced-education-skills-and-training") + query);
             }
             if (path.StartsWith("/ministries/technology-innovation-and-citizens-services"))
             {
@@ -345,7 +341,7 @@ namespace Gov.News.Website.Middleware
             redirectMappings.Add("/ministries/energy-and-mines",
                                  "/ministries/energy-mines-and-petroleum-resources");
             redirectMappings.Add("/ministries/advanced-education",
-                                 "/ministries/advanced-education-skills-and-training");
+                                 "/ministries/advanced-education-and-skills-training");
             redirectMappings.Add("/ministries/environment",
                                  "/ministries/environment-and-climate-change-strategy");
             redirectMappings.Add("/ministries/intergovernmental-relations-secretariat-1",

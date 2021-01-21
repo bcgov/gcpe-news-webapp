@@ -1,4 +1,4 @@
-﻿@using Gov.News.Website.Models
+@using Gov.News.Website.Models
 
 @model MinistryViewModel
 
@@ -6,7 +6,7 @@
     <div class="home-features">
         <h4>@Model.Title</h4>
 
-        @if (Model.Minister != null)
+        @if (Model.Minister != null && Model.Ministry.Name != "Intergovernmental Relations Secretariat")
         {
             <partial name="Minister" model="new Tuple<Ministry, Minister>(Model.Ministry, Model.Minister)" />
         }
@@ -83,6 +83,22 @@
                             @if (!string.IsNullOrEmpty(ministry.WeekendContactNumber))
                             {
                                 <br /><div>Weekends/Holidays: @ministry.WeekendContactNumber</div>
+                            }
+                            @if (ministry.Name == "Health")
+                            {
+                                <br />
+                                <h6>COVID-19 Media Contacts</h6>
+                                <br/>
+                                <span class="contact-name">Devon Smith</span>
+                                <div>
+                                    <span>Cell: 250-880-5855</span>
+                                </div>
+                                <a href="mailto:Devon.P.Smith@gov.bc.ca">Devon.P.Smith@gov.bc.ca</a><br /><br />
+                                <span class="contact-name">Chandler Grieve</span>
+                                <div>
+                                    <span>Cell: 250-883-2237</span>
+                                </div>
+                                <a href="mailto:Chandler.Grieve@gov.bc.ca">Chandler.Grieve@gov.bc.ca</a><br />
                             }
                         </div>
                     </div>
