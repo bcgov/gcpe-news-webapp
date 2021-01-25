@@ -50,8 +50,8 @@
     {
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@@BCGovNews">
-        <meta name="twitter:title" content="@(string.IsNullOrWhiteSpace(Model.Post.SocialMediaHeadline) ? Model.Title : Model.Post.SocialMediaHeadline)">
-        <meta name="twitter:description" content="@(string.IsNullOrWhiteSpace(Model.Post.SocialMediaSummary) ? Model.Post.Summary : Model.Post.SocialMediaSummary)">
+        <meta name="twitter:title" content="@(string.IsNullOrWhiteSpace(Model.Title) ? Model.Post.SocialMediaHeadline : Model.Title)">
+        <meta name="twitter:description" content="@(string.IsNullOrWhiteSpace(Model.Post.Summary) ? Model.Post.SocialMediaSummary : Model.Post.Summary)">
         @if (@Model.OGMetaImageUrl != null)
         {
             <meta name="twitter:image" content="@Html.Raw(Model.CanonicalUri + "/image")" />
