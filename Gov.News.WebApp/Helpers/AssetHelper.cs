@@ -216,9 +216,9 @@ namespace Gov.News.Website.Helpers
                         if (renderFlickrAsBackground)
                         {
                             assetHtml = string.Format(
-                                            @"<div class='asset flickr background'>" +
+                                            "<div class='asset flickr background'>" +
                                                     // "<a href='{0}'>" +
-                                                    @"<div class='image-div' style='background-image: url({1})'></div>" +
+                                                    "<div class='image-div' style='background-image: url({1})'></div>" +
                                             //  "</a>" +
                                             "</div>"
                                             , flickrUrl, uri.ToProxyUrl());
@@ -226,7 +226,7 @@ namespace Gov.News.Website.Helpers
                         else
                         {
                             assetHtml = string.Format(
-                                            @"<div class='asset flickr'>" +
+                                            "<div class='asset flickr'>" +
                                                    // "<a href='{0}'>" +
                                                    "<img src='{1}' alt=\"{2}\" title=\"{2}\"/>" +
                                             // "</a>" +
@@ -285,10 +285,10 @@ namespace Gov.News.Website.Helpers
                     {
                         var flickrUrl = string.Format("https://www.flickr.com/photos/{0}/{1}/", "bcgovphotos", flickrMatch.Groups[4].Value);
                         assetHtml = string.Format(
-                                        @"<div class='asset flickr'>" +
-                                            @"<a href='{0}'>" +
+                                        "<div class='asset flickr'>" +
+                                            "<a href='{0}'>" +
                                                 "<img src='{1}' alt=\"{2}\" title=\"{2}\"/>" +
-                                            @"</a>" +
+                                            "</a>" +
                                         "</div>"
                                         , flickrUrl, uri.ToProxyUrl(), @altText);
                     }
