@@ -228,7 +228,7 @@ namespace Gov.News.Website.Helpers
                             assetHtml = string.Format(
                                             "<div class='asset flickr'>" +
                                                    // "<a href='{0}'>" +
-                                                   "<img src='{1}' alt='{2}' title='{2}'/>" +
+                                                   "<img src='{1}' alt=\"{2}\" title=\"{2}\"/>" +
                                             // "</a>" +
                                             "</div>"
                                             , flickrUrl, uri.ToProxyUrl(), altText);
@@ -287,17 +287,17 @@ namespace Gov.News.Website.Helpers
                         assetHtml = string.Format(
                                         "<div class='asset flickr'>" +
                                             "<a href='{0}'>" +
-                                                "<img src='{1}' alt='{2}' title='{2}'/>" +
+                                                "<img src='{1}' alt=\"{2}\" title=\"{2}\"/>" +
                                             "</a>" +
                                         "</div>"
-                                        , flickrUrl, uri.ToProxyUrl(), altText);
+                                        , flickrUrl, uri.ToProxyUrl(), @altText);
                     }
                     else
                     {
 
                         assetHtml = string.Format(
                                        "<div>" +
-                                       "<img src='{0}' alt='{1}' title='{1}'/>" +
+                                       "<img src='{0}' alt=\"{1}\" title=\"{1}\"/>" +
                                        "</div>"
                                        , uri.ToProxyUrl(), altText);
                     }
