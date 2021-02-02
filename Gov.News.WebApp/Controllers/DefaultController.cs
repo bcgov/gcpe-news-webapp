@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -344,7 +344,8 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.facebook.com/HelloBC", Title = "Destination British Columbia" },
                         new Link() { Url = "http://www.facebook.com/WorkBC", Title = "WorkBC" },
                         new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" },
-                        new Link() { Url = "https://www.facebook.com/PreparedBC/", Title = "PreparedBC" }
+                        new Link() { Url = "https://www.facebook.com/PreparedBC/", Title = "PreparedBC" },
+                        new Link() { Url = "http://www.facebook.com/BCFireSafety", Title = "BC Fire Safety" }
             }.OrderBy(t => t.Title).ToArray();
 
 
@@ -423,7 +424,8 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://twitter.com/WorkBC", Title = "@WorkBC", Summary = "Explore career paths and get tips for finding jobs in British Columbia" },
                         new Link() { Url = "https://twitter.com/BCSheriffs", Title = "@BCSheriffs", Summary = "Learn about the diverse responsibilities and activities of the BC Sheriff Service" },
                         new Link() { Url = "https://twitter.com/creativebcs", Title = "@CreativeBCs", Summary = "Find information on BC's film, TV, music, interactive & digital media, books & magazines" },
-                        new Link() { Url = "https://twitter.com/bc_eao", Title = "@BC_EAO", Summary = "Get project updates and environmental assessment information" }
+                        new Link() { Url = "https://twitter.com/bc_eao", Title = "@BC_EAO", Summary = "Get project updates and environmental assessment information" },
+                        new Link() { Url = "https://twitter.com/BC_FireSafety", Title = "@BC_FireSafety", Summary = "Learn about fire prevention, life safety and what’s happening in the BC fire service" },
             }.OrderBy(t => t.Title).ToArray();
 
             model.InstagramLinks = new Link[]
