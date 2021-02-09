@@ -28,6 +28,11 @@ $(function () {
         $('#close-search-button').toggleClass('hidden');
     });
 
+    $("#ministry-dropdown").on('click', function () {
+
+        $('#ministry-dropdown-down').toggleClass('hidden');
+        $('#ministry-dropdown-up').toggleClass('hidden');
+    });
     $(".level-trigger").on('click', function () {
         var childList = $(this).siblings().parent().find('ul:first');
         if (childList.length === 0)
