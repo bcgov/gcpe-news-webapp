@@ -404,7 +404,9 @@ a.news-control .read-more.left {
     background-color: #fff;
     position: relative;
 }
-
+.fa-customized {
+    font-size: 2.4em !important;
+}
 #menu-container .menu {
     background-color: #f2f2f2;
     position: absolute;
