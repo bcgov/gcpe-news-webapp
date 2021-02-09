@@ -1,44 +1,31 @@
-﻿
-function closeMiniMenu(speed) {
-    $('.mini-menu-trigger').removeClass('triggered');
-    var miniMenu = $('#mini-menu');
+﻿function closeSearchMenu(speed) {
+    $('.mini-search-container-trigger').removeClass('triggered');
     if (speed == undefined) {
-        miniMenu.hide();
+        $('.mini-menu-search').hide();
     } else {
-        miniMenu.slideUp('fast');
-    }
-}
-
-function closeSearchMenu() {
-    $('.mini-menu-search').slideUp('fast');
-    $('.mini-search-trigger').removeClass('triggered');
+        $('.mini-menu-search').slideUp('fast');
+    }   
 }
 
 $(function () {
-    $('.mini-menu-trigger').on('click', function () {
-        closeSearchMenu();
-        var menuTrigger = $('.mini-menu-trigger');
-        var opened = menuTrigger.hasClass('triggered');
-        var miniMenu = $('#mini-menu');
-        if (opened) {
-            closeMiniMenu('slow');
-        } else {
-            menuTrigger.addClass('triggered');
-            miniMenu.slideDown(300, function () { });
-        }
+    $('.mini-menu-container-trigger').on('click', function () {
+        $('#hamburger-button').toggleClass('hidden');
+        $('#close-hamburger-button').toggleClass('hidden');
     });
 
-    $('.mini-search-trigger').on('click', function () {
-        closeMiniMenu();
-        var menuTrigger = $('.mini-search-trigger');
+    $('.mini-search-container-trigger').on('click', function () {
+        var menuTrigger = $('.mini-search-container-trigger');
         var opened = menuTrigger.hasClass('triggered');
         var miniMenu = $('.mini-menu-search');
         if (opened) {
-            closeSearchMenu();
+            closeSearchMenu('slow');
         } else {
             menuTrigger.addClass('triggered');
-            miniMenu.slideDown(300, function () { });
+            miniMenu.slideDown(200, function () { });
         }
+        
+        $('#search-button').toggleClass('hidden');
+        $('#close-search-button').toggleClass('hidden');
     });
 
     $(".level-trigger").on('click', function () {

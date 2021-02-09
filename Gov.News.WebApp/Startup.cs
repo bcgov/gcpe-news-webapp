@@ -62,7 +62,7 @@ namespace Gov.News.Website
             // Add framework services.
 
             services.AddMemoryCache();
-
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc(opt =>
                 {
                     opt.EnableEndpointRouting = false;

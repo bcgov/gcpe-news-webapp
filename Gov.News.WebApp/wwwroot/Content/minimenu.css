@@ -1,3 +1,74 @@
+@media (min-width: 681px) {
+    #mini-search-container {
+        display: none !important;
+    }
+    #mini-menu-container {
+        display: none !important;
+    }
+}
+@media (max-width: 680px) {
+    .navbar-default {
+        border-color: #036;
+    }
+    .mini-search-container-trigger,
+    .mini-menu-container-trigger {
+        border-color: transparent !important;
+        color: #fff !important;
+        background-color: transparent !important;
+    }
+   
+    .mini-menu-container-trigger {
+        margin-right: 0 !important;
+    }
+    .mini-search-container-trigger {
+        margin-right: 30px !important;
+    }
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+        .navbar-collapse.collapse {
+            display: none !important;
+        }
+
+    .navbar-nav {
+        float: none !important;
+        margin: 7.5px -15px;
+    }
+
+        .navbar-nav > li {
+            float: none;
+        }
+
+            .navbar-nav > li > a {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+
+    .collapsing {
+        overflow: hidden !important;
+    }
+}
 @media only screen and (max-width: 680px) {
     .mini-search-trigger,
     .mini-menu-trigger {
@@ -8,8 +79,8 @@
         width: 50px;
         height: 50px;
         cursor: pointer;
-        display:inline-block;
-        padding-top:10px;
+        display: inline-block;
+        padding-top: 10px;
     }
 
         .mini-menu-trigger:before {
@@ -55,134 +126,136 @@
     #mini-menu-container {
         background-color: #38598a;
     }
-
-        #mini-menu-container .mini-menu-search {
-            padding: 10px;
-        }
-
+    #mini-search-container .mini-menu-search,
+    #mini-menu-container .mini-menu-search {
+        padding: 10px;
+    }
+        #mini-search-container .search,
         #mini-menu-container .search {
             margin-top: 0;
             padding: 10px;
             position: relative;
             background-color: #38598a;
         }
-
-            #mini-menu-container .search .search-trigger {
-                cursor: pointer;
-                height: 35px;
-                position: absolute;
-                right: 13px;
-                top: 10px;
-                width: 35px;
-            }
-
-            #mini-menu-container .search input {
-                height: 35px;
-                font-size: 15px;
-                line-height: 1em;
-                font-style: italic;
-                background-image: url(Images/search-ico-lg.png);
-                background-repeat: no-repeat;
-                background-position: right 5px center;
-                width: 100%;
-                border: none;
-                padding: 5px 10px 0;
-            }
-
+    #mini-search-container .search .search-trigger,
+    #mini-menu-container .search .search-trigger {
+        cursor: pointer;
+        height: 35px;
+        position: absolute;
+        right: 13px;
+        top: 10px;
+        width: 35px;
+    }
+    #mini-search-container .search input,
+    #mini-menu-container .search input {
+        height: 35px;
+        font-size: 15px;
+        line-height: 1em;
+        font-style: italic;
+        background-image: url(Images/search-ico-lg.png);
+        background-repeat: no-repeat;
+        background-position: right 5px center;
+        width: 100%;
+        border: none;
+        padding: 5px 10px 0;
+    }
+    #mini-search-container,
+    #mini-menu-container,
     #mini-menu {
         background-color: #036;
         box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.25);
     }
-
-        #mini-menu .site-menu ul {
-            margin-left: 0;
-            margin-bottom: 0;
-            padding-left: 0;
-            list-style-type: none;
+    #mini-menu-container ul,
+    #mini-menu .site-menu ul {
+        margin-left: 0;
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style-type: none;
+    }
+        #mini-menu-container ul li,
+        #mini-menu .site-menu ul li {
+            background-color: #5475a7;
+            border-bottom: 1px solid #7590b9;
+            clear: right;
+            position: relative;
+        }
+        #mini-menu-container ul:last-child,
+        #mini-menu .site-menu ul li:last-child {
+            border-bottom: none;
         }
 
-            #mini-menu .site-menu ul li {
-                background-color: #5475a7;
-                border-bottom: 1px solid #7590b9;
-                clear: right;
-                position: relative;
-            }
-
-                #mini-menu .site-menu ul li:last-child {
-                    border-bottom: none;
-                }
-
-
-                #mini-menu .site-menu ul li.first-link {
-                    background-color: #38598a;
-                    border-bottom: 1px solid #7590b9;
-                }
-
-                #mini-menu .site-menu ul li ul {
-                    border-top: 1px solid #7590b9;
-                }
-
-                #mini-menu .site-menu ul li .level-trigger {
-                    background-image: url(Images/mini-menu/menu-arrow-dn.png);
-                    background-repeat: no-repeat;
-                    background-position: center center;
-                    display: inline-block;
-                    float: right;
-                    height: 42px;
-                    width: 50px;
-                    border-left: 1px solid #7590b9;
-                    border-bottom: 1px solid #7590b9;
-                    cursor: pointer;
-                    position: absolute;
-                    right: 0;
-                }
-
-                #mini-menu .site-menu ul li .no-trigger {
-                    display: inline-block;
-                    float: right;
-                    height: 100%;
-                    width: 50px;
-                    border-left: 1px solid #7590b9;
-                    border-bottom: none;
-                    position: absolute;
-                    right: 0;
-                }
-
-                #mini-menu .site-menu ul li.first-link .no-trigger {
-                    border-left: 0;
-                }
-
-                #mini-menu .site-menu ul li .level-trigger.open {
-                    background-image: url(Images/mini-menu/menu-arrow-up.png);
-                }
-
-                #mini-menu .site-menu ul li a {
-                    display: inline-block;
-                    color: #fff;
-                    font-size: 17px;
-                    text-decoration: none;
-                    padding: 8px 20px 7px;
-                    width: 82%;
-                }
-
-            #mini-menu .site-menu ul ul.no-triggers li a {
-                border-right: 0;
-            }
-
-            #mini-menu .site-menu ul li a:hover, #mini-menu .site-menu ul li a:active {
-                text-decoration: underline;
-            }
-
-            #mini-menu .site-menu ul li ul,
-            #mini-menu .site-menu ul li ul li ul {
-                display: none;
-            }
-
-                #mini-menu .site-menu ul li ul li a {
-                    padding-left: 60px;
-                }
-
-    #mini-menu-container {
-        background-color: #036;
-    }
+        #mini-menu-container ul li.first-link,
+        #mini-menu .site-menu ul li.first-link {
+            background-color: #38598a;
+            border-bottom: 1px solid #7590b9;
+        }
+        #mini-menu-container ul li ul,
+        #mini-menu .site-menu ul li ul {
+            border-top: 1px solid #7590b9;
+        }
+        #mini-menu-container ul li .level-trigger,
+        #mini-menu .site-menu ul li .level-trigger {
+            background-image: url(Images/mini-menu/menu-arrow-dn.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: inline-block;
+            float: right;
+            height: 42px;
+            width: 50px;
+            border-left: 1px solid #7590b9;
+            border-bottom: 1px solid #7590b9;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+        }
+        #mini-menu-container ul li .no-trigger,
+        #mini-menu .site-menu ul li .no-trigger {
+            display: inline-block;
+            float: right;
+            height: 100%;
+            width: 50px;
+            border-left: 1px solid #7590b9;
+            border-bottom: none;
+            position: absolute;
+            right: 0;
+        }
+        #mini-menu-container ul.first-link .no-trigger,
+        #mini-menu .site-menu ul li.first-link .no-trigger {
+            border-left: 0;
+        }
+        #mini-menu-container ul li .level-trigger.open,
+        #mini-menu .site-menu ul li .level-trigger.open {
+            background-image: url(Images/mini-menu/menu-arrow-up.png);
+        }
+        #mini-menu-container ul li a,
+        #mini-menu .site-menu ul li a {
+            display: inline-block;
+            color: #fff;
+            font-size: 17px;
+            text-decoration: none;
+            padding: 8px 20px 7px;
+            width: 82%;
+        }
+        #mini-menu-container ul ul.no-trigger li a,
+        #mini-menu .site-menu ul ul.no-triggers li a {
+            border-right: 0;
+        }
+        #mini-menu-container ul li a:hover, #mini-menu-container ul li a:active,
+        #mini-menu .site-menu ul li a:hover, #mini-menu .site-menu ul li a:active {
+            text-decoration: underline;
+        }
+        #mini-menu-container ul li ul,
+        #mini-menu-container ul li ul li ul,
+        #mini-menu .site-menu ul li ul,
+        #mini-menu .site-menu ul li ul li ul {
+            display: none;
+        }
+        #mini-menu-container ul li ul li a,
+        #mini-menu .site-menu ul li ul li a {
+            padding-left: 60px;
+        }
+        #mini-search-container
+        #mini-menu-container {
+            background-color: #036;
+        }
 }
