@@ -70,7 +70,6 @@
     }
 }
 @media only screen and (max-width: 680px) {
-    .mini-search-trigger,
     .mini-menu-trigger {
         position: absolute;
         /*top: 65px;*/
@@ -93,27 +92,10 @@
             padding-left: 10px;
         }
 
-    .mini-search-trigger {
-        right: 70px;
-    }
-
-        .mini-search-trigger:before {
-            font-family: "FontAwesome";
-            font-size: 32px;
-            content: "\f002";
-            color: #ffffff;
-            position: relative;
-            text-align: center;
-            padding-left: 10px;
-            font-weight: 300;
-        }
-
-        .mini-search-trigger.triggered,
         .mini-menu-trigger.triggered {
         }
 
-            .mini-menu-trigger.triggered:before,
-            .mini-search-trigger.triggered:before {
+            .mini-menu-trigger.triggered:before {
                 font-family: "FontAwesome";
                 font-size: 32px;
                 content: "\f00d";
