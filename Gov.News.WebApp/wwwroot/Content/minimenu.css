@@ -277,4 +277,12 @@
         text-align: center;
         line-height: 2.5;
     }
+
+    #mini-menu-container > ul > li a:hover,
+    #mini-menu-container > ul > li a:focus,
+    #mini-menu-container ul li a:active {
+        background-color: transparent;
+        border: transparent;
+        border: none;
+    }
 }
