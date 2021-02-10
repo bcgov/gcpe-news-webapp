@@ -367,6 +367,9 @@
     }
 
     <environment names="Development">
+        <!--
+            
+        -->
         <script src="~/Scripts/minimenu.js" type="text/javascript"></script>
     </environment>
     <environment names="Staging,Production">
@@ -378,7 +381,6 @@
         window.allowFade = true;
 
     $(function () {
-
         $('.back-to-top').on('click', function () {
             $('html, body').animate({
                 scrollTop: 0
@@ -667,6 +669,34 @@
         $(".level-trigger").click();
         return false;
     });
+        $('#mini-menu-container').on('shown.bs.collapse', function () {
+            $('#hamburger-button').toggleClass('hidden');
+            $('#close-hamburger-button').toggleClass('hidden');
+        })
+        $('#mini-menu-container').on('hidden.bs.collapse', function () {
+            $('#hamburger-button').toggleClass('hidden');
+            $('#close-hamburger-button').toggleClass('hidden');
+        })
+        $('#mini-search-container').on('shown.bs.collapse', function () {
+            $('#search-button').toggleClass('hidden');
+            $('#close-search-button').toggleClass('hidden');
+            $('.mini-search-container-trigger').addClass('triggered');
+            $('.mini-menu-search').slideDown(200, function () { });
+
+        })
+        $('#mini-search-container').on('hidden.bs.collapse', function () {
+            $('#search-button').toggleClass('hidden');
+            $('#close-search-button').toggleClass('hidden');
+            $('.mini-search-container-trigger').removeClass('triggered');
+            $('.mini-menu-search').hide();
+        })
+
+        $("#ministry-dropdown").on('click', function () {
+
+            $('#ministry-dropdown-down').toggleClass('hidden');
+            $('#ministry-dropdown-up').toggleClass('hidden');
+        });
+
 
         $(document).ready(function () {
             /* This is for closing the granville banner */
