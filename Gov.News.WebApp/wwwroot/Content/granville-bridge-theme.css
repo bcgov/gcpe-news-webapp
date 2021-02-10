@@ -174,14 +174,14 @@ ul.inline li + li {
         background-color: #333333;
     }
 
-    .mini-menu-trigger {
+    .mini-menu-container-trigger {
         background-color: #000000;
         top: 135px;
         height: 48px;
         width: 48px;
     }
 
-    .mini-search-trigger {
+    .mini-search-container-trigger {
         background-color: #616161;
         top: 135px;
         height: 48px;
@@ -196,47 +196,32 @@ ul.inline li + li {
         background-color: #616161;
     }
 
-    #mini-menu .site-menu ul li {
+    #mini-menu-container ul li {
         background-color: #333333;
         border-bottom: 1px solid #616161;
         clear: right;
         position: relative;
     }
 
-    #mini-menu .site-menu ul li.first-link {
+    #mini-menu-container ul li.first-link {
         background-color: #000000;             
         border-bottom: 1px solid var(--minimenu-border-color);
     }
 
-    #mini-menu .site-menu ul li ul {
+    #mini-menu-container ul li ul {
         border-top: 1px solid #616161;
     }
 
-    #mini-menu .site-menu ul li .level-trigger {
-        background-image: url(Images/mini-menu/menu-arrow-dn.png);
-        background-repeat: no-repeat;
-        background-position: center center;
-        display: inline-block;
-        float: right;
-        height: 42px;
+    #ministry-dropdown {
         width: 50px;
-        border-left: 1px solid #616161;        
-        border-bottom: 1px solid #616161;
-        cursor: pointer;
-        position: absolute;
+        border-left: 1px solid #7590b9;
         right: 0;
-    }
-
-    #mini-menu .site-menu ul li .no-trigger {
-        display: inline-block;
-        float: right;
-        height: 100%;
-        width: 50px;
+        position: absolute;
+        top: 0;
+        text-align: center;
+        line-height: 2.5;
         border-left: 1px solid #616161;
-        border-bottom: none;
-        position: absolute;
-        right: 0;
+        border-bottom: 1px solid #616161;
     }
-    
 }
 
