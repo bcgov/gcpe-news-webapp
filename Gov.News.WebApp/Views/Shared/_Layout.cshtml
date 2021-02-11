@@ -133,6 +133,7 @@
                 </div>
             }
         }
+   
         <!-- COVID banner -->
         <div id="covid-banner" class="covid-banner">
             <div class="content" style="padding-left: 10px; padding-right:0 !important;">
@@ -152,7 +153,7 @@
                             <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." title="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                         </a>
                     </div>
-                    
+
                     <nav class="navbar-dafault" role="navigation">
                         <div type="button" class="btn btn-link mini-menu-container-trigger navbar-toggle" data-toggle="collapse" data-target="#mini-menu-container">
                             <i id="hamburger-button" class="fa fa-bars fa-customized" aria-hidden="true"></i>
@@ -614,7 +615,7 @@
             var header = $('#header');
             var logo = $('#BCGov-logo');
             var logo_granville = $('#BCGov-logo-granville');
-            var mini_search_logo = $('#mini-menu-trigger');
+            var mini_search_logo = $('#mini-menu-container-trigger');
             var granville_style_sheet = $('link[rel=stylesheet][href~="/Content/granville-bridge-theme.css"]');
             const hostingEnv = document.getElementById('hostingEnv').value;
 
