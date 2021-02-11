@@ -3563,7 +3563,6 @@ ul.inline li {
 
 @media only screen and (max-width: 680px) {
     .granville-bridge-banner {
-        height: 70px;
         padding-left:10px;
         padding-right:10px;
     }

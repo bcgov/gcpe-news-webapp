@@ -166,27 +166,19 @@ ul.inline li + li {
 
 
 @media only screen and (max-width: 680px) {
-    .granville-bridge-banner {
-        height: 70px;
-    }
-
+    
     #mini-menu-container {
         background-color: #333333;
     }
 
     .mini-menu-container-trigger {
         background-color: #000000;
-        top: 135px;
-        height: 48px;
-        width: 48px;
+       
     }
 
     .mini-search-container-trigger {
         background-color: #616161;
-        top: 135px;
-        height: 48px;
-        width: 48px;
-        right: 60px;
+       
     }
 
     #mini-menu-container .search {
