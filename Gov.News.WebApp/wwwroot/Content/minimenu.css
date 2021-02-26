@@ -1,5 +1,5 @@
-@media (min-width: 681px) {
-    #mini-search-container {
+@media only screen and (min-width: 681px) {
+    #mini-search-container, .mini-menu-container-trigger, .mini-search-container-trigger {
         display: none !important;
     }
     #mini-menu-container {
