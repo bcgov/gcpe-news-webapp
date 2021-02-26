@@ -3569,3 +3569,10 @@ ul.inline li {
 }
 
 /* end of granville bridge styles*/
+
+.ik_readersonly {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: -10000px;
+}
