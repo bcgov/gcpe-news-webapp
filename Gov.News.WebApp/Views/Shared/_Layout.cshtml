@@ -39,32 +39,32 @@
         <link rel="canonical" href="@Model.CanonicalUri" />
     }
 
-<environment names="Testing,Development">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
-    <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
-    <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
-    <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
-    <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" media="screen" type="text/css">
-    <!-- COVID style sheet-->
-    <link rel="stylesheet" href="~/Content/covid-banner-style.css" media="screen" type="text/css">
-    <!-- end of COVID style sheet-->
-    <link rel="stylesheet" href="~/Content/accessibility-styles.css" media="screen" type="text/css">
-    @{
-        if (@Model.GranvilleLive)
-        {
-            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+    <environment names="Testing,Development">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
+        <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" media="screen" type="text/css">
+        <!-- COVID style sheet-->
+        <link rel="stylesheet" href="~/Content/covid-banner-style.css" media="screen" type="text/css">
+        <!-- end of COVID style sheet-->
+        <link rel="stylesheet" href="~/Content/accessibility-styles.css" media="screen" type="text/css">
+        @{
+            if (@Model.GranvilleLive)
+            {
+                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+            }
         }
-    }
-    @{
-        if (@isCovidTag)
-        {
-            <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+        @{
+            if (@isCovidTag)
+            {
+                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+            }
         }
-    }
 
-</environment>
+    </environment>
     <environment names="Staging,Production">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
@@ -96,8 +96,9 @@
     <script src="~/Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="~/Scripts/accessibility/ik_utils.js" type="text/javascript"></script>
+
     <!--
+        <script src="~/Scripts/accessibility/ik_utils.js" type="text/javascript"></script>
           <script src="~/Scripts/accessibility/ik_carousel.js" type="text/javascript"></script>
 
     -->
@@ -119,7 +120,7 @@
 </head>
 <body>
     <!--googleoff: all-->
-    <a href="#main-content" class="skip-link" tabindex="0">Skip to main content</a>
+    <a href="#main-content-release" class="skip-link" tabindex="0">Skip to main content</a>
     <div id="header" class="navbar navbar-default" style="margin-bottom: 0;">
         @{
             if (@Model.GranvilleLive)
@@ -189,8 +190,8 @@
                 <div id="nav-container">
                     <div class="shadow-box">
                         <div class="content">
-                            <div class="nav" tabindex="0">
-                                <ul class="inline" role="menubar" tabindex="0">
+                            <div class="nav">
+                                <ul class="inline" role="menubar">
                                     <li role="menuitem"><a href="/">Home</a></li>
                                     <li role="menuitem" aria-haspopup="true"><a href="/ministries" data-target="ministries-menu" class="has-menu">Ministries</a></li>
                                     <li role="menuitem"><a href="/sectors">Sectors</a></li>
@@ -292,14 +293,19 @@
         </ul>
 
     </div>
-
+<!--
+    
+-->
     @RenderSection("Carousel", false)
     @RenderSection("StoryNavigator", false)
 
-    <div id="main-content" class="template content" role="main">
-        @RenderBody()
-        @*<a href="#" class="link-button back-to-top">TOP</a>*@
-        <div class="clear"></div>
+    <div id="main-content" class="template content" role="main" tabindex="0">
+        <main>
+            @RenderBody()
+            @*<a href="#" class="link-button back-to-top">TOP</a>*@
+            <div class="clear"></div>
+        </main>
+        
     </div>
 
     @RenderSection("AssortedMedia", false)

@@ -1,20 +1,21 @@
 ﻿.skip-link {
-    background: #319795;
-    color: #fff;
-    font-weight: 700;
-    left: 50%;
-    padding: 4px;
     position: absolute;
-    transform: translateY(-100%);
+    top: -1000px;
+    left: -1000px;
+    height: 1px;
+    width: 1px;
+    text-align: left;
+    overflow: hidden;
 }
 
-.skip-link:focus {
-    transform: translateY(0%);
-}
+    .skip-link:focus {
+        left: 0;
+        top: 0;
+        width: auto;
+        height: auto;
+        overflow: visible;
+    }
 
-.skip-link {
-    /* Same as  before */
-    transition: transform 0.3s;
-}
+
 
 

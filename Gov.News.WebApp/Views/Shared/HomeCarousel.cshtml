@@ -10,7 +10,7 @@
         }
         @foreach (var item in Model.SlideItems)
         {
-            <div class="home-banner" style="background-image: url(CarouselImage/@item.Key)" tabindex="0">
+            <div class="home-banner" style="background-image: url(CarouselImage/@item.Key)" tabindex="-1">
                 <div class="home-banner-content">
                     <div class="stories">
                         @if (@item.ActionUri != null)
