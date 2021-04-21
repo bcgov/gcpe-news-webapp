@@ -2540,7 +2540,7 @@ ul.inline li {
         border-bottom: 1px solid #e2e2e2;
         margin-top: 35px;
         padding-bottom: 10px;
-        margin-bottom: 40px;
+        /*margin-bottom: 40px;*/
     }
 
     .connect .home-features {
