@@ -48,6 +48,7 @@
     <Folder Include="ViewComponents\" />
     <Folder Include="Views\Shared\Components\WebCast\" />
     <Folder Include="Views\Shared\Components\TopSectors\" />
+    <Folder Include="wwwroot\Scripts\accessibility\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/bundleconfig" /></VisualStudio></ProjectExtensions>

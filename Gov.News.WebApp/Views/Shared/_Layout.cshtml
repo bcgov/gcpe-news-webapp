@@ -120,7 +120,12 @@
 </head>
 <body>
     <!--googleoff: all-->
-    <a href="#main-content-release" class="skip-link" tabindex="0">Skip to main content</a>
+    
+    <!--
+
+        <a href="#main-content-release" class="skip-link" tabindex="0">Skip to main content</a>
+
+    -->
     <div id="header" class="navbar navbar-default" style="margin-bottom: 0;">
         @{
             if (@Model.GranvilleLive)
@@ -142,6 +147,16 @@
                 <a href="https://gov.bc.ca/getvaccinated">register to get vaccinated</a>
                 &nbsp; |&nbsp;&nbsp; <a href="https://www2.gov.bc.ca/gov/content?id=762AD642C5524DC9B6F4D7463D275C46">Province-wide restrictions</a>&nbsp;are in effect, including &nbsp;<a href="https://www2.gov.bc.ca/gov/content?id=3A36597E76894E9BAACB95D8F32CBF63">travel restrictions</a>
             </div>
+        </div>
+        <div class="access">
+            <ul>
+                <li aria-label="Skip to main content">
+                    <a href="#main-content-release">Skip to main content</a>
+                </li>
+                <li aria-label="Skip to main navigation">
+                    <a href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
+                </li>
+            </ul>
         </div>
         <!-- end of COVID banner-->
         <div class="container-fluid">
@@ -186,7 +201,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" role="navigation" aria-label="Main menu">
+            <div class="row" role="navigation" aria-label="Main menu" id="header-links">
                 <div id="nav-container">
                     <div class="shadow-box">
                         <div class="content">
@@ -293,20 +308,27 @@
         </ul>
 
     </div>
-<!--
-    
--->
+    <!--
+
+    -->
     @RenderSection("Carousel", false)
     @RenderSection("StoryNavigator", false)
 
-    <div id="main-content" class="template content" role="main" tabindex="0">
-        <main>
-            @RenderBody()
-            @*<a href="#" class="link-button back-to-top">TOP</a>*@
-            <div class="clear"></div>
-        </main>
-        
+<div id="main-content" class="template content" role="main" tabindex="0">
+    <div class="access">
+        <ul>
+            <li aria-label="Skip to main content">
+                <a href="#main-content-release">Skip to main content</a>
+            </li>
+        </ul>
     </div>
+    <main>
+        @RenderBody()
+        @*<a href="#" class="link-button back-to-top">TOP</a>*@
+        <div class="clear"></div>
+    </main>
+
+</div>
 
     @RenderSection("AssortedMedia", false)
 
