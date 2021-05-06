@@ -49,7 +49,6 @@
 </style>
 <div class="article@((ifShow != null && ifShow == "false") ? " hidden-article" : "")">
     <h2><a href="@Model.GetUri()">@Model.Headline()</a></h2>
-
     <div class="row" style="padding-left:15px; padding-right:15px; padding-bottom:10px;">
         <span class="item-date">@Model.PublishDate.Value.FormatDateLong()</span>
         @if (Model.HasTranslations.HasValue && Model.HasTranslations == true)

@@ -11,7 +11,7 @@
 {
     <div class="resource-links minister">
         <img src="@Minister.Photo" />
-        <h5>@Minister.Headline</h5>
+        <h3>@Minister.Headline</h3>
 
         @Minister.Summary.AsHtmlParagraphs()
         
@@ -19,7 +19,7 @@
 
         @if (!string.IsNullOrWhiteSpace(Minister.EmailHtml))
         {
-            <h6>Contact</h6>
+            <h4>Contact</h4>
             <p class="minister-email">Email: @Html.Raw(Minister.EmailHtml)</p>
         }
     </div>

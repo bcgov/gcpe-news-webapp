@@ -269,15 +269,15 @@ a.news-control .read-more.left {
     padding-bottom: 30px;
 }
 
-    .resource-links h5 {
+    .resource-links h3 {
         font-size: 18px;
         font-weight: 600;
         color: #494949;
-        margin-top: 20px;
+        margin-top: 20px !important;
         padding-bottom: 5px;
     }
 
-    .resource-links h6 {
+    .resource-links h4 {
         font-size: 14px;
         font-weight: 600;
         color: #494949;
@@ -329,11 +329,11 @@ a.news-control .read-more.left {
                 color: #1a5a96;
             }
 
-    .resource-links.connect h5 {
+    .resource-links.connect h3 {
         margin-top: 0;
     }
 
-.story-features .resource-links.connect h6 {
+.story-features .resource-links.connect h3 {
     font-size: 18px;
 }
 
@@ -385,7 +385,7 @@ a.news-control .read-more.left {
     margin-top: 15px;
 }
 
-.resource-links.minister h6 {
+.resource-links.minister h4 {
     margin-top: 15px;
     margin-bottom: 10px;
 }
@@ -522,13 +522,6 @@ a.news-control .read-more.left {
         clear: both;
     }
 
-    .menu-content-item h4 {
-        font-size: 20px;
-        color: #494949;
-        padding-bottom: 15px;
-        margin-bottom: 0;
-    }
-
     .menu-content-item .close-menu {
         float: right;
         padding-right: 8px;
@@ -541,6 +534,21 @@ a.news-control .read-more.left {
     .menu-content-item:first-child {
         display: block;
     }
+#header-links .menu-content-item h2 {
+    font-size: 20px;
+    color: #494949;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.menu-content-item .top-item h3 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a5a96;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
     .menu-content-item h2 {
         margin: 0;
@@ -559,12 +567,6 @@ a.news-control .read-more.left {
         border-bottom: 1px solid #e1e3e6;
         padding-top: 15px;
     }
-
-        .menu-content-item .top-item h2 {
-            font-size: 32px;
-            font-weight: 600;
-            color: #1a5a96;
-        }
 
     .menu-content-item .item-date {
         font-size: 12px;
@@ -617,7 +619,7 @@ a.news-control .read-more.left {
             margin-top: 20px;
         }
 
-        .menu-content-item .other-items h2 {
+        .menu-content-item .other-items h4 {
             font-size: 18px;
             font-weight: 600;
             color: #1a5a96;
@@ -1061,6 +1063,10 @@ ul.inline li {
 
     .home-body .top-article .article h2 {
         font-size: 36px;
+        border-bottom: none !important;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        padding-bottom: 0 !important;
     }
 
     .home-body .top-article .article img {
@@ -1071,6 +1077,10 @@ ul.inline li {
         font-size: 26px;
         font-weight: 600;
         color: #1a5a96;
+        border-bottom: none;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        padding-bottom: 0 !important;
     }
 
     .home-body .top-article .article .asset {
@@ -1202,7 +1212,7 @@ ul.inline li {
 }
 
     .fact-sheets .home-body h3,
-    .news-listing .home-body h3 {
+    .news-listing .home-body h2 {
         font-size: 36px;
         font-weight: 600;
         border-bottom: 1px solid #e2e2e2;
@@ -1211,7 +1221,7 @@ ul.inline li {
         margin-bottom: 40px;
     }
 
-    .news-listing .home-body h4 {
+    .news-listing .home-body h3 {
         background-color: #1a5a96;
         color: #fff;
         font-size: 24px;
@@ -1219,19 +1229,22 @@ ul.inline li {
         margin-top: 10px;
     }
 
-        .news-listing .home-body h4 a {
+        .news-listing .home-body h3 a {
             color: #fff;
             display: block;
         }
 
-            .news-listing .home-body h4 a:hover {
+            .news-listing .home-body h3 a:hover {
                 color: #fff;
                 text-decoration: none;
             }
 
-    .news-listing .home-body h2 {
+    .news-listing .home-body .regular-articles h2 {
         font-size: 18px;
         margin-top: 20px;
+        border-bottom: none;
+        margin-bottom: 10px;
+        padding-bottom: 0 !important;
     }
 
     .news-listing .home-body .article {
@@ -1243,7 +1256,7 @@ ul.inline li {
     border-top: none;
 }
 
-.ministry-listing .home-features h4 {
+.ministry-listing .home-features h3 {
     margin-top: 0;
     font-size: 18px;
     font-weight: 600;
@@ -1255,7 +1268,7 @@ ul.inline li {
     margin-top: 20px;
 }
 
-.sector-listing .home-features h4 {
+.sector-listing .home-features h3 {
     margin-top: 0;
     font-size: 18px;
     font-weight: 600;
@@ -1946,7 +1959,7 @@ ul.inline li {
             }
 
         .story-features .resource-links.more-from-sectors h5,
-        .story-features .resource-links h6 {
+        .story-features .resource-links h4 {
             font-size: 14px;
             color: #494949;
             padding-bottom: 10px;
@@ -1956,11 +1969,11 @@ ul.inline li {
             margin-top: 0px;
         }
 
-        .story-features .resource-links:first-child h6 {
+        .story-features .resource-links:first-child h3 {
             margin-top: 0px;
         }
 
-        .story-features .resource-links .comm-contact h6 {
+        .story-features .resource-links .comm-contact h4 {
             padding-bottom: 0;
         }
 
@@ -1970,7 +1983,7 @@ ul.inline li {
         padding-bottom: 20px;
     }
 
-        .story-features .location-and-date h6 {
+        .story-features .location-and-date h4 {
             padding-bottom: 0;
         }
 
@@ -2534,7 +2547,7 @@ ul.inline li {
         border-top: none;
     }
 
-    .connect .home-body h3 {
+    .connect .home-body h2 {
         font-size: 36px;
         font-weight: 600;
         border-bottom: 1px solid #e2e2e2;
@@ -2645,7 +2658,7 @@ ul.inline li {
     display: inline-block;
 }
 
-.expandable-section h4 {
+.expandable-section h3 {
     width: 100%;
     background-color: #2b5580;
     background-repeat: no-repeat;
@@ -2657,15 +2670,15 @@ ul.inline li {
     padding: 10px 10px 0 10px;
 }
 
-.expandable-section.ustream h4 {
+.expandable-section.ustream h3 {
     background-image: url(Images/SocialMedia/24x24-ustream.png);
 }
 
-.expandable-section.pinterest h4 {
+.expandable-section.pinterest h3 {
     background-image: url(Images/SocialMedia/24x24-pinterest.png);
 }
 
-.expandable-section.blogs h4 {
+.expandable-section.blogs h3 {
     background-image: url(Images/SocialMedia/24x24-blogs.png);
 }
 
