@@ -6,16 +6,16 @@
 @model IndexModel
 
 <div class="menu-content-item">
-    <h4>
+    <h2>
         <img class="close-menu" src="~/Content/Images/close-icon.png" />
         @Model.Index.Name
-    </h4>
+    </h2>
 
     @if (Model.TopPost != null)
     {
         var thumbnailUri = Model.TopPost.GetThumbnailUri();
         <div class="top-item">
-            <h2><a href="@Model.TopPost.GetUri()">@Model.TopPost.Headline()</a></h2>
+            <h3><a href="@Model.TopPost.GetUri()">@Model.TopPost.Headline()</a></h3>
             <div class="item-date">@Model.TopPost.PublishDate.Value.DateTime.FormatDate()</div>
             <div class="item-content">
                 <div class="item-asset">
@@ -47,7 +47,7 @@
         @if (Model.FeaturePost != null)
         {
             <div class="other-item">
-                <h2><a href="@Model.FeaturePost.GetUri()">@Model.FeaturePost.Headline()</a></h2>
+                <h4><a href="@Model.FeaturePost.GetUri()">@Model.FeaturePost.Headline()</a></h4>
                 <div class="item-date">@Model.FeaturePost.PublishDate.Value.DateTime.FormatDate()</div>
             </div>
         }

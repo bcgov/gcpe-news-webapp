@@ -2,7 +2,7 @@
 @using Gov.News.Website.Models
 @model ICollection<IndexModel>
 <div class="resource-links">
-    <h5>Top News by Sector</h5>
+    <h3>Top News by Sector</h3>
     <div>
         @foreach (var sector in Model.OrderBy(e => e.Index.Name))
         {
@@ -10,7 +10,7 @@
 
             if (post != null)
             {
-                <h6>@sector.Index.Name</h6>
+                <h4>@sector.Index.Name</h4>
                 <p><a href="@post.GetUri()">@post.Headline()</a></p>
             }
         }
