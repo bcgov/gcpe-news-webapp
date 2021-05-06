@@ -42,10 +42,6 @@
     <environment names="Testing,Development">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
-        <!--
-               <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" media="screen" type="text/css" />
-
-        -->
         <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
@@ -54,6 +50,7 @@
         <!-- COVID style sheet-->
         <link rel="stylesheet" href="~/Content/covid-banner-style.css" media="screen" type="text/css">
         <!-- end of COVID style sheet-->
+        <link rel="stylesheet" href="~/Content/accessibility-styles.css" media="screen" type="text/css">
         @{
             if (@Model.GranvilleLive)
             {
@@ -71,10 +68,6 @@
     <environment names="Staging,Production">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
-        <!--
-              <link rel="stylesheet" href="~/Content/site-bootstrap.min.css" asp-append-version="true" media="screen" type="text/css" />
-
-        -->
         <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
@@ -82,6 +75,7 @@
         <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" asp-append-version="true" media="screen" type="text/css" />
         <!-- COVID style sheet-->
         <link rel="stylesheet" href="~/Content/covid-banner-style.css" asp-append-version="true" media="screen" type="text/css">
+        <link rel="stylesheet" href="~/Content/accessibility-styles.css" asp-append-version="true" media="screen" type="text/css">
         <!-- end of COVID style sheet-->
         @{
             if (@Model.GranvilleLive)
@@ -102,6 +96,13 @@
     <script src="~/Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.cookie.js" type="text/javascript"></script>
+
+    <!--
+        <script src="~/Scripts/accessibility/ik_utils.js" type="text/javascript"></script>
+          <script src="~/Scripts/accessibility/ik_carousel.js" type="text/javascript"></script>
+
+    -->
+
     @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
     {
         <partial name="_WebAnalytics" />
@@ -119,23 +120,27 @@
 </head>
 <body>
     <!--googleoff: all-->
+    
+    <!--
 
+        <a href="#main-content-release" class="skip-link" tabindex="0">Skip to main content</a>
 
+    -->
     <div id="header" class="navbar navbar-default" style="margin-bottom: 0;">
         @{
             if (@Model.GranvilleLive)
             {
-                <div id="granville-bridge-banner" class="alert granville-bridge-banner" role="alert">
+                <div id="granville-bridge-banner" class="alert granville-bridge-banner" role="banner">
                     <div class="content">
                         <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
-                        <button class="btn-link pull-right" id="btnCloseBanner"><strong>×</strong></button>
+                        <button class="btn-link pull-right" id="btnCloseBanner" aria-hidden="true"><strong>×</strong></button>
                     </div>
                 </div>
             }
         }
-   
+
         <!-- COVID banner -->
-        <div id="covid-banner" class="covid-banner">
+        <div id="covid-banner" class="covid-banner" role="banner">
             <div class="content" style="padding-left: 10px; padding-right:0 !important;">
                 <button class="btn-link pull-right" id="btnCloseCovidBanner"><strong>×</strong></button>
                 <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All people 18+ can
@@ -143,11 +148,21 @@
                 &nbsp; |&nbsp;&nbsp; <a href="https://www2.gov.bc.ca/gov/content?id=762AD642C5524DC9B6F4D7463D275C46">Province-wide restrictions</a>&nbsp;are in effect, including &nbsp;<a href="https://www2.gov.bc.ca/gov/content?id=3A36597E76894E9BAACB95D8F32CBF63">travel restrictions</a>
             </div>
         </div>
+        <div class="access">
+            <ul>
+                <li aria-label="Skip to main content">
+                    <a href="#main-content-release">Skip to main content</a>
+                </li>
+                <li aria-label="Skip to main navigation">
+                    <a href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
+                </li>
+            </ul>
+        </div>
         <!-- end of COVID banner-->
         <div class="container-fluid">
             <div class="row" id="header-top">
                 <div class="content" style="padding-right:20px !important;">
-                    <div id="logo">
+                    <div id="logo" role="img" aria-describedby="BC Gov Logo">
                         <a id="headerBCGov" href="http://gov.bc.ca">
                             <img id="BCGov-logo" src="~/Content/Images/Gov/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                             <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." title="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
@@ -160,7 +175,7 @@
                             <i id="close-hamburger-button" class="fa fa-times fa-customized hidden" aria-hidden="true"></i>
                         </div>
                     </nav>
-                    <nav class="navbar-default" role="navigation">
+                    <nav class="navbar-default" role="search">
                         <div type="button" class="btn btn-link mini-search-container-trigger navbar-toggle" data-toggle="collapse" data-target="#mini-search-container">
                             <i id="search-button" class="fa fa-search fa-customized" aria-hidden="true"></i>
                             <i id="close-search-button" class="fa fa-times fa-customized hidden" aria-hidden="true"></i>
@@ -169,11 +184,11 @@
 
                 </div>
             </div>
-            <div class="row" id="header-bottom">
+            <div class="row" id="header-bottom" role="search">
                 <div class="content">
                     @if (!(Model is SearchViewModel))
                     {
-                        <div class="search">
+                        <div class="search" role="search">
                             @using (Html.BeginForm("Search", "Default", FormMethod.Get))
                             {
                                 <input name="q" type="text" placeholder="Search news.gov.bc.ca" />
@@ -186,26 +201,26 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" role="navigation" aria-label="Main menu" id="header-links">
                 <div id="nav-container">
                     <div class="shadow-box">
                         <div class="content">
                             <div class="nav">
-                                <ul class="inline">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="/ministries" data-target="ministries-menu" class="has-menu">Ministries</a></li>
-                                    <li><a href="/sectors">Sectors</a></li>
-                                    <li><a href="/connect">Connect</a></li>
-                                    <li><a href="@Model.SubscribePath()">Subscribe</a></li>
+                                <ul class="inline" role="menubar">
+                                    <li role="menuitem"><a href="/">Home</a></li>
+                                    <li role="menuitem" aria-haspopup="true"><a href="/ministries" data-target="ministries-menu" class="has-menu">Ministries</a></li>
+                                    <li role="menuitem"><a href="/sectors">Sectors</a></li>
+                                    <li role="menuitem"><a href="/connect">Connect</a></li>
+                                    <li role="menuitem"><a href="@Model.SubscribePath()">Subscribe</a></li>
                                     @*TODO: Remove the following reference to Properties.Settings from the view.*@
-                                    <li><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a></li>
+                                    <li role="menuitem"><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a></li>
                                     @if (Model.WebcastingLive)
                                     {
-                                        <li style="float:right;"><a href="/live" class="live_button live_button_show">Live Webcast</a></li>
+                                        <li role="menuitem" style="float:right;"><a href="/live" class="live_button live_button_show">Live Webcast</a></li>
                                     }
                                     else
                                     {
-                                        <li style="float:right;"><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
+                                        <li role="menuitem" style="float:right;"><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
                                     }
                                 </ul>
                             </div>
@@ -216,13 +231,13 @@
                     <div class="content">
                         <div id="ministries-menu" class="menu">
                             <div class="menu-items">
-                                <ul>
+                                <ul aria-expanded="true" role="menu">
                                     @foreach (var ministryModel in Model.Ministries)
                                     {
                                         var ministry = ministryModel.Index as Ministry;
                                         if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
 
-                                        <li><a href="@ministry.GetUri()">@ministry.Name</a></li>
+                                        <li role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
                                     }
                                 </ul>
                             </div>
@@ -239,10 +254,10 @@
             </div>
         </div>
     </div>
-    <div class="collapse navbar-collapse" id="mini-search-container">
+    <div class="collapse navbar-collapse" id="mini-search-container" role="search">
         @if (!(Model is SearchViewModel))
         {
-            <div class="search mini-menu-search" style="display:block;" >
+            <div class="search mini-menu-search" style="display:block;">
                 @using (Html.BeginForm("Search", "Default", FormMethod.Get))
                 {
                     <input name="q" id="mini-menu-search-box" class="searchbox" type="text" placeholder="Search news.gov.bc.ca">
@@ -251,10 +266,10 @@
             </div>
         }
     </div>
-    <div class="collapse navbar-collapse" id="mini-menu-container" style="overflow: hidden;">  
+    <div class="collapse navbar-collapse" id="mini-menu-container" style="overflow: hidden;">
         <ul>
-            <li class="first-link"><a href="/">Home</a><div class="no-trigger"></div></li>
-            <li class="dropdown" id="mini-ministry-dropdown">
+            <li class="first-link" role="menuitem"><a href="/">Home</a><div class="no-trigger"></div></li>
+            <li class="dropdown" id="mini-ministry-dropdown" role="menuitem">
                 <a href="#" style="width:100%;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     Ministries
                     <div id="ministry-dropdown" class="pull-right">
@@ -262,83 +277,87 @@
                         <i id="ministry-dropdown-up" class="fa fa-chevron-up hidden"></i>
                     </div>
                 </a>
-                
+
                 <ul class="dropdown-menu" role="menu" id="mini-ministry-dropdown-menu">
                     @foreach (var ministryModel in Model.Ministries)
                     {
                         var ministry = ministryModel.Index as Ministry;
                         if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
-                        <li>
+                        <li role="menuitem">
                             <a href="@ministry.GetUri()">@ministry.Name</a>
                             <div class="no-trigger"></div>
                         </li>
                     }
                 </ul>
             </li>
-            <li><a href="/sectors">Sectors</a><div class="no-trigger"></div></li>
-            <li><a href="/connect">Connect</a><div class="no-trigger"></div></li>
-            <li><a href="@Model.SubscribePath()">Subscribe</a></li>
+            <li role="menuitem"><a href="/sectors">Sectors</a><div class="no-trigger"></div></li>
+            <li role="menuitem"><a href="/connect">Connect</a><div class="no-trigger"></div></li>
+            <li role="menuitem"><a href="@Model.SubscribePath()">Subscribe</a></li>
             @*TODO: Remove the following reference to Properties.Settings from the view.*@
-            <li><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a><div class="no-trigger"></div></li>
+            <li role="menuitem"><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a><div class="no-trigger"></div></li>
 
             @if (Model.WebcastingLive)
             {
-                <li><a href="/live" class="live_button live_button_show" style="width:auto; margin-left:5px;">Live Webcast</a></li>
+                <li role="menuitem"><a href="/live" class="live_button live_button_show" style="width:auto; margin-left:5px;">Live Webcast</a></li>
             }
             else
             {
-                <li><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
+                <li role="menuitem"><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
             }
 
         </ul>
 
     </div>
+    <!--
 
+    -->
     @RenderSection("Carousel", false)
     @RenderSection("StoryNavigator", false)
 
-    <div id="main-content" class="template content">
+<div id="main-content" class="template content" role="main" tabindex="0">
+    <div class="access">
+        <ul>
+            <li aria-label="Skip to main content">
+                <a href="#main-content-release">Skip to main content</a>
+            </li>
+        </ul>
+    </div>
+    <main>
         @RenderBody()
         @*<a href="#" class="link-button back-to-top">TOP</a>*@
         <div class="clear"></div>
-    </div>
+    </main>
+
+</div>
 
     @RenderSection("AssortedMedia", false)
 
 
-    <div id="footer">
+    <div id="footer" role="navigation">
         <div class="content">
             <div class="connect">
                 <h4>Connect with Us:</h4>
-                <ul class="inline">
+                <ul class="inline" role="menu">
 
-                    <li><a id="footerBCGov" href="http://www.gov.bc.ca/">BC Gov</a></li>
-                    <li><a id="footerFaceBook" href="/connect#facebook">Facebook</a></li>
-                    <li><a id="footerTwitter" href="/connect#twitter">Twitter</a></li>
-                    <li><a id="footerFlickr" href="/connect#flickr">Photos</a></li>
-                    <li><a id="footerYoutube" href="/connect#youtube">Videos</a></li>
-                    <li><a id="footerNewsletters" href="/newsletters">Newsletters</a></li>
-                    <li><a id="footerRSSFeeds" href="/connect#rss">RSS Feeds</a></li>
-
-                    @*<li><a href="/newsletters">Newsletters</a></li>
-                        <li><a href="/connect#blogs">Blogs</a></li>
-                        <li><a href="https://soundcloud.com/bcgov/">SoundCloud</a></li>
-                        <li><a href="/connect#flickr">Flickr</a></li>
-                        <li><a href="/connect#youtube">Youtube</a></li>
-                        <li><a href="/connect#twitter">Twitter</a></li>
-                        <li><a href="/connect#facebook">Facebook</a></li>*@
+                    <li role="menuitem"><a id="footerBCGov" href="http://www.gov.bc.ca/">BC Gov</a></li>
+                    <li role="menuitem"><a id="footerFaceBook" href="/connect#facebook">Facebook</a></li>
+                    <li role="menuitem"><a id="footerTwitter" href="/connect#twitter">Twitter</a></li>
+                    <li role="menuitem"><a id="footerFlickr" href="/connect#flickr">Photos</a></li>
+                    <li role="menuitem"><a id="footerYoutube" href="/connect#youtube">Videos</a></li>
+                    <li role="menuitem"><a id="footerNewsletters" href="/newsletters">Newsletters</a></li>
+                    <li role="menuitem"><a id="footerRSSFeeds" href="/connect#rss">RSS Feeds</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
             <hr />
 
-            <ul class="inline pull-left">
-                <li><a id="footerHome" href="https://news.gov.bc.ca">Home</a></li>
-                <li><a id="footerDisclaimer" href="http://www2.gov.bc.ca/gov/admin/disclaimer.page">Disclaimer</a></li>
-                <li><a id="footerPrivacy" href="/privacy">Privacy</a></li>
-                <li><a id="footerAccessibility" href="http://www2.gov.bc.ca/gov/admin/accessibility.page">Accessibility</a></li>
-                <li><a id="footerCopyright" href="http://www2.gov.bc.ca/gov/admin/copyright.page">Copyright</a></li>
-                <li><a id="footerContact" href="/contact">Contact Us</a></li>
+            <ul class="inline pull-left" role="menu">
+                <li role="menuitem"><a id="footerHome" href="https://news.gov.bc.ca">Home</a></li>
+                <li role="menuitem"><a id="footerDisclaimer" href="http://www2.gov.bc.ca/gov/admin/disclaimer.page">Disclaimer</a></li>
+                <li role="menuitem"><a id="footerPrivacy" href="/privacy">Privacy</a></li>
+                <li role="menuitem"><a id="footerAccessibility" href="http://www2.gov.bc.ca/gov/admin/accessibility.page">Accessibility</a></li>
+                <li role="menuitem"><a id="footerCopyright" href="http://www2.gov.bc.ca/gov/admin/copyright.page">Copyright</a></li>
+                <li role="menuitem"><a id="footerContact" href="/contact">Contact Us</a></li>
             </ul>
         </div>
     </div>
@@ -359,17 +378,6 @@
         <script src="~/Scripts/jquery.signalR-2.2.1.min.js" type="text/javascript"></script>
         <script src="~/signalr/hubs" type="text/javascript"></script>
     }
-
-    <environment names="Development">
-        <!--
-            
-        -->
-        <script src="~/Scripts/minimenu.js" type="text/javascript"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/Scripts/minimenu.js" asp-append-version="true" type="text/javascript"></script>
-    </environment>
-
 
     <script type="text/javascript">
         window.allowFade = true;
@@ -657,12 +665,6 @@
         var link = el.attr('href');
         window.location = link;
     });
-
-    $('#mini-menu-ministries').click(function (event) {
-        event.preventDefault();
-        $(".level-trigger").click();
-        return false;
-    });
         $('#mini-menu-container').on('shown.bs.collapse', function () {
             $('#hamburger-button').toggleClass('hidden');
             $('#close-hamburger-button').toggleClass('hidden');
@@ -688,7 +690,7 @@
         $('#mini-ministry-dropdown').on({
             "shown.bs.dropdown": function () {
                 $('#ministry-dropdown-down').toggleClass('hidden');
-                $('#ministry-dropdown-up').toggleClass('hidden');  
+                $('#ministry-dropdown-up').toggleClass('hidden');
             },
             "hide.bs.dropdown": function (e) {
                 $('#ministry-dropdown-down').toggleClass('hidden');

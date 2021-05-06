@@ -79,12 +79,12 @@ namespace Gov.News.Website.Helpers
         public static HtmlString ContactsDetails(this Document doc)
         {
             // chuck 
-            string contactsHtml = doc.LanguageId != 3084 ? "<h5>Media Contacts</h5>\n" : "<h5>Renseignements additionnels</h5>\n";
+            string contactsHtml = doc.LanguageId != 3084 ? "<h3>Media Contacts</h3>\n" : "<h3>Renseignements additionnels</h5>\n";
             foreach (var contact in doc.Contacts)
             {
                 contactsHtml += string.Format(
                                         "<div class=\"comm-contact\">" +
-                                        "<h6>{0}</h6>" +
+                                        "<h4>{0}</h4>" +
                                         "{1}</div>"
                                         , contact.Title, contact.Details.WithHtmlBreaks());
             }

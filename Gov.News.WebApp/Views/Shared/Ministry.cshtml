@@ -4,7 +4,7 @@
 
 <div class="ministry-listing@((ViewBag.Type != null && ViewBag.Type == "factsheets") ? " fact-sheets" : "")">
     <div class="home-features">
-        <h4>@Model.Title</h4>
+        <h3>@Model.Title</h3>
 
         @if (Model.Minister != null && Model.Ministry.Name != "Intergovernmental Relations Secretariat")
         {
@@ -71,7 +71,7 @@
                 @if (ministry.ContactUser != null)
                 {
                     <div class="resource-links">
-                        <h5>Media Contacts</h5>
+                        <h3>Media Contacts</h3>
                         <div>
                             <partial name="CommContact" model="ministry.ContactUser" />
                             @if (ministry.SecondContactUser != null)

@@ -4,13 +4,13 @@
 
 @if (Model.SlideItems.Any())
 {
-    <div id="carousel-holder">
+    <div id="carousel-holder" role="banner">
         @{
             var slideIndex = 0;
         }
         @foreach (var item in Model.SlideItems)
         {
-            <div class="home-banner" style="background-image: url(CarouselImage/@item.Key)">
+            <div class="home-banner" style="background-image: url(CarouselImage/@item.Key)" tabindex="-1">
                 <div class="home-banner-content">
                     <div class="stories">
                         @if (@item.ActionUri != null)
