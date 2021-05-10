@@ -1917,9 +1917,11 @@ ul.inline li {
         font-size: 18px;
         font-weight: 600;
         color: #494949;
-        margin-top: 40px;
         padding-bottom: 15px;
+        /*
+            margin-top: 40px;
         border-bottom: 1px solid #e2e2e2;
+        */
     }
 
     .story-page .print-document {
