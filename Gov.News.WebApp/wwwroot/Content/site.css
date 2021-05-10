@@ -1900,9 +1900,11 @@ ul.inline li {
 
     .story-page h3 {
         font-size: 18px;
-        font-weight: 400;
-        color: #1a5a96;
+        font-weight: 600;
+        /*
+            color: #1a5a96;
         margin-top: 40px;
+        */
     }
 
         .story-page h3.subheadline {
@@ -1917,9 +1919,11 @@ ul.inline li {
         font-size: 18px;
         font-weight: 600;
         color: #494949;
-        margin-top: 40px;
         padding-bottom: 15px;
+        /*
+            margin-top: 40px;
         border-bottom: 1px solid #e2e2e2;
+        */
     }
 
     .story-page .print-document {
