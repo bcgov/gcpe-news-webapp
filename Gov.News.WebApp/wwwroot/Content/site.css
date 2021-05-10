@@ -1901,8 +1901,10 @@ ul.inline li {
     .story-page h3 {
         font-size: 18px;
         font-weight: 400;
-        color: #1a5a96;
+        /*
+            color: #1a5a96;
         margin-top: 40px;
+        */
     }
 
         .story-page h3.subheadline {
