@@ -340,7 +340,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.facebook.com/HealthyFamiliesBC", Title = "Healthy Families BC" },
                         new Link() { Url = "https://www.facebook.com/QuitNowBC", Title = "QuitNowBC" },
                         new Link() { Url = "http://www.facebook.com/BCRecSitesandTrails", Title = "Rec Sites and Trails BC" },
-                        new Link() { Url = "http://www.facebook.com/ServiceBC", Title = "Service BC" },
                         new Link() { Url = "http://www.facebook.com/HelloBC", Title = "Destination British Columbia" },
                         new Link() { Url = "http://www.facebook.com/WorkBC", Title = "WorkBC" },
                         new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" },
@@ -381,7 +380,6 @@ namespace Gov.News.Website.Controllers
             {
                         new Link() { Url = "https://twitter.com/ComplianceBC", Title = "@ComplianceBC", Summary = "Environmental compliance in BC: changes, enforcement and education" },
                         new Link() { Url = "https://twitter.com/BCGovNews", Title = "@BCGovNews", Summary = "Read daily news tweets from the Government of British Columbia" },
-                        new Link() { Url = "https://twitter.com/IndigenousEdBC", Title = "@IndigenousEducationBC", Summary = "Discuss barriers and challenges faced by BC's Aboriginal students" },
                         new Link() { Url = "http://twitter.com/bcgovfireinfo", Title = "@BCGovFireInfo", Summary = "Find updates on significant wildfires around the province" },
                         new Link() { Url = "http://twitter.com/BCgovtjobs", Title = "@BCGovtJobs", Summary = "Looking for a job? Find links to BC Public Service job postings" },
                         new Link() { Url = "http://twitter.com/BC_Housing", Title = "@BC_Housing", Summary = "Learn about housing solutions and the latest projects in BC" },
@@ -389,7 +387,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://twitter.com/bcstats", Title = "@BCStats", Summary = "Get the facts from BC's central statistical agency" },
                         new Link() { Url = "https://twitter.com/BCTradeInvest", Title = "@BCTradeInvest", Summary = "Find expertise to help your business grow internationally" },
                         new Link() { Url = "http://twitter.com/CRTreaty", Title = "@CRTreaty", Summary = "Join the discussion on the Columbia River Treaty Review" },
-                        new Link() { Url = "http://twitter.com/data_bc", Title = "@Data_BC" , Summary = "Find data, services, apps and tools to inspire change or develop new ideas" },
                         new Link() { Url = "http://twitter.com/DriveBC", Title = "@DriveBC" , Summary = "Get developing road closure & weather information in BC" },
                         new Link() { Url = "https://twitter.com/DriveBC_c", Title = "@DriveBC_C" , Summary = "Travel info for the Cariboo region" },
                         new Link() { Url = "https://twitter.com/DriveBC_K", Title = "@DriveBC_K" , Summary = "Travel info for the Kootenays" },
