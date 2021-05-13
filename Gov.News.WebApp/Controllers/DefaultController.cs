@@ -467,7 +467,6 @@ namespace Gov.News.Website.Controllers
                     {
                         new Link() {Url ="https://news.gov.bc.ca/feed", Title = "BC Gov News" },
                         new Link() {Url ="https://news.gov.bc.ca/factsheets/feed", Title = "Factsheets & Opinion Editorials" },
-                        new Link() {Url ="http://www.emergencyinfobc.gov.bc.ca/category/alerts/feed", Title = "EmergencyInfoBC" },
                         new Link() {Url ="http://www.healthlinkbc.ca/publichealthalerts", Title = "HealthLinkBC" },
                     };
             var ministries = model.Ministries.Select(m => m.Index).OrderBy(c => c.Name == "Office of the Premier" ? 0 : 1).ThenBy(c => c.Name);
