@@ -3,7 +3,17 @@
 @model MinistryViewModel
 
 <div class="ministry-listing@((ViewBag.Type != null && ViewBag.Type == "factsheets") ? " fact-sheets" : "")">
-    <div class="home-features">
+    <div class="access" aria-label="skip links">
+        <ul>
+            <li aria-label="Skip to main content">
+                <a href="#main-content-release">Skip to main content</a>
+            </li>
+            <li aria-label="Skip to footer">
+                <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+            </li>
+        </ul>
+    </div>
+    <div class="home-features" role="complementary">
         <h3>@Model.Title</h3>
 
         @if (Model.Minister != null && Model.Ministry.Name != "Intergovernmental Relations Secretariat")
@@ -13,7 +23,7 @@
         <!-- collapsible-regions are cloned here by _Layout-->
     </div>
 
-    <div class="home-body">
+    <div class="home-body" id="main-content-release" role="main">
         <h2 class="ministry-name-mobile">@Model.Title</h2>
 
         @if (ViewBag.Type == null)

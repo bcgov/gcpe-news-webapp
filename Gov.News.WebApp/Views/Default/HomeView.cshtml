@@ -17,13 +17,24 @@
 @section Carousel {
     <partial name="HomeCarousel" />
 }
+<!-- skip at home view side bar for accessibility -->
+<div class="access">
+    <ul>
+        <li aria-label="Skip to main content">
+            <a href="#main-content-release">Skip to main content</a>
+        </li>
+        <li aria-label="Skip to footer">
+            <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+        </li>
+    </ul>
+</div>
 
 <div class="home-features" role="complementary">
     <partial name="ConnectSocialMedia" />
     <!-- collapsible-regions are cloned here by _Layout-->
 </div>
 
-<div class="home-body" role="region" id="main-content-release" tabindex="-1">
+<div class="home-body" role="main" id="main-content-release" tabindex="-1">
     @if (Model.IndexModel.TopPost != null)
     {
         <div class="top-article" tabindex="0">
