@@ -3,13 +3,23 @@
 @using Gov.News.Website.Helpers
 @model ConnectViewModel
 
+    <div class="access" aria-label="skip links">
+        <ul>
+            <li aria-label="Skip to main content">
+                <a href="#main-content-release">Skip to main content</a>
+            </li>
+            <li aria-label="Skip to footer">
+                <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+            </li>
+        </ul>
+    </div>
 <div class="connect">
-    <div class="home-features">
+    <div class="home-features" role="complementary">
         <partial name="ResourceLinks" />
         <vc:top-sectors />
     </div>
 
-    <div class="home-body">
+    <div class="home-body" role="main" id="main-content-release">
         <h2>Connect</h2>
         <p style="font-size: 16px;"><a href="https://news.gov.bc.ca/stories/bc-government-news-social-media-moderation-policy-hours-of-operation-and-collection-notice">BC Government News Social Media policy, collection notice and hours of operation</a></p>
         @{bool expandableFacebook = Model.FacebookLinks.Count() >= 5;}

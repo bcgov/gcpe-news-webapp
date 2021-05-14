@@ -127,8 +127,18 @@
 }
 
 <div class="story-page">
-    <a href="#" class="print-document" alt="Print" title="Print">Print</a>
+    <div class="access" aria-label="skip links">
+        <ul>
+            <li aria-label="Skip to main content">
+                <a href="#main-content-release">Skip to main content</a>
+            </li>
+            <li aria-label="Skip to footer">
+                <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+            </li>
+        </ul>
+    </div>
 
+    <a href="#" class="print-document" alt="Print" title="Print">Print</a>
 
     @if (leadMinistry.IsActive == true)
     {
@@ -191,7 +201,8 @@
                     <a class="assets-link" href="#assets">Media Assets</a>
                 </div>
             }
-            @if (Model.Post.HasTranslations == true) {
+            @if (Model.Post.HasTranslations == true)
+            {
                 <div class="translate" style="margin-top: 4px;">
                     <a href="#translations" style="font-size: 13px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i><span style="text-transform:uppercase;">View Translations</span></a>
                 </div>
@@ -294,7 +305,7 @@
 
     </div>
 
-    <div class="story-body">
+    <div class="story-body" id="main-content-release" role="main">
 
         @if (Model.Post.AssetUrl?.ToString() == "https://news.gov.bc.ca/live")
         {
@@ -303,7 +314,7 @@
         else
         {
             <div class="story-copy primary-asset">
-                @AssetHelper.RenderPostAsset(Model.Post.AssetUrl.ToUri(), 624, string.IsNullOrEmpty(Model.Post.SocialMediaHeadline)? string.Empty : Model.Post.SocialMediaHeadline).ShowLinks()
+                @AssetHelper.RenderPostAsset(Model.Post.AssetUrl.ToUri(), 624, string.IsNullOrEmpty(Model.Post.SocialMediaHeadline) ? string.Empty : Model.Post.SocialMediaHeadline).ShowLinks()
             </div>
         }
 
@@ -451,7 +462,7 @@
                         <!--googleoff: all-->
 
                         @if (item.Contacts.Any() && (firstDoc.Contacts.Count() != item.Contacts.Count()
-                           || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
+                          || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
                         {
                             @Html.Raw(item.ContactsDetails())
                         }
@@ -517,8 +528,8 @@
                             {
                                 <li>
                                     @*<div>
-                                        <b>@azureTranslation.Label</b>
-                                    </div>*@
+                                            <b>@azureTranslation.Label</b>
+                                        </div>*@
                                     @*<div>
                                             @asset.Timestamp.FormatDateLong()
                                         </div>*@

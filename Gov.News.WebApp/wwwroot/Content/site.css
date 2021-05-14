@@ -1974,7 +1974,7 @@ ul.inline li {
         }
 
         .story-features .resource-links:first-child h3 {
-            margin-top: 0px;
+            margin-top: 0px !important;
         }
 
         .story-features .resource-links .comm-contact h4 {
