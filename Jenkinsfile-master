@@ -1,5 +1,7 @@
 node('master') {
-	stage('Build Image') {
+	timeout(40)
+	{
+		stage('Build Image') {
 		openshift.withCluster() {
                     openshift.withProject() {
                         echo "building..."
@@ -31,4 +33,6 @@ node('master') {
 		     }
 		}
 	}
+	}
+	
 }
