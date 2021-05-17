@@ -1,20 +1,24 @@
 node('master') {
 	timeout(40)
 	{
-		stage('Build Image') {
-		openshift.withCluster() {
-                    openshift.withProject() {
-                        echo "building..."
-			def bc = openshift.selector('bc', 'news-webapp-master')
-			def buildSelector = bc.startBuild()
-			sleep(2)
-			buildSelector.logs('-f')
-			sleep(2)
-			openshift.tag("news-webapp-master:latest", "news-webapp:prod")
-			openshift.tag("news-webapp-master:latest", "news-webapp:uat")
-                    }
-                }
-	}
+		timeout(30)
+		{
+			stage('Build Image') {
+				openshift.withCluster() {
+							openshift.withProject() {
+								echo "building..."
+					def bc = openshift.selector('bc', 'news-webapp-master')
+					def buildSelector = bc.startBuild()
+					sleep(2)
+					buildSelector.logs('-f')
+					sleep(2)
+					openshift.tag("news-webapp-master:latest", "news-webapp:prod")
+					openshift.tag("news-webapp-master:latest", "news-webapp:uat")
+							}
+						}
+			}
+		}
+		
 
 	stage('Deploy to UAT') {
 		openshift.withCluster() {
