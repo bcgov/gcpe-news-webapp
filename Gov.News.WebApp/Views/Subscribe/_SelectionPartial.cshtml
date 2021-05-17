@@ -27,7 +27,7 @@
 {
     <div id="newsOnDemand" class="expandable-section collapsed">
         <a name="newsOnDemand"></a>
-        <h4>BC Gov News On Demand</h4>
+        <h3>BC Gov News On Demand</h3>
 
         <div class="expandable-section-content" style="padding-left: 10px; padding-bottom: 0px;">
             <div class="expander-body">
@@ -115,46 +115,6 @@
 
         <a href="#" class="link-button expand">Show More about News</a>
         <a href="#" class="link-button collapse" onclick="">Show less about News</a>
-
-    </div>
-
-    <div id="EMBC" class="expandable-section collapsed">
-        <a name="EMBC"></a>
-        <h4>Emergency Info BC</h4>
-
-        <div class="expandable-section-content" style="padding-left: 10px; padding-bottom: 10px;">
-            <div>
-
-                <p>
-                    Are you prepared for an emergency? Make sure you’re as ready as you can be for an accident, environmental emergency or natural disaster.
-                </p>
-
-                <div style="font-weight:bold">Would you like to receive notifications from Emergency Info BC?</div>
-
-                <div style="clear:both"></div>
-
-                <div id="embcCustomOptions">
-
-                    <div style="float:left">
-                        <ul class="external-links">
-                            @foreach (var list in Model.Emergencies.OrderBy(e => e.Value).ToList())
-                            {
-                                <li><label><input type="checkbox" value="@list.Key" name="emergency" checked="@Model.Selection.Contains("emergency", list.Key)" />&nbsp;@list.Value</label></li>
-                            }
-                        </ul>
-                    </div>
-
-                    <div style="clear:left"> </div>
-                </div>
-
-                @*<div class="article-fade"> </div>*@
-
-            </div>
-
-        </div>
-
-        <!--<a href="#" class="link-button expand">Show More about EMBC</a>
-        <a href="#" class="link-button collapse" onclick="">Show less about EMBC</a>-->
 
     </div>
 }

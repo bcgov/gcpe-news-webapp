@@ -18,20 +18,20 @@
     <partial name="HomeCarousel" />
 }
 
-<div class="home-features">
+<div class="home-features" role="complementary">
     <partial name="ConnectSocialMedia" />
     <!-- collapsible-regions are cloned here by _Layout-->
 </div>
 
-<div class="home-body">
+<div class="home-body" role="region" id="main-content-release" tabindex="-1">
     @if (Model.IndexModel.TopPost != null)
     {
-        <div class="top-article">
+        <div class="top-article" tabindex="0">
             <partial name="PostCard" model="Model.IndexModel.TopPost" />
         </div>
     }
 
-    <div class="other-articles">
+    <div class="other-articles" tabindex="0">
         @if (Model.IndexModel.FeaturePost != null)
         {
             <div class="feature-article">
@@ -39,7 +39,7 @@
             </div>
         }
 
-        <div class="regular-articles">
+        <div class="regular-articles" tabindex="0">
             @foreach (var post in Model.IndexModel.LatestNews.Take(3))
             {
                 <partial name="PostCard" model="post" />

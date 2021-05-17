@@ -5,6 +5,9 @@ node('master') {
                         echo "building..."
 			def bc = openshift.selector('bc', 'news-webapp-develop')
 			def buildSelector = bc.startBuild()
+			sleep(2)
+			buildSelector.logs('-f')
+			sleep(2)
 			openshift.tag("news-webapp-develop:latest", "news-webapp:dev")
 			openshift.tag("news-webapp-develop:latest", "news-webapp:test")
                     }

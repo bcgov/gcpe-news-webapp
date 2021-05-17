@@ -13,16 +13,16 @@
     <div class="home-body">
         
         @*TODO: Replace Model.Categories.First().GetType().Name with DisplayName property*@
-        <h3>News by @Model.Categories.First().Index.GetType().Name</h3>
+        <h2>News by @Model.Categories.First().Index.GetType().Name</h2>
         
         @foreach (var category in Model.Categories)
         {
             <div class="grouped-articles">
-                <h4>
+                <h3>
                     <a href="@category.Index.GetUri()">
                         @category.Index.Name
                     </a>
-                </h4>
+                </h3>
                 @if (category.TopPost != null)
                 {
                     <div class="top-article">

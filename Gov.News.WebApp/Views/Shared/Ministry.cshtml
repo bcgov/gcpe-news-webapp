@@ -4,7 +4,7 @@
 
 <div class="ministry-listing@((ViewBag.Type != null && ViewBag.Type == "factsheets") ? " fact-sheets" : "")">
     <div class="home-features">
-        <h4>@Model.Title</h4>
+        <h3>@Model.Title</h3>
 
         @if (Model.Minister != null && Model.Ministry.Name != "Intergovernmental Relations Secretariat")
         {
@@ -71,7 +71,7 @@
                 @if (ministry.ContactUser != null)
                 {
                     <div class="resource-links">
-                        <h5>Media Contacts</h5>
+                        <h3>Media Contacts</h3>
                         <div>
                             <partial name="CommContact" model="ministry.ContactUser" />
                             @if (ministry.SecondContactUser != null)
@@ -87,18 +87,18 @@
                             @if (ministry.Name == "Health")
                             {
                                 <br />
-                                <h6>COVID-19 Media Contacts</h6>
+                                <h4>COVID-19 Media Contacts</h4>
                                 <br/>
                                 <span class="contact-name">Marielle Tounsi</span>
                                 <div>
                                     <span>Cell: 778-584-1255</span>
                                 </div>
-                                <a href="mailto:Marielle.Tounsi@gov.bc.caa">Marielle.Tounsi@gov.bc.ca</a><br /><br />
-                                <span class="contact-name">Chandler Grieve</span>
+                                <a href="mailto:Marielle.Tounsi@gov.bc.ca">Marielle.Tounsi@gov.bc.ca</a><br /><br />
+                                <span class="contact-name">Leah Holoiday</span>
                                 <div>
-                                    <span>Cell: 250-883-2237</span>
+                                    <span>Cell: 250-880-2378</span>
                                 </div>
-                                <a href="mailto:Chandler.Grieve@gov.bc.ca">Chandler.Grieve@gov.bc.ca</a><br />
+                                <a href="mailto:Leah.Holoiday@gov.bc.ca">Leah.Holoiday@gov.bc.ca</a><br />
                             }
                         </div>
                     </div>
