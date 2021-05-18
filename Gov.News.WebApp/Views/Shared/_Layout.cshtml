@@ -29,7 +29,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@(Model.Title == "Home" || string.IsNullOrEmpty(Model.Title) ? "" : Model.Title + " |") BC Gov News</title>
+    <title>@(Model.Title == "Home" || string.IsNullOrEmpty(Model.Title) ? "" : Model.Title + " |")BC Gov News</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="twitter:card" content="summary_large_image">
@@ -129,27 +129,6 @@
     <!-- skip for accessibility-->
     
     <div id="header" class="navbar navbar-default" style="margin-bottom: 0;">
-        <div class="access" aria-label="skip links">
-            <ul aria-labelledby="skip links">
-                <li aria-label="Skip to main content">
-                    <a title="Skip to main content" href="#main-content-release">Skip to main content</a>
-                </li>
-                <li aria-label="Skip to main navigation">
-                    <a title="skip to main navigation" href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
-                </li>
-                <li aria-label="Skip to site search">
-                    <a title="skip to site search" href="#site-search" onclick="window.scrollTo(0,0);">Skip to site search</a>
-                </li>
-                @if (controller != "Subscribe") {
-                <li aria-label="Skip to side bar">
-                    <a title="skip to side bar search" href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
-                </li>
-                } 
-                <li aria-label="Skip to footer">
-                    <a title="skip to footer" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
-                </li>
-            </ul>
-        </div>
 
         @{
             if (@Model.GranvilleLive)
@@ -164,9 +143,9 @@
         }
 
         <!-- COVID banner -->
-        <div id="covid-banner" class="covid-banner" role="banner">
+        <div id="covid-banner" class="covid-banner" role="alert" aria-live="assertive">
             <div class="content" style="padding-left: 10px; padding-right:0 !important;">
-                <button class="btn-link pull-right" id="btnCloseCovidBanner"><strong>×</strong></button>
+                <button class="btn-link pull-right" id="btnCloseCovidBanner" aria-hidden="true"><strong>×</strong></button>
                 <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All people 18+ can
                 <a href="https://gov.bc.ca/getvaccinated">register to get vaccinated</a>
                 &nbsp; |&nbsp;&nbsp; <a href="https://www2.gov.bc.ca/gov/content?id=762AD642C5524DC9B6F4D7463D275C46">Province-wide restrictions</a>&nbsp;are in effect, including &nbsp;<a href="https://www2.gov.bc.ca/gov/content?id=3A36597E76894E9BAACB95D8F32CBF63">travel restrictions</a>
@@ -176,11 +155,33 @@
         <div class="container-fluid">
             <div class="row" id="header-top">
                 <div class="content" style="padding-right:20px !important;">
-                    <div id="logo" role="img" aria-describedby="BC Gov Logo">
+                    <div id="logo" role="banner">
                         <a id="headerBCGov" href="http://gov.bc.ca">
                             <img id="BCGov-logo" src="~/Content/Images/Gov/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                             <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." title="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                         </a>
+                    </div>
+                    <div class="access">
+                        <ul>
+                            <li aria-label="Skip to main content">
+                                <a title="Skip to main content" href="#main-content-release">Skip to main content</a>
+                            </li>
+                            <li aria-label="Skip to main navigation">
+                                <a title="skip to main navigation" href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
+                            </li>
+                            <li aria-label="Skip to site search">
+                                <a title="skip to site search" href="#site-search" onclick="window.scrollTo(0,0);">Skip to site search</a>
+                            </li>
+                            @if (controller != "Subscribe")
+                            {
+                                <li aria-label="Skip to side bar">
+                                    <a title="skip to side bar search" href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
+                                </li>
+                            }
+                            <li aria-label="Skip to footer">
+                                <a title="skip to footer" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+                            </li>
+                        </ul>
                     </div>
 
                     <nav class="navbar-dafault" role="navigation">
@@ -200,19 +201,19 @@
             </div>
             <div class="row" id="header-bottom">
                 <div class="content">
-                    <div style="display:inline-block">
+                    <div style="display:inline-block" role="banner">
                         <h1><a id="headerNewsHome" href="/">BC Gov News</a></h1>
                     </div>
                     @if (!(Model is SearchViewModel))
                     {
-                <div class="search" role="search" >
-                    @using (Html.BeginForm("Search", "Default", FormMethod.Get))
-                    {
-                        <label class="usa-sr-only" id="site-search" for="search" style="position: absolute; left: -999em; right: auto;">Search</label>
-                        <input name="q" type="search" placeholder="Search news.gov.bc.ca" />
-                        <div class="search-trigger"> </div>
-                    }
-                </div>
+                        <div class="search" role="search">
+                            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
+                            {
+                                <label class="usa-sr-only" id="site-search" for="search" style="position: absolute; left: -999em; right: auto;">Search</label>
+                                <input name="q" type="search" placeholder="Search news.gov.bc.ca" />
+                                <div class="search-trigger"> </div>
+                            }
+                        </div>
                     }
 
                 </div>
