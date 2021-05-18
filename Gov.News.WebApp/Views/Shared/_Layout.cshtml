@@ -421,7 +421,7 @@
         if (collapsibleRegions.length != 0) {
             // Clone on the client instead of having the server to duplicate and send them
             $('.home-features').append(collapsibleRegions.children().clone());
-            collapsibleRegions.find(".resource-links > h5").on('click', function () {
+            collapsibleRegions.find(".resource-links > h3").on('click', function () {
                 var headerToggler = $(this);
                 headerToggler.parent().find('ul,div').toggle();
                 headerToggler.toggleClass('open');
