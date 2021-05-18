@@ -17,6 +17,12 @@
         age = age - 1;
     }
     bool isCovidTag = Context.Request.Path.ToString().Contains("/tags/covid-19") && Context.Request.Query["embed"] == "true";
+    string controller = "";
+
+    if (ViewContext.RouteData.Values["controller"] != null)
+    {
+        controller = ViewContext.RouteData.Values["controller"].ToString();
+    }
 }
 
 <!DOCTYPE html>
@@ -121,24 +127,30 @@
 <body>
     <!--googleoff: all-->
     <!-- skip for accessibility-->
-    <div class="access" aria-label="skip links">
-        <ul>
-            <li aria-label="Skip to main content">
-                <a href="#main-content-release">Skip to main content</a>
-            </li>
-            <li aria-label="Skip to main navigation">
-                <a href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
-            </li>
-            <li aria-label="Skip to side bar">
-                <a href="#header-links" onclick="window.scrollTo(0,0);">Skip to side bar</a>
-            </li>
-            <li aria-label="Skip to footer">
-                <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
-            </li>
-        </ul>
-    </div>
-
+    
     <div id="header" class="navbar navbar-default" style="margin-bottom: 0;">
+        <div class="access" aria-label="skip links">
+            <ul>
+                <li aria-label="Skip to main content">
+                    <a title="Skip to main content" href="#main-content-release">Skip to main content</a>
+                </li>
+                <li aria-label="Skip to main navigation">
+                    <a title="skip to main navigation" href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
+                </li>
+                <li aria-label="Skip to site search">
+                    <a title="skip to site search" href="#site-search" onclick="window.scrollTo(0,0);">Skip to site search</a>
+                </li>
+                @if (controller != "Subscribe") {
+                <li aria-label="Skip to side bar">
+                    <a title="skip to side bar search" href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
+                </li>
+                } 
+                <li aria-label="Skip to footer">
+                    <a title="skip to footer" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+                </li>
+            </ul>
+        </div>
+
         @{
             if (@Model.GranvilleLive)
             {
@@ -186,21 +198,23 @@
 
                 </div>
             </div>
-            <div class="row" id="header-bottom" role="search">
+            <div class="row" id="header-bottom">
                 <div class="content">
-                    @if (!(Model is SearchViewModel))
-                    {
-                        <div class="search" role="search">
-                            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
-                            {
-                                <input name="q" type="text" placeholder="Search news.gov.bc.ca" />
-                                <div class="search-trigger"> </div>
-                            }
-                        </div>
-                    }
-                    <div>
+                    <div style="display:inline-block">
                         <h1><a id="headerNewsHome" href="/">BC Gov News</a></h1>
                     </div>
+                    @if (!(Model is SearchViewModel))
+                    {
+                <div class="search" role="search" >
+                    @using (Html.BeginForm("Search", "Default", FormMethod.Get))
+                    {
+                        <label class="usa-sr-only" id="site-search" for="search" style="position: absolute; left: -999em; right: auto;">Search</label>
+                        <input name="q" type="search" placeholder="Search news.gov.bc.ca" />
+                        <div class="search-trigger"> </div>
+                    }
+                </div>
+                    }
+
                 </div>
             </div>
             <div class="row" role="navigation" aria-label="Main menu" id="header-links">
