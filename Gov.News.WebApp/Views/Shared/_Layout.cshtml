@@ -24,11 +24,6 @@
     {
         controller = ViewContext.RouteData.Values["controller"].ToString();
     }
-
-    if (ViewContext.RouteData.Values["action"] != null)
-    {
-        action = ViewContext.RouteData.Values["action"].ToString();
-    }
 }
 
 <!DOCTYPE html>
@@ -146,9 +141,11 @@
                 <li aria-label="Skip to site search">
                     <a title="skip to site search" href="#site-search" onclick="window.scrollTo(0,0);">Skip to site search</a>
                 </li>
+                @if (controller != "Subscribe") {
                 <li aria-label="Skip to side bar">
                     <a title="skip to side bar search" href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
                 </li>
+                } 
                 <li aria-label="Skip to footer">
                     <a title="skip to footer" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
                 </li>
