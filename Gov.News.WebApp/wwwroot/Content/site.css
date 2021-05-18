@@ -277,6 +277,10 @@ a.news-control .read-more.left {
         padding-bottom: 5px;
     }
 
+.collapsible-regions .resource-links h3:hover {
+    cursor: pointer;
+}
+
     .resource-links h4 {
         font-size: 14px;
         font-weight: 600;
