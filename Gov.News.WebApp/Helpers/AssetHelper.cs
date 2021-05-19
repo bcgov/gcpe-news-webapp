@@ -272,7 +272,7 @@ namespace Gov.News.Website.Helpers
 
                     var videoId = query["v"];
 
-                    assetHtml = ReturnMediaAssetWrapper("youtube", videoId);
+                    assetHtml = ReturnMediaAssetWrapper("youtube", videoId, "", altText);
 
                 }
                 else if (uri.Host.EndsWith("staticflickr.com"))

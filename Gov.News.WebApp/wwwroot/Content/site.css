@@ -102,18 +102,24 @@ a {
     cursor: pointer;
     height: 25px;
     position: relative;
-    right: 6px;
     float: right;
     width: 25px;
+    line-height: 25px;
+    /*
     background-image: url(Images/search-ico.png);
     background-position: 98% center;
     background-repeat: no-repeat;
+        right: 6px;
+    */
 }
+    #header .search .search-trigger i{
+        color:grey;
+    }
 
-#header-top {
-    height: 65px;
-    border-bottom: 2px solid #fcba19;
-}
+    #header-top {
+        height: 65px;
+        border-bottom: 2px solid #fcba19;
+    }
 
 #header-bottom {
     height: 50px;
@@ -1682,10 +1688,7 @@ ul.inline li {
         display: inline-block;
         width: 20px;
         height: 20px;
-        margin-top: 15px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-image: url(Images/SocialMedia/20x20-white-search.png);
+        margin-top: 18px;
     }
 
     .story-navigator .search.active .search-panel-trigger {
@@ -1723,7 +1726,9 @@ ul.inline li {
     }
 
     .story-navigator .search.active .search-panel-trigger {
-        background-image: url(Images/SocialMedia/20x20-white-close.png);
+        /*
+            background-image: url(Images/SocialMedia/20x20-white-close.png);
+        */
     }
 
     .story-navigator .segment.print {
@@ -1933,9 +1938,6 @@ ul.inline li {
     .story-page .print-document {
         float: right;
         display: inline-block;
-        background-image: url(Images/20x20-print.png);
-        background-repeat: no-repeat;
-        background-position: left center;
         text-transform: uppercase;
         padding-left: 24px;
         font-size: 13px;

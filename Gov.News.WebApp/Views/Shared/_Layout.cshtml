@@ -26,7 +26,7 @@
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@(Model.Title == "Home" || string.IsNullOrEmpty(Model.Title) ? "" : Model.Title + " |")BC Gov News</title>
@@ -133,7 +133,7 @@
         @{
             if (@Model.GranvilleLive)
             {
-                <div id="granville-bridge-banner" class="alert granville-bridge-banner" role="banner">
+                <div id="granville-bridge-banner" class="alert granville-bridge-banner" role="alert">
                     <div class="content">
                         <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
                         <button class="btn-link pull-right" id="btnCloseBanner" aria-hidden="true"><strong>×</strong></button>
@@ -170,7 +170,7 @@
                                 <a title="skip to main navigation" href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
                             </li>
                             <li aria-label="Skip to site search">
-                                <a title="skip to site search" href="#site-search" onclick="window.scrollTo(0,0);">Skip to site search</a>
+                                <a title="skip to site search" href="#site-search-label" onclick="window.scrollTo(0,0);">Skip to site search</a>
                             </li>
                             @if (controller != "Subscribe")
                             {
@@ -184,18 +184,18 @@
                         </ul>
                     </div>
 
-                    <nav class="navbar-dafault" role="navigation">
+                    <nav class="navbar-dafault">
                         <div type="button" class="btn btn-link mini-menu-container-trigger navbar-toggle" data-toggle="collapse" data-target="#mini-menu-container">
                             <i id="hamburger-button" class="fa fa-bars fa-customized" aria-hidden="true"></i>
                             <i id="close-hamburger-button" class="fa fa-times fa-customized hidden" aria-hidden="true"></i>
                         </div>
                     </nav>
-                    <nav class="navbar-default" role="search">
+                    <div class="navbar-default" role="search">
                         <div type="button" class="btn btn-link mini-search-container-trigger navbar-toggle" data-toggle="collapse" data-target="#mini-search-container">
                             <i id="search-button" class="fa fa-search fa-customized" aria-hidden="true"></i>
                             <i id="close-search-button" class="fa fa-times fa-customized hidden" aria-hidden="true"></i>
                         </div>
-                    </nav>
+                    </div>
 
                 </div>
             </div>
@@ -209,9 +209,9 @@
                         <div class="search" role="search">
                             @using (Html.BeginForm("Search", "Default", FormMethod.Get))
                             {
-                                <label class="usa-sr-only" id="site-search" for="search" style="position: absolute; left: -999em; right: auto;">Search</label>
-                                <input name="q" type="search" placeholder="Search news.gov.bc.ca" />
-                                <div class="search-trigger"> </div>
+                                <label class="sr-only" id="site-search-label" for="site-search-input">Search</label>
+                                <input name="q" type="search" id="site-search-input" placeholder="Search news.gov.bc.ca" />
+                                <div class="search-trigger"><i class="fa fa-search fa-lg" aria-hidden="true"></i> </div>
                             }
                         </div>
                     }
@@ -237,7 +237,7 @@
                                     }
                                     else
                                     {
-                                        <li role="menuitem" style="float:right;"><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
+                                        <li style="float:right;"><a href="/live" aria-hidden="true" class="live_button live_button_hide">Live Webcast</a></li>
                                     }
                                 </ul>
                             </div>
@@ -274,20 +274,21 @@
     <div class="collapse navbar-collapse" id="mini-search-container" role="search">
         @if (!(Model is SearchViewModel))
         {
-            <div class="search mini-menu-search" style="display:block;">
-                @using (Html.BeginForm("Search", "Default", FormMethod.Get))
-                {
-                    <input name="q" id="mini-menu-search-box" class="searchbox" type="text" placeholder="Search news.gov.bc.ca">
-                    <div class="search-trigger"> </div>
-                }
-            </div>
+        <div class="search mini-menu-search" style="display:block;">
+            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
+            {
+                <label class="sr-only" id="site-mini-search-label" for="mini-menu-search-box">Search</label>
+                <input name="q" id="mini-menu-search-box" class="searchbox" type="text" placeholder="Search news.gov.bc.ca">
+                <div class="search-trigger"> </div>
+            }
+        </div>
         }
     </div>
     <div class="collapse navbar-collapse" id="mini-menu-container" style="overflow: hidden;">
         <ul>
             <li class="first-link" role="menuitem"><a href="/">Home</a><div class="no-trigger"></div></li>
             <li class="dropdown" id="mini-ministry-dropdown" role="menuitem">
-                <a href="#" style="width:100%;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <a style="width:100%;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     Ministries
                     <div id="ministry-dropdown" class="pull-right">
                         <i id="ministry-dropdown-down" class="fa fa-chevron-down"></i>
@@ -335,7 +336,6 @@
 
         <main>
             @RenderBody()
-            @*<a href="#" class="link-button back-to-top">TOP</a>*@
             <div class="clear"></div>
         </main>
 
@@ -375,10 +375,10 @@
     <div id="end-cap">
         <ul>
             <li class="connect-label">Connect</li>
-            <li><a href="/connect#facebook"><i class="fa fa-facebook-official fa-lg" aria-hidden="false"></i></a></li>
-            <li><a href="/connect#twitter"><i class="fa fa-twitter fa-lg" aria-hidden="false"></i></a></li>
-            <li><a href="/connect#flickr"><i class="fa fa-flickr fa-lg" aria-hidden="false"></i></a></li>
-            <li><a href="/connect#youtube"><i class="fa fa-youtube fa-lg" aria-hidden="false"></i></a></li>
+            <li><a aria-label="connect on facebook" href="/connect#facebook"><i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i></a></li>
+            <li><a aria-label="connect on twitter" href="/connect#twitter"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+            <li><a aria-label="connect on flickr" href="/connect#flickr"><i class="fa fa-flickr fa-lg" aria-hidden="true"></i></a></li>
+            <li><a aria-label="connect on youtube" href="/connect#youtube"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a></li>
         </ul>
         <a href="/connect" class="read-more view-all-media">View all Social Media</a>
     </div>
