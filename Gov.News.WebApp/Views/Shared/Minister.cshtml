@@ -10,7 +10,7 @@
 @if (Model != null && !string.IsNullOrWhiteSpace(Minister.Headline))
 {
     <div class="resource-links minister">
-        <img src="@Minister.Photo" />
+        <img src="@Minister.Photo" alt=""/>
         <h3>@Minister.Headline</h3>
 
         @Minister.Summary.AsHtmlParagraphs()

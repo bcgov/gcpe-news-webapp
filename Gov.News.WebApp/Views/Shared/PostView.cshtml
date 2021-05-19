@@ -75,7 +75,7 @@
                     <partial name="ShareSocialMedia" />
                 </div>
                 <div class="segment search">
-                    <a href="#" class="search-panel-trigger"> </a>
+                    <a aria-label="search" class="search-panel-trigger"><i class="fa fa-search fa-customized-sm" aria-hidden="true"></i></a>
                     <div class="border-hider"> </div>
                 </div>
                 <div class="segment more">
@@ -90,7 +90,7 @@
                     <div class="border-hider"> </div>
                 </div>
                 <div class="segment print">
-                    <a href="#" class="print-document" alt="Print" title="Print"> </a>
+                    <a class="print-document" aria-lable="Print this page" title="Print" ><i class="fa fa-print fa-customized-sm" aria-hidden="true"></i> </a>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -100,10 +100,11 @@
                 <div class="search-box">
                     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
                     {
-                        <div class="search-box-bar">
-                            <input name="q" type="text" placeholder="Search news.gov.bc.ca" />
-                            <div class="search-trigger"> </div>
-                        </div>
+                    <div class="search-box-bar">
+                        <label class="sr-only" id="search-story-label" for="search-story-box">Search</label>
+                        <input name="q" type="text" placeholder="Search news.gov.bc.ca" id="search-story-box"/>
+                        <div class="search-trigger"></div>
+                    </div>
 
                     }
                 </div>
@@ -138,7 +139,7 @@
         </ul>
     </div>
 
-    <a href="#" class="print-document" alt="Print" title="Print">Print</a>
+    <a class="print-document" aria-label="Print this page" title="Print"><i class="fa fa-print fa-2x" aria-hidden="true"></i> Print</a>
 
     @if (leadMinistry.IsActive == true)
     {
@@ -336,11 +337,11 @@
         @if (firstFrenchDoc != null)
         {
             <div class="language-selector story-lang secondary">
-                This article also available in<a href="#" data-story-selection="primary" class="active">English</a>
+                This article also available in<a data-story-selection="primary" class="active">English</a>
             </div>
 
             <div class="language-selector story-lang primary">
-                Cet article est aussi disponible en<a href="#" data-story-selection="secondary" class="active">français</a>
+                Cet article est aussi disponible en<a data-story-selection="secondary" class="active">français</a>
             </div>
 
             <div class="story-copy story-lang secondary collapsed">
@@ -352,8 +353,8 @@
                         <div class="article-fade"> </div>
                     </article>
                 </div>
-                <a href="#" class="link-button expand">Voir plus</a>
-                <a href="#" class="link-button collapse">Voir moins</a>
+                <a class="link-button expand">Voir plus</a>
+                <a class="link-button collapse">Voir moins</a>
             </div>
         }
 
@@ -366,8 +367,8 @@
                     <div class="article-fade"> </div>
                 </article>
             </div>
-            <a href="#" class="link-button expand">Expand Story</a>
-            <a href="#" class="link-button collapse">Contract Story</a>
+            <a class="link-button expand">Expand Story</a>
+            <a class="link-button collapse">Contract Story</a>
         </div>
 
         @*@if (!string.IsNullOrWhiteSpace(Model.Post.LearnMoreItems))
@@ -441,7 +442,7 @@
                 <div class="@divClass">
                     <!--googleon: all-->
                     <div class="backgrounder-header background-control">
-                        <a href="#" class="link-button "> </a>
+                        <a class="link-button "> </a>
                         <h5>@item.Headline</h5>
                     </div>
                     <!--googleoff: all-->
@@ -466,7 +467,7 @@
                         {
                             @Html.Raw(item.ContactsDetails())
                         }
-                        <a href="#" class="link-button bottom-background-control active"> </a>
+                        <a class="link-button bottom-background-control active"> </a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -506,7 +507,7 @@
                     </div>
 
 
-                    <a href="#" class="link-button expand">SHOW ASSETS</a>
+                    <a class="link-button expand">SHOW ASSETS</a>
                 }
                 else
                 {
@@ -547,7 +548,7 @@
                     </div>
 
 
-                    <a href="#" class="link-button expand">SHOW TRANSLATIONS</a>
+                    <a class="link-button expand">SHOW TRANSLATIONS</a>
                 }
                 else
                 {
@@ -601,7 +602,7 @@
             else
             {
                 <div class="related-image">
-                    <img src="~/Content/Images/Gov/default-og-meta-image-1.jpg" />
+                    <img src="~/Content/Images/Gov/default-og-meta-image-1.jpg" alt=""/>
                 </div>
             }
 
@@ -714,11 +715,14 @@
                 var container = $(this).parent();
                 var isActive = container.hasClass('active');
                 var panel = $(".search-stories");
+                container.find('i').toggleClass('fa-search')
                 if (isActive) {
                     container.removeClass('active');
+                    
                     panel.slideUp('fast');
                 } else {
                     container.addClass('active');
+                    //container.find('i').toggleClass('fa-times')
                     panel.slideDown('fast');
                 }
                 return false;

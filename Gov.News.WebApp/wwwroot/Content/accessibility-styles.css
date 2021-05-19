@@ -42,4 +42,29 @@
             margin-left: 0;
         }
 
+.story-features .fa.fa-facebook-square {
+    color: #3b5998;
+}
+.story-features .fa.fa-twitter {
+    color: #55acee;
+}
 
+.segment .fa {
+    color: #ffffff;
+}
+
+.segment .fa.fa-twitter {
+    color: #ffffff;
+}
+
+.segment .fa.fa-envelope {
+    color: #ffffff;
+}
+
+.story-features .fa-customized-sm, .segment .fa-customized-sm{
+    font-size: 1.6em;
+}
+
+.search-panel-trigger:hover{
+    cursor:pointer;
+}
