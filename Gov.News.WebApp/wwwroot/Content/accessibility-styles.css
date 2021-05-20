@@ -29,7 +29,7 @@
         list-style: none;
     }
 
-    .access li a {
+    .access li a, .access a {
         margin: 5px 0 0 -5000px;
         width: 120px;
         padding: 5px;
@@ -38,7 +38,7 @@
         color: #fcba19;
     }
 
-        .access li a:focus {
+        .access li a:focus, .access a:focus {
             margin-left: 0;
         }
 

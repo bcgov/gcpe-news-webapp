@@ -4,13 +4,24 @@
 
 @model CategoriesViewModel
 
-<div class="news-listing">
+    <div class="access">
+        <ul>
+            <li aria-label="Skip to main content">
+                <a href="#main-content-release">Skip to main content</a>
+            </li>
+            <li aria-label="Skip to footer">
+                <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+            </li>
+        </ul>
+    </div>
+
+<div class="news-listing" role="complementary" id="sidebar">
     <div class="home-features">
         <partial name="ConnectSocialMedia" />
         <partial name="ResourceLinks" />
     </div>
 
-    <div class="home-body">
+    <div class="home-body" role="main" id="main-content-release">
         
         @*TODO: Replace Model.Categories.First().GetType().Name with DisplayName property*@
         <h2>News by @Model.Categories.First().Index.GetType().Name</h2>
