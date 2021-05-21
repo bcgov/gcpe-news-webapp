@@ -10,7 +10,7 @@
         }
         @foreach (var item in Model.SlideItems)
         {
-            <div class="home-banner" style="background-image: url(CarouselImage/@item.Key)" tabindex="-1">
+            <div class="home-banner" style="background-image: url(CarouselImage/@item.Key)" alt="" tabindex="-1">
                 <div class="home-banner-content">
                     <div class="stories">
                         @if (@item.ActionUri != null)
@@ -22,7 +22,7 @@
                                     @*<p class="item-date">@item.PublishFromDateTime.FormatDateLong()</p>*@
                                     <p class="summary">@item.Summary</p> 
                                     <div>
-                                        <a href="#"class="read-more">@item.ActionLabel</a>
+                                        <a href="#" class="read-more"><i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;@item.ActionLabel</a>
                                     </div>
                                 </div>
 
