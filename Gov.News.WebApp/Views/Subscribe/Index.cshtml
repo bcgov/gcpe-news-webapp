@@ -3,7 +3,7 @@
 
 <div class="connect subscribe">
 
-    <div class="home-body" style="width:100%">
+    <div class="home-body" style="width:100%" id="main-content-release">
         <h2 style="margin-bottom:10px">Subscribe</h2>
 
         @if (!(Model.Display == "selected"))
@@ -46,7 +46,10 @@
 
             <div style="padding-left: 10px">
                 <div style="font-weight:bold">What email address would you like to use for notifications?</div>
-                <div style="padding-top:15px"><input type="email" placeholder="example@domain.com" name="EmailAddress" style="width:100%;max-width:350px" value="@Model.Selection.EmailAddress" /></div>
+                <div style="padding-top:15px">
+                    <label class="sr-only" id="emailAddress" for="emailAddress">Please enter your email adress</label>
+                    <input type="email" placeholder="example@domain.com" id="emailAddress" name="EmailAddress" style="width:100%;max-width:350px" value="@Model.Selection.EmailAddress" />
+                </div>
 
                 <br />
 
