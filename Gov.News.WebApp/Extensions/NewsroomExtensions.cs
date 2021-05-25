@@ -222,7 +222,7 @@ namespace Gov.News.Website
                 { "Farsi", "ترجمه را به فارسی ببینید" },
                 { "French", "Voir la traduction en français" },
                 { "Hebrew", "צפה בתרגום בעברית" },
-                { "Hindi", "ह िंदी मेंअनुवाद देख"},
+                { "Hindi", "हिंदी में अनुवाद देखें"},
                 { "Indonesian" , "Lihat terjemahan dalam bahasa Indonesia"},
                 { "Japanese", "翻訳を日本語表示する" },
                 { "Korean", "한국어 번역 보기" },
@@ -244,7 +244,7 @@ namespace Gov.News.Website
             return rvl;
         }
 
-        public static string ToConstrainedDateRangeQueryString(this string query) 
+        public static string ToConstrainedDateRangeQueryString(this string query)
         {
             Dictionary<string, string> dateCollections = new Dictionary<string, string> {
                 { "2020-2024", "November 26, 2020 to current date" },
@@ -275,7 +275,7 @@ namespace Gov.News.Website
 
                 DateTime? endDateTime = endDate == "current date" ? DateTime.Now : DateTime.Parse(endDate);
                 DateTime? startDateTime = DateTime.Parse(startDate);
-                query = query.Replace($"Date={capturedDateRange}", 
+                query = query.Replace($"Date={capturedDateRange}",
                     $"fromDate={startDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F")}" +
                     $"&toDate={endDateTime.Value.ToString("yyyy/MM/dd").Replace("/", "%2F")}");
             }
