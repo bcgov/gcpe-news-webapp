@@ -90,7 +90,7 @@
                     <div class="border-hider"> </div>
                 </div>
                 <div class="segment print">
-                    <a class="print-document" aria-lable="Print this page" title="Print" ><i class="fa fa-print fa-customized-sm" aria-hidden="true"></i> </a>
+                    <a class="print-document" aria-lable="Print this page" ><i class="fa fa-print fa-customized-sm" aria-hidden="true"></i> </a>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -139,7 +139,7 @@
         </ul>
     </div>
 
-    <a class="print-document" aria-label="Print this page" title="Print"><i class="fa fa-print fa-2x" aria-hidden="true"></i> Print</a>
+    <a class="print-document" aria-label="Print this page"><i class="fa fa-print fa-2x" aria-hidden="true"></i> Print</a>
 
     @if (leadMinistry.IsActive == true)
     {
@@ -205,7 +205,7 @@
             @if (Model.Post.HasTranslations == true)
             {
                 <div class="translate" style="margin-top: 4px;">
-                    <a href="#translations" style="font-size: 13px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i><span style="text-transform:uppercase;">View Translations</span></a>
+                    <a aria-label="translations" href="#translations" style="font-size: 13px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i><span style="text-transform:uppercase;">View Translations</span></a>
                 </div>
             }
         </div>
@@ -608,13 +608,13 @@
 
             <div class="connect-with-bc">
                 <h3>Connect with the @(Model.Footer.FlickrSource)</h3>
-                <h5><a href="@Model.Footer.FlickrMoreUri" target="_blank">Photos</a></h5>
+                <h4><a href="@Model.Footer.FlickrMoreUri" target="_blank">Photos</a></h4>
                 <p>View the @(Model.Footer.FlickrSource)'s latest photos on Flickr.</p>
 
-                <h5><a href="@Model.Footer.YoutubeMoreUri" target="_blank">Videos</a></h5>
+                <h4><a href="@Model.Footer.YoutubeMoreUri" target="_blank">Videos</a></h4>
                 <p>Watch the @(Model.Footer.YoutubeSource)'s latest videos on YouTube.</p>
 
-                <h5><a href="@Model.Footer.SoundcloudMoreUri" target="_blank">Sound Bites</a></h5>
+                <h4><a href="@Model.Footer.SoundcloudMoreUri" target="_blank">Sound Bites</a></h4>
                 <p>Listen to the @(Model.Footer.SoundcloudSource)'s latest audio clips on SoundCloud.</p>
             </div>
         </div>
