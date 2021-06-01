@@ -1,9 +1,5 @@
 node('master') {
-	timeout(40)
-	{
-		timeout(30)
-		{
-			stage('Build Image') {
+	stage('Build Image') {
 				openshift.withCluster() {
 							openshift.withProject() {
 								echo "building..."
@@ -17,7 +13,6 @@ node('master') {
 							}
 						}
 			}
-		}
 		
 
 	stage('Deploy to UAT') {
@@ -36,7 +31,6 @@ node('master') {
 			openshift.selector("dc", "news-webapp").rollout().latest()
 		     }
 		}
-	}
 	}
 	
 }
