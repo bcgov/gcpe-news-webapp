@@ -21,7 +21,7 @@
                 <div class="item-asset">
                     @if (thumbnailUri != null)
                     {
-                        <div class='asset flickr'><a href='@Model.TopPost.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' alt="@((@String.IsNullOrEmpty(@Model.TopPost.SocialMediaHeadline)) ? @Model.TopPost.Headline() : @Model.TopPost.SocialMediaHeadline)" title="@(@String.IsNullOrEmpty(@Model.TopPost.SocialMediaHeadline) ? @Model.TopPost.Headline() : @Model.TopPost.SocialMediaHeadline)"/></a>
+                        <div class='asset flickr'><a href='@Model.TopPost.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' alt="@((@String.IsNullOrEmpty(@Model.TopPost.SocialMediaHeadline)) ? @Model.TopPost.Headline() : @Model.TopPost.SocialMediaHeadline)"/></a>
                         </div>
                     }
                 </div>

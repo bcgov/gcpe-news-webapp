@@ -157,29 +157,29 @@
                 <div class="content" style="padding-right:20px !important;">
                     <div id="logo" role="banner">
                         <a id="headerBCGov" href="http://gov.bc.ca">
-                            <img id="BCGov-logo" src="~/Content/Images/Gov/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
-                            <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." title="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                            <img id="BCGov-logo" src="~/Content/Images/Gov/gov3_bc_logo.png" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                            <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                         </a>
                     </div>
                     <div class="access">
                         <ul>
                             <li aria-label="Skip to main content">
-                                <a title="Skip to main content" href="#main-content-release">Skip to main content</a>
+                                <a href="#main-content-release">Skip to main content</a>
                             </li>
                             <li aria-label="Skip to main navigation">
-                                <a title="skip to main navigation" href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
+                                <a href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
                             </li>
                             <li aria-label="Skip to site search">
-                                <a title="skip to site search" href="#site-search-label" onclick="window.scrollTo(0,0);">Skip to site search</a>
+                                <a href="#site-search-label" onclick="window.scrollTo(0,0);">Skip to site search</a>
                             </li>
                             @if (controller != "Subscribe")
                             {
                                 <li aria-label="Skip to side bar">
-                                    <a title="skip to side bar search" href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
+                                    <a href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
                                 </li>
                             }
                             <li aria-label="Skip to footer">
-                                <a title="skip to footer" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+                                <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
                             </li>
                         </ul>
                     </div>
