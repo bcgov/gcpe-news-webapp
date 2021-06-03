@@ -144,7 +144,7 @@ namespace Gov.News.Website.Controllers
         }
 
         [Noindex]
-        public async Task<ActionResult> Search(string q = null, string date = null, string ministry = null, string sector = null, string city = null, string content = null,
+        public async Task<ActionResult> Search(string q = null, string date = null, string ministry = null, string sector = null, string city = null, string content = null, string language = null,
             DateTime? fromDate = null, DateTime? toDate = null, string page = null)
         {
             var filters = new Dictionary<string, string>();
@@ -171,6 +171,10 @@ namespace Gov.News.Website.Controllers
             if (content != null)
             {
                 filters.Add("Content", content);
+            }
+            if (!string.IsNullOrEmpty(language))
+            {
+                filters.Add("Language", language);
             }
 
             var queryModel = new SearchViewModel.SearchQuery(q, fromDate, toDate, filters);
