@@ -253,7 +253,7 @@ namespace Gov.News.Website
                 { "Chinese_Simplified", "简体中文" },
                 { "Chinese(simplified)", "简体中文" },
                 { "Chinese_Traditional", "繁體中文" },
-                { "Chinese(traditional)", "查看繁體中文翻譯" },
+                { "Chinese(traditional)", "繁體中文" },
                 { "Farsi", "فارسی" },
                 { "French", "Français" },
                 { "Hebrew", "עִברִית" },
