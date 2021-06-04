@@ -244,6 +244,41 @@ namespace Gov.News.Website
             return rvl;
         }
 
+        public static String ToTranslatedLanguageName(this string label)
+        {
+            string rvl = "";
+
+            var languageNameMappings = new Dictionary<string, string>() {
+                { "Arabic", "عربى" },
+                { "Chinese_Simplified", "简体中文" },
+                { "Chinese(simplified)", "简体中文" },
+                { "Chinese_Traditional", "繁體中文" },
+                { "Chinese(traditional)", "查看繁體中文翻譯" },
+                { "Farsi", "فارسی" },
+                { "French", "Français" },
+                { "Hebrew", "עִברִית" },
+                { "Hindi", "हिंदी"},
+                { "Indonesian" , "bahasa Indonesia"},
+                { "Japanese", "日本語" },
+                { "Korean", "한국어" },
+                { "Punjabi", "ਪੰਜਾਬੀ"},
+                { "Spanish", "Español" },
+                { "Tagalog", "Tagalog" },
+                { "Urdu", "اردو" },
+                { "Vietnamese", "Tiếng Việt" }
+            };
+
+            foreach (KeyValuePair<string, string> entry in languageNameMappings)
+            {
+                if (label.Contains(entry.Key, StringComparison.OrdinalIgnoreCase))
+                {
+                    rvl = entry.Value;
+                }
+            }
+
+            return rvl;
+        }
+
         public static string ToConstrainedDateRangeQueryString(this string query)
         {
             Dictionary<string, string> dateCollections = new Dictionary<string, string> {
