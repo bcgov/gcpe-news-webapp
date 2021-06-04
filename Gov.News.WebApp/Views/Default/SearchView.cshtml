@@ -88,13 +88,24 @@
                             <li>
                                 @if (filterValue != null)
                                 {
-                                    <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                    if(facetResult.Key == "Language") 
+                                    {
+                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span dir="ltr"> @facetHitValue.ToTranslatedLanguageName()</span>
+                                    }
+                                    else 
+                                    {
+                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                    }
                                 }
                                 else
                                 {
                                     if (facetResult.Key == "Date")
                                     {
                                         <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()">@facetHitValue</a>
+                                    }
+                                    else if(facetResult.Key == "Language")
+                                    {
+                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)"><span dir="ltr">@facetHitValue.ToTranslatedLanguageName()</span></a>
                                     }
                                     else
                                     {
