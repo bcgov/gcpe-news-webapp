@@ -79,7 +79,7 @@ namespace Gov.News.Website.Controllers.Shared
 
             requestPath += string.Format("&{0}={1}", "$orderby", "publishDateTime desc");
 
-            var facets = new Dictionary<string, string> { { "collection", "Date" }, { "ministries", "Ministry" }, { "sectors", "Sector" }, { "location", "City" }, { "releaseType", "Content" }, { "languages", "Language" } };
+            var facets = new Dictionary<string, string> { { "languages", "Language" }, { "collection", "Date" }, { "ministries", "Ministry" }, { "sectors", "Sector" }, { "location", "City" }, { "releaseType", "Content" } };
 
             bool useCustomRange = query.UseCustomRange();
             foreach (var facet in facets)
