@@ -59,7 +59,7 @@ namespace Gov.News.Website.Controllers.Shared
 #endif
             model.Title = "Search";
 
-            bool isTranslationsSearch = string.Equals(query.Text, "translation", StringComparison.OrdinalIgnoreCase) 
+            bool isTranslationsSearch = string.Equals(query.Text, "translation", StringComparison.OrdinalIgnoreCase)
                 || string.Equals(query.Text, "translations", StringComparison.OrdinalIgnoreCase);
             string requestPath = Properties.Settings.Default.AzureSearchUri.ToString();
             if (!string.IsNullOrEmpty(query.Text))
@@ -79,7 +79,7 @@ namespace Gov.News.Website.Controllers.Shared
 
             requestPath += string.Format("&{0}={1}", "$orderby", "publishDateTime desc");
 
-            var facets = new Dictionary<string, string> { { "collection", "Date" }, { "ministries", "Ministry" }, { "sectors", "Sector" }, { "location", "City" }, { "releaseType", "Content" } };
+            var facets = new Dictionary<string, string> { { "languages", "Language" }, { "collection", "Date" }, { "ministries", "Ministry" }, { "sectors", "Sector" }, { "location", "City" }, { "releaseType", "Content" } };
 
             bool useCustomRange = query.UseCustomRange();
             foreach (var facet in facets)
