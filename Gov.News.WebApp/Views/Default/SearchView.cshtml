@@ -1,4 +1,4 @@
-﻿@using Gov.News.Website.Helpers;
+@using Gov.News.Website.Helpers;
 @using Gov.News.Website.Models
 @using Newtonsoft.Json;
 @model SearchViewModel
@@ -88,13 +88,24 @@
                             <li>
                                 @if (filterValue != null)
                                 {
-                                    <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                    if(facetResult.Key == "Language") 
+                                    {
+                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span dir="ltr"> @facetHitValue.ToTranslatedLanguageName()</span>
+                                    }
+                                    else 
+                                    {
+                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                    }
                                 }
                                 else
                                 {
                                     if (facetResult.Key == "Date")
                                     {
                                         <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()">@facetHitValue</a>
+                                    }
+                                    else if(facetResult.Key == "Language")
+                                    {
+                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)"><span dir="ltr">@facetHitValue.ToTranslatedLanguageName()</span></a>
                                     }
                                     else
                                     {
@@ -293,6 +304,12 @@
                     $('form:first').submit();
                 }
             });
+
+            // find the list of languages
+            var languageFilter = $('.search-filter > h5:contains("Language")');
+            var languagesAvailable = languageFilter.siblings().find('ul li');
+            // remove the language filter if there are no language facet hits
+            if (languagesAvailable.length === 0) $('.search-filter:first').remove();
         });
         @*
         window.snowplow('trackSiteSearch',
