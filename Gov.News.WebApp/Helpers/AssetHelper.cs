@@ -198,7 +198,7 @@ namespace Gov.News.Website.Helpers
                     assetHtml = string.Format(
                                         "<div class='asset youtube'>" +
                                             "<a href='https://www.youtube.com/watch?v={0}'>" +
-                                                "<img src='{1}' alt='{2}' title='{2}'/>" +
+                                                "<img src='{1}' alt='{2}' title='{2}' />" +
                                             "</a>" +
                                         "</div>"
                                         , videoId, imgUri.ToProxyUrl(), altText);
