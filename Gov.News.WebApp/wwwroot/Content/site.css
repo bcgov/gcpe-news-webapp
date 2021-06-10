@@ -382,7 +382,9 @@ a.news-control .read-more.left {
         }
 
         .resource-links.share ul li a.share-twitter {
-            background-image: url(Images/SocialMedia/20x20-twitter.png);
+            /*
+                background-image: url(Images/SocialMedia/20x20-twitter.png);
+            */
         }
 
         .resource-links.share ul li a.share-email {
