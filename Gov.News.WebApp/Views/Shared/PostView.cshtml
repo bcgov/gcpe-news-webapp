@@ -46,17 +46,17 @@
 
 @* Doc for the below twitter cards See - https://dev.twitter.com/cards/overview*@
 @section TwitterMeta {
-    @if (Model.PostThumbnailUri != null)
-    {
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@@BCGovNews">
-        <meta name="twitter:title" content="@(string.IsNullOrWhiteSpace(Model.Title) ? Model.Post.SocialMediaHeadline : Model.Title)">
-        <meta name="twitter:description" content="@(string.IsNullOrWhiteSpace(Model.Post.Summary) ? Model.Post.SocialMediaSummary : Model.Post.Summary)">
-        @if (@Model.OGMetaImageUrl != null)
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@@BCGovNews">
+    <meta name="twitter:title" content="@(string.IsNullOrWhiteSpace(Model.Title) ? Model.Post.SocialMediaHeadline : Model.Title)">
+    <meta name="twitter:description" content="@(string.IsNullOrWhiteSpace(Model.Post.Summary) ? Model.Post.SocialMediaSummary : Model.Post.Summary)">
+    @if (@Model.OGMetaImageUrl != null)
+        @if (Model.PostThumbnailUri != null)
         {
-            <meta name="twitter:image" content="@Html.Raw(Model.CanonicalUri + "/image")" />
+            {
+                <meta name="twitter:image" content="@Html.Raw(Model.CanonicalUri + "/image")" />
+            }
         }
-    }
 }
 
 @section StoryNavigator {
@@ -463,7 +463,7 @@
                         <!--googleoff: all-->
 
                         @if (item.Contacts.Any() && (firstDoc.Contacts.Count() != item.Contacts.Count()
-                         || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
+                        || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
                         {
                             @Html.Raw(item.ContactsDetails())
                         }
