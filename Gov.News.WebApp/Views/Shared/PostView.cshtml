@@ -51,17 +51,12 @@
     <meta name="twitter:title" content="@(string.IsNullOrWhiteSpace(Model.Title) ? Model.Post.SocialMediaHeadline : Model.Title)">
     <meta name="twitter:description" content="@(string.IsNullOrWhiteSpace(Model.Post.Summary) ? Model.Post.SocialMediaSummary : Model.Post.Summary)">
     @if (@Model.OGMetaImageUrl != null)
-    {
         @if (Model.PostThumbnailUri != null)
         {
             {
                 <meta name="twitter:image" content="@Html.Raw(Model.CanonicalUri + "/image")" />
             }
         }
-    }
-    else
-    {
-    }
 }
 
 @section StoryNavigator {
