@@ -297,7 +297,7 @@ namespace Gov.News.Website.Helpers
 
                         assetHtml = string.Format(
                                        "<div>" +
-                                       "<img src='{0}' alt=\"{1}\" title=\"{1}\"/>" +
+                                       "<img src='{0}' alt=\"{1}\" title=\"{1}\" />" +
                                        "</div>"
                                        , uri.ToProxyUrl(), altText);
                     }
