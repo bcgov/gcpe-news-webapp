@@ -185,13 +185,13 @@
                             @if (result.ThumbnailUri.ToProxyUrl().Contains("youtube"))
                             {
                                 <div class='item-asset asset flickr' id="youtube-asset-">
-                                    @AssetHelper.RenderPostAsset(@result.AssetUrl.ToUri(), null, result.SocialMediaHeadline).ShowLinks()
+                                    @AssetHelper.RenderPostAsset(@result.AssetUrl.ToUri(), null, String.IsNullOrEmpty(result.SocialMediaHeadline) ? result.Title : result.SocialMediaHeadline).ShowLinks()
                                 </div>
                             }
                             else
                             {
                                 <div class='asset flickr' id="youtube-asset-">
-                                    <a href='@result.Uri'><img src='@result.ThumbnailUri.ToProxyUrl()' alt="@result.SocialMediaHeadline" title="@result.SocialMediaHeadline"/></a>
+                                    <a href='@result.Uri'><img src='@result.ThumbnailUri.ToProxyUrl()' alt="@result.SocialMediaHeadline" title="@(string.IsNullOrEmpty(result.SocialMediaHeadline)? result.Title : result.SocialMediaHeadline )"/></a>
                                 </div> 
                             }
                         }
