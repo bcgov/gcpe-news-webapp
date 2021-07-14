@@ -111,6 +111,8 @@ namespace Gov.News.Website.Models
             public DateTime PublishDate { get; set; }
 
             public string AssetUrl { get; set; }
+
+            public string SocialMediaHeadline { get; set; }
         }
 
         public class FacetHit
