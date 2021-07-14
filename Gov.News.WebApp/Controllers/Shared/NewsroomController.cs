@@ -75,7 +75,7 @@ namespace Gov.News.Website.Controllers.Shared
 
             requestPath += string.Format("&{0}={1}", "$top", Convert.ToString(ResultsPerPage));
 
-            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,documentsSubheadline,summary,publishDateTime,hasMediaAssets,assetUrl,translations,hasTranslations");
+            requestPath += string.Format("&{0}={1}", "$select", "key,releaseType,documentsHeadline,documentsSubheadline,summary,publishDateTime,hasMediaAssets,assetUrl,translations,hasTranslations, socialMediaHeadline");
 
             requestPath += string.Format("&{0}={1}", "$orderby", "publishDateTime desc");
 
@@ -213,7 +213,8 @@ namespace Gov.News.Website.Controllers.Shared
                         HasTranslations = translations != null && hasTranslations,
                         PublishDate = DateTime.Parse(date.FormatDateLong()),
                         ThumbnailUri = NewsroomExtensions.GetThumbnailUri(assetUrl),
-                        AssetUrl = result["assetUrl"]
+                        AssetUrl = result["assetUrl"],
+                        SocialMediaHeadline = result["socialMediaHeadline"]
                     });
                 }
             }
