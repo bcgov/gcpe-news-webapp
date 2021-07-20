@@ -517,7 +517,7 @@ a.news-control .read-more.left {
     padding-bottom: 0px;
     background-color: #f2f2f2;
     float: left;
-    width: 450px;
+    width: 470px;
     position: relative;
     z-index: 2;
 }
@@ -535,7 +535,7 @@ a.news-control .read-more.left {
 .menu-content-item {
     display: none;
     position: absolute;
-    left: 28px;
+    left: 40px;
     top: 10px;
     padding-right: 20px;
 }
