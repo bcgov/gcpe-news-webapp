@@ -24,15 +24,21 @@
         {
             @if (Model.IndexModel.TopPost != null)
             {
-                <div class="top-article">
-                    <partial name="PostCard" model="Model.IndexModel.TopPost" />
-                </div>
+                <!--
+              <div class="top-article">
+                <partial name="PostCard" model="Model.IndexModel.TopPost" />
+            </div>
+            -->
+
             }
             @if (Model.IndexModel.FeaturePost != null)
             {
-                <div class="feature-article">
-                    <partial name="PostCard" model="Model.IndexModel.FeaturePost" />
-                </div>
+                <!--
+               <div class="feature-article">
+                <partial name="PostCard" model="Model.IndexModel.FeaturePost" />
+            </div>
+            -->
+
             }
         }
         else if (ViewBag.Type == "factsheets")

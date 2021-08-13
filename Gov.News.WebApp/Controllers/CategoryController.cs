@@ -123,7 +123,13 @@ namespace Gov.News.Website.Controllers
                     //var keys = posts.Select(e => e.Key).Where(e => e != null).ToList();
                     //posts.AddRange(await category.Default.TakeLastAsync(3 - keys.Count(), 0, keys));
 
-                    var latestNews = await Repository.GetLatestPostsAsync(category, 1, null, GetIndexFilter(category));
+                    var releaseCount = 1;
+                    if (categoryKind == "sectors")
+                    {
+                        releaseCount = 3;
+                    }
+                    
+                    var latestNews = await Repository.GetLatestPostsAsync(category, releaseCount, null, GetIndexFilter(category));
                     var categoryModel = new IndexModel(category, latestNews);
                     categoryModels.Add(categoryModel);
                     /*await PostModel.CreateAsync(await category.DefaultProperty.TakeLastAsync(CategoriesPostsLength));

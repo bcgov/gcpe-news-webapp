@@ -22,54 +22,87 @@
     </div>
 
     <div class="home-body" role="main" id="main-content-release">
-        
+
         @*TODO: Replace Model.Categories.First().GetType().Name with DisplayName property*@
         <h2>News by @Model.Categories.First().Index.GetType().Name</h2>
-        
-        @foreach (var category in Model.Categories)
+
+        @if (@Model.Categories.First().Index.GetType().Name == "Sector")
         {
-            <div class="grouped-articles">
-                <h3>
-                    <a href="@category.Index.GetUri()">
-                        @category.Index.Name
-                    </a>
-                </h3>
-                @if (category.TopPost != null)
-                {
-                    <div class="top-article">
-                        <partial name="PostCard" model="category.TopPost" />
-                    </div>
-                }
-                <div class="other-articles">
-                    @if (category.FeaturePost != null)
+            @foreach (var category in Model.Categories)
+            {
+                <div class="grouped-articles">
+                    <h3>
+                        <a href="@category.Index.GetUri()">
+                            @category.Index.Name
+                        </a>
+                    </h3>
+                    <div class="other-articles">
+                    
+                    @{var latestThree = category.LatestNews.Take(3);}
+                    @foreach (var post in latestThree)
                     {
-                        <div class="feature-article">
-                            <partial name="PostCard" model="category.FeaturePost" />
-                        </div>
-                    }
-                    @{Post firstLatest = category.LatestNews.FirstOrDefault();}
-                    @if (firstLatest != null)
+                        @if (post != null)
                     {
                         <div class="regular-articles">
-                            <partial name="PostCard" model="firstLatest" />
+                            <partial name="PostCard" model="post" />
                         </div>
                     }
+                    }
+                    
                 </div>
-            </div>
+                </div>
+                
+            }
 
-            <div class="news-control">
-                <a href="@category.Index.GetUri()" class="load-more link-button">Browse More News</a>
-                @if (category.Index is Ministry)
-                {
-                    @Html.ActionLink("Search News", "Search", "Default", new { ministry = category.Index.Key }, new { @class = "read-more" })
-                }
-                else if (category.Index.Kind == "sectors")
-                {
-                    @Html.ActionLink("Search News", "Search", "Default", new { sector = category.Index.Key }, new { @class = "read-more" })
-                }
-                <div class="clear"> </div>
-            </div>
         }
+        else
+        {
+            @foreach (var category in Model.Categories)
+            {
+                <div class="grouped-articles">
+                    <h3>
+                        <a href="@category.Index.GetUri()">
+                            @category.Index.Name
+                        </a>
+                    </h3>
+                    @if (category.TopPost != null)
+                    {
+                        <div class="top-article">
+                            <partial name="PostCard" model="category.TopPost" />
+                        </div>
+                    }
+                    <div class="other-articles">
+                        @if (category.FeaturePost != null)
+                        {
+                            <div class="feature-article">
+                                <partial name="PostCard" model="category.FeaturePost" />
+                            </div>
+                        }
+                        @{Post firstLatest = category.LatestNews.FirstOrDefault();}
+                        @if (firstLatest != null)
+                        {
+                            <div class="regular-articles">
+                                <partial name="PostCard" model="firstLatest" />
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="news-control">
+                    <a href="@category.Index.GetUri()" class="load-more link-button">Browse More News</a>
+                    @if (category.Index is Ministry)
+                    {
+                        @Html.ActionLink("Search News", "Search", "Default", new { ministry = category.Index.Key }, new { @class = "read-more" })
+                    }
+                    else if (category.Index.Kind == "sectors")
+                    {
+                        @Html.ActionLink("Search News", "Search", "Default", new { sector = category.Index.Key }, new { @class = "read-more" })
+                    }
+                    <div class="clear"> </div>
+                </div>
+            }
+        }
+
         @*<div class="news-control">
             @Html.ActionLink("Search News", "Search", "Default", null, new { @class = "read-more" })
             <div class="clear"></div>
