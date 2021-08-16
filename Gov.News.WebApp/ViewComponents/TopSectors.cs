@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,17 +26,32 @@ namespace ViewComponentSample.ViewComponents
         private async Task<IEnumerable<IndexModel>> GetItemsAsync()
         {
             var sectors = await _repository.GetSectorsAsync();
-
-            IEnumerable<Post> loadedPosts = await _repository.GetPostsAsync(IndexModel.GetTopPostKeys(sectors));
-
+            
             var sectorModels = new List<IndexModel>();
+            
             foreach (var sector in sectors)
             {
                 var sectorModel = new IndexModel(sector);
-                sectorModel.SetTopPost(loadedPosts);
+                var data = new DataModel();
+                var post = await _repository.GetLatestPostsAsync(sector, 1, null, GetIndexFilter(sector));
+                sectorModel = new IndexModel(sector, post);
                 sectorModels.Add(sectorModel);
             }
             return sectorModels;
+        }
+
+        private Func<Post, bool> GetIndexFilter(DataIndex index)
+        {
+            if (index.Kind == "sectors")
+            {
+                return SectorFilter(index.Key); 
+            }
+            return null;
+        }
+
+        private static Func<Post, bool> SectorFilter(string sectorKey)
+        {
+            return post => post.SectorKeys.Any(k => k == sectorKey);
         }
     }
 }
