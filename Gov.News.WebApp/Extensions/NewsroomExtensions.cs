@@ -227,7 +227,9 @@ namespace Gov.News.Website
                 { "Japanese", "翻訳を日本語表示する" },
                 { "Korean", "한국어 번역 보기" },
                 { "Punjabi", "ਪੰਜਾਬੀ ਵਿੱਚ ਅਨੁਵਾਦ ਦੇਖੋ"},
+                { "Somali", "Arag Tarjumaadda oo Af-Soomaali ah" },
                 { "Spanish", "Ver la traducción en español" },
+                { "Swahili", "Angalia Tafsiri ya Kiswahili" },
                 { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
                 { "Urdu", "اردو میں ترجمہ دیکھیں" },
                 { "Vietnamese", "Xem bản dịch bằng tiếng Việt" }
@@ -262,7 +264,9 @@ namespace Gov.News.Website
                 { "Japanese", "日本語" },
                 { "Korean", "한국어" },
                 { "Punjabi", "ਪੰਜਾਬੀ"},
+                { "Somali", "Soomaali" },
                 { "Spanish", "Español" },
+                { "Swahili", "Kiswahili" },
                 { "Tagalog", "Tagalog" },
                 { "Urdu", "اردو" },
                 { "Vietnamese", "Tiếng Việt" }
