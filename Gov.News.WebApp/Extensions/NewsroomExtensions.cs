@@ -266,7 +266,7 @@ namespace Gov.News.Website
                 { "Punjabi", "ਪੰਜਾਬੀ"},
                 { "Somali", "Soomaali" },
                 { "Spanish", "Español" },
-                { "Swahili", "Angalia Tafsiri ya Kiswahili" },
+                { "Swahili", "Kiswahili" },
                 { "Tagalog", "Tagalog" },
                 { "Urdu", "اردو" },
                 { "Vietnamese", "Tiếng Việt" }
