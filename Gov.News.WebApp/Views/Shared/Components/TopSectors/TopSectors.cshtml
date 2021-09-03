@@ -2,11 +2,11 @@
 @using Gov.News.Website.Models
 @model ICollection<IndexModel>
 <div class="resource-links">
-    <h3>Top News by Sector</h3>
+    <h3>News by Sector</h3>
     <div>
         @foreach (var sector in Model.OrderBy(e => e.Index.Name))
         {
-            var post = sector.TopPost;
+            var post = sector.LatestNews.FirstOrDefault();
 
             if (post != null)
             {
