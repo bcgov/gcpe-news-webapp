@@ -2326,7 +2326,6 @@ ul.inline li {
     }
 
     .story-body .story-copy.collapsed .story-expander {
-        height: 240px;
         overflow: hidden;
     }
 
