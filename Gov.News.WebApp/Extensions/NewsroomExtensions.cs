@@ -152,7 +152,8 @@ namespace Gov.News.Website
             }
             else
             {
-                uri = AppendUriSegment(uri, index.Kind);
+                var kind = index.Kind == "tags" ? "news-subscribe" : index.Kind; // use news-subscribe as an alias for tags
+                uri = AppendUriSegment(uri, kind);
             }
 
             uri = AppendUriSegment(uri, UrlEncoder.Default.Encode(index.Key));

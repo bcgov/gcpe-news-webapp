@@ -316,6 +316,8 @@ namespace Gov.News.Website.Controllers.Shared
         }
         protected async Task<IEnumerable<Category>> GetCategoryList(string categoryKind)
         {
+            if (categoryKind.ToLower() == "news-subscribe") categoryKind = "tags"; // handle news-subscribe as an alias for tags
+
             switch (categoryKind)
             {
                 case "ministries":

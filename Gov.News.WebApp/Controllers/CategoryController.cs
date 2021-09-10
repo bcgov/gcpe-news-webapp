@@ -23,6 +23,8 @@ namespace Gov.News.Website.Controllers
             if (this.GetType().GetTypeInfo().IsDefined(typeof(ObsoleteAttribute), false))
                 return NotFound();
 
+            if (category.ToLower() == "news-subscribe") category = "tags"; // handle news-subscribe as an alias for tags
+
             var index = await GetDataIndex(key, category) as Category;
 
             if (index == null)
@@ -154,6 +156,8 @@ namespace Gov.News.Website.Controllers
 
         public async Task<ActionResult> Index(string category)
         {
+            if (category.ToLower() == "news-subscribe") category = "tags"; // handle news-subscribe as an alias for tags
+
             var model = await Init(category);
             model.Title = category.ToUpper()[0] + category.Substring(1);
             if (Properties.Settings.Default.NewsMediaHostUri != null)
