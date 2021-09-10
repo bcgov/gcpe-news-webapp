@@ -24,7 +24,8 @@
     <div class="home-body" role="main" id="main-content-release">
 
         @*TODO: Replace Model.Categories.First().GetType().Name with DisplayName property*@
-        <h2>News by @Model.Categories.First().Index.GetType().Name</h2>
+        @{string title = @Model.Categories.First().Index.GetType().Name == "Tag" ? "Topic" : @Model.Categories.First().Index.GetType().Name; }
+        <h2>News by @title</h2>
 
         @if (@Model.Categories.First().Index.GetType().Name == "Sector")
         {

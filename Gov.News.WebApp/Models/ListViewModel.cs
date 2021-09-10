@@ -67,7 +67,8 @@ namespace Gov.News.Website.Models
         {
             if (Category != null)
             {
-                return "/subscribe?" + Category.Kind + "=" + Category.Key;
+                string kind = Category.Kind == "tags" ? "topics" : Category.Kind;
+                return "/subscribe?" + kind + "=" + Category.Key;
             }
 
             return base.SubscribePath();
