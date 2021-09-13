@@ -159,7 +159,7 @@ namespace Gov.News.Website.Controllers
             if (category.ToLower() == "news-subscribe") category = "tags"; // handle news-subscribe as an alias for tags
 
             var model = await Init(category);
-            model.Title = category.ToUpper()[0] + category.Substring(1);
+            model.Title = category == "tags" ? "Topics" : category.ToUpper()[0] + category.Substring(1);
             if (Properties.Settings.Default.NewsMediaHostUri != null)
             {
                 ViewBag.ProxyUrl = Properties.Settings.Default.NewsMediaHostUri.ToString() + "embed/";
