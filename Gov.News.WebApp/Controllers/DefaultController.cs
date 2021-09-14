@@ -457,12 +457,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.workbc.ca/blog.aspx", Title = "WorkBC" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www2.gov.bc.ca/govtogetherbc/index.page", Title = "GovTogetherBC" }).ToArray();
 
-            var rssLinks = new List<Link>()
-                    {
-                        new Link() {Url ="https://news.gov.bc.ca/feed", Title = "BC Gov News" },
-                        new Link() {Url ="https://news.gov.bc.ca/factsheets/feed", Title = "Factsheets & Opinion Editorials" },
-                        new Link() {Url ="http://www.healthlinkbc.ca/publichealthalerts", Title = "HealthLinkBC" },
-                    };
+            var rssLinks = new List<Link>();
             var ministries = model.Ministries.Select(m => m.Index).OrderBy(c => c.Name == "Office of the Premier" ? 0 : 1).ThenBy(c => c.Name);
             var sectors = await Repository.GetSectorsAsync();
             var tags = await Repository.GetTagsAsync();
@@ -470,7 +465,12 @@ namespace Gov.News.Website.Controllers
             foreach (var category in categories)
                 rssLinks.Add(new Link() { Url = category.GetUri().ToString().TrimEnd('/') + "/feed", Title = category.Name });
 
-            model.RssLinks = rssLinks.ToArray();
+            rssLinks.Add(new Link() { Url = "http://www.healthlinkbc.ca/publichealthalerts", Title = "HealthLinkBC" });
+
+            model.RssLinks = rssLinks
+                .OrderBy(t => t.Title)
+                .Prepend(new Link() { Url = "https://news.gov.bc.ca/factsheets/feed", Title = "Factsheets & Opinion Editorials" })
+                .Prepend(new Link() { Url = "https://news.gov.bc.ca/feed", Title = "BC Gov News" }).ToArray();
 
             return model;
         }
