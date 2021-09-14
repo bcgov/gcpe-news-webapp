@@ -47,8 +47,9 @@ namespace Gov.News.Website.Controllers
 
         // Having these parameters will make ASP MVC create (auto magically) them
         // using the request query parameters
-        public async Task<ActionResult> Index(string[] ministries, string[] sectors, string[] tags, string[] emergency, string[] newsletters, string display)
+        public async Task<ActionResult> Index(string[] ministries, string[] sectors, string[] topics, string[] emergency, string[] newsletters, string display)
         {
+            var tags = topics;
             if (newsletters.Any())
             {
                 // do not show Ministries and Sectors
