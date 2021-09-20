@@ -1299,12 +1299,9 @@ ul.inline li {
 }
 
 .ministry-listing .home-body h3 {
-    font-size: 36px;
+    font-size: 18px;
     font-weight: 600;
-    border-bottom: 1px solid #e2e2e2;
-    margin-top: 35px;
     padding-bottom: 10px;
-    margin-bottom: 40px;
 }
 
 .ministry-listing .home-body h4 {
@@ -3535,7 +3532,6 @@ ul.inline li {
 
 .story-body .assets ul {
     list-style-type: square;
-    padding-top: 14px;
     padding-left: 0px;
     padding-right: 24px;
     margin-left: 30px;
