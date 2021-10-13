@@ -3435,7 +3435,7 @@ ul.inline li {
     }
 
 .newsletters .home-body p {
-    /*font-size: 16px;*/
+    font-size: 16px;
     font-weight: normal;
     color: #585858;
     padding-bottom: 5px;
