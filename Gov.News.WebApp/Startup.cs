@@ -135,6 +135,7 @@ namespace Gov.News.Website
 
             services.AddHttpClient("uri-group") // default healthcheck registration name for uri ( you can change it on AddUrlGroup )	 
              .AddPolicyHandler(cachePolicy);
+            services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
