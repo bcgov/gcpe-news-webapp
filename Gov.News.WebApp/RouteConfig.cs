@@ -27,7 +27,7 @@ namespace Gov.News.Website
             //errors on routes containing regions, it is being removed fromt he routes.
 
             //If regions are reimplemented in Repository.cs and the Web API, put them back in the route table.
-            const string categories = "Ministries|Sectors|Tags|Themes";
+            const string categories = "Ministries|Sectors|Tags|Themes|News-Subscribe";
 
             IRouteConstraint yearConstraint = new RegexRouteConstraint(@"^\d{4}$");
             IRouteConstraint monthConstraint = new RegexRouteConstraint(@"^(\d{2})?$");
@@ -245,6 +245,13 @@ namespace Gov.News.Website
                 name: "Newsroom-Category-Index-Type",
                 template: "{category}/{postKind?}",
                 defaults: new { controller = "Category", action = "Index" },
+                constraints: new { category = categoryControllerConstraint, postKind = postKindConstraint }
+            );
+
+            routes.MapRoute(
+                name: "News-Subscribe-Index-Type",
+                template: "news-subscribe/{category}/{postKind?}",
+                defaults: new { controller = "Category", action = "Index"  },
                 constraints: new { category = categoryControllerConstraint, postKind = postKindConstraint }
             );
 

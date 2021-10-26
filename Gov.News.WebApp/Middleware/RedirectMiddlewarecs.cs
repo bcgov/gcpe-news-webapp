@@ -177,6 +177,16 @@ namespace Gov.News.Website.Middleware
 
             //End Redirects for renaming ministries.
 
+            if (path.StartsWith("/tags/")) 
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/tags", "/news-subscribe") + query);
+            }
+
+            if (path.StartsWith("/tags"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/tags", "/news-subscribe") + query);
+            }
+
 
             if (path.StartsWith("/areas/newsroom/images/social/default-og-meta-image.jpg"))
             {
