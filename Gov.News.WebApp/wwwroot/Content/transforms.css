@@ -11,6 +11,11 @@
     max-width: 1120px;
 }
 
+@media only screen and (min-width: 1120px) {
+    .minister-bio-picture {
+        display: none;
+    }
+}
 @media only screen and (max-width: 1120px) {
     #logo {
         margin-left: 24px;
