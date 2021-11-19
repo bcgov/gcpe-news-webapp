@@ -73,11 +73,12 @@ namespace Gov.News.Website.Models
         public static DateTime MinDate = DateTime.Parse("2011/03/12");
         public class SearchQuery
         {
-            public SearchQuery(string text, DateTime? fromDate = null, DateTime? toDate = null, IDictionary<string, string> filters = null)
+            public SearchQuery(string text, bool isSearchinginTC = false,  DateTime? fromDate = null, DateTime? toDate = null, IDictionary<string, string> filters = null)
             {
                 Text = text;
                 FromDate = fromDate ?? MinDate;
                 ToDate = toDate ?? DateTime.Today;
+                IsSearchinginTC = isSearchinginTC;
                 Filters = filters;
             }
 
@@ -85,6 +86,7 @@ namespace Gov.News.Website.Models
             public IDictionary<string, string> Filters { get; }
             public DateTime ToDate { get; }
             public DateTime FromDate { get; }
+            public bool IsSearchinginTC { get;  }
 
             public bool UseCustomRange()
             {

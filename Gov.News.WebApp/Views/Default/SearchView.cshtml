@@ -50,6 +50,13 @@
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
         <div class="search-panel search-filters">
+            <div class="search-filter">
+                <div class="checkbox">
+                    <label>
+                        <input name="isSearchinginTC" type="checkbox"> Search in traditional Chinese
+                    </label>
+                </div>
+            </div>
             @if(Model !=null && Model.FacetResults != null)
             {
                 @foreach (var facetResult in Model.FacetResults)

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System.Web;
 
 namespace Gov.News.Website.Controllers.Shared
 {
@@ -59,9 +60,69 @@ namespace Gov.News.Website.Controllers.Shared
 #endif
             model.Title = "Search";
 
+            if (query.IsSearchinginTC)
+            {
+                string requestUri = Properties.Settings.Default.AzureBlobSearchUri.ToString();
+                requestUri += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+                dynamic searchBlobServiceResult = null;
+                using (Profiler.StepStatic("Calling search.gov.bc.ca"))
+                {
+                    System.Net.WebRequest request = System.Net.WebRequest.Create(requestUri);
+                    request.Headers.Add("api-key", Properties.Settings.Default.AzureBlobSearchKey);
+
+                    using (System.Net.WebResponse response = await request.GetResponseAsync())
+                    {
+                        using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream()))
+                        {
+                            string res = reader.ReadToEnd();
+                            searchBlobServiceResult = JsonConvert.DeserializeObject<dynamic>(res);
+                        }
+                    }
+                }
+
+                //model.Count = searchBlobServiceResult.Count;
+                var count = 0;
+                if (searchBlobServiceResult.value != null)
+                {
+                    foreach (var result in searchBlobServiceResult.value)
+                    {
+                        var rfc4648 = "";
+                        try
+                        {
+                            string temp = result["metadata_storage_path"];
+                            var encodedStringWithoutTrailingCharacter = temp.Substring(0, temp.Length - 1);
+                            var encodedBytes = Microsoft.AspNetCore.WebUtilities.WebEncoders.Base64UrlDecode(encodedStringWithoutTrailingCharacter);
+                            rfc4648 = HttpUtility.UrlDecode(encodedBytes, System.Text.Encoding.UTF8);
+
+                            
+                            //var customBase64 = System.Web.UrlTokenDecode(temp);
+                            //rfc4648 = customBase64.Substring(0, customBase64.Length - 1);
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        count++;
+                       
+                        model.Results.Add(new SearchViewModel.Result()
+                        {
+                            Title = result["metadata_storage_name"],
+                           
+                            Description = rfc4648,
+                           
+                        });
+                    }
+                }
+                model.Count = count;
+                model.Query = query;
+                return model;
+            }
+           
             bool isTranslationsSearch = string.Equals(query.Text, "translation", StringComparison.OrdinalIgnoreCase)
                 || string.Equals(query.Text, "translations", StringComparison.OrdinalIgnoreCase);
             string requestPath = Properties.Settings.Default.AzureSearchUri.ToString();
+            //requestPath += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+            
             if (!string.IsNullOrEmpty(query.Text))
             {
                 if (!isTranslationsSearch)
@@ -127,7 +188,11 @@ namespace Gov.News.Website.Controllers.Shared
             {
                 requestPath += string.Format("&{0}={1}", "$skip", skip);
             }
-
+            
+            /*
+            int skip = (int.Parse(page ?? "1") - 1) * ResultsPerPage;
+            var facets = new Dictionary<string, string> { { "languages", "Language" }, { "collection", "Date" }, { "ministries", "Ministry" }, { "sectors", "Sector" }, { "location", "City" }, { "releaseType", "Content" } };
+            */
             dynamic searchServiceResult = null;
             using (Profiler.StepStatic("Calling search.gov.bc.ca"))
             {
