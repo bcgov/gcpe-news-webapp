@@ -144,8 +144,8 @@ namespace Gov.News.Website.Controllers
         }
 
         [Noindex]
-        public async Task<ActionResult> Search(string q = null, string date = null, bool isSearchinginTC=true, string ministry = null, string sector = null, string city = null, string content = null, string language = null,
-            DateTime? fromDate = null, DateTime? toDate = null, string page = null)
+        public async Task<ActionResult> Search(string isSearchinginTC = null, string q = null, string date = null, string ministry = null, string sector = null, string city = null, string content = null, string language = null,
+            DateTime? fromDate = null, DateTime? toDate = null, string page = null, string translationSelect = null)
         {
             var filters = new Dictionary<string, string>();
             if (!string.IsNullOrEmpty(date))
@@ -177,7 +177,7 @@ namespace Gov.News.Website.Controllers
                 filters.Add("Language", language);
             }
 
-            var queryModel = new SearchViewModel.SearchQuery(q, isSearchinginTC, fromDate, toDate, filters);
+            var queryModel = new SearchViewModel.SearchQuery(q, isSearchinginTC, translationSelect, fromDate, toDate, filters);
             if (Properties.Settings.Default.NewsMediaHostUri != null)
             {
                 ViewBag.ProxyUrl = Properties.Settings.Default.NewsMediaHostUri.ToString() + "embed/";

@@ -49,196 +49,242 @@
     <div class="clear"></div>
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
-        <div class="search-panel search-filters">
-            <div class="search-filter">
-                <div class="checkbox">
-                    <label>
-                        <input name="isSearchinginTC" type="checkbox"> Search in traditional Chinese
-                    </label>
-                </div>
-            </div>
-            @if(Model !=null && Model.FacetResults != null)
-            {
-                @foreach (var facetResult in Model.FacetResults)
-                {
-                <div class="search-filter">
-                    <h5 class="open">@facetResult.Key</h5>
-                    <div class="search-filter-content" style="display:block">
-                        @{ string filterValue = Model.Query.Filters?.ContainsKey(facetResult.Key) == true ? Model.Query.Filters[facetResult.Key] : null;}
-                        @if (facetResult.Key == "Date" && filterValue == null)
+        <div class="container">
+            <div class="col-lg-3 col-md-3">
+                <div class="search-panel search-filters">
+                    @if (Model != null && Model.FacetResults != null)
+                    {
+                        @foreach (var facetResult in Model.FacetResults)
                         {
-                            <div>
-                                Custom Range
-                                <div class='input-group date' id='publishFromDate'>
-                                    <input type='text' class="form-control" name='fromDate' value='@(Model.Query.FromDate.ToString("yyyy/MM/dd"))' />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                                <div class='input-group date' id='publishToDate'>
-                                    <input type='text' class="form-control" name="toDate" value='@(Model.Query.ToDate.ToString("yyyy/MM/dd"))' />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
+                            <div class="search-filter">
+                                <h5 class="open">@facetResult.Key</h5>
+                                <div class="search-filter-content" style="display:block">
+                                    @{ string filterValue = Model.Query.Filters?.ContainsKey(facetResult.Key) == true ? Model.Query.Filters[facetResult.Key] : null;}
+                                    @if (facetResult.Key == "Date" && filterValue == null)
+                                    {
+                                        <div>
+                                            Custom Range
+                                            <div class='input-group date' id='publishFromDate'>
+                                                <input type='text' class="form-control" name='fromDate' value='@(Model.Query.FromDate.ToString("yyyy/MM/dd"))' />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <div class='input-group date' id='publishToDate'>
+                                                <input type='text' class="form-control" name="toDate" value='@(Model.Query.ToDate.ToString("yyyy/MM/dd"))' />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    }
+                                    <ul>
+                                        @foreach (var facetHit in facetResult.Value)
+                                        {
+                                            string facetHitValue;
+                                            if (facetResult.Key != "Date" || !SearchViewModel.DateCollections.TryGetValue(facetHit.Value, out facetHitValue))
+                                            {
+                                                facetHitValue = facetHit.Value;
+                                            }
+                                            <li>
+                                                @if (filterValue != null)
+                                                {
+                                                    if (facetResult.Key == "Language")
+                                                    {
+                                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span dir="ltr"> @facetHitValue.ToTranslatedLanguageName()</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (facetResult.Key == "Date")
+                                                    {
+                                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()">@facetHitValue</a>
+                                                    }
+                                                    else if (facetResult.Key == "Language")
+                                                    {
+                                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)"><span dir="ltr">@facetHitValue.ToTranslatedLanguageName()</span></a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
+                                                    }
+                                                }
+                                                <span>: @facetHit.Count.ToString("N0")</span>
+                                            </li>
+                                        }
+                                        @if (facetResult.Key == "Date" && filterValue == null && !Model.Query.UseCustomRange())
+                                        {
+                                            <li><a href="http://archive.news.gov.bc.ca/Default.aspx?archive=2009-2013">June 11, 2009 to March 11, 2011</a></li>
+                                            <li><a href="http://archive.news.gov.bc.ca/archive/2005-2009/">May 18, 2005 to June 9, 2009</a></li>
+                                            <li><a href="http://archive.news.gov.bc.ca/archive/2001-2005/">June 5, 2001 to May 10, 2005</a></li>
+                                            <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
+                                        }
+                                    </ul>
+                                    <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
                                 </div>
                             </div>
-                            <br />
-                        }
-                        <ul>
-                            @foreach (var facetHit in facetResult.Value)
+                            @if (facetResult.Key == "Date")
                             {
-                                string facetHitValue;
-                                if (facetResult.Key != "Date" || !SearchViewModel.DateCollections.TryGetValue(facetHit.Value, out facetHitValue))
-                                {
-                                    facetHitValue = facetHit.Value;
-                                }
-                            <li>
-                                @if (filterValue != null)
-                                {
-                                    if(facetResult.Key == "Language") 
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span dir="ltr"> @facetHitValue.ToTranslatedLanguageName()</span>
-                                    }
-                                    else 
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
-                                    }
-                                }
-                                else
-                                {
-                                    if (facetResult.Key == "Date")
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()">@facetHitValue</a>
-                                    }
-                                    else if(facetResult.Key == "Language")
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)"><span dir="ltr">@facetHitValue.ToTranslatedLanguageName()</span></a>
-                                    }
-                                    else
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
-                                    }
-                                }
-                                <span>: @facetHit.Count.ToString("N0")</span>
-                            </li>
-                            }
-                            @if (facetResult.Key == "Date" && filterValue == null && !Model.Query.UseCustomRange())
-                            {
-                                <li><a href="http://archive.news.gov.bc.ca/Default.aspx?archive=2009-2013">June 11, 2009 to March 11, 2011</a></li>
-                                <li><a href="http://archive.news.gov.bc.ca/archive/2005-2009/">May 18, 2005 to June 9, 2009</a></li>
-                                <li><a href="http://archive.news.gov.bc.ca/archive/2001-2005/">June 5, 2001 to May 10, 2005</a></li>
-                                <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
-                            }
-                        </ul>
-                        <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
-                    </div>
-                </div>
-                @if (facetResult.Key == "Date")
-                {
-                    <div style="margin-bottom: 10px">
-                        <a href="/search" class="link-button">RESET SEARCH</a>
-                    </div>
-                }
-            }
-         }
-            
-        </div>
-
-        @*  DEVNOTE: For no filters, add the no-filters class*@
-        <div class="home-body search-results">
-
-            <div class="search-panel">
-                <label>You searched for</label>
-                <div class="search-panel-bar">
-                    <input name="q" type="text" value="@Model.Query.Text" placeholder="Search news.gov.bc.ca" />
-                    <div class="search-trigger"> </div>
-                </div>
-            </div>
-
-            @if (!Model.Results.Any())
-            {
-                <br /><h4>No results found.</h4>
-            }
-            else
-            {
-                <div class="search-numbers">
-                    Showing results @Model.FirstResult - @Model.LastResult of @Model.Count.ToString("N0")
-                </div>
-            }
-
-            @foreach (var result in Model.Results)
-            {
-                <div class="article">
-                    <h2><a href="@result.Uri">@result.Title</a></h2>
-                    @if (result.HasTranslations || (result.Headline != null && result.Headline.Contains("translation", StringComparison.OrdinalIgnoreCase)))
-                    {
-                        <div class="item-medialink translations"><a href="@result.Uri#translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-left:6px;" aria-hidden="true"></i> Translations</a></div>
-                    }
-                    @if (result.HasMediaAssets)
-                    {
-                        <div class="item-medialink media-assets"><a href="@result.Uri#assets">Media Assets</a></div>
-                    }
-                    <div class="item-date">@result.PublishDate.ToLocalTime().FormatDateLong()</div>
-                    <div class="item-content">
-                        <!--
-
-    @if (result.ThumbnailUri != null)
-    {
-        <div class='asset flickr'><a href='@result.Uri'><img src='@result.ThumbnailUri.ToProxyUrl()' /></a></div>
-    }
-    -->
-                        @if (result.ThumbnailUri != null)
-                        {
-                            @if (result.ThumbnailUri.ToProxyUrl().Contains("youtube"))
-                            {
-                                <div class='item-asset asset flickr' id="youtube-asset-">
-                                    @AssetHelper.RenderPostAsset(@result.AssetUrl.ToUri(), null, String.IsNullOrEmpty(result.SocialMediaHeadline) ? result.Title : result.SocialMediaHeadline).ShowLinks()
+                                <div style="margin-bottom: 10px">
+                                    <a href="/search" class="link-button">RESET SEARCH</a>
                                 </div>
                             }
-                            else
-                            {
-                                <div class='asset flickr' id="youtube-asset-">
-                                    <a href='@result.Uri'><img src='@result.ThumbnailUri.ToProxyUrl()' alt="@result.SocialMediaHeadline" title="@(string.IsNullOrEmpty(result.SocialMediaHeadline)? result.Title : result.SocialMediaHeadline )"/></a>
-                                </div> 
-                            }
                         }
-                        <div class="item-text@(result.ThumbnailUri == null ? "" : " with-image")">
-                            @result.Description.AsHtmlParagraphs()
-                            <a href="@result.Uri" class="read-more"><i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;Read More</a>
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                @*  DEVNOTE: For no filters, add the no-filters class*@
+                <div class="home-body search-results">
+
+                    <div class="search-panel">
+                        <label>You searched for</label>
+                        <div class="search-panel-bar">
+                            <input name="q" type="text" value="@Model.Query.Text" placeholder="Search news.gov.bc.ca" />
+                            <div class="search-trigger"> </div>
                         </div>
                     </div>
-                    <div class="clear"></div>
-                </div>
-            }
-        </div>
+                    <div class="search-panel">
+                        <div class="search-filter">
+                            <div class="container">
+                                <div class="checkbox">
+                                    <a href="Search?@Model.QueryString("IsSearchinginTC", null)">
+                                        <input name="IsSearchinginTC" id="IsSearchinginTC" value="@Model.Query.IsSearchinginTC" type="checkbox">
+                                    </a>
+                                    <label>
+                                        Search in traditional Chinese
+                                    </label>
+                                </div>
+                                <div id="language-container" style="display:none; border: 1px solid grey;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="translationSelect" id="exampleRadios1" value="french">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Search in French
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="translationSelect" id="exampleRadios2" value="traditionalchinese">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Search in traditional Chinese
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="translationSelect" id="exampleRadios3" value="punjabi">
+                                        <label class="form-check-label" for="exampleRadios3">
+                                            Search in Punjabi
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="search-pagination bottom">
-            <ul>
+                    </div>
 
-                @if (Model.Page > 1)
-                {
-                    <li> <a id="prev" href="Search?@Model.QueryString("Page", (Model.Page - 1).ToString())">&laquo;prev</a></li>
-                }
-
-                @for (long i = Math.Max(1, Model.Page - 4); i <= Math.Min(Model.LastPage, Model.Page + 4); i++)
-                {
-                    if (i == Model.Page)
+                    @if (!Model.Results.Any())
                     {
-                        <li><b>@i</b></li>
+                        <br /><h4>No results found.</h4>
                     }
                     else
                     {
-                        <li><a href="Search?@Model.QueryString("Page", i.ToString())">@i</a></li>
+                        <div class="search-numbers">
+                            Showing results @Model.FirstResult - @Model.LastResult of @Model.Count.ToString("N0")
+                        </div>
                     }
-                }
 
-                @if (Model.Page < Model.LastPage)
-                {
-                    <li><a id="next" href="Search?@Model.QueryString("Page", (Model.Page + 1).ToString())">next &raquo;</a></li>
-                }
-            </ul>
-            <input name='page' type='hidden' disabled='disabled' />
+                    @foreach (var result in Model.Results)
+                    {
+                        if (Model.IsSearchinginTC != "on")
+                        {
+                            <div class="article">
+                                <h2><a href="@result.Uri">@result.Title</a></h2>
+                                @if (result.HasTranslations || (result.Headline != null && result.Headline.Contains("translation", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    <div class="item-medialink translations"><a href="@result.Uri#translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-left:6px;" aria-hidden="true"></i> Translations</a></div>
+                                }
+                                @if (result.HasMediaAssets)
+                                {
+                                    <div class="item-medialink media-assets"><a href="@result.Uri#assets">Media Assets</a></div>
+                                }
+                                <div class="item-date">@result.PublishDate.ToLocalTime().FormatDateLong()</div>
+
+                                <div class="item-content">
+                                    <!--
+
+                    @if (result.ThumbnailUri != null)
+                    {
+                        <div class='asset flickr'><a href='@result.Uri'><img src='@result.ThumbnailUri.ToProxyUrl()' /></a></div>
+                    }
+                    -->
+                                    @if (result.ThumbnailUri != null)
+                                    {
+                                        @if (result.ThumbnailUri.ToProxyUrl().Contains("youtube"))
+                                        {
+                                            <div class='item-asset asset flickr' id="youtube-asset-">
+                                                @AssetHelper.RenderPostAsset(@result.AssetUrl.ToUri(), null, String.IsNullOrEmpty(result.SocialMediaHeadline) ? result.Title : result.SocialMediaHeadline).ShowLinks()
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class='asset flickr' id="youtube-asset-">
+                                                <a href='@result.Uri'><img src='@result.ThumbnailUri.ToProxyUrl()' alt="@result.SocialMediaHeadline" title="@(string.IsNullOrEmpty(result.SocialMediaHeadline)? result.Title : result.SocialMediaHeadline )" /></a>
+                                            </div>
+                                        }
+                                    }
+                                    <div class="item-text@(result.ThumbnailUri == null ? "" : " with-image")">
+                                        @result.Description.AsHtmlParagraphs()
+                                        <a href="@result.Uri" class="read-more"><i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;Read More</a>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                        }
+                        else
+                        {
+                <div class="row">
+                    <a><i class="fa fa-file-pdf-o" aria-hidden="true"></i>@result.Description</a>
+
+                </div>
+                        }
+                    }
+                </div>
+
+                <div class="search-pagination bottom">
+                    <ul>
+
+                        @if (Model.Page > 1)
+                        {
+                            <li> <a id="prev" href="Search?@Model.QueryString("Page", (Model.Page - 1).ToString())">&laquo;prev</a></li>
+                        }
+
+                        @for (long i = Math.Max(1, Model.Page - 4); i <= Math.Min(Model.LastPage, Model.Page + 4); i++)
+                        {
+                            if (i == Model.Page)
+                            {
+                                <li><b>@i</b></li>
+                            }
+                            else
+                            {
+                                <li><a href="Search?@Model.QueryString("Page", i.ToString())">@i</a></li>
+                            }
+                        }
+
+                        @if (Model.Page < Model.LastPage)
+                        {
+                            <li><a id="next" href="Search?@Model.QueryString("Page", (Model.Page + 1).ToString())">next &raquo;</a></li>
+                        }
+                    </ul>
+                    <input name='page' type='hidden' disabled='disabled' />
+                </div>
+            </div>
         </div>
+       
     }
 
     <div class="clear"></div>
@@ -285,6 +331,9 @@
             $(".search-trigger").on('click', function () {
                 $('form:first').submit();
             });
+           
+           
+
 
             $(".mini-search-container-trigger").on('click', function (e) {
                 // for mobiles
@@ -294,6 +343,9 @@
                 } else {
                     searchPanels.show();
                 }
+            });
+            $("#IsSearchinginTC").on('click', function (e) {
+                $("#language-container").toggle();
             });
 
             $(document).on('submit', 'form', function () {
@@ -306,6 +358,9 @@
                 if (toDate.val() == maxDate) {
                     toDate.attr("disabled", "disabled");
                 }
+                //var isSearchinginTC = $("[name='isSearchinginTC']").val();
+                //alert(isSearchinginTC);
+                
             }).keypress(function enter(e) {
                 if (e.which === 13) {
                     $('form:first').submit();

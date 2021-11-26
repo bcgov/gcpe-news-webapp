@@ -1478,7 +1478,7 @@ ul.inline li {
                 }
 
 .search-filters {
-    width: 24%;
+    /*width: 24%;*/
     float: left;
     padding-right: 24px;
     margin-bottom: 30px;
