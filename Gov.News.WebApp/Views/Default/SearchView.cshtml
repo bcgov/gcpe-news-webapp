@@ -50,7 +50,7 @@
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
         <div class="container">
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-3 col-md-4">
                 <div class="search-panel search-filters">
                     @if (Model != null && Model.FacetResults != null)
                     {
@@ -139,9 +139,9 @@
 
                 </div>
             </div>
-            <div class="col-lg-9 col-md-9">
+            <div class="col-lg-9 col-md-8">
                 @*  DEVNOTE: For no filters, add the no-filters class*@
-                <div class="home-body search-results">
+                <div class="">
 
                     <div class="search-panel">
                         <label>You searched for</label>
@@ -155,27 +155,27 @@
                             <div class="container">
                                 <div class="checkbox">
                                     <a href="Search?@Model.QueryString("IsSearchinginTC", null)">
-                                        <input name="IsSearchinginTC" id="IsSearchinginTC" value="@Model.Query.IsSearchinginTC" type="checkbox">
+                                        <input class="form-check-input" name="IsSearchinginTC" id="IsSearchinginTC" value="@Model.Query.IsSearchinginTC" type="checkbox">
                                     </a>
-                                    <label>
+                                    <label class="form-check-label">
                                         Search in traditional Chinese
                                     </label>
                                 </div>
-                                <div id="language-container" style="display:none; border: 1px solid grey;">
+                                <div id="language-container" style="display:none; padding-left:20px;">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="translationSelect" id="exampleRadios1" value="french">
+                                        <input style="margin-right:10px;" class="form-check-input" type="radio" name="translationSelect" id="exampleRadios1" value="french">
                                         <label class="form-check-label" for="exampleRadios1">
                                             Search in French
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="translationSelect" id="exampleRadios2" value="traditionalchinese">
+                                        <input style="margin-right:10px;" class="form-check-input" type="radio" name="translationSelect" id="exampleRadios2" value="traditionalchinese">
                                         <label class="form-check-label" for="exampleRadios2">
                                             Search in traditional Chinese
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="translationSelect" id="exampleRadios3" value="punjabi">
+                                        <input style="margin-right:10px;" class="form-check-input" type="radio" name="translationSelect" id="exampleRadios3" value="punjabi">
                                         <label class="form-check-label" for="exampleRadios3">
                                             Search in Punjabi
                                         </label>
@@ -192,7 +192,7 @@
                     }
                     else
                     {
-                        <div class="search-numbers">
+                        <div class="search-numbers" style="margin-bottom:10px; margin-top:20px;">
                             Showing results @Model.FirstResult - @Model.LastResult of @Model.Count.ToString("N0")
                         </div>
                     }
@@ -247,8 +247,8 @@
                         }
                         else
                         {
-                <div class="row">
-                    <a><i class="fa fa-file-pdf-o" aria-hidden="true"></i>@result.Description</a>
+                <div class="row" style="padding-left:20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true" style="color:red;"></i>&nbsp;&nbsp;&nbsp;<a>@result.Description</a>
 
                 </div>
                         }
