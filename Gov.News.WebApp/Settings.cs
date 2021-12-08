@@ -30,6 +30,12 @@ namespace Gov.News.Website.Properties
 
         public string AzureSearchKey { get; set; }
 
+        public Uri AzureBlobSearchTCUri { get; set; }
+        public Uri AzureBlobSearchFRUri { get; set; }
+        public Uri AzureBlobSearchPunjabiUri { get; set; }
+
+        public string AzureBlobSearchKey { get; set; }
+
         public DateTimeOffset RssFeedCutoffDate { get; set; }
 
         public string MediaAssetsLicenseUri { get; set; }

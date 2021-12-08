@@ -18,6 +18,8 @@ namespace Gov.News.Website.Models
 
         public SearchQuery Query { get; set; }
 
+        public string IsSearchinginTC { get; set; }
+
 
         public List<Result> Results { get; private set; }
 
@@ -42,10 +44,16 @@ namespace Gov.News.Website.Models
             {
                 filters["ToDate"] = Query.ToDate.ToString("MM/dd/yyyy");
             }
+            if (Query.IsSearchinginTC == "on")
+            {
+                filters["IsSearchinginTC"] = Query.IsSearchinginTC.ToString();
+                includePage = false;
+            }
             if (includePage && FirstResult != 1)
             {
                 filters["Page"] = Page.ToString();
             }
+            
             return filters;
         }
         public string QueryString(string key, string value)
@@ -73,19 +81,23 @@ namespace Gov.News.Website.Models
         public static DateTime MinDate = DateTime.Parse("2011/03/12");
         public class SearchQuery
         {
-            public SearchQuery(string text, DateTime? fromDate = null, DateTime? toDate = null, IDictionary<string, string> filters = null)
+            public SearchQuery(string text, string isSearchinginTC, string translationSelect, DateTime? fromDate = null, DateTime? toDate = null, IDictionary<string, string> filters = null)
             {
                 Text = text;
                 FromDate = fromDate ?? MinDate;
                 ToDate = toDate ?? DateTime.Today;
                 Filters = filters;
+                IsSearchinginTC = isSearchinginTC;
+                TranslationSelect = translationSelect;
             }
 
             public string Text { get; }
             public IDictionary<string, string> Filters { get; }
             public DateTime ToDate { get; }
             public DateTime FromDate { get; }
-
+            public string IsSearchinginTC { get;  }
+            public string TranslationSelect { get; }
+            
             public bool UseCustomRange()
             {
                 return FromDate != MinDate || ToDate != DateTime.Today;

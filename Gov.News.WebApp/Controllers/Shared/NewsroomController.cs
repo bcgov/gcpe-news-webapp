@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System.Web;
 
 namespace Gov.News.Website.Controllers.Shared
 {
@@ -38,7 +39,7 @@ namespace Gov.News.Website.Controllers.Shared
         [Noindex]
         private async Task<ActionResult> SearchNotFound(string query)
         {
-            var model = await Search(new SearchViewModel.SearchQuery(query));
+            var model = await Search(new SearchViewModel.SearchQuery(query, string.Empty, null));;
 
             Response.StatusCode = 404;
 
@@ -50,7 +51,6 @@ namespace Gov.News.Website.Controllers.Shared
             var model = new SearchViewModel();
             int ResultsPerPage = 10;
             model.ResultsPerPage = ResultsPerPage;
-
             await LoadAsync(model);
 
 #if !DEBUG
@@ -58,10 +58,12 @@ namespace Gov.News.Website.Controllers.Shared
             {
 #endif
             model.Title = "Search";
-
+           
             bool isTranslationsSearch = string.Equals(query.Text, "translation", StringComparison.OrdinalIgnoreCase)
                 || string.Equals(query.Text, "translations", StringComparison.OrdinalIgnoreCase);
             string requestPath = Properties.Settings.Default.AzureSearchUri.ToString();
+            //requestPath += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+            
             if (!string.IsNullOrEmpty(query.Text))
             {
                 if (!isTranslationsSearch)
@@ -127,7 +129,11 @@ namespace Gov.News.Website.Controllers.Shared
             {
                 requestPath += string.Format("&{0}={1}", "$skip", skip);
             }
-
+            
+            /*
+            int skip = (int.Parse(page ?? "1") - 1) * ResultsPerPage;
+            var facets = new Dictionary<string, string> { { "languages", "Language" }, { "collection", "Date" }, { "ministries", "Ministry" }, { "sectors", "Sector" }, { "location", "City" }, { "releaseType", "Content" } };
+            */
             dynamic searchServiceResult = null;
             using (Profiler.StepStatic("Calling search.gov.bc.ca"))
             {
@@ -221,6 +227,74 @@ namespace Gov.News.Website.Controllers.Shared
 
 
             model.LastPage = Math.Min(Convert.ToInt32(Math.Ceiling(model.Count / (decimal)ResultsPerPage)), 100);
+            if (query.IsSearchinginTC == "on")
+            {
+                string requestUri = string.Empty;
+                switch (query.TranslationSelect)
+                {
+                    case "traditionalchinese":
+                        requestUri = Properties.Settings.Default.AzureBlobSearchTCUri.ToString();
+                        break;
+                    case "french":
+                        requestUri = Properties.Settings.Default.AzureBlobSearchFRUri.ToString();
+                        break;
+                    case "punjubi":
+                        requestUri = Properties.Settings.Default.AzureBlobSearchPunjabiUri.ToString();
+                        break;
+                    default:
+                        break;
+                }
+                
+                requestUri += string.Format("&{0}={1}", "search", UrlEncoder.Default.Encode(query.Text));
+                requestUri += string.Format("&{0}={1}", "searchMode", "all");
+                dynamic searchBlobServiceResult = null;
+                using (Profiler.StepStatic("Calling search.gov.bc.ca"))
+                {
+                    System.Net.WebRequest request = System.Net.WebRequest.Create(requestUri);
+                    request.Headers.Add("api-key", Properties.Settings.Default.AzureBlobSearchKey);
+
+                    using (System.Net.WebResponse response = await request.GetResponseAsync())
+                    {
+                        using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream()))
+                        {
+                            string res = reader.ReadToEnd();
+                            searchBlobServiceResult = JsonConvert.DeserializeObject<dynamic>(res);
+                        }
+                    }
+                }
+
+                var count = 0;
+                if (searchBlobServiceResult.value != null)
+                {
+                    foreach (var result in searchBlobServiceResult.value)
+                    {
+                        var rfc4648 = "";
+                        try
+                        {
+                            string temp = result["metadata_storage_path"];
+                            var encodedStringWithoutTrailingCharacter = temp.Substring(0, temp.Length - 1);
+                            var encodedBytes = Microsoft.AspNetCore.WebUtilities.WebEncoders.Base64UrlDecode(encodedStringWithoutTrailingCharacter);
+                            rfc4648 = HttpUtility.UrlDecode(encodedBytes, System.Text.Encoding.UTF8);
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        count++;
+
+                        model.Results.Add(new SearchViewModel.Result()
+                        {
+                            Title = result["metadata_storage_name"],
+                            Description = rfc4648
+                        });
+                    }
+                }
+                model.Count = count;
+                model.Query = query;
+                model.ResultsPerPage = count;
+                model.IsSearchinginTC = "on";
+                return model;
+            }
 #if !DEBUG
             }
             catch
