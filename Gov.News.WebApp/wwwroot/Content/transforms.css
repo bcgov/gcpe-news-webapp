@@ -130,7 +130,7 @@
     }
 
     .home-body, .story-body {
-        width: 76%;
+        /*width: 76%;*/
     }
     .minister-bio-picture {
         display: none;

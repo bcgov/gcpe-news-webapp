@@ -1003,7 +1003,7 @@ ul.inline li {
     }
 
 .home-body {
-    width: 795px;
+    /*width: 795px;*/
     padding-left: 24px;
     float: left;
 }
