@@ -5,6 +5,15 @@
 @{
     var Ministry = Model.Item1;
     var Minister = Model.Item2;
+    var minister_name = Minister.Headline.Split(" ");
+    string minister_firstname = string.Empty;
+    string minister_lastname = string.Empty;
+    if (minister_name.Length >= 3)
+    {
+        minister_firstname = Minister.Headline.Split(" ")[1];
+        minister_lastname = Minister.Headline.Split(" ").Last();
+    }
+    var minister_large_pic_url = string.Format("https://www2.gov.bc.ca/assets/gov/government/ministries-organizations/premier-cabinet-mlas/minister-large/{0}_{1}_large.jpg", minister_firstname, minister_lastname);
 }
 
 @if (Model != null)
@@ -12,7 +21,7 @@
     <div class="resource-links minister">
         <h3>@Ministry.Name</h3>
 
-        <img src="@Minister.Photo" />
+        <a href="@minister_large_pic_url"><img src="@Minister.Photo" title="@Minister.Headline" alt="@Minister.Headline"/></a>
         <h3>@Minister.Headline</h3>
 
         @Minister.Summary.AsHtmlParagraphs()

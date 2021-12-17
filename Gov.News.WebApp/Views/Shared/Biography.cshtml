@@ -46,6 +46,10 @@
         <div class="biography-details" id="main-content-release">
             <!--googleon: all-->
             <h2>@Model.Minister.Headline</h2>
+            <center class="minister-bio-picture">
+                <img src="@Model.Minister.Photo" alt="@Model.Minister.Headline" />
+            </center>
+            
             @Model.Minister.Details.AsHtmlParagraphs()
             <!--googleoff: all-->
         </div>

@@ -11,6 +11,11 @@
     max-width: 1120px;
 }
 
+@media only screen and (min-width: 1120px) {
+    .minister-bio-picture {
+        display: none;
+    }
+}
 @media only screen and (max-width: 1120px) {
     #logo {
         margin-left: 24px;
@@ -127,7 +132,9 @@
     .home-body, .story-body {
         width: 76%;
     }
-
+    .minister-bio-picture {
+        display: none;
+    }
     .story-page {
         padding-left: 20px;
     }
@@ -513,6 +520,11 @@
         padding-left: 0;
         padding-right: 0;
         clear: both;
+    }
+
+    .minister-bio-picture {
+        
+        display:block;
     }
 
         .story-body .feed-header .facebook-like {
