@@ -232,6 +232,7 @@ namespace Gov.News.Website
                 { "Spanish", "Ver la traducción en español" },
                 { "Swahili", "Angalia Tafsiri ya Kiswahili" },
                 { "Tagalog", "Tingnan ang pagsasalin sa Tagalog" },
+                { "Ukrainian", "Дивіться переклад в Українська" },
                 { "Urdu", "اردو میں ترجمہ دیکھیں" },
                 { "Vietnamese", "Xem bản dịch bằng tiếng Việt" }
             };
@@ -269,6 +270,7 @@ namespace Gov.News.Website
                 { "Spanish", "Español" },
                 { "Swahili", "Kiswahili" },
                 { "Tagalog", "Tagalog" },
+                { "Ukrainian", "Українська" },
                 { "Urdu", "اردو" },
                 { "Vietnamese", "Tiếng Việt" }
             };
