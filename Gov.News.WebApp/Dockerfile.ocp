@@ -1,0 +1,12 @@
+FROM image-registry.apps.silver.devops.gov.bc.ca/47ba99-tools/dotnet-50:5.0-30.20220127181929
+USER 1001
+RUN mkdir Gov.News.WebApp
+WORKDIR Gov.News.WebApp
+ADD . .
+
+RUN dotnet publish -c Release
+
+EXPOSE 80
+EXPOSE 443
+
+CMD ["dotnet", "./bin/Release/net5.0/publish/Gov.News.WebApp.dll"]
