@@ -6,6 +6,10 @@
     background-color: #333333;
 }
 
+.covid-banner {
+    background-color: #494949;
+}
+
 #nav-container {
     position: relative;
     z-index: 10;
