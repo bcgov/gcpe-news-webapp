@@ -376,6 +376,10 @@ namespace Gov.News.Website.Middleware
                                  "/ministries/tourism-arts-and-culture");
             redirectMappings.Add("/ministries/natural-gas-development",
                                  "/ministries/energy-mines-and-petroleum-resources");
+            redirectMappings.Add("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations",
+                                 "/ministries/land-water-and-resource-stewardship");
+            redirectMappings.Add("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations/factsheets",
+                                 "/ministries/land-water-and-resource-stewardship/factsheets");
 
             redirectMappings.Add("/regions/vancouver-island-coast",
                                 "/regions/vancouver-island-and-coast");
