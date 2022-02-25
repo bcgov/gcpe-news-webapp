@@ -174,7 +174,7 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/community-sport-and-cultural-development", "/tourism-arts-and-culture") + query);
             }
-            if (path.StartsWith("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operation"))
+            if (path.StartsWith("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations"))
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations", "/land-water-and-resource-stewardship") + query);
             }
