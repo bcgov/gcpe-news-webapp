@@ -174,6 +174,10 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/community-sport-and-cultural-development", "/tourism-arts-and-culture") + query);
             }
+            if (path.StartsWith("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operation"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations", "/land-water-and-resource-stewardship") + query);
+            }
 
             //End Redirects for renaming ministries.
 
@@ -337,7 +341,6 @@ namespace Gov.News.Website.Middleware
             string storyPattern = @"^/\d{4}/\d{2}/\S+.html$";
 
             string ministryIndexPattern = @"^/ministries(/[^/]+){1,2}/{0,1}$";
-
             string sectorIndexPattern = @"^/sectors/[^/]+/{0,1}$";
             string regionIndexPattern = @"^/regions/[^/]+/{0,1}$";
 
