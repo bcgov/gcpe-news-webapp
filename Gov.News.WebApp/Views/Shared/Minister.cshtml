@@ -28,8 +28,11 @@
 
         @if (!string.IsNullOrWhiteSpace(Minister.EmailHtml))
         {
+            if (Ministry.Key != "land-water-and-resource-stewardship")
+            {
             <h4>Contact</h4>
-            <p class="minister-email">Email: @Html.Raw(Minister.EmailHtml)</p>
+                <p class="minister-email">Email: @Html.Raw(Minister.EmailHtml)</p>
+            }
         }
     </div>
 }
