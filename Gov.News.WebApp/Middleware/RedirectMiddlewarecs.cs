@@ -178,6 +178,19 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations", "/land-water-and-resource-stewardship") + query);
             }
+            if (path.StartsWith("/ministries/education"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/education", "/education-and-child-care") + query);
+            }
+            if (path.StartsWith("/ministries/forests-lands-natural-resource-operations-and-rural-development"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development", "/forests") + query);
+            }
+            if (path.StartsWith("/ministries/agriculture-food-and-fisheries"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/agriculture-food-and-fisheries", "/agriculture-and-food") + query);
+            }
+
 
             //End Redirects for renaming ministries.
 
@@ -383,6 +396,12 @@ namespace Gov.News.Website.Middleware
                                  "/ministries/land-water-and-resource-stewardship");
             redirectMappings.Add("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations/factsheets",
                                  "/ministries/land-water-and-resource-stewardship/factsheets");
+            redirectMappings.Add("/ministries/education",
+                                 "/ministries/education-and-child-care");
+            redirectMappings.Add("/ministries/forests-lands-natural-resource-operations-and-rural-development",
+                                 "/ministries/forests");
+            redirectMappings.Add("/ministries/agriculture-food-and-fisheries",
+                                 "/ministries/agriculture-and-food");
 
             redirectMappings.Add("/regions/vancouver-island-coast",
                                 "/regions/vancouver-island-and-coast");
