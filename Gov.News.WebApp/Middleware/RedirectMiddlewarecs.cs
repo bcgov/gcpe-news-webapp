@@ -178,7 +178,7 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations", "/land-water-and-resource-stewardship") + query);
             }
-            if (path.StartsWith("/ministries/education"))
+            if (path.StartsWith("/ministries/education") & !path.Contains("-"))
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/education", "/education-and-child-care") + query);
             }
