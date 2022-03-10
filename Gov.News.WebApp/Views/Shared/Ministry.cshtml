@@ -83,12 +83,26 @@
                     <div class="resource-links">
                         <h3>Media Contacts</h3>
                         <div>
-                            <partial name="CommContact" model="ministry.ContactUser" />
+                            @if (ministry.Name == "Land, Water and Resource Stewardship")
+                            {
+                                <partial name="CommContactWithLineBreak" model="ministry.ContactUser" />
+                            }
+                            else
+                            {
+                                <partial name="CommContact" model="ministry.ContactUser" />
+                            }
                             @if (ministry.SecondContactUser != null)
                             {
                                 <br />
                                 <span>Alternate:</span>
-                                <partial name="CommContact" model="ministry.SecondContactUser" />
+                                @if (ministry.Name == "Land, Water and Resource Stewardship")
+                                {
+                                    <partial name="CommContactWithLineBreak" model="ministry.ContactUser" />
+                                }
+                                else
+                                {
+                                    <partial name="CommContact" model="ministry.SecondContactUser" />
+                                }
                             }
                             @if (!string.IsNullOrEmpty(ministry.WeekendContactNumber))
                             {
