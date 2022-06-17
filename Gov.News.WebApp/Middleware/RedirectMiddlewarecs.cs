@@ -15,14 +15,14 @@ namespace Gov.News.Website.Middleware
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
         //private readonly INewslettersClient _newsletters;
-        
+
         public RedirectMiddleware(RequestDelegate next, ILoggerFactory loggerFactory/*, INewslettersClient newsletters*/)
         {
             _next = next;
             _logger = loggerFactory.CreateLogger<RedirectMiddleware>();
             //_newsletters = newsletters;
         }
-  
+
         public async Task Invoke(HttpContext context)
         {
             string host = "";
@@ -39,7 +39,7 @@ namespace Gov.News.Website.Middleware
             }
 
             var remoteIpAddress = context.Connection.RemoteIpAddress;
-            
+
             // As Kestrel does not currently have access logs, those are done here.
             _logger.LogInformation($"{DateTime.UtcNow:HH:mm:ss.fff} {remoteIpAddress} {host} {userAgent} {context.Request.Method} {url}", null);
 
@@ -105,7 +105,7 @@ namespace Gov.News.Website.Middleware
             }
 
             /* do not redirect if the request scheme does not match.
-             * 
+             *
             if (Properties.Settings.Default.NewsHostUri.Scheme == "https" && context.Request.Scheme == "http")
             {
                 if (path.EndsWith("/") && path != "/")
@@ -131,7 +131,7 @@ namespace Gov.News.Website.Middleware
             }
             //This shouldn't be here, this is redirecting ministry pages and feeds that no longer exist
             //IE. Justice->Attorney-General
-            //Instead all consumers of feeds should be updating their news bars etc. 
+            //Instead all consumers of feeds should be updating their news bars etc.
             //Aug. 4/2017 after the NDP/Green took government.
             //May you not find this causing a bug 10 years later.
             if (path.StartsWith("/ministries/justice"))
@@ -176,25 +176,25 @@ namespace Gov.News.Website.Middleware
             }
             if (path.StartsWith("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations", "/land-water-and-resource-stewardship") + query);
+               return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations", "/land-water-and-resource-stewardship") + query);
             }
             if (path.StartsWith("/ministries/education") & !path.Contains("-"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/education", "/education-and-child-care") + query);
+               return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/education", "/education-and-child-care") + query);
             }
             if (path.StartsWith("/ministries/forests-lands-natural-resource-operations-and-rural-development"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development", "/forests") + query);
+               return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/forests-lands-natural-resource-operations-and-rural-development", "/forests") + query);
             }
             if (path.StartsWith("/ministries/agriculture-food-and-fisheries"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/agriculture-food-and-fisheries", "/agriculture-and-food") + query);
+               return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/agriculture-food-and-fisheries", "/agriculture-and-food") + query);
             }
 
 
             //End Redirects for renaming ministries.
 
-            if (path.StartsWith("/tags/")) 
+            if (path.StartsWith("/tags/"))
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/tags", "/news-subscribe") + query);
             }
@@ -393,15 +393,15 @@ namespace Gov.News.Website.Middleware
             redirectMappings.Add("/ministries/natural-gas-development",
                                  "/ministries/energy-mines-and-petroleum-resources");
             redirectMappings.Add("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations",
-                                 "/ministries/land-water-and-resource-stewardship");
+                                "/ministries/land-water-and-resource-stewardship");
             redirectMappings.Add("/ministries/forests-lands-natural-resource-operations-and-rural-development/lands-and-natural-resource-operations/factsheets",
-                                 "/ministries/land-water-and-resource-stewardship/factsheets");
+                                "/ministries/land-water-and-resource-stewardship/factsheets");
             redirectMappings.Add("/ministries/education",
-                                 "/ministries/education-and-child-care");
+                                "/ministries/education-and-child-care");
             redirectMappings.Add("/ministries/forests-lands-natural-resource-operations-and-rural-development",
-                                 "/ministries/forests");
+                                "/ministries/forests");
             redirectMappings.Add("/ministries/agriculture-food-and-fisheries",
-                                 "/ministries/agriculture-and-food");
+                                "/ministries/agriculture-and-food");
 
             redirectMappings.Add("/regions/vancouver-island-coast",
                                 "/regions/vancouver-island-and-coast");
@@ -735,7 +735,7 @@ namespace Gov.News.Website.Middleware
         {
 
 #if !DEBUG
-           
+
             // Disable the HTTS redirect so that the app will run in OpenShift.
             /*
             var options = new RewriteOptions();

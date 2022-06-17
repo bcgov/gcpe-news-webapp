@@ -7,6 +7,10 @@
     @if (!string.IsNullOrEmpty(@Model.PhoneNumber))
     {
         <span>Direct: @Model.PhoneNumber</span>
+        @if (!string.IsNullOrEmpty(@Model.MobileNumber))
+        {
+            <br />
+        }
     }
     @if (!string.IsNullOrEmpty(@Model.MobileNumber))
     {

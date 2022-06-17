@@ -356,53 +356,53 @@
             </div>
         }
 
-    <div class="story-copy story-lang primary collapsed">
-        <div class="story-expander">
-            <article>
-                <!--googleon: all-->
-                @AssetHelper.RenderAssetsInHtml(firstDoc.DetailsHtml, 695).ShowLinks()
-                <!--googleoff: all-->
-                <div> </div>
-            </article>
+        <div class="story-copy story-lang primary collapsed">
+            <div class="story-expander">
+                <article>
+                    <!--googleon: all-->
+                    @AssetHelper.RenderAssetsInHtml(firstDoc.DetailsHtml, 695).ShowLinks()
+                    <!--googleoff: all-->
+                    <div> </div>
+                </article>
+            </div>
         </div>
-    </div>
 
         @*@if (!string.IsNullOrWhiteSpace(Model.Post.LearnMoreItems))
-            {
-                <!--googleon: all-->
-                <div class="learn-more collapsed">
-                    <h4>Learn More</h4>
-                    <div class="story-expander">
-                        @Html.Raw(Model.Post.LearnMoreItems)
-                        <div class="article-fade"> </div>
-                    </div>
-                    <a href="#" class="link-button expand">Expand Learn More</a>
-                    <a href="#" class="link-button collapse">Contract Learn More</a>
+        {
+            <!--googleon: all-->
+            <div class="learn-more collapsed">
+                <h4>Learn More</h4>
+                <div class="story-expander">
+                    @Html.Raw(Model.Post.LearnMoreItems)
+                    <div class="article-fade"> </div>
                 </div>
-                <!--googleoff: all-->
-            }
-
-            @if (!string.IsNullOrWhiteSpace(Model.Post.QuickFacts))
-            {
-                <!--googleon: all-->
-                <div class="quick-facts">
-                    <h4>Quick Facts</h4>
-                    <p>
-                        @Html.Raw(Model.Post.QuickFacts)
-                </p>
+                <a href="#" class="link-button expand">Expand Learn More</a>
+                <a href="#" class="link-button collapse">Contract Learn More</a>
             </div>
-                <!--googleoff: all-->
-            }
+            <!--googleoff: all-->
+        }
 
-            @if (!string.IsNullOrWhiteSpace(Model.Post.Quotes))
-            {
-                <!--googleon: all-->
-                <div class="quotes">
-                    <h4>Quotes</h4>
-                    @Html.Raw(Model.Post.Quotes)
-                </div>
-                <!--googleoff: all-->
-            }*@
+        @if (!string.IsNullOrWhiteSpace(Model.Post.QuickFacts))
+        {
+            <!--googleon: all-->
+            <div class="quick-facts">
+                <h4>Quick Facts</h4>
+                <p>
+                    @Html.Raw(Model.Post.QuickFacts)
+            </p>
+        </div>
+            <!--googleoff: all-->
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Post.Quotes))
+        {
+            <!--googleon: all-->
+            <div class="quotes">
+                <h4>Quotes</h4>
+                @Html.Raw(Model.Post.Quotes)
+            </div>
+            <!--googleoff: all-->
+        }*@
         <div class="comm-contacts-body-section">
             @if (firstDoc.Contacts.Any())
             {
@@ -421,7 +421,21 @@
 
         @if (backgrounders.Any())
         {
-            <h4>Backgrounders</h4>
+            if (firstFrenchDoc != null)
+            {
+                <div class="language-selector story-lang secondary" style="text-align: left; margin-bottom: 0;">
+                    <h4 data-story-selection="primary">Détails supplémentaires</h4>
+                </div>
+
+                <div class="language-selector story-lang primary" style="text-align: left; margin-bottom: 0;">
+                    <h4 data-story-selection="secondary">Backgrounders</h4>
+                </div>
+            }
+            else
+            {
+                <h4>Backgrounders</h4>
+            }
+
             for (var i = 0; i < backgrounders.Count(); i++)
             {
                 var item = backgrounders.ElementAt(i);
@@ -459,7 +473,7 @@
                         <!--googleoff: all-->
 
                         @if (item.Contacts.Any() && (firstDoc.Contacts.Count() != item.Contacts.Count()
-                        || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
+                      || (item.Contacts.Any(c => !firstDoc.Contacts.Any(c1 => c.Details == c1.Details && c.Title == c1.Title)))))
                         {
                             @Html.Raw(item.ContactsDetails())
                         }
@@ -484,8 +498,8 @@
                                         <b>@azureAsset.Label</b>
                                     </div>
                                     @*<div>
-                                            @asset.Timestamp.FormatDateLong()
-                                        </div>*@
+                                        @asset.Timestamp.FormatDateLong()
+                                    </div>*@
                                     <div>
                                         <a rel="nofollow" href="@azureAsset.GetUri()" download>Download (<span>@azureAsset.Length.Value.ToBytesReadable()</span>)</a>
                                         @if (Repository.ContentDeliveryUri != null)
@@ -525,11 +539,11 @@
                             {
                                 <li>
                                     @*<div>
-                                            <b>@azureTranslation.Label</b>
-                                        </div>*@
+                                        <b>@azureTranslation.Label</b>
+                                    </div>*@
                                     @*<div>
-                                            @asset.Timestamp.FormatDateLong()
-                                        </div>*@
+                                        @asset.Timestamp.FormatDateLong()
+                                    </div>*@
                                     <div>
                                         @*<a rel="nofollow" href="@azureTranslation.GetTranslationUri()" download>Download (<span>@azureTranslation.Length.Value.ToBytesReadable()</span>)</a>*@
                                         @if (Repository.ContentDeliveryUri != null)
