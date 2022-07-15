@@ -131,10 +131,7 @@
                 }
                 @if (Model.ChildMinistry != null)
                 {
-                    if (Model.ChildMinistry.Name != "Minister of State for Trade" && Model.ChildMinistry.Name != "Minister of State for Infrastructure" && Model.ChildMinistry.Name != "Minister of State for Child Care")
-                    {
-                        <partial name="MinisterOfState" model="new Tuple<Ministry, Minister>(Model.ChildMinistry, Model.ChildMinistryMinister)" />
-                    }
+                    <partial name="MinisterOfState" model="new Tuple<Ministry, Minister>(Model.ChildMinistry, Model.ChildMinistryMinister)" />
                 }
                 <div class="clear"></div>
             </div>

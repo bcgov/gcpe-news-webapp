@@ -18,35 +18,38 @@
 
 @if (Model != null)
 {
-    <div class="resource-links minister">
-        <h3>@Ministry.Name</h3>
+<div class="resource-links minister">
+    <h3>@Ministry.Name</h3>
 
-        <a href="@minister_large_pic_url"><img src="@Minister.Photo" title="@Minister.Headline" alt="@Minister.Headline"/></a>
-        <h3>@Minister.Headline</h3>
+    <a href="@minister_large_pic_url"><img src="@Minister.Photo" title="@Minister.Headline" alt="@Minister.Headline" /></a>
+    <h3>@Minister.Headline</h3>
 
-        @Minister.Summary.AsHtmlParagraphs()
+    @Minister.Summary.AsHtmlParagraphs()
 
-        <a href="@Ministry.GetMinisterUri()" class="read-more">Read Bio</a>
+    <a href="@Ministry.GetMinisterUri()" class="read-more">Read Bio</a>
 
-        @if (!string.IsNullOrWhiteSpace(Minister.EmailHtml))
-        {
-            <h4>Contact</h4>
-            <p>Email: @Html.Raw(Minister.EmailHtml)</p>
-        }
-        <ul>
-            <li>
-                <a href="@Ministry.GetUri()">
-                    @*this is a workaround to address: https://apps.gcpe.gov.bc.ca/jira/browse/SDI-6589 which is a special case for emergency preparedness since they no longer have a minister of state*@
-                    @if (Ministry.Key == "emergency-preparedness")
-                    {
-                        @:Visit EMBC Website
-                    }
-                    else
-                    {
-                        @:Visit Minister of State Website
-                    }
-                </a>
-            </li>
-        </ul>
-    </div>
+    @if (!string.IsNullOrWhiteSpace(Minister.EmailHtml))
+    {
+        <h4>Contact</h4>
+        <p>Email: @Html.Raw(Minister.EmailHtml)</p>
+    }
+    @if (Ministry.Name != "Minister of State for Trade" && Ministry.Name != "Minister of State for Infrastructure" && Ministry.Name != "Minister of State for Child Care")
+    {
+    <ul>
+        <li>
+            <a href="@Ministry.GetUri()">
+                @*this is a workaround to address: https://apps.gcpe.gov.bc.ca/jira/browse/SDI-6589 which is a special case for emergency preparedness since they no longer have a minister of state*@
+                @if (Ministry.Key == "emergency-preparedness")
+                {
+                    @:Visit EMBC Website
+                }
+                else
+                {
+                    @:Visit Minister of State Website
+                }
+            </a>
+        </li>
+    </ul>
+    }
+</div>
 }
