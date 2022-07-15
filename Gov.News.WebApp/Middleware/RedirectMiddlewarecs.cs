@@ -190,6 +190,18 @@ namespace Gov.News.Website.Middleware
             {
                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/agriculture-food-and-fisheries", "/agriculture-and-food") + query);
             }
+            if (path.StartsWith("/ministries/jobs-economic-recovery-and-innovation/trade"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/jobs-economic-recovery-and-innovation/trade", "/jobs-economic-recovery-and-innovation") + query);
+            }
+            if (path.StartsWith("/ministries/education-and-child-care/child-care"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/education-and-child-care/child-care", "/education-and-child-care") + query);
+            }
+            if (path.StartsWith("/ministries/transportation-and-infrastructure/infrastructure"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/transportation-and-infrastructure/infrastructure", "/transportation-and-infrastructure") + query);
+            }
 
 
             //End Redirects for renaming ministries.
