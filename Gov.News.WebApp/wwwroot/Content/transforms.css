@@ -341,13 +341,42 @@
     }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 768px) {
     .story-body .social-media-bar ul li.facebook-info .on-facebook {
         display: none;
     }
 
     .story-navigator .menu-content-item .item-asset {
         display: none;
+    }
+
+    .list-container {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .item-date {
+        flex-grow: 0;
+        margin-top: 5px;
+        margin-bottom: 5px !important;
+    }
+
+    .item-medialink {
+        align-self: flex-start;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .translations a {
+        padding-left: 0;
+    }
+
+    .media-assets a {
+        padding-left: 19px;
+    }
+
+    .translations {
+        margin-bottom: 10px;
     }
 }
 
