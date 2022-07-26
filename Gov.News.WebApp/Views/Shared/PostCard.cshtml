@@ -49,7 +49,7 @@
 </style>
 <div class="article@((ifShow != null && ifShow == "false") ? " hidden-article" : "")">
     <h2><a href="@Model.GetUri()">@Model.Headline()</a></h2>
-    <div class="row list-container" style="padding-left:0; padding-right:0; padding-bottom:0;">
+    <div class="row list-container" style="padding-left:0; padding-right:15px; padding-bottom:0;">
 
         <div class="item-date">@Model.PublishDate.Value.FormatDateLong()</div>
 
