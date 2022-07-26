@@ -245,7 +245,6 @@ a.read-more {
   font-weight: 600;
   color: #1a5a96;
   text-transform: uppercase;
-  margin-top: 8px;
   display: inline-block;
   /*
         padding-left: 12px;
@@ -1120,7 +1119,7 @@ ul.inline li + li {
   font-size: 16px;
   font-weight: normal;
   color: #585858;
-  padding-bottom: 15px;
+
   display: block;
   word-wrap: break-word;
 }
@@ -2064,7 +2063,6 @@ ul.inline li + li {
 .translations a {
   display: inline-block;
   text-transform: uppercase;
-  padding-left: 24px;
   margin-right: 20px;
   font-size: 13px;
 }
@@ -3765,7 +3763,12 @@ ul.inline li + li {
 .list-container {
     display: flex;
     justify-content: space-between;
-    margin-left: auto
+    margin-left: auto;
+    flex-wrap: wrap;
+}
+
+.item-date {
+    flex-grow:3;
 }
 
 .item-date {

@@ -49,21 +49,24 @@
 </style>
 <div class="article@((ifShow != null && ifShow == "false") ? " hidden-article" : "")">
     <h2><a href="@Model.GetUri()">@Model.Headline()</a></h2>
-    <div class="row" style="padding-left:15px; padding-right:15px; padding-bottom:10px;">
-        <span class="item-date">@Model.PublishDate.Value.FormatDateLong()</span>
-        @if (Model.HasTranslations.HasValue && Model.HasTranslations == true)
-        {
-            <span class="item-medialink translations">
-                <a href="@Model.GetUri()#translationList" aria-label="translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600;" aria-hidden="true"></i> Translations</a>
-            </span>
+    <div class="row list-container" style="padding-left:0; padding-right:0; padding-bottom:0;">
 
-        }
+        <div class="item-date">@Model.PublishDate.Value.FormatDateLong()</div>
+
         @if (Model.HasMediaAssets.HasValue && Model.HasMediaAssets == true)
         {
-            <span class="item-medialink media-assets">
+            <div class="item-medialink media-assets">
                 <a href="@Model.GetUri()#assets">Media Assets</a>
-            </span>
+            </div>
         }
+        @if (Model.HasTranslations.HasValue && Model.HasTranslations == true)
+        {
+            <div class="item-medialink translations">
+                <a href="@Model.GetUri()#translationList" aria-label="translations"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600;" aria-hidden="true"></i> Translations</a>
+            </div>
+
+        }
+
     </div>
     <div class="item-content">
 
