@@ -202,6 +202,34 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/transportation-and-infrastructure/infrastructure", "/transportation-and-infrastructure") + query);
             }
+            if (path.StartsWith("/ministries/transportation-and-infrastructure/infrastructure"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/transportation-and-infrastructure/infrastructure", "/transportation-and-infrastructure") + query);
+            }
+            if (path.StartsWith("/ministries/jobs-economic-recovery-and-innovation"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/jobs-economic-recovery-and-innovation", "/jobs-economic-development-and-innovation") + query);
+            }
+            if (path.StartsWith("/ministries/land-water-and-resource-stewardship"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/land-water-and-resource-stewardship", "/water-land-and-resource-stewardship") + query);
+            }
+            if (path.StartsWith("/ministries/post-secondary-and-future-skills/workforce-development"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/post-secondary-and-future-skills/workforce-development", "/ministries/workforce-development") + query);
+            }
+            if (path.StartsWith("/ministries/transportation-and-infrastructure/infrastructure-and-transit"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/transportation-and-infrastructure/infrastructure-and-transit", "/ministries/infrastructure-and-transit") + query);
+            }
+            if (path.StartsWith("/ministries/education-and-child-care/child-care"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/education-and-child-care/child-care", "/ministries/child-care") + query);
+            }
+            if (path.StartsWith("/ministries/post-secondary-and-future-skills/workforce-development"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/post-secondary-and-future-skills/workforce-development/", "/ministries/workforce-development/") + query);
+            }
 
 
             //End Redirects for renaming ministries.
@@ -414,11 +442,20 @@ namespace Gov.News.Website.Middleware
                                 "/ministries/forests");
             redirectMappings.Add("/ministries/agriculture-food-and-fisheries",
                                 "/ministries/agriculture-and-food");
+            redirectMappings.Add("/ministries/advanced-education-and-skills-training",
+                                "/ministries/post-secondary-education-and-future-skills");
+            redirectMappings.Add("/ministries/land-water-and-resource-stewardship",
+                                "/ministries/water-land-and-resource-stewardship");
+            redirectMappings.Add("/ministries/emergency-preparedness",
+                                "/ministries/emergency-management-and-climate-readiness");
+            redirectMappings.Add("/ministries/jobs-economic-recovery-and-innovation",
+                                "/ministries/jobs-economic-development-and-innovation");
 
             redirectMappings.Add("/regions/vancouver-island-coast",
                                 "/regions/vancouver-island-and-coast");
             redirectMappings.Add("/regions/vancouver-coast-mountains",
                                 "/regions/vancouver-coast-and-mountains");
+
 
             Uri newsHostUri = Properties.Settings.Default.NewsHostUri;
 
