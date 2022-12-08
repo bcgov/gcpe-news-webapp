@@ -33,7 +33,7 @@
         <h4>Contact</h4>
         <p>Email: @Html.Raw(Minister.EmailHtml)</p>
     }
-    @if (Ministry.Name != "Minister of State for Trade" && Ministry.Name != "Minister of State for Infrastructure" && Ministry.Name != "Minister of State for Child Care")
+    @if (!Ministry.Name.Contains("Minister of State for"))
     {
     <ul>
         <li>
@@ -43,10 +43,7 @@
                 {
                     @:Visit EMBC Website
                 }
-                else
-                {
-                    @:Visit Minister of State Website
-                }
+                
             </a>
         </li>
     </ul>
