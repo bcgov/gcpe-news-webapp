@@ -226,9 +226,9 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/education-and-child-care/child-care", "/ministries/education-and-child-care") + query);
             }
-            if (path.StartsWith("/ministries/post-secondary-and-future-skills/workforce-development"))
+            if (path.StartsWith("/ministries/post-secondary-education-and-future-skills/workforce-development"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/post-secondary-and-future-skills/workforce-development", "/ministries/post-secondary-and-future-skills") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/post-secondary-education-and-future-skills/workforce-development", "/ministries/post-secondary-education-and-future-skills") + query);
             }
             if (path == "/ministries/trade")
             {
@@ -244,7 +244,7 @@ namespace Gov.News.Website.Middleware
             }
             if (path == "/ministries/workforce-development")
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("workforce-development", "post-secondary-and-future-skills"));
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("workforce-development", "post-secondary-education-and-future-skills"));
             }
 
 
