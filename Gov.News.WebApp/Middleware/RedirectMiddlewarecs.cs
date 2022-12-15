@@ -466,8 +466,6 @@ namespace Gov.News.Website.Middleware
                                 "/ministries/emergency-management-and-climate-readiness");
             redirectMappings.Add("/ministries/jobs-economic-recovery-and-innovation",
                                 "/ministries/jobs-economic-development-and-innovation");
-            redirectMappings.Add("/ministries/trade",
-                                "/ministries/jobs-economic-development-and-innovation");
 
             redirectMappings.Add("/regions/vancouver-island-coast",
                                 "/regions/vancouver-island-and-coast");
