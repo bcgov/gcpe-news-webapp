@@ -214,21 +214,37 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/land-water-and-resource-stewardship", "/water-land-and-resource-stewardship") + query);
             }
-            if (path.StartsWith("/ministries/post-secondary-and-future-skills/workforce-development"))
+            if (path.StartsWith("/ministries/jobs-economic-development-and-innovation/trade"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/post-secondary-and-future-skills/workforce-development", "/ministries/workforce-development") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/jobs-economic-development-and-innovation/trade", "/ministries/jobs-economic-development-and-innovation") + query);
             }
             if (path.StartsWith("/ministries/transportation-and-infrastructure/infrastructure-and-transit"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/transportation-and-infrastructure/infrastructure-and-transit", "/ministries/infrastructure-and-transit") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/transportation-and-infrastructure/infrastructure-and-transit", "/ministries/transportation-and-infrastructure") + query);
             }
             if (path.StartsWith("/ministries/education-and-child-care/child-care"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/education-and-child-care/child-care", "/ministries/child-care") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/education-and-child-care/child-care", "/ministries/education-and-child-care") + query);
             }
             if (path.StartsWith("/ministries/post-secondary-and-future-skills/workforce-development"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/post-secondary-and-future-skills/workforce-development/", "/ministries/workforce-development/") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/post-secondary-and-future-skills/workforce-development", "/ministries/post-secondary-and-future-skills") + query);
+            }
+            if (path == "/ministries/trade")
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("trade", "jobs-economic-development-and-innovation"));
+            }
+            if (path == "/ministries/infrastructure-and-transit")
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("infrastructure-and-transit", "transportation-and-infrastructure"));
+            }
+            if (path == "/ministries/child-care")
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("child-care", "education-and-child-care"));
+            }
+            if (path == "/ministries/workforce-development")
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("workforce-development", "post-secondary-and-future-skills"));
             }
 
 
