@@ -262,12 +262,15 @@
                 <div class="expander-body">
                     @if (Model.RssLinks != null && Model.RssLinks.Any())
                     {
-                        <ul class="external-links">
-                            @foreach (var link in Model.RssLinks)
+                    <ul class="external-links">
+                        @foreach (var link in Model.RssLinks)
+                        {
+                            if (!link.Title.Contains("Minister of State "))
                             {
                                 <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
                             }
-                        </ul>
+                        }
+                    </ul>
                     }
                     @if (@expandableRss)
                     {
