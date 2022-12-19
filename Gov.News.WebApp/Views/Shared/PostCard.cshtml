@@ -84,11 +84,11 @@
                 @if (thumbnailUri.ToString().Contains("youtube"))
                 {
 
-                    @AssetHelper.RenderPostAsset(@Model.AssetUrl.ToUri(),null, String.IsNullOrEmpty(@Model.SocialMediaHeadline) ? Model.Headline() : @Model.SocialMediaHeadline ).ShowLinks()
+                    @AssetHelper.RenderPostAsset(@Model.AssetUrl.ToUri(),null, String.IsNullOrEmpty(@Model.SocialMediaHeadline) ? string.Empty : @Model.SocialMediaHeadline ).ShowLinks()
                 }
                 else
                 {
-                    var altText = string.IsNullOrEmpty(Model.SocialMediaHeadline) ? Model.Headline() : Model.SocialMediaHeadline;
+                    var altText = string.IsNullOrEmpty(Model.SocialMediaHeadline) ? string.Empty : Model.SocialMediaHeadline;
                     <a href='@Model.GetUri()'><img src='@thumbnailUri.ToProxyUrl()' alt="@altText" title="@altText"/></a>
                 }
             </div>
