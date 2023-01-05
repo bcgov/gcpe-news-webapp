@@ -343,6 +343,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.facebook.com/HealthyFamiliesBC", Title = "Healthy Families BC" },
                         new Link() { Url = "https://www.facebook.com/QuitNowBC", Title = "QuitNowBC" },
                         new Link() { Url = "http://www.facebook.com/BCRecSitesandTrails", Title = "Rec Sites and Trails BC" },
+                        new Link() { Url = "https://www.facebook.com/profile.php?id=100088142227724", Title = "Residential Tenancy Branch" },
                         new Link() { Url = "http://www.facebook.com/HelloBC", Title = "Destination British Columbia" },
                         new Link() { Url = "http://www.facebook.com/WorkBC", Title = "WorkBC" },
                         new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" },
@@ -422,6 +423,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/creativebcs", Title = "@CreativeBCs", Summary = "Find information on BC's film, TV, music, interactive & digital media, books & magazines" },
                         new Link() { Url = "https://twitter.com/bc_eao", Title = "@BC_EAO", Summary = "Get project updates and environmental assessment information" },
                         new Link() { Url = "https://twitter.com/BC_FireSafety", Title = "@BC_FireSafety", Summary = "Learn about fire prevention, life safety and what’s happening in the BC fire service" },
+                        new Link() { Url = "https://twitter.com/TenancyBc", Title = "@TenancyBC", Summary = "Information, education and dispute resolution services for landlords and tenants in BC" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://twitter.com/BCGovNews", Title = "@BCGovNews", Summary = "Read daily news tweets from the Government of British Columbia" }).ToArray();
 
             model.InstagramLinks = new Link[]
