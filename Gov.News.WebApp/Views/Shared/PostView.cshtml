@@ -345,7 +345,7 @@
         else
         {
             <div class="story-copy primary-asset">
-                @AssetHelper.RenderPostAsset(Model.Post.AssetUrl.ToUri(), 624, string.IsNullOrEmpty(Model.Post.SocialMediaHeadline) ? Model.Post.Headline() : Model.Post.SocialMediaHeadline).ShowLinks()
+                @AssetHelper.RenderPostAsset(Model.Post.AssetUrl.ToUri(), 624, string.IsNullOrEmpty(Model.Post.SocialMediaHeadline) ? string.Empty : Model.Post.SocialMediaHeadline).ShowLinks()
             </div>
         }
 
