@@ -368,6 +368,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.youtube.com/user/TourismBC", Title = "Destination British Columbia" },
                          new Link() { Url = "http://www.youtube.com/user/WelcomeBCca", Title = "WelcomeBC" },
                          new Link() { Url = "http://www.youtube.com/workbc", Title = "WorkBC" },
+                         new Link() { Url = "https://www.youtube.com/playlist?list=PL98F546CAAFA58723", Title = "BC Parks" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.youtube.com/ProvinceofBC", Title = "Province of BC", Summary = "Subscribe to get the latest videos from the Government of British Columbia" }).ToArray();
 
             model.FlickrLinks = new Link[]
@@ -457,6 +458,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.stopoverdose.gov.bc.ca/theweekly", Title = "StopOverdoseBC" },
                         new Link() { Url = "http://www.tranbc.ca/", Title = "TranBC" },
                         new Link() { Url = "https://www.workbc.ca/blog.aspx", Title = "WorkBC" },
+                        new Link() { Url = "https://engage.gov.bc.ca/bcparksblog", Title = "BC Parks" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www2.gov.bc.ca/govtogetherbc/index.page", Title = "GovTogetherBC" }).ToArray();
 
             var rssLinks = new List<Link>();
@@ -468,6 +470,8 @@ namespace Gov.News.Website.Controllers
                 rssLinks.Add(new Link() { Url = category.GetUri().ToString().TrimEnd('/') + "/feed", Title = category.Name });
 
             rssLinks.Add(new Link() { Url = "http://www.healthlinkbc.ca/publichealthalerts", Title = "HealthLinkBC" });
+            rssLinks.Add(new Link() { Url = "http://bcparks.ca/rss/management_planning.xml", Title = "BC Parks Management Planning" });
+            rssLinks.Add(new Link() { Url = "http://bcparks.ca/rss/public-consultations.xml", Title = "BC Parks Public Consultation / Notification" });
 
             model.RssLinks = rssLinks
                 .OrderBy(t => t.Title)
