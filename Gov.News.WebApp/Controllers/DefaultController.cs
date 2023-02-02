@@ -425,7 +425,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/BC_FireSafety", Title = "@BC_FireSafety", Summary = "Learn about fire prevention, life safety and what’s happening in the BC fire service" },
                         new Link() { Url = "https://twitter.com/TenancyBc", Title = "@TenancyBC", Summary = "Information, education and dispute resolution services for landlords and tenants in BC" },
                         new Link() { Url = "https://twitter.com/_BCCOS", Title = "@_BCCOS", Summary = "Conservation Officer Service" },
-                        new Link() { Url = "https://twitter.com/SpillsInfoBC", Title = "@SpillsInfoBC", Summary = "B.C. Spills Response" },
+                        new Link() { Url = "https://twitter.com/SpillsInfoBC", Title = "@SpillsInfoBC", Summary = "B.C. Spill Response" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://twitter.com/BCGovNews", Title = "@BCGovNews", Summary = "Read daily news tweets from the Government of British Columbia" }).ToArray();
 
             model.InstagramLinks = new Link[]
@@ -471,8 +471,6 @@ namespace Gov.News.Website.Controllers
                 rssLinks.Add(new Link() { Url = category.GetUri().ToString().TrimEnd('/') + "/feed", Title = category.Name });
 
             rssLinks.Add(new Link() { Url = "http://www.healthlinkbc.ca/publichealthalerts", Title = "HealthLinkBC" });
-            rssLinks.Add(new Link() { Url = "http://bcparks.ca/rss/management_planning.xml", Title = "BC Parks Management Planning" });
-            rssLinks.Add(new Link() { Url = "http://bcparks.ca/rss/public-consultations.xml", Title = "BC Parks Public Consultation / Notification" });
 
             model.RssLinks = rssLinks
                 .OrderBy(t => t.Title)
