@@ -426,6 +426,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/TenancyBc", Title = "@TenancyBC", Summary = "Information, education and dispute resolution services for landlords and tenants in BC" },
                         new Link() { Url = "https://twitter.com/_BCCOS", Title = "@_BCCOS", Summary = "Conservation Officer Service" },
                         new Link() { Url = "https://twitter.com/SpillsInfoBC", Title = "@SpillsInfoBC", Summary = "B.C. Spill Response" },
+                        new Link() { Url = "https://twitter.com/BCProsecution", Title = "@BCProsecution", Summary = "An independent prosecution service that people respect and trust" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://twitter.com/BCGovNews", Title = "@BCGovNews", Summary = "Read daily news tweets from the Government of British Columbia" }).ToArray();
 
             model.InstagramLinks = new Link[]
