@@ -121,20 +121,23 @@ namespace Gov.News.Website
 
             var ministry = await _repository.GetMinistryAsync(entry.LeadMinistryKey);
 
-            if (ministry != null)
+            if (ministry != null && ministry.ParentMinistryKey != null)
                 item.Categories.Add(new SyndicationCategory(ministry.Name));
 
             Uri itemUri = entry.GetUri();
             item.Links.Add(new SyndicationLink(itemUri, "alternate", "", "text/html", 0));
 
             var thumbnailUri = entry.GetThumbnailUri();
-            if (thumbnailUri != null)
+            if (thumbnailUri != null && ministry.ParentMinistryKey != null)
             {
                 if (thumbnailUri.Host.EndsWith("staticflickr.com"))
                 {
                     //TODO: No name for asset
                     Asset flickrAsset = await _repository.GetFlickrAssetAsync(entry.AssetUrl);
-                    item.Links.Add(new SyndicationLink(thumbnailUri, "enclosure", "", "image/jpeg", (long)flickrAsset.Length));
+                    if (flickrAsset != null)
+                    {
+                        item.Links.Add(new SyndicationLink(thumbnailUri, "enclosure", "", "image/jpeg", (long)flickrAsset.Length));
+                    }         
                 }
                 else
                 {
