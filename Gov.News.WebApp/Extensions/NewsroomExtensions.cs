@@ -237,7 +237,9 @@ namespace Gov.News.Website
                 { "Tagalog", "Tagalog" },
                 { "Ukrainian", "Українська" },
                 { "Urdu", "اردو" },
-                { "Vietnamese", "Tiếng Việt" }
+                { "Vietnamese", "Tiếng Việt" },
+                { "Finnish", "Suomi" },
+                { "Portuguese", "português" }
             };
 
             foreach (KeyValuePair<string, string> entry in languageNameMappings)
