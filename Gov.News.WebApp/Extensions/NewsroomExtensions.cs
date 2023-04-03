@@ -222,6 +222,7 @@ namespace Gov.News.Website
                 { "Chinese(Traditional)", "繁體中文" },
                 { "Dutch", "Nederlands" },
                 { "Farsi", "فارسی" },
+                { "Finnish", "Suomi" },
                 { "French", "Français" },
                 { "Gujarati", "ગુજરાતી" },
                 { "Hebrew", "עִברִית" },
@@ -229,6 +230,7 @@ namespace Gov.News.Website
                 { "Indonesian" , "bahasa Indonesia"},
                 { "Japanese", "日本語" },
                 { "Korean", "한국어" },
+                { "Portuguese", "português" },
                 { "Punjabi", "ਪੰਜਾਬੀ"},
                 { "Russian", "Русский"},
                 { "Somali", "Soomaali" },
@@ -237,9 +239,7 @@ namespace Gov.News.Website
                 { "Tagalog", "Tagalog" },
                 { "Ukrainian", "Українська" },
                 { "Urdu", "اردو" },
-                { "Vietnamese", "Tiếng Việt" },
-                { "Finnish", "Suomi" },
-                { "Portuguese", "português" }
+                { "Vietnamese", "Tiếng Việt" }
             };
 
             foreach (KeyValuePair<string, string> entry in languageNameMappings)
@@ -265,6 +265,7 @@ namespace Gov.News.Website
                 { "Chinese(traditional)", "繁體中文" },
                 { "Dutch", "Nederlands" },
                 { "Farsi", "فارسی" },
+                { "Finnish", "Suomi" },
                 { "French", "Français" },
                 { "Gujarati", "ગુજરાતી" },
                 { "Hebrew", "עִברִית" },
@@ -272,6 +273,7 @@ namespace Gov.News.Website
                 { "Indonesian" , "bahasa Indonesia"},
                 { "Japanese", "日本語" },
                 { "Korean", "한국어" },
+                { "Portuguese", "português" },
                 { "Punjabi", "ਪੰਜਾਬੀ"},
                 { "Russian", "Русский"},
                 { "Somali", "Soomaali" },
