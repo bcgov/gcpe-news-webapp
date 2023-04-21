@@ -6,15 +6,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
  }
 <div class="newsletters">
-    <div class="home-features">
+    <div class="access">
+        <ul>
+            <li aria-label="Skip to main content">
+                <a href="#main-content-newsletters">Skip to main content</a>
+            </li>
+            <li aria-label="Skip to footer">
+                <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+            </li>
+        </ul>
+    </div>
+    <div class="home-features" role="complementary" id="sidebar">
         <partial name="ConnectSocialMedia" />
         <partial name="ResourceLinks" />
-        <vc:top-sectors/>
+        <vc:top-sectors />
     </div>
-    <div class="home-body">
+    <div class="home-body" id="main-content-newsletters" role="main">
         <h3>Newsletters</h3>
         <partial name="Newsletter" />
-        <br/><br/>
+        <br /><br />
     </div>
     <div class="clear"></div>
 </div>
