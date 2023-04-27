@@ -17,7 +17,12 @@
 
         foreach (var ministry in Model.Ministries)
         {
-            lists.Add(new { Category = "ministries", Key = ministry.Index.Key, Name = ministry.Index.Name });
+            if (ministry.Index.Name != "Workforce Development" && ministry.Index.Name!= "Infrastructure and Transit" &&
+                ministry.Index.Name != "Child Care" && ministry.Index.Name != "Trade")
+            {
+                lists.Add(new { Category = "ministries", Key = ministry.Index.Key, Name = ministry.Index.Name });
+            }
+
         }
 
         foreach (var sector in Model.Sectors)

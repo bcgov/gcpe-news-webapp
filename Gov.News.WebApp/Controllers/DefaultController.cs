@@ -340,9 +340,9 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.facebook.com/BCForestFireInfo", Title = "BC Wildfire Service" },
                         new Link() { Url = "http://www.facebook.com/pages/Columbia-River-Treaty-Review/471508369560835?fref=ts", Title = "Columbia River Treaty Review" },
                         new Link() { Url = "http://www.facebook.com/pages/Conservation-Officer-Service/282011641840394", Title = "Conservation Officer Service" },
-                        new Link() { Url = "http://www.facebook.com/HealthyFamiliesBC", Title = "Healthy Families BC" },
                         new Link() { Url = "https://www.facebook.com/QuitNowBC", Title = "QuitNowBC" },
                         new Link() { Url = "http://www.facebook.com/BCRecSitesandTrails", Title = "Rec Sites and Trails BC" },
+                        new Link() { Url = "https://www.facebook.com/profile.php?id=100088142227724", Title = "Residential Tenancy Branch" },
                         new Link() { Url = "http://www.facebook.com/HelloBC", Title = "Destination British Columbia" },
                         new Link() { Url = "http://www.facebook.com/WorkBC", Title = "WorkBC" },
                         new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" },
@@ -367,6 +367,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.youtube.com/user/TourismBC", Title = "Destination British Columbia" },
                          new Link() { Url = "http://www.youtube.com/user/WelcomeBCca", Title = "WelcomeBC" },
                          new Link() { Url = "http://www.youtube.com/workbc", Title = "WorkBC" },
+                         new Link() { Url = "https://www.youtube.com/playlist?list=PL98F546CAAFA58723", Title = "BC Parks" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.youtube.com/ProvinceofBC", Title = "Province of BC", Summary = "Subscribe to get the latest videos from the Government of British Columbia" }).ToArray();
 
             model.FlickrLinks = new Link[]
@@ -422,6 +423,10 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/creativebcs", Title = "@CreativeBCs", Summary = "Find information on BC's film, TV, music, interactive & digital media, books & magazines" },
                         new Link() { Url = "https://twitter.com/bc_eao", Title = "@BC_EAO", Summary = "Get project updates and environmental assessment information" },
                         new Link() { Url = "https://twitter.com/BC_FireSafety", Title = "@BC_FireSafety", Summary = "Learn about fire prevention, life safety and what’s happening in the BC fire service" },
+                        new Link() { Url = "https://twitter.com/TenancyBc", Title = "@TenancyBC", Summary = "Information, education and dispute resolution services for landlords and tenants in BC" },
+                        new Link() { Url = "https://twitter.com/_BCCOS", Title = "@_BCCOS", Summary = "Conservation Officer Service" },
+                        new Link() { Url = "https://twitter.com/SpillsInfoBC", Title = "@SpillsInfoBC", Summary = "B.C. Spill Response" },
+                        new Link() { Url = "https://twitter.com/BCProsecution", Title = "@BCProsecution", Summary = "BC Prosecution Service" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://twitter.com/BCGovNews", Title = "@BCGovNews", Summary = "Read daily news tweets from the Government of British Columbia" }).ToArray();
 
             model.InstagramLinks = new Link[]
@@ -455,6 +460,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.stopoverdose.gov.bc.ca/theweekly", Title = "StopOverdoseBC" },
                         new Link() { Url = "http://www.tranbc.ca/", Title = "TranBC" },
                         new Link() { Url = "https://www.workbc.ca/blog.aspx", Title = "WorkBC" },
+                        new Link() { Url = "https://engage.gov.bc.ca/bcparksblog", Title = "BC Parks" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www2.gov.bc.ca/govtogetherbc/index.page", Title = "GovTogetherBC" }).ToArray();
 
             var rssLinks = new List<Link>();

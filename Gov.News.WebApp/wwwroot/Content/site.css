@@ -245,7 +245,6 @@ a.read-more {
   font-weight: 600;
   color: #1a5a96;
   text-transform: uppercase;
-  margin-top: 8px;
   display: inline-block;
   /*
         padding-left: 12px;
@@ -1120,7 +1119,7 @@ ul.inline li + li {
   font-size: 16px;
   font-weight: normal;
   color: #585858;
-  padding-bottom: 15px;
+
   display: block;
   word-wrap: break-word;
 }
@@ -1966,10 +1965,6 @@ ul.inline li + li {
 .story-page h3 {
   font-size: 18px;
   font-weight: 600;
-  /*
-            color: #1a5a96;
-        margin-top: 40px;
-        */
 }
 
 .story-page h3.subheadline {
@@ -1985,10 +1980,6 @@ ul.inline li + li {
   font-weight: 600;
   color: #494949;
   padding-bottom: 15px;
-  /*
-            margin-top: 40px;
-        border-bottom: 1px solid #e2e2e2;
-        */
 }
 
 .story-page .print-document {
@@ -2072,7 +2063,6 @@ ul.inline li + li {
 .translations a {
   display: inline-block;
   text-transform: uppercase;
-  padding-left: 24px;
   margin-right: 20px;
   font-size: 13px;
 }
@@ -2129,7 +2119,7 @@ ul.inline li + li {
 }
 
 .story-body .primary-asset {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .story-body .facebook-post,
@@ -3768,4 +3758,19 @@ ul.inline li + li {
   height: 1px;
   overflow: hidden;
   text-indent: -10000px;
+}
+
+.list-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    flex-wrap: wrap;
+}
+
+.item-date {
+    flex-grow:3;
+}
+
+.item-date {
+    align-self: flex-start;
 }

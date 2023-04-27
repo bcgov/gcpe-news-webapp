@@ -65,7 +65,9 @@
 
                         foreach (var ministry in Model.Ministries)
                         {
-                            lists.Add(new { Category = "ministries", Key = ministry.Index.Key, Name = ministry.Index.Name.Replace("Minister of State for ", "") });
+                            if (!ministry.Index.Name.Contains("Minister of State for")) {
+                                lists.Add(new { Category = "ministries", Key = ministry.Index.Key, Name = ministry.Index.Name });
+                            }
                         }
 
                         foreach (var sector in Model.Sectors)

@@ -173,48 +173,78 @@
         <!--googleoff: all-->
     }
 
-    <div class="story-info">
-        <partial name="ShareSocialMedia" />
-
-        <div class="resource-links">
-            <h3 class="story-lang primary">@firstDoc.PageTitle</h3>
-            @if (firstFrenchDoc != null)
-            {
-                <h6 class="story-lang secondary">@firstFrenchDoc.PageTitle</h6>
-            }
-        </div>
-
-        <div class="location-and-date">
-            <h6>@Model.Post.Location</h6>
-            <div class="story-lang primary">
-                @Model.Post.PublishDate.Value.DateTime.FormatDateLong()
+<div class="story-info">
+    <div class="row" style="margin-left:0;">
+        @if (Model.Post.HasTranslations == true)
+        {
+            <div class="resource-links translate" id="translationList" style="padding-bottom:0;">
+                <h3 style="font-size: 18px;">Translations</h3>
+                @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
+                {
+                    <ul style="list-style-type: none; padding-left:0;">
+                        @foreach (var azureTranslation in Model.Post.AzureTranslations)
+                        {
+                            <li>
+                                <div>
+                                    @if (Repository.ContentDeliveryUri != null)
+                                    {
+                                        var link = $"<a rel='nofollow' href='{azureTranslation.GetTranslationUri(Repository.ContentDeliveryUri)}' target=\"_blank\" download><i class=\"fa fa-language fa-lg\" style=\"font-size: 1em; font-weight: 600; margin-right:6px;\" aria-hidden=\"true\"></i>{azureTranslation.Label.ToDefaultTranslationLanguage()}</a>";
+                                        var linkToHtml = new Microsoft.AspNetCore.Html.HtmlString(link);
+                                        @linkToHtml
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <span>Translation files are incoming and will be available shortly.</span>
+                }
             </div>
-            @if (firstFrenchDoc != null)
-            {
-                <div class="story-lang secondary">
-                    @Model.Post.PublishDate.Value.DateTime.FormatDateLong("fr-CA")
-                </div>
-            }
-
-            @if (Model.Post.HasMediaAssets == true)
-            {
-                <div class="media-assets">
-                    <a class="assets-link" href="#assets">Media Assets</a>
-                </div>
-            }
-            @if (Model.Post.HasTranslations == true)
-            {
-                <div class="translate" style="margin-top: 4px;">
-                    <a aria-label="translations" href="#translations" style="font-size: 13px;"><i class="fa fa-language fa-lg" style="font-size: 1.5em; font-weight: 600; margin-right:6px;" aria-hidden="true"></i><span style="text-transform:uppercase;">View Translations</span></a>
-                </div>
-            }
-        </div>
+        }
     </div>
+    <div class="mobile-toolbar row" style="margin-left:0;">
+        <partial name="ShareSocialMedia" />
+        
+            <div class="resource-links">
+                <h3 class="story-lang primary">@firstDoc.PageTitle</h3>
+
+                @if (firstFrenchDoc != null)
+                {
+                    <h6 class="story-lang secondary">@firstFrenchDoc.PageTitle</h6>
+                }
+                <h6 style="margin-top:0">@Model.Post.Location</h6>
+                <div class="story-lang primary">
+                    @Model.Post.PublishDate.Value.DateTime.FormatDateLong()
+                </div>
+            </div>
+       
+    </div>
+    <div class="location-and-date row" style="padding-bottom: 0; margin-left: 0;">
+
+        @if (firstFrenchDoc != null)
+        {
+            <div class="story-lang secondary">
+                @Model.Post.PublishDate.Value.DateTime.FormatDateLong("fr-CA")
+            </div>
+        }
+
+        @if (Model.Post.HasMediaAssets == true)
+        {
+            <div class="media-assets">
+                <a class="assets-link" href="#assets">Media Assets</a>
+            </div>
+        }
+
+    </div>
+    
+</div>
 
     <div class="story-features" id="sidebar">
         @if (Model.Post.HasTranslations == true)
         {
-            <div class="resource-links translate">
+            <div class="resource-links translate" id="translationList">
                 <h3 style="font-size: 18px;">Translations</h3>
                 @if (Model.Post.HasTranslations != null && Model.Post.AzureTranslations.Any())
                 {
@@ -315,7 +345,7 @@
         else
         {
             <div class="story-copy primary-asset">
-                @AssetHelper.RenderPostAsset(Model.Post.AssetUrl.ToUri(), 624, string.IsNullOrEmpty(Model.Post.SocialMediaHeadline) ? Model.Post.Headline() : Model.Post.SocialMediaHeadline).ShowLinks()
+                @AssetHelper.RenderPostAsset(Model.Post.AssetUrl.ToUri(), 624, string.IsNullOrEmpty(Model.Post.SocialMediaHeadline) ? string.Empty : Model.Post.SocialMediaHeadline).ShowLinks()
             </div>
         }
 
