@@ -3581,6 +3581,17 @@ ul.inline li + li {
   margin-top: 20px;
 }
 
+.newsletters .home-body h5 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+    .newsletters .home-body h5 a {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
 .newsletters .home-body p {
   font-size: 16px;
   font-weight: normal;

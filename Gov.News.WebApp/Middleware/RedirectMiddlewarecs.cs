@@ -247,7 +247,6 @@ namespace Gov.News.Website.Middleware
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("workforce-development", "post-secondary-education-and-future-skills"));
             }
 
-
             //End Redirects for renaming ministries.
 
             if (path.StartsWith("/tags/"))
@@ -322,6 +321,11 @@ namespace Gov.News.Website.Middleware
             if (path == "/files/newsroom/downloads/media_contacts.pdf")
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, "/files/Media_Contacts.pdf");
+            }
+
+            if (path.StartsWith("/ministries/intergovernmental-relations-secretariat/biography"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/intergovernmental-relations-secretariat/biography", "/intergovernmental-relations-secretariat"));
             }
 
             return null;

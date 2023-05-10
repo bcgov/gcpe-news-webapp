@@ -8,7 +8,7 @@
             @foreach (var item in ministryNewsletters)
             {
                 var latestEdition = item.Editions.First();
-                <h2><a href=@string.Format("{0}/{1}", "newsletters", item.Key)>@item.Name</a></h2>
+                <h5><a href=@string.Format("{0}/{1}", "newsletters", item.Key)>@item.Name</a></h5>
                 <p>@item.Description</p>
                 <a href=@string.Format("../newsletters/{0}/{1}", item.Key, @latestEdition.Key) class="read-more">Latest Edition: @latestEdition.Value</a>
                 <br />
