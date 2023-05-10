@@ -437,6 +437,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/creativebcs/", Title = "Creative BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/hellobc/", Title = "Destination British Columbia", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/innovate_bc/", Title = "Innovate BC", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/prepared_bc/", Title = "Prepared BC", Summary = "" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
 
 
