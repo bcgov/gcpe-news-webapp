@@ -52,7 +52,10 @@
     font-family: "BCSans";
     font-style: normal;
     font-weight: normal;
-    src: url("../fonts/BCSans-Regular.woff2") format("woff2"), url("../fonts/BCSans-Regular.otf") format("opentype"), url("../fonts/BCSans-Regular.woff") format("woff"), url("../fonts/BCSans-Regular.ttf") format("truetype");
+    src: url("../fonts/BCSans-Regular.woff2") format("woff2"), 
+        url("../fonts/BCSans-Regular.otf") format("opentype"), 
+        url("../fonts/BCSans-Regular.woff") format("woff"), 
+        url("../fonts/BCSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
