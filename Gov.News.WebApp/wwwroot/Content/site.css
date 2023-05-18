@@ -52,7 +52,10 @@
     font-family: "BCSans";
     font-style: normal;
     font-weight: normal;
-    src: url("../fonts/BCSans-Regular.woff2") format("woff2"), url("../fonts/BCSans-Regular.otf") format("opentype"), url("../fonts/BCSans-Regular.woff") format("woff"), url("../fonts/BCSans-Regular.ttf") format("truetype");
+    src: url("../fonts/BCSans-Regular.woff2") format("woff2"), 
+        url("../fonts/BCSans-Regular.otf") format("opentype"), 
+        url("../fonts/BCSans-Regular.woff") format("woff"), 
+        url("../fonts/BCSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
@@ -1134,7 +1137,7 @@ ul.inline li + li {
 .home-body .article p {
   font-size: 16px;
   font-weight: normal;
-  color: #585858;
+  color: #292929;
 
   display: block;
   word-wrap: break-word;
@@ -1438,7 +1441,7 @@ ul.inline li + li {
 .ministry-listing .home-body .biography-details p {
   font-size: 18px;
   font-weight: normal;
-  color: #585858;
+  color: #292929;
   padding-bottom: 15px;
   padding-right: 24px;
 }
@@ -2361,7 +2364,7 @@ ul.inline li + li {
 .story-body .story-copy {
   font-size: 18px;
   line-height: 1.5em;
-  color: #585858;
+  color: #292929;
 }
 
 .story-body .story-copy .story-expander {
@@ -3611,7 +3614,7 @@ ul.inline li + li {
 .newsletters .home-body p {
   font-size: 16px;
   font-weight: normal;
-  color: #585858;
+  color: #292929;
   padding-bottom: 5px;
   display: block;
   margin-bottom: 5px;
@@ -3669,7 +3672,7 @@ ul.inline li + li {
 .newsletters .home-body .Editions p {
   font-size: 16px;
   font-weight: normal;
-  color: #585858;
+  color: #292929;
   padding-bottom: 15px;
   display: block;
   word-wrap: break-word;
