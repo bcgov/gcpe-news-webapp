@@ -75,7 +75,7 @@
 body {
   font-family: "BCSans", "Noto Sans", Verdana, Arial, sans-serif;
   background-color: #fff;
-  color: #494949;
+  color: #292929;
   font-size: 13px;
   overflow-y: scroll;
 }
@@ -125,7 +125,7 @@ a {
 
 #header .search input {
   border: 0 none;
-  color: #494949;
+  color: #292929;
   height: 25px;
   outline: 0 none;
   padding: 3px 10px 3px;
@@ -214,7 +214,7 @@ a {
 }
 
 #nav-container .nav li.active a {
-  color: #494949;
+  color: #292929;
 }
 
 #nav-container .nav li.active + li a {
@@ -316,7 +316,7 @@ a.news-control .read-more.left {
 .resource-links h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   margin-top: 20px !important;
   padding-bottom: 5px;
 }
@@ -328,7 +328,7 @@ a.news-control .read-more.left {
 .resource-links h4 {
   font-size: 14px;
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   margin-top: 15px;
   margin-bottom: 2px;
 }
@@ -337,7 +337,7 @@ a.news-control .read-more.left {
   line-height: 1.2em;
   font-size: 14px;
   font-weight: normal;
-  color: #494949;
+  color: #292929;
   padding-bottom: 5px;
 }
 
@@ -355,7 +355,7 @@ a.news-control .read-more.left {
 
 .resource-links ul {
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   list-style-type: square;
   padding-left: 18px;
   margin-bottom: 0;
@@ -587,7 +587,7 @@ a.news-control .read-more.left {
 }
 #header-links .menu-content-item h2 {
   font-size: 20px;
-  color: #494949;
+  color: #292929;
   padding-bottom: 15px;
   margin-bottom: 0;
   margin-top: 10px;
@@ -621,7 +621,7 @@ a.news-control .read-more.left {
 
 .menu-content-item .item-date {
   font-size: 12px;
-  color: #494949;
+  color: #292929;
   padding-top: 10px;
   padding-bottom: 20px;
 }
@@ -629,7 +629,7 @@ a.news-control .read-more.left {
 .menu-content-item .item-content {
   font-size: 16px;
   line-height: 22px;
-  color: #494949;
+  color: #292929;
   padding-bottom: 2px;
 }
 
@@ -1976,7 +1976,7 @@ ul.inline li + li {
 .story-page h2 {
   font-size: 36px;
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   margin-top: 20px;
   margin-bottom: 42px;
 }
@@ -1989,7 +1989,7 @@ ul.inline li + li {
 .story-page h3.subheadline {
   font-size: 30px;
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   margin-top: -35px;
   margin-bottom: 42px;
 }
@@ -1997,7 +1997,7 @@ ul.inline li + li {
 .story-page h4 {
   font-size: 18px;
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   padding-bottom: 15px;
 }
 
@@ -2037,7 +2037,7 @@ ul.inline li + li {
 .story-features .resource-links.more-from-sectors h5,
 .story-features .resource-links h4 {
   font-size: 14px;
-  color: #494949;
+  color: #292929;
   padding-bottom: 10px;
 }
 
@@ -2204,7 +2204,7 @@ ul.inline li + li {
   padding: 0 12px;
   margin: 5px 0;
   font-size: 14px;
-  color: #494949;
+  color: #292929;
   word-wrap: break-word;
 }
 
@@ -2414,7 +2414,7 @@ ul.inline li + li {
 
 .story-body .language-selector {
   font-size: 14px;
-  color: #494949;
+  color: #292929;
   text-align: right;
   margin-bottom: 40px;
 }
@@ -2429,7 +2429,7 @@ ul.inline li + li {
 
 .story-body .language-selector a.active,
 .translate .language-selector a.active {
-  color: #494949;
+  color: #292929;
   text-decoration: underline;
 }
 
@@ -2468,7 +2468,7 @@ ul.inline li + li {
   width: 60%;
   font-size: 14px;
   font-weight: 400;
-  color: #494949;
+  color: #292929;
   padding-top: 15px;
 }
 
@@ -2484,7 +2484,7 @@ ul.inline li + li {
 .story-body .quick-facts ul,
 .story-body .backgrounder ul {
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   list-style-type: square;
   padding-top: 14px;
   padding-left: 18px;
@@ -2505,7 +2505,7 @@ ul.inline li + li {
 
 .story-body .quick-facts ul li span,
 .story-body .backgrounder ul li span {
-  color: #494949;
+  color: #292929;
   font-size: 14px;
   font-weight: 400;
 }
@@ -2514,7 +2514,7 @@ ul.inline li + li {
   padding: 14px 24px 4px;
   font-size: 14px;
   font-weight: 400;
-  color: #494949;
+  color: #292929;
 }
 
 .story-body .quotes .quote p {
@@ -2549,7 +2549,7 @@ ul.inline li + li {
 }
 
 .story-body .backgrounder h6 {
-  color: #494949;
+  color: #292929;
   font-size: 14px;
   font-weight: 600;
   margin-top: 40px;
@@ -2557,7 +2557,7 @@ ul.inline li + li {
 }
 
 .story-body .backgrounder ul li {
-  color: #494949;
+  color: #292929;
   font-size: 14px;
   font-weight: 400;
 }
@@ -2578,19 +2578,19 @@ ul.inline li + li {
 }
 
 .story-body .backgrounder .comm-contacts h5 {
-  color: #494949;
+  color: #292929;
   margin-top: 25px;
   margin-bottom: 10px;
 }
 
 .story-body .backgrounder .comm-contacts {
   font-size: 14px;
-  color: #494949;
+  color: #292929;
 }
 
 .story-body .backgrounder .comm-contacts h6 {
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   margin-top: 10px;
   margin-bottom: 2px;
 }
@@ -2829,7 +2829,7 @@ ul.inline li + li {
   margin-top: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #494949;
+  color: #292929;
 }
 
 .media-container .story-parts .related-articles {
@@ -2882,7 +2882,7 @@ ul.inline li + li {
 }
 
 .media-container .connect-with-bc p {
-  color: #494949;
+  color: #292929;
 }
 
 .back-to-top {
@@ -3074,7 +3074,7 @@ ul.inline li + li {
   border-bottom: 1px solid #e1e3e6;
   text-align: center;
   padding: 20px 0 18px;
-  color: #494949;
+  color: #292929;
 }
 
 .event-calendar .event-row {
@@ -3562,7 +3562,7 @@ ul.inline li + li {
 .newsletters h2 {
   font-size: 36px;
   font-weight: 600;
-  color: #494949;
+  color: #292929;
   margin-top: 20px;
   margin-bottom: 42px;
 }
@@ -3803,4 +3803,10 @@ ul.inline li + li {
 
 .item-date {
     align-self: flex-start;
+}
+
+#BCGov-logo {
+    height: 100%;
+    width: 175px;
+    margin-top: 10px;
 }

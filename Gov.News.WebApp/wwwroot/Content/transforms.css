@@ -530,7 +530,7 @@
         .comm-contacts-body h5 {
             font-size: 18px;
             font-weight: 600;
-            color: #494949;
+            color: #292929;
             margin-top: 20px;
             padding-bottom: 5px;
         }
@@ -538,7 +538,7 @@
         .comm-contacts-body h6 {
             font-size: 14px;
             font-weight: 600;
-            color: #494949;
+            color: #292929;
             margin-top: 15px;
             margin-bottom: 2px;
         }
@@ -654,7 +654,7 @@
     .story-page h2 {
         font-size: 26px;
         font-weight: 600;
-        color: #494949;
+        color: #292929;
         margin-top: 10px;
         margin-bottom: 10px;
         padding-left: 0px;
@@ -930,7 +930,7 @@
     }
 
     .media-container .connect-with-bc p {
-        color: #494949;
+        color: #292929;
     }
 
     #footer {
