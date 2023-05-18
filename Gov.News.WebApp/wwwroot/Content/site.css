@@ -3804,3 +3804,9 @@ ul.inline li + li {
 .item-date {
     align-self: flex-start;
 }
+
+#BCGov-logo {
+    height: 100%;
+    width: 175px;
+    margin-top: 10px;
+}
