@@ -10,7 +10,7 @@ BC Sans (2.0) comes in six styles: light, light italic, regular, italic, bold, a
 
 Version Log:
 BC Sans Font Family Version 2.0
-Government of Bristish Columbia
+Government of British Columbia
 May 2023
 
 Acknowledgements:
@@ -19,7 +19,7 @@ E: languagegeek@gmail.com
 W: http://www.languagegeek.com
 D: Contributor
 
-N: First Voices
+N: FirstVoices (An initiative of First Peoples' Cultural Coucil)
 E: hello@firstvoices.com
 W: https://www.firstvoices.com
 D: Contributor
