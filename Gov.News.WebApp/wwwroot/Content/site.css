@@ -3609,6 +3609,8 @@ ul.inline li + li {
     .newsletters .home-body h5 a {
         font-size: 20px;
         margin-top: 20px;
+        font-weight: 600;
+        color: #292929;
     }
 
 .newsletters .home-body p {
