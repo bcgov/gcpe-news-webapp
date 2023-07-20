@@ -1589,11 +1589,18 @@ ul.inline li + li {
   line-height: 1.1em;
 }
 
+.expand_filter {
+    text-align: right;
+    color: #003366;
+    width: 100%;
+    padding-bottom:0;
+}
+
 .search-results {
-  width: 76%;
-  float: left;
-  margin-top: 0px;
-  margin-bottom: 30px;
+    width: 76%;
+    float: left;
+    margin-top: 0px;
+    margin-bottom: 30px;
 }
 
 .search-results.no-filters {
