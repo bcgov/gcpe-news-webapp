@@ -78,42 +78,46 @@
                             <br />
                         }
                         <ul>
+                            @{ int i = 0;
+                            }
                             @foreach (var facetHit in facetResult.Value)
                             {
+                                i++;
+                                var style = (i > 10) ? "display: none" : "";
                                 string facetHitValue;
                                 if (facetResult.Key != "Date" || !SearchViewModel.DateCollections.TryGetValue(facetHit.Value, out facetHitValue))
                                 {
                                     facetHitValue = facetHit.Value;
                                 }
-                            <li>
-                                @if (filterValue != null)
-                                {
-                                    if(facetResult.Key == "Language") 
+                                <li style="@style">
+                                    @if (filterValue != null)
                                     {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span dir="ltr"> @facetHitValue.ToTranslatedLanguageName()</span>
-                                    }
-                                    else 
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
-                                    }
-                                }
-                                else
-                                {
-                                    if (facetResult.Key == "Date")
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()">@facetHitValue</a>
-                                    }
-                                    else if(facetResult.Key == "Language")
-                                    {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)"><span dir="ltr">@facetHitValue.ToTranslatedLanguageName()</span></a>
+                                        if (facetResult.Key == "Language")
+                                        {
+                                            <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span dir="ltr"> @facetHitValue.ToTranslatedLanguageName()</span>
+                                        }
+                                        else
+                                        {
+                                            <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                        }
                                     }
                                     else
                                     {
-                                        <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
+                                        if (facetResult.Key == "Date")
+                                        {
+                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()">@facetHitValue</a>
+                                        }
+                                        else if (facetResult.Key == "Language")
+                                        {
+                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)"><span dir="ltr">@facetHitValue.ToTranslatedLanguageName()</span></a>
+                                        }
+                                        else
+                                        {
+                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
+                                        }
                                     }
-                                }
-                                <span>: @facetHit.Count.ToString("N0")</span>
-                            </li>
+                                    <span>: @facetHit.Count.ToString("N0")</span>
+                                </li>
                             }
                             @if (facetResult.Key == "Date" && filterValue == null && !Model.Query.UseCustomRange())
                             {
@@ -123,6 +127,15 @@
                                 <li><a href="http://archive.news.gov.bc.ca/archive/pre2001/default.htm">April 29, 1994 to June 5, 2001</a></li>
                             }
                         </ul>
+                        @{
+                            if (i > 10)
+                            {
+                                <!--
+             <button type="button" class="expand_filter btn btn-link pull-right">More</button>
+            -->
+                                <a class="expand_filter btn btn-link" id="expand_@facetResult.Key">more</a>
+                            }
+                        }
                         <input name='@facetResult.Key' type='hidden' disabled='@(filterValue == null ? "disabled" : null)' value='@filterValue' />
                     </div>
                 </div>
@@ -317,7 +330,24 @@
             @Html.Raw(JsonConvert.SerializeObject(Model.AllQueryFilters())),
             @Model.Count);
         *@
+        $("a.expand_filter").on('click', function () {
+            if ($(this).text() == "more") {
+                $(this).parent().find('ul li').each(function (index, element) {
 
+                    $(element).show();
+                });
+                $(this).text("less");
+            } else {
+                var i = 0;
+                $(this).parent().find('ul li').each(function (index, element) {
+                    i++;
+                    if (i > 10) {
+                        $(element).hide();
+                    }
+                });
+                $(this).text("more");
+            }
+        });
     </script>
     <script> var youtubeProxyUrl = "@ViewBag.ProxyUrl" </script>
     <script type="text/javascript" src="~/Scripts/media-assets-youtube.js"></script>
