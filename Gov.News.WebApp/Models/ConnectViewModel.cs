@@ -22,7 +22,6 @@ namespace Gov.News.Website.Models
         public ExternalConnectLink[] RssLinks { get; set; }
         public ExternalConnectLink[] TwitterLinks { get; set; }
         public ExternalConnectLink[] InstagramLinks { get; set; }
-        public ExternalConnectLink[] PinterestLinks { get; set; }
-        public ExternalConnectLink[] UstreamLinks { get; set; }
+        public ExternalConnectLink[] WeiboLinks { get; set; }
     }
 }
