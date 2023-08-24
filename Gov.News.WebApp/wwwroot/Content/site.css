@@ -1077,7 +1077,7 @@ ul.inline li + li {
   margin-top: 6px;
 }
 
-.home-body .article .translations {
+.home-body .article .translations,  .home-body .article .media-assets{
   margin-top: 10px;
 }
 
