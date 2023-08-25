@@ -2001,9 +2001,6 @@ ul.inline li + li {
 .media-assets a,
 .story-features .media-assets a {
   display: inline-block;
-  background-image: url(Images/download-icon.png);
-  background-repeat: no-repeat;
-  background-position: left center;
   text-transform: uppercase;
   padding-left: 24px;
   margin-right: 20px;
