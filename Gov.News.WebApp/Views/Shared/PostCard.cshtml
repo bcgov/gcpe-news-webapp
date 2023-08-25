@@ -56,7 +56,7 @@
         @if (Model.HasMediaAssets.HasValue && Model.HasMediaAssets == true)
         {
             <div class="item-medialink media-assets">
-                <a href="@Model.GetUri()#assets">Media Assets</a>
+                <a href="@Model.GetUri()#assets"><i class="fa-solid fa-download fa-lg" style="font-size: 1.5em; font-weight: 600;" aria-hidden="true"></i> Media Assets</a>
             </div>
         }
         @if (Model.HasTranslations.HasValue && Model.HasTranslations == true)
