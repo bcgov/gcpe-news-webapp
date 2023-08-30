@@ -207,18 +207,21 @@
     <div class="mobile-toolbar row" style="margin-left:0;">
         <partial name="ShareSocialMedia" />
         
-            <div class="resource-links">
-                <h3 class="story-lang primary">@firstDoc.PageTitle</h3>
+        <div class="resource-links">
+            <h3 class="story-lang primary">@firstDoc.PageTitle</h3>
 
-                @if (firstFrenchDoc != null)
-                {
-                    <h6 class="story-lang secondary">@firstFrenchDoc.PageTitle</h6>
-                }
+            @if (firstFrenchDoc != null)
+            {
+                <h6 class="story-lang secondary">@firstFrenchDoc.PageTitle</h6>
+            }
+            @if (Model.Post.Location != null && !String.IsNullOrEmpty(Model.Post.Location))
+            {
                 <h6 style="margin-top:0">@Model.Post.Location</h6>
-                <div class="story-lang primary">
-                    @Model.Post.PublishDate.Value.DateTime.FormatDateLong()
-                </div>
+            }
+            <div class="story-lang primary">
+                @Model.Post.PublishDate.Value.DateTime.FormatDateLong()
             </div>
+        </div>
        
     </div>
     <div class="location-and-date row" style="padding-bottom: 0; margin-left: 0;">
@@ -233,7 +236,7 @@
         @if (Model.Post.HasMediaAssets == true)
         {
             <div class="media-assets">
-                <a class="assets-link" href="#assets">Media Assets</a>
+                <a class="assets-link" href="#assets"><i class="fa-solid fa-download fa-customized-sm" aria-hidden="true"></i> Media Assets</a>
             </div>
         }
 
@@ -298,7 +301,7 @@
             @if (Model.Post.HasMediaAssets == true)
             {
                 <div class="media-assets">
-                    <a class="assets-link" href="#assets">Media Assets</a>
+                    <a class="assets-link" href="#assets"><i class="fa-solid fa-download fa-customized-sm" aria-hidden="true"></i> Media Assets</a>
                 </div>
             }
         </div>
