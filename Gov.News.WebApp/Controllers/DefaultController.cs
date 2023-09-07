@@ -440,20 +440,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/prepared_bc/", Title = "Prepared BC", Summary = "" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
 
-
-            model.UstreamLinks = new Link[]
-            {
-                        new Link() {Url ="http://www.ustream.tv/user/EmergencyInfoBC", Title = "EmergencyInfoBC" }
-            }.OrderBy(t => t.Title).ToArray();
-
-            model.PinterestLinks = new Link[]
-            {
-                        new Link() { Url ="http://pinterest.com/hellobc", Title = "Destination British Columbia" },
-                        new Link() { Url ="http://pinterest.com/TranBC", Title = "TranBC" },
-                        new Link() { Url ="http://pinterest.com/EmergencyInfoBC", Title = "PreparedBC" },
-                        new Link() { Url ="http://www.pinterest.com/HealthyFamilyBC", Title = "Healthy Families BC" },
-            }.OrderBy(t => t.Title).ToArray();
-
             model.BlogsLinks = new Link[]
             {
                         new Link() { Url = "http://www.britishcolumbia.ca/Global/Blog/", Title = "BC Trade and Invest" },
@@ -478,6 +464,11 @@ namespace Gov.News.Website.Controllers
                 .OrderBy(t => t.Title)
                 .Prepend(new Link() { Url = "https://news.gov.bc.ca/factsheets/feed", Title = "Factsheets & Opinion Editorials" })
                 .Prepend(new Link() { Url = "https://news.gov.bc.ca/feed", Title = "BC Gov News" }).ToArray();
+
+            model.WeiboLinks = new Link[]
+            {
+                //new Link() { Url="https://weibo.com/governmentofbc", Title="卑诗省府GovernmentofBC" }
+            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://weibo.com/governmentofbc", Title = "卑诗省府GovernmentofBC", Summary = "" }).ToArray();
 
             return model;
         }

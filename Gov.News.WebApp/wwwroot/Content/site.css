@@ -58,20 +58,6 @@
         url("../fonts/BCSans-Regular.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "FontAwesome";
-  src: url("../Content/fonts/fontawesome-webfont.eot?v=4.7.0");
-  src: url("../Content/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0")
-      format("embedded-opentype"),
-    url("../Content/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"),
-    url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"),
-    url("../Content/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"),
-    url("../Content/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular")
-      format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
 body {
   font-family: "BCSans", "Noto Sans", Verdana, Arial, sans-serif;
   background-color: #fff;
@@ -395,7 +381,7 @@ a.news-control .read-more.left {
 .resource-links.connect ul li {
   list-style-type: none;
   display: inline-block;
-  margin-right: 10%;
+  margin-right: 5%;
 }
 
 .resource-links.connect ul li:last-child {
@@ -411,24 +397,6 @@ a.news-control .read-more.left {
   width: 20px;
   height: 20px;
   display: inline-block;
-}
-
-.resource-links.share ul li a.share-facebook {
-  background-image: url(Images/SocialMedia/20x20-facebook.png);
-}
-
-.resource-links.share ul li a.share-twitter {
-  /*
-                background-image: url(Images/SocialMedia/20x20-twitter.png);
-            */
-}
-
-.resource-links.share ul li a.share-email {
-  background-image: url(Images/SocialMedia/20x20-mail.png);
-}
-
-.resource-links.share ul li a.share-this {
-  background-image: url(Images/SocialMedia/20x20-add-this.png);
 }
 
 .resource-links.minister img {
@@ -952,31 +920,6 @@ ul.inline li + li {
   color: #ccc;
 }
 
-.home-banner .home-banner-content .social-media-bar ul li.facebook-info {
-  font-size: 18px;
-  /*
-                            background-image: url(Images/24x24-facebook.png);
-                        */
-  cursor: pointer;
-}
-
-.home-banner .home-banner-content .social-media-bar ul li.facebook-share {
-  /*
-                            background-image: url(Images/24x24-share.png);
-                        */
-}
-
-.home-banner .home-banner-content .social-media-bar ul li.facebook-like {
-  background-image: url(Images/24x24-like.png);
-}
-.home-banner .home-banner-content .social-media-bar ul li.facebook-unlike {
-  background-image: url(Images/24x24-unlike.png);
-}
-
-.home-banner .home-banner-content .social-media-bar ul li.facebook-comment {
-  background-image: url(Images/24x24-comment.png);
-}
-
 .facebook-comment-dialog {
   display: none;
   background-color: rgba(255, 255, 255, 0.9);
@@ -1132,6 +1075,10 @@ ul.inline li + li {
 
 .home-body .article .item-medialink {
   margin-top: 6px;
+}
+
+.home-body .article .translations,  .home-body .article .media-assets{
+  margin-top: 10px;
 }
 
 .home-body .article p {
@@ -1715,22 +1662,6 @@ ul.inline li + li {
   margin-right: 0;
 }
 
-.story-navigator .resource-links.share ul li a.share-facebook {
-  background-image: url(Images/SocialMedia/20x20-white-facebook.png);
-}
-
-.story-navigator .resource-links.share ul li a.share-twitter {
-  background-image: url(Images/SocialMedia/20x20-white-twitter.png);
-}
-
-.story-navigator .resource-links.share ul li a.share-email {
-  background-image: url(Images/SocialMedia/20x20-white-mail.png);
-}
-
-.story-navigator .resource-links.share ul li a.share-this {
-  background-image: url(Images/SocialMedia/20x20-white-add-this.png);
-}
-
 .story-navigator .search {
   width: 56px;
   text-align: center;
@@ -1801,12 +1732,6 @@ ul.inline li + li {
   width: 100.5%;
 }
 
-.story-navigator .search.active .search-panel-trigger {
-  /*
-            background-image: url(Images/SocialMedia/20x20-white-close.png);
-        */
-}
-
 .story-navigator .segment.print {
   width: 40px;
   text-align: center;
@@ -1820,7 +1745,6 @@ ul.inline li + li {
   margin-top: 15px;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(Images/SocialMedia/20x20-white-print.png);
 }
 
 .story-navigator .segment.more a,
@@ -2077,11 +2001,7 @@ ul.inline li + li {
 .media-assets a,
 .story-features .media-assets a {
   display: inline-block;
-  background-image: url(Images/download-icon.png);
-  background-repeat: no-repeat;
-  background-position: left center;
   text-transform: uppercase;
-  padding-left: 24px;
   margin-right: 20px;
   font-size: 13px;
 }
@@ -2316,16 +2236,10 @@ ul.inline li + li {
   background-repeat: no-repeat;
   display: inline-block;
   padding-left: 30px;
-  background-image: url(Images/SocialMedia/24x72-facebook-sprite.png);
   margin-right: 17%;
   font-weight: 600;
   font-size: 16px;
   padding-top: 2px;
-}
-
-.story-body .sharing-options ul li,
-.connect .sharing-options ul li {
-  background-image: url(Images/SocialMedia/24x24-facebook-sprite.png);
 }
 
 .story-body .sharing-options ul li a,
