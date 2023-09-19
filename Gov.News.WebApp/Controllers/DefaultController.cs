@@ -347,7 +347,8 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.facebook.com/WorkBC", Title = "WorkBC" },
                         new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" },
                         new Link() { Url = "https://www.facebook.com/PreparedBC/", Title = "PreparedBC" },
-                        new Link() { Url = "http://www.facebook.com/BCFireSafety", Title = "BC Fire Safety" }
+                        new Link() { Url = "http://www.facebook.com/BCFireSafety", Title = "BC Fire Safety" },
+                        new Link() { Url = "https://www.facebook.com/AgriService-BC", Title = "AgriService-BC" }
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" }).ToArray();
 
 
@@ -417,7 +418,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://twitter.com/TranBCRockyMtn", Title = "@TranBCRockyMtn" , Summary = "Information regarding the Rocky Mountain District" },
                         new Link() { Url = "https://twitter.com/TranBC_Skeena", Title = "@TranBC_Skeena" , Summary = "Keeping the Skeena area informed" },
                         new Link() { Url = "https://twitter.com/TranBCVanIsle", Title = "@TranBCVanIsle" , Summary = "Local road and transportation information for Vancouver Islanders" },
-                        new Link() { Url = " https://twitter.com/TranBC_TN", Title = "@TranBC_TN" , Summary = "Keeping the Thompson Nicola area informed" },
+                        new Link() { Url = "https://twitter.com/TranBC_TN", Title = "@TranBC_TN" , Summary = "Keeping the Thompson Nicola area informed" },
                         new Link() { Url = "http://twitter.com/WorkBC", Title = "@WorkBC", Summary = "Explore career paths and get tips for finding jobs in British Columbia" },
                         new Link() { Url = "https://twitter.com/BCSheriffs", Title = "@BCSheriffs", Summary = "Learn about the diverse responsibilities and activities of the BC Sheriff Service" },
                         new Link() { Url = "https://twitter.com/creativebcs", Title = "@CreativeBCs", Summary = "Find information on BC's film, TV, music, interactive & digital media, books & magazines" },
