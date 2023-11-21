@@ -435,10 +435,10 @@ namespace Gov.News.Website.Controllers
 
             model.BlogsLinks = new Link[]
             {
-                        new Link() { Url = "http://www.britishcolumbia.ca/Global/Blog/", Title = "BC Trade and Invest" },
+                        new Link() { Url = "https://www.britishcolumbia.ca/about-trade-and-invest-bc/news-stories/", Title = "BC Trade and Invest" },
                         new Link() { Url = "http://emergencyinfobc.gov.bc.ca/", Title = "EmergencyInfoBC" },
                         new Link() { Url = "http://www.tranbc.ca/", Title = "TranBC" },
-                        new Link() { Url = "https://www.workbc.ca/blog.aspx", Title = "WorkBC" },
+                        new Link() { Url = "https://www.workbc.ca/plan-career/blog", Title = "WorkBC" },
                         new Link() { Url = "https://engage.gov.bc.ca/bcparksblog", Title = "BC Parks" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www2.gov.bc.ca/govtogetherbc/index.page", Title = "GovTogetherBC" }).ToArray();
 
