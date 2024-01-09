@@ -52,7 +52,7 @@
         <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
-        <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="~/Content/css/all.min.css" media="screen" type="text/css">
         <!-- COVID style sheet-->
         <link rel="stylesheet" href="~/Content/covid-banner-style.css" media="screen" type="text/css">
         <!-- end of COVID style sheet-->
@@ -78,7 +78,7 @@
         <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
-        <link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" asp-append-version="true" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/css/all.min.css" asp-append-version="true" media="screen" type="text/css" />
         <!-- COVID style sheet-->
         <link rel="stylesheet" href="~/Content/covid-banner-style.css" asp-append-version="true" media="screen" type="text/css">
         <link rel="stylesheet" href="~/Content/accessibility-styles.css" asp-append-version="true" media="screen" type="text/css">
@@ -144,16 +144,31 @@
 
         <!-- COVID banner -->
         <!--
-        <div id="covid-banner" class="covid-banner" role="alert" aria-live="assertive">
+    <div id="covid-banner" class="covid-banner" role="alert" aria-live="assertive">
+        <div class="content" style="padding-left: 10px; padding-right:0 !important; display:flex; justify-content:space-between;">
+            <div style="align-items:flex-start; margin-right:15px;"><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i></div>
+            <div>Flu is causing serious illness in kids. &nbsp;<a href="https://www2.gov.bc.ca/gov/content?id=9D09AB5598064645B70F2197EAD18A75#kids">Protect your family by booking a flu vaccine as soon as possible.</a>&nbsp; </div>
+
+            <div style="align-items:flex-end;"><button class="btn-link pull-right" id="btnCloseCovidBanner" aria-hidden="true"><strong>×</strong></button></div>
+        </div>
+    </div>
+    -->
+        <!-- end of COVID banner-->
+        <!-- red banner -->
+        <!--
+        <div id="covid-banner" class="alert-banner" role="alert" aria-live="assertive">
             <div class="content" style="padding-left: 10px; padding-right:0 !important; display:flex; justify-content:space-between;">
-                <div style="align-items:flex-start; margin-right:15px;"><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i></div>
-                <div>Flu is causing serious illness in kids. &nbsp;<a href="https://www2.gov.bc.ca/gov/content?id=9D09AB5598064645B70F2197EAD18A75#kids">Protect your family by booking a flu vaccine as soon as possible.</a>&nbsp; </div>
+                <div style="align-items:flex-start; margin-right:15px;"><i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i></div>
+                <div>
+                    B.C. has declared a provincial state of emergency. &nbsp;<a href="https://www2.gov.bc.ca/gov/content/safety/wildfire-status?utm_campaign=20230907_EMCR__WILDFIRE_4_ALERT_WEB_BCGOVNEWS_EN_BC__NTFCTN">Our wildfire response</a> &nbsp;|&nbsp; <a href="https://www.emergencyinfobc.gov.bc.ca/?utm_campaign=20230907_EMCR__WILDFIRE_5_ALERT_WEB_BCGOVNEWS_EN_BC__NTFCTN">Evacuation information</a>
+                    |&nbsp; <a href="https://www2.gov.bc.ca/gov/content/safety/wildfire-status/recovery/find-wildfire-recovery-resources?utm_campaign=20230907_EMCR__WILDFIRE_6_ALERT_WEB_BCGOVNEWS_EN_BC__NTFCTN">Find wildfire support</a>
+                </div>
 
                 <div style="align-items:flex-end;"><button class="btn-link pull-right" id="btnCloseCovidBanner" aria-hidden="true"><strong>×</strong></button></div>
             </div>
         </div>
-        -->
-        <!-- end of COVID banner-->
+            -->
+        <!-- end of red banner -->
         <div class="container-fluid">
             <div class="row" id="header-top">
                 <div class="content" style="padding-right:20px !important;">
@@ -361,7 +376,7 @@
 
                     <li role="menuitem"><a id="footerBCGov" href="http://www.gov.bc.ca/">BC Gov</a></li>
                     <li role="menuitem"><a id="footerFaceBook" href="/connect#facebook">Facebook</a></li>
-                    <li role="menuitem"><a id="footerTwitter" href="/connect#twitter">Twitter</a></li>
+                    <li role="menuitem"><a id="footerTwitter" href="/connect#x">X</a></li>
                     <li role="menuitem"><a id="footerFlickr" href="/connect#flickr">Photos</a></li>
                     <li role="menuitem"><a id="footerYoutube" href="/connect#youtube">Videos</a></li>
                     <li role="menuitem"><a id="footerNewsletters" href="/newsletters">Newsletters</a></li>
@@ -384,10 +399,11 @@
     <div id="end-cap">
         <ul>
             <li class="connect-label">Connect</li>
-            <li><a aria-label="connect on facebook" href="/connect#facebook"><i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on twitter" href="/connect#twitter"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on flickr" href="/connect#flickr"><i class="fa fa-flickr fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on youtube" href="/connect#youtube"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a></li>
+            <li><a aria-label="connect on facebook" href="/connect#facebook"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i></a></li>
+            <li><a aria-label="connect on x" href="/connect#x"><i class="fa-brands fa-square-x-twitter fa-lg" aria-hidden="true"></i></a></li>
+            <li><a aria-label="connect on flickr" href="/connect#flickr"><i class="fa-brands fa-flickr fa-lg" aria-hidden="true"></i></a></li>
+            <li><a aria-label="connect on youtube" href="/connect#youtube"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i></a></li>
+            <li><a aria-label="connect on weibo" href="/connect#weibo"><i class="fa-brands fa-weibo fa-lg" aria-hidden="true"></i></a></li>
         </ul>
         <a href="/connect" class="read-more view-all-media">View all Social Media</a>
     </div>

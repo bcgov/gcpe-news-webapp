@@ -12,15 +12,25 @@ body {
     padding-left: 30px;
 }
 
-    .covid-banner .content {
+    .covid-banner .content, .alert-banner .content {
         padding-left: 20px;
     }
 
-    .covid-banner a {
+    .covid-banner a, .alert-banner a {
         color: white;
         text-decoration: underline;
         font-weight: 600;
     }
+
+.alert-banner {
+    background-color: #a12622;
+    width: 100%;
+    z-index: 5;
+    font-size: 20px;
+    color: #fff;
+    padding: 15px;
+    padding-left: 30px;
+}
 /*
 @media (min-width: 470px) and (max-width: 613px) {
     .covid-mini-search-trigger, .covid-mini-menu-trigger {

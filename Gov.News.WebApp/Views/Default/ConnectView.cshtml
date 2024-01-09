@@ -13,280 +13,249 @@
             </li>
         </ul>
     </div>
-<div class="connect">
-    <div class="home-features" role="complementary" id="sidebar">
-        <partial name="ResourceLinks" />
-        <vc:top-sectors />
-    </div>
+    <div class="connect">
+        <div class="home-features" role="complementary" id="sidebar">
+            <partial name="ResourceLinks" />
+            <vc:top-sectors />
+        </div>
 
-    <div class="home-body" role="main" id="main-content-release">
-        <h2>Connect</h2>
-        <p style="font-size: 16px;"><a href="https://news.gov.bc.ca/stories/bc-government-news-social-media-moderation-policy-hours-of-operation-and-collection-notice">BC Government News Social Media policy, collection notice and hours of operation</a></p>
-        @{bool expandableFacebook = Model.FacebookLinks.Count() >= 5;}
-        <div class="expandable-section facebook @(expandableFacebook ? "collapsed" : "expanded" )">
-            <a name="facebook"></a>
-            <h3>Find us on Facebook <i class="fa fa-facebook-square pull-right" aria-hidden="true"></i></h3>
-            <div class="expandable-section-content">
-                <div class="expander-body">
-                    @if (Model.FacebookLinks != null && Model.FacebookLinks.Any())
-                    {
-                        <ul class="external-links">
-                            @foreach (var link in Model.FacebookLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
+        <div class="home-body" role="main" id="main-content-release">
+            <h2>Connect</h2>
+            <p style="font-size: 16px;"><a href="https://news.gov.bc.ca/stories/bc-government-news-social-media-moderation-policy-hours-of-operation-and-collection-notice">BC Government News Social Media policy, collection notice and hours of operation</a></p>
+            @{bool expandableFacebook = Model.FacebookLinks.Count() >= 5;}
+            <div class="expandable-section facebook @(expandableFacebook ? "collapsed" : "expanded" )">
+                <a name="facebook"></a>
+                <h3>Find us on Facebook <i class="fa-brands fa-square-facebook pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    <div class="expander-body">
+                        @if (Model.FacebookLinks != null && Model.FacebookLinks.Any())
+                        {
+                            <ul class="external-links">
+                                @foreach (var link in Model.FacebookLinks)
+                                {
+                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                }
+                            </ul>
+                        }
+                        @if (@expandableFacebook)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
                     @if (@expandableFacebook)
                     {
-                        <div class="article-fade"> </div>
+                        <a href="#" class="link-button expand">Expand Facebook List</a>
+                        <a href="#" class="link-button collapse">Contract Facebook List</a>
                     }
                 </div>
-                @if (@expandableFacebook)
-                {
-                    <a href="#" class="link-button expand">Expand Facebook List</a>
-                    <a href="#" class="link-button collapse">Contract Facebook List</a>
-                }
             </div>
-        </div>
 
-        @{bool expandableTwitter = Model.TwitterLinks.Count() >= 5;}
-        <div class="expandable-section twitter @(expandableTwitter ? "collapsed" : "expanded" )">
-            <a name="twitter"></a>
-            <h3>Follow us on Twitter <i class="fa fa-twitter pull-right" aria-hidden="true"></i></h3>
-            <div class="expandable-section-content">
-                <div class="expander-body">
-                    @if (Model.TwitterLinks != null && Model.TwitterLinks.Any())
-                    {
-                        <ul class="external-links">
-                            @foreach (var link in Model.TwitterLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
+            @{bool expandableTwitter = Model.TwitterLinks.Count() >= 5;}
+            <div class="expandable-section twitter @(expandableTwitter ? "collapsed" : "expanded" )">
+                <a name="x"></a>
+                <h3>Follow us on X <i class="fa-brands fa-square-x-twitter pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    <div class="expander-body">
+                        @if (Model.TwitterLinks != null && Model.TwitterLinks.Any())
+                        {
+                            <ul class="external-links">
+                                @foreach (var link in Model.TwitterLinks)
+                                {
+                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                }
+                            </ul>
+                        }
+                        @if (@expandableTwitter)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
                     @if (@expandableTwitter)
                     {
-                        <div class="article-fade"> </div>
+                        <a href="#" class="link-button expand">Expand X List</a>
+                        <a href="#" class="link-button collapse">Contract X List</a>
                     }
                 </div>
-                @if (@expandableTwitter)
-                {
-                    <a href="#" class="link-button expand">Expand Twitter List</a>
-                    <a href="#" class="link-button collapse">Contract Twitter List</a>
-                }
             </div>
-        </div>
 
-        @{bool expandableInstagram = Model.InstagramLinks.Count() >= 5;}
-        <div class="expandable-section instagram @(expandableInstagram ? "collapsed" : "expanded" )">
-            <a name="instagram"></a>
-            <h3>Find us on Instagram <i class="fa fa-instagram pull-right" aria-hidden="true"></i></h3>
-            <div class="expandable-section-content">
-                <div class="expander-body">
-                    @if (Model.InstagramLinks != null && Model.InstagramLinks.Any())
+            @{bool expandableInstagram = Model.InstagramLinks.Count() >= 5;}
+            <div class="expandable-section instagram @(expandableInstagram ? "collapsed" : "expanded" )">
+                <a name="instagram"></a>
+                <h3>Find us on Instagram <i class="fa-brands fa-instagram pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    <div class="expander-body">
+                        @if (Model.InstagramLinks != null && Model.InstagramLinks.Any())
+                        {
+                            <ul class="external-links">
+                                @foreach (var link in Model.InstagramLinks)
+                                {
+                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                }
+                            </ul>
+                        }
+                        @if (expandableInstagram)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
+                    @if (@expandableInstagram)
                     {
-                        <ul class="external-links">
-                            @foreach (var link in Model.InstagramLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
-                    @if (expandableInstagram)
-                    {
-                        <div class="article-fade"> </div>
+                        <a href="#" class="link-button expand">Expand Instagram List</a>
+                        <a href="#" class="link-button collapse">Contract Instagram List</a>
                     }
                 </div>
-                @if (@expandableInstagram)
-                {
-                    <a href="#" class="link-button expand">Expand Instagram List</a>
-                    <a href="#" class="link-button collapse">Contract Instagram List</a>
-                }
             </div>
-        </div>
+            @{bool expandableWeibo = Model.WeiboLinks.Count() >= 5;}
+            <div class="expandable-section weibo @(expandableWeibo ? "collapsed" : "expanded" )">
+                <a name="weibo"></a>
+                <h3>Find us on Weibo <i class="fa-brands fa-weibo pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    <div class="expander-body">
+                        @if (Model.WeiboLinks != null && Model.WeiboLinks.Any())
+                        {
+                            <ul class="external-links">
+                                @foreach (var link in Model.WeiboLinks)
+                                {
+                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                }
+                            </ul>
+                        }
+                        @if (@expandableWeibo)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
+                    @if (@expandableWeibo)
+                    {
+                        <a href="#" class="link-button expand">Expand Weibo List</a>
+                        <a href="#" class="link-button collapse">Contract Weibo List</a>
+                    }
+                </div>
+            </div>
 
-        @{bool expandableFlickr = Model.FlickrLinks.Count() >= 5;}
-        <div class="expandable-section flickr @(expandableFlickr ? "collapsed" : "expanded" )">
-            <a name="flickr"></a>
-            <h3>See Photos in Flickr <i class="fa fa-flickr pull-right" aria-hidden="true"></i></h3>
-            <div class="expandable-section-content">
-                @*<div class="feature-post">
+            @{bool expandableFlickr = Model.FlickrLinks.Count() >= 5;}
+            <div class="expandable-section flickr @(expandableFlickr ? "collapsed" : "expanded" )">
+                <a name="flickr"></a>
+                <h3>See Photos in Flickr <i class="fa-brands fa-flickr pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    @*<div class="feature-post">
                     <a href="http://www.flickr.com/photos/bcgovphotos"><img src="~/Content/Images/Placeholder/connect-flickr-banner.png" alt="Flickr" /></a>
                 </div>*@
-                <div class="expander-body">
-                    @if (Model.FlickrLinks != null && Model.FlickrLinks.Any())
-                    {
-                        <ul class="external-links">
-                            @foreach (var link in Model.FlickrLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
+                    <div class="expander-body">
+                        @if (Model.FlickrLinks != null && Model.FlickrLinks.Any())
+                        {
+                            <ul class="external-links">
+                                @foreach (var link in Model.FlickrLinks)
+                                {
+                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                }
+                            </ul>
+                        }
+                        @if (@expandableFlickr)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
                     @if (@expandableFlickr)
                     {
-                        <div class="article-fade"> </div>
+                        <a href="#" class="link-button expand">Expand Flickr List</a>
+                        <a href="#" class="link-button collapse">Contract Flickr List</a>
                     }
                 </div>
-                @if (@expandableFlickr)
-                {
-                    <a href="#" class="link-button expand">Expand Flickr List</a>
-                    <a href="#" class="link-button collapse">Contract Flickr List</a>
-                }
             </div>
-        </div>
 
-        @{bool expandableYoutube = Model.YoutubeLinks.Count() >= 5;}
-        <div class="expandable-section youtube @(expandableYoutube ? "collapsed" : "expanded" )">
-            <a name="youtube"></a>
-            <h3>Watch us on YouTube <i class="fa fa-youtube pull-right" aria-hidden="true"></i></h3>
-            <div class="expandable-section-content">
-                @*<div class="feature-post">
+            @{bool expandableYoutube = Model.YoutubeLinks.Count() >= 5;}
+            <div class="expandable-section youtube @(expandableYoutube ? "collapsed" : "expanded" )">
+                <a name="youtube"></a>
+                <h3>Watch us on YouTube <i class="fa-brands fa-youtube pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    @*<div class="feature-post">
                     <a href="http://www.youtube.com/ProvinceofBC"><img src="~/Content/Images/Placeholder/connect-youtube-banner.png" alt="Youtube" /></a>
                 </div>*@
-                <div class="expander-body">
-                    @if (Model.YoutubeLinks != null && Model.YoutubeLinks.Any())
-                    {
-                        <ul class="external-links">
-                            @foreach (var link in Model.YoutubeLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
+                    <div class="expander-body">
+                        @if (Model.YoutubeLinks != null && Model.YoutubeLinks.Any())
+                        {
+                            <ul class="external-links">
+                                @foreach (var link in Model.YoutubeLinks)
+                                {
+                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                }
+                            </ul>
+                        }
+                        @if (@expandableYoutube)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
                     @if (@expandableYoutube)
                     {
-                        <div class="article-fade"> </div>
+                        <a href="#" class="link-button expand">Expand YouTube List</a>
+                        <a href="#" class="link-button collapse">Contract YouTube List</a>
                     }
                 </div>
-                @if (@expandableYoutube)
-                {
-                    <a href="#" class="link-button expand">Expand YouTube List</a>
-                    <a href="#" class="link-button collapse">Contract YouTube List</a>
-                }
             </div>
-        </div>
 
-        @*@{bool expandableUstream = Model.UstreamLinks.Count() >= 5;}
-        <div class="expandable-section ustream @(expandableUstream ? "collapsed" : "expanded" )">
-            <h4>Watch us on Ustream</h4>
-            <div class="expandable-section-content">
-                <div class="expander-body">
-                    @if (Model.UstreamLinks != null && Model.UstreamLinks.Any())
-                    {
-                        <ul class="external-links">
-                            @foreach (var link in Model.UstreamLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
-                    @if (@expandableUstream)
-                    {
-                        <div class="article-fade"> </div>
-                    }
-                </div>
-                @if (@expandableUstream)
-                {
-                    <a href="#" class="link-button expand">Expand Ustream List</a>
-                    <a href="#" class="link-button collapse">Contract Ustream List</a>
-                }
-            </div>
-        </div>
-
-        @{bool expandablePinterest = Model.PinterestLinks.Count() >= 5;}
-        <div class="expandable-section pinterest @(expandablePinterest ? "collapsed" : "expanded" )">
-            <h4>See our Pinboards on Pinterest</h4>
-            <div class="expandable-section-content">
-                <div class="feature-post">
-                    <a href="http://pinterest.com/hellobc"><img src="~/Content/Images/Placeholder/connect-pinterest-banner.png" alt="Pinterest" /></a>
-                </div>
-                <div class="expander-body">
-                    @if (Model.PinterestlLinks != null && Model.PinterestLinks.Any())
-                    {
-                        <ul class="external-links">
-                            @foreach (var link in Model.PinterestLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
-                    @if (@expandablePinterest)
-                    {
-                        <div class="article-fade"> </div>
-                    }
-                </div>
-
-                @if (@expandablePinterest)
-                {
-                    <a href="#" class="link-button expand">Expand Pinterest List</a>
-                    <a href="#" class="link-button collapse">Contract Pinterest List</a>
-                }
-            </div>
-        </div>*@
-
-        @{bool expandableBlogs = Model.BlogsLinks.Count() >= 5;}
-        <div class="expandable-section blogs @(expandableBlogs ? "collapsed" : "expanded" )">
-            <a name="blogs"></a>
-            <h3>Blogs and Engagement Sites</h3>
-            <div class="expandable-section-content">
-                <div class="expander-body">
-                    @if (Model.BlogsLinks != null && Model.BlogsLinks.Any())
-                    {
-                        <ul class="external-links">
-                            @foreach (var link in Model.BlogsLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
+            @{bool expandableBlogs = Model.BlogsLinks.Count() >= 5;}
+            <div class="expandable-section blogs @(expandableBlogs ? "collapsed" : "expanded" )">
+                <a name="blogs"></a>
+                <h3>Blogs and Engagement Sites <i class="fa-solid fa-blog pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    <div class="expander-body">
+                        @if (Model.BlogsLinks != null && Model.BlogsLinks.Any())
+                        {
+                            <ul class="external-links">
+                                @foreach (var link in Model.BlogsLinks)
+                                {
+                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                }
+                            </ul>
+                        }
+                        @if (@expandableBlogs)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
                     @if (@expandableBlogs)
                     {
-                        <div class="article-fade"> </div>
+                        <a href="#" class="link-button expand">Expand Blogs List</a>
+                        <a href="#" class="link-button collapse">Contract Blogs List</a>
                     }
                 </div>
-                @if (@expandableBlogs)
-                {
-                    <a href="#" class="link-button expand">Expand Blogs List</a>
-                    <a href="#" class="link-button collapse">Contract Blogs List</a>
-                }
             </div>
-        </div>
 
-        @{bool expandableRss = Model.RssLinks.Count() >= 5;}
-        <div class="expandable-section rss @(expandableRss ? "collapsed" : "expanded" )">
-            <a name="rss"></a>
-            <h3>RSS Feeds <i class="fa fa-rss pull-right" aria-hidden="true"></i></h3>
-            <div class="expandable-section-content">
-                <div class="expander-body">
-                    @if (Model.RssLinks != null && Model.RssLinks.Any())
-                    {
-                    <ul class="external-links">
-                        @foreach (var link in Model.RssLinks)
+            @{bool expandableRss = Model.RssLinks.Count() >= 5;}
+            <div class="expandable-section rss @(expandableRss ? "collapsed" : "expanded" )">
+                <a name="rss"></a>
+                <h3>RSS Feeds <i class="fa fa-rss pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    <div class="expander-body">
+                        @if (Model.RssLinks != null && Model.RssLinks.Any())
                         {
-                            if (!link.Title.Contains("Minister of State "))
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
+                            <ul class="external-links">
+                                @foreach (var link in Model.RssLinks)
+                                {
+                                    if (!link.Title.Contains("Minister of State "))
+                                    {
+                                        <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                    }
+                                }
+                            </ul>
                         }
-                    </ul>
-                    }
+                        @if (@expandableRss)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
                     @if (@expandableRss)
                     {
-                        <div class="article-fade"> </div>
+                        <a href="#" class="link-button expand">Expand RSS List</a>
+                        <a href="#" class="link-button collapse">Contract RSS List</a>
                     }
                 </div>
-                @if (@expandableRss)
-                {
-                    <a href="#" class="link-button expand">Expand RSS List</a>
-                    <a href="#" class="link-button collapse">Contract RSS List</a>
-                }
             </div>
         </div>
+        <div class="clear"></div>
     </div>
-    <div class="clear"></div>
-</div>
 
 @section Scripts {
     <script src="~/Scripts/connect.js" type="text/javascript"></script>

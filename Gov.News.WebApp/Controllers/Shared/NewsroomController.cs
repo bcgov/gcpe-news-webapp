@@ -87,7 +87,13 @@ namespace Gov.News.Website.Controllers.Shared
                 if (facet.Value == "Date" && useCustomRange) continue;
                 if (query.Filters?.ContainsKey(facet.Value) != true)
                 {
-                    requestPath += string.Format("&{0}={1}", "facet", facet.Key);
+                    if (facet.Value.ToLower() == "language" || facet.Value.ToLower() == "ministry") 
+                    {
+                        requestPath += string.Format("&{0}={1},count:0", "facet", facet.Key);
+                    }else
+                    {
+                        requestPath += string.Format("&{0}={1}", "facet", facet.Key);
+                    }
                 }
             }
 
