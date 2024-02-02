@@ -8,12 +8,12 @@
 }
 @media (max-width: 680px) {
     .navbar-default {
-        border-color: #036;
+        /*border-color: #036;*/
     }
     .mini-search-container-trigger,
     .mini-menu-container-trigger {
         border-color: transparent !important;
-        color: #fff !important;
+        color: #292929 !important;
         background-color: transparent !important;
     }
    
@@ -152,10 +152,12 @@
     }
         #mini-menu-container ul li,
         #mini-menu .site-menu ul li {
-            background-color: #5475a7;
-            border-bottom: 1px solid #7590b9;
+            background-color: #FFF;
+            /*border-bottom: 1px solid #7590b9;*/
             clear: right;
             position: relative;
+            padding-top:4px;
+            padding-bottom:2px;
         }
         #mini-menu-container ul:last-child,
         #mini-menu .site-menu ul li:last-child {
@@ -164,12 +166,12 @@
 
         #mini-menu-container ul li.first-link,
         #mini-menu .site-menu ul li.first-link {
-            background-color: #38598a;
-            border-bottom: 1px solid #7590b9;
+            background-color: #ECEAE8;
+            /*border-bottom: 1px solid #7590b9;*/
         }
         #mini-menu-container ul li ul,
         #mini-menu .site-menu ul li ul {
-            border-top: 1px solid #7590b9;
+            /*border-top: 1px solid #7590b9;*/
         }
             #mini-menu-container ul li .level-trigger,
             #mini-menu .site-menu ul li .level-trigger {
@@ -194,7 +196,7 @@
             float: right;
             height: 100%;
             width: 50px;
-            border-left: 1px solid #7590b9;
+            /*border-left: 1px solid #7590b9;*/
             border-bottom: none;
             position: absolute;
             right: 0;
@@ -213,11 +215,12 @@
         #mini-menu-container ul li a,
         #mini-menu .site-menu ul li a {
             display: inline-block;
-            color: #fff;
-            font-size: 17px;
+            color: #2d2d2d;
+            font-size: 18px;
             text-decoration: none;
             padding: 8px 20px 7px;
             width: 82%;
+            font-weight:600;
         }
         #mini-menu-container ul ul.no-trigger li a,
         #mini-menu .site-menu ul ul.no-triggers li a {
@@ -252,7 +255,7 @@
     }
     #ministry-dropdown {
         width: 50px;
-        border-left: 1px solid #7590b9;
+        /*border-left: 1px solid #7590b9;*/
         right: 0;
         position: absolute;
         top: 0;

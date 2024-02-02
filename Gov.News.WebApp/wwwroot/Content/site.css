@@ -76,7 +76,8 @@ a {
 }
 
 #header {
-  background-color: #036;
+    /*background-color: #036;*/
+    background-color: #FFF;
 }
 
 #header .content {
@@ -91,11 +92,12 @@ a {
 
 #header h1 a,
 #header h1 a:hover {
-  color: #fff;
+  color: #292929;
   text-decoration: none;
 }
 
 #header .search {
+  margin-top: 10px;
   padding-top: 13px;
   width: 350px;
   float: right;
@@ -140,18 +142,18 @@ a {
 }
 
 #header-top {
-  height: 65px;
-  border-bottom: 2px solid #fcba19;
+    /*height: 65px;*/
+    /*border-bottom: 2px solid #fcba19;*/
 }
 
 #header-bottom {
   height: 50px;
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
   -ms-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.2);*/
 }
 
-#header-bottom h1 {
+#header-bottom h1, #header-top h1  {
   font-size: 24px;
   font-weight: normal;
   color: #fff;
@@ -168,7 +170,7 @@ a {
 #nav-container {
   position: relative;
   z-index: 10;
-  background-color: #38598a;
+  background-color: #FFF;
   -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
   -ms-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
@@ -195,8 +197,10 @@ a {
 }
 
 #nav-container .nav li.active {
-  background-color: white;
+/*
+    background-color: white;
   border-right: 1px solid #ffffff;
+*/
 }
 
 #nav-container .nav li.active a {
@@ -223,26 +227,6 @@ a {
 
 #nav-container .nav li:first-child a {
   border-left: none;
-}
-
-#nav-container .nav li a.has-menu::after {
-  content: url(Images/icon-down-arrow.png);
-  margin-left: 5px;
-  top: -1px;
-  position: relative;
-}
-
-#nav-container .nav li.active a.has-menu::after {
-  content: url(Images/icon-down-arrow-invert.png);
-  margin-left: 5px;
-  top: 1px;
-  position: relative;
-  display: inline-block;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
 }
 
 a.read-more {
@@ -749,7 +733,7 @@ ul.inline li {
 
 ul.inline li a:link,
 .nav ul.inline li a:visited {
-  color: white;
+  color: #292929;
   display: block;
   text-align: center;
 }
@@ -2820,8 +2804,8 @@ ul.inline li + li {
 }
 
 #footer {
-  background-color: #036;
-  color: #fff;
+  background-color: #FFF;
+  color: #292929;
 }
 
 #footer .content {
@@ -2846,7 +2830,7 @@ ul.inline li + li {
 }
 
 #footer ul li a {
-  color: #fff;
+  color: #292929;
 }
 
 #footer ul li + li {
@@ -3731,5 +3715,4 @@ ul.inline li + li {
 #BCGov-logo {
     height: 100%;
     width: 170px;
-    margin-top: 10px;
 }
