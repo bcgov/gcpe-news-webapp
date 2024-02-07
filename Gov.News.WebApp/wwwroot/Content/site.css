@@ -3717,5 +3717,7 @@ ul.inline li + li {
 
 #BCGov-logo {
     height: 100%;
-    width: 170px;
+    width: 164px;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
