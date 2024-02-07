@@ -98,9 +98,12 @@ a {
 
 #header .search {
   margin-top: 10px;
-  padding-top: 13px;
+  padding-top: 10px;
+  padding-bottom: 8px;
   width: 350px;
   float: right;
+  border: 1px solid rgb(46, 93, 215);
+  border-radius: 4px;
 }
 
 .row div:first-child {
