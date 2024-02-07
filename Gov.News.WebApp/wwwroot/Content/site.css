@@ -117,9 +117,9 @@ a {
 #header .search input {
   border: 0 none;
   color: #292929;
-  height: 30px;
+  height: 25px;
   outline: 0 none;
-  padding: 10px 10px 10px;
+  padding: 3px 10px 3px;
   width: 100%;
   font-size: 14px;
   font-style: italic;
@@ -128,10 +128,10 @@ a {
 #header .search .search-trigger {
   margin-top: -25px;
   cursor: pointer;
-  height: 30px;
+  height: 25px;
   position: relative;
   float: right;
-  width: 30px;
+  width: 25px;
   line-height: 25px;
   /*
     background-image: url(Images/search-ico.png);
@@ -230,11 +230,6 @@ a {
 
 #nav-container .nav li:first-child a {
   border-left: none;
-}
-
-.search form {
-    border-radius: 4px !important;
-    border: 1px solid rgb(46, 93, 215);
 }
 
 a.read-more {
