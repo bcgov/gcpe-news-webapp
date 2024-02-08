@@ -7,6 +7,43 @@
     }
 }
 @media (max-width: 680px) {
+    .content {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .child {
+        display: flex;
+    }
+    #logo {
+        order: 1;
+        flex-grow: 8;
+        padding-top:10px;
+    }
+
+    #BCGov-logo {
+        padding-bottom: 0;
+    }
+
+    #mini-nav {
+        order: 3;
+    }
+
+    #mini-search {
+        order: 2;
+        background-color: #FFF !important;
+    }
+
+    #news-title {
+        order: 4;
+        margin-top: 10px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+        flex: 0 0 100%;
+        border-top: 1px solid #036;
+    }
+
     .navbar-default {
         /*border-color: #036;*/
     }
@@ -15,6 +52,7 @@
         border-color: transparent !important;
         color: #292929 !important;
         background-color: transparent !important;
+        margin-bottom: 0;
     }
    
     .mini-menu-container-trigger {
@@ -115,7 +153,7 @@
             margin-top: 0;
             padding: 10px;
             position: relative;
-            background-color: #38598a;
+            background-color: #ECEAE8;
         }
     #mini-search-container .search .search-trigger {
         cursor: pointer;
@@ -140,7 +178,7 @@
     #mini-search-container,
     #mini-menu-container,
     #mini-menu {
-        background-color: #036;
+        background-color: #ECEAE8;
         box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.25);
     }
     #mini-menu-container ul,
