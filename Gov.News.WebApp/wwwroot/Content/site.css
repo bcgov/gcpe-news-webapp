@@ -98,6 +98,7 @@ a {
 
 #header .search {
   margin-top: 10px;
+  margin-bottom: 5px;
   padding-top: 10px;
   padding-bottom: 8px;
   width: 350px;
@@ -160,8 +161,18 @@ a {
   font-size: 24px;
   font-weight: normal;
   color: #fff;
-  padding-top: 13px;
+  padding-top: 18px;
   margin: 0;
+}
+
+#header-top .content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#news-title {
+    flex-grow: 2;
+    margin-left: 20px;
 }
 
 .content {
@@ -3716,7 +3727,6 @@ ul.inline li + li {
 }
 
 #BCGov-logo {
-    height: 100%;
     width: 164px;
     padding-top: 10px;
     padding-bottom: 5px;
