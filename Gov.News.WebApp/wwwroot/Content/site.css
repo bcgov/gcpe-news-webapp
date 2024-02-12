@@ -103,8 +103,9 @@ a {
   padding-bottom: 8px;
   width: 350px;
   float: right;
-  border: 1px solid rgb(46, 93, 215);
+  /*border: 1px solid rgb(46, 93, 215);*/
   border-radius: 4px;
+  background-color: #ECEAE8;
 }
 
 .row div:first-child {
@@ -124,6 +125,7 @@ a {
   width: 100%;
   font-size: 14px;
   font-style: italic;
+  background-color: #ECEAE8;
 }
 
 #header .search .search-trigger {
@@ -184,10 +186,7 @@ a {
 #nav-container {
   position: relative;
   z-index: 10;
-  background-color: #FFF;
-  -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
-  -ms-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+  background-color: #ECEAE8;
 }
 
 #nav-container .content {
@@ -195,9 +194,11 @@ a {
 }
 
 #nav-container .shadow-box {
+    /*
   -webkit-box-shadow: inset 0px 3px 5px 0 rgba(0, 0, 0, 0.2);
   -ms-box-shadow: inset 0px 3px 5px 0 rgba(0, 0, 0, 0.2);
   box-shadow: inset 0px 3px 5px 0 rgba(0, 0, 0, 0.2);
+    */
 }
 
 #nav-container .nav {
@@ -233,8 +234,6 @@ a {
   padding: 11px 13px 7px;
   margin: 9px 0;
   display: block;
-  border-left: 1px solid #fff;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
   text-decoration: none;
   font-size: 14px;
 }
