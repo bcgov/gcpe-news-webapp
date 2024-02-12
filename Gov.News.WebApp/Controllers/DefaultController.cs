@@ -462,6 +462,12 @@ namespace Gov.News.Website.Controllers
                 //new Link() { Url="https://weibo.com/governmentofbc", Title="卑诗省府GovernmentofBC" }
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://weibo.com/governmentofbc", Title = "卑诗省府GovernmentofBC", Summary = "" }).ToArray();
 
+            model.LinkedinLinks = new Link[]
+            {
+                new Link() { Url = "https://www.linkedin.com/company/bc-public-service/", Title = "BC Public Service", Summary = ""},
+                new Link() { Url = "https://www.linkedin.com/company/official-workbc/", Title = "WorkBC ", Summary = ""},
+            }.OrderBy(t => t.Title).ToArray();
+
             return model;
         }
 
