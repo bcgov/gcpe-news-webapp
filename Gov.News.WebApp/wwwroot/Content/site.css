@@ -98,14 +98,15 @@ a {
 
 #header .search {
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   padding-top: 10px;
   padding-bottom: 8px;
   width: 350px;
   float: right;
   /*border: 1px solid rgb(46, 93, 215);*/
+  border: 1px solid #e7e7e7;
   border-radius: 4px;
-  background-color: #ECEAE8;
+  /*background-color: #ECEAE8;*/
 }
 
 .row div:first-child {
@@ -125,7 +126,7 @@ a {
   width: 100%;
   font-size: 14px;
   font-style: italic;
-  background-color: #ECEAE8;
+  /*background-color: #ECEAE8;*/
 }
 
 #header .search .search-trigger {
@@ -163,7 +164,7 @@ a {
   font-size: 24px;
   font-weight: normal;
   color: #fff;
-  padding-top: 18px;
+  padding-top: 26px;
   margin: 0;
 }
 
@@ -186,7 +187,7 @@ a {
 #nav-container {
   position: relative;
   z-index: 10;
-  background-color: #ECEAE8;
+  border-top: 1px solid #e7e7e7;
 }
 
 #nav-container .content {
@@ -3727,6 +3728,4 @@ ul.inline li + li {
 
 #BCGov-logo {
     width: 164px;
-    padding-top: 10px;
-    padding-bottom: 5px;
 }
