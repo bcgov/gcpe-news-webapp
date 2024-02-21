@@ -165,10 +165,10 @@
         <!-- end of red banner -->
         <div class="container-fluid">
             <div class="row" id="header-top">
-                <div class="content" style="padding-right:20px !important;">
+                <div class="content" style="padding-right:20px !important; padding-bottom:5px;">
                     <div id="logo" class="child" role="banner">
                         <a id="headerBCGov" href="https://gov.bc.ca">
-                            <img id="BCGov-logo" src="~/Content/Images/Gov/logo_bcgov_bcsans.png" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                            <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                             <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                         </a>
                     </div>
@@ -252,17 +252,17 @@
                         <div class="content">
                             <div class="nav">
                                 <ul class="inline" role="menubar">
-                                    <li role="menuitem"><a href="/">Home</a></li>
-                                    <li role="menuitem" aria-haspopup="true"><a href="/ministries" data-target="ministries-menu" class="has-menu">
-                                        Ministries&nbsp;
-                                        <i class="caret-icon fa fa-caret-down" aria-hidden="true"></i>
+                                    <li role="menuitem" aria-haspopup="true">
+                                        <a href="/ministries" data-target="ministries-menu" class="has-menu">
+                                            News&nbsp;
+                                            <i class="caret-icon fa fa-caret-down" aria-hidden="true"></i>
                                         </a>
                                     </li>
-                                    <li role="menuitem"><a href="/sectors">Sectors</a></li>
+                                    <li role="menuitem"><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a></li>
                                     <li role="menuitem"><a href="/connect">Connect</a></li>
                                     <li role="menuitem"><a href="@Model.SubscribePath()">Subscribe</a></li>
                                     @*TODO: Remove the following reference to Properties.Settings from the view.*@
-                                    <li role="menuitem"><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a></li>
+
                                     @if (Model.WebcastingLive)
                                     {
                                         <li role="menuitem" style="float:right;"><a href="/live" aria-label="live cast" class="live_button live_button_show">Live Webcast</a></li>
