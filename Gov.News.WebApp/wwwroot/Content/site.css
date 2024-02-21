@@ -212,6 +212,11 @@ a {
   margin: 0;
 }
 
+#nav-container .nav li:hover {
+  background: rgb(237, 235, 233);
+  box-shadow: rgba(0, 0, 0, 0.13) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.1) 0px 0.6px 1.8px 0px;
+}
+
 #nav-container .nav li.active {
 /*
     background-color: white;
@@ -399,6 +404,7 @@ a.news-control .read-more.left {
 
 .resource-links.minister img {
   margin-top: 15px;
+  border-radius: 8px;
 }
 
 .resource-links.minister h4 {
@@ -616,6 +622,7 @@ a.news-control .read-more.left {
   padding-bottom: 20px;
   max-width: 304px;
   max-height: 222px;
+  border-radius: 10px;
 }
 
 .menu-content-item .other-items {
@@ -878,6 +885,8 @@ ul.inline li + li {
   font-size: 16px;
   color: #fff;
   padding: 8px 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .home-banner .home-banner-content .social-media-bar ul {
@@ -1041,6 +1050,7 @@ ul.inline li + li {
   margin-right: 24px;
   width: 222px;
   margin-bottom: 10px;
+  border-radius: 8px;
 }
 
 .home-body .article .item-date {
@@ -1152,11 +1162,13 @@ ul.inline li + li {
   background-color: #f1f1f1;
   padding: 10px 15px;
   margin-bottom: 50px;
+  border-radius: 8px;
 }
 
 .home-body .news-control .load-more {
   text-transform: uppercase;
   text-decoration: none;
+  border-radius: 6px;
 }
 
 .home-body .news-control .read-more {
@@ -2076,6 +2088,7 @@ ul.inline li + li {
 .story-body .facebook-post img,
 .story-body .backgrounder-content img {
   width: 100%;
+  border-radius: 10px;
 }
 
 .story-body .story-copy img.tall-image,
@@ -2525,6 +2538,7 @@ ul.inline li + li {
   font-size: 16px;
   color: #666;
   margin-top: 30px;
+  border-radius: 6px;
 }
 
 .story-body .resource-links.connect {
@@ -2654,6 +2668,7 @@ ul.inline li + li {
 .expandable-section.expanded .collapse,
 .expandable-section.collapsed .expand {
   display: inline-block;
+  border-radius: 4px;
 }
 
 .expandable-section h3 {
@@ -2666,6 +2681,7 @@ ul.inline li + li {
   font-size: 24px;
   margin: 0;
   padding: 10px 10px 0 10px;
+  border-radius: 6px;
 }
 
 .expandable-section.ustream h3 {
@@ -2778,6 +2794,7 @@ ul.inline li + li {
 
 .media-container .story-parts .related-image img {
   max-width: 304px;
+  border-radius: 10px;
 }
 
 .media-container .connect-with-bc {
@@ -3063,9 +3080,10 @@ ul.inline li + li {
 
 #noticeOfCollection {
   font-size: 13px;
-  background-color: #f9f9f9;
+  background-color: #d4d4d4;
   padding: 16px;
   color: black;
+  border-radius: 10px;
 }
 
 .subscript {
@@ -3562,6 +3580,7 @@ ul.inline li + li {
 .newsletters .home-body .header h4,
 .comm-contacts .header h4 {
   background-color: #003366;
+  border-radius: 8px;
 }
 
 .newsletters .home-body h6 {
