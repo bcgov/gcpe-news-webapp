@@ -17,7 +17,7 @@
                         {
                             //TODO: Replace (int)item.Justify == 2 with property in SlideItem model
                             <div class="story@(item.Justify == "right" ? " right" : " left")@((item.FacebookPostUri != null) ? " facebook" : "")">
-                                <div onClick="window.location.href='@item.ActionUri';" style="cursor:pointer;">
+                                <div onClick="window.location.href='@item.ActionUri';" style="cursor:pointer; margin: 15px 15px 15px 15px;">
                                     <h2>@item.Headline</h2>
                                     @*<p class="item-date">@item.PublishFromDateTime.FormatDateLong()</p>*@
                                     <p class="summary">@item.Summary</p> 
@@ -36,8 +36,8 @@
                                 }
                             </div>
                         }
-                        <div class="story-nav story-previous"></div>
-                        <div class="story-nav story-next"></div>
+                        <div class="story-nav story-previous"><i class="fa-solid fa-3x fa-chevron-left"></i></div>
+                        <div class="story-nav story-next"><i class="fa-solid fa-3x fa-chevron-right"></i></div>
                     </div>
                 </div>
                 <div class="bottom-fade"></div>

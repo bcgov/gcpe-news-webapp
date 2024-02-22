@@ -23,6 +23,7 @@
 
     #header h1 a {
         padding-left: 20px;
+        border-left: 3px solid #036;
     }
 
     #header .content .search {
@@ -268,10 +269,14 @@
 
          .home-banner .home-banner-content .story.right {
              right: 50px;
+             border-radius: 10px;
+             border-left: 6px solid #FCBA19;
          }
 
          .home-banner .home-banner-content .story.left {
              left: 50px;
+             border-top-left-radius: 10px;
+             border-top-right-radius: 10px;
          }
     }
 }
@@ -516,6 +521,7 @@
         min-width: 280px;
         max-width: 680px;
         padding: 0px 20px;
+        display: block;
     }
 
     .home-features,
@@ -982,6 +988,7 @@
             border: 1px solid #e2e2e2;
             padding: 5px 15px;
             margin-bottom: 10px;
+            border-radius: 8px;
         }
 
             .collapsible-regions .resource-links > h5 {

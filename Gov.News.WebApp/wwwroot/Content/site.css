@@ -106,7 +106,7 @@ a {
   /*border: 1px solid rgb(46, 93, 215);*/
   border: 1px solid #e7e7e7;
   border-radius: 4px;
-  /*background-color: #ECEAE8;*/
+  background-color: #ECEAE8;
 }
 
 .row div:first-child {
@@ -126,7 +126,7 @@ a {
   width: 100%;
   font-size: 14px;
   font-style: italic;
-  /*background-color: #ECEAE8;*/
+  background-color: #ECEAE8;
 }
 
 #header .search .search-trigger {
@@ -188,6 +188,7 @@ a {
   position: relative;
   z-index: 10;
   border-top: 1px solid #e7e7e7;
+  background-color: #ebebeb;
 }
 
 #nav-container .content {
@@ -210,6 +211,11 @@ a {
 #nav-container .nav li {
   padding: 0;
   margin: 0;
+}
+
+#nav-container .nav li:hover {
+  background: rgb(237, 235, 233);
+  box-shadow: rgba(0, 0, 0, 0.13) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.1) 0px 0.6px 1.8px 0px;
 }
 
 #nav-container .nav li.active {
@@ -399,6 +405,7 @@ a.news-control .read-more.left {
 
 .resource-links.minister img {
   margin-top: 15px;
+  border-radius: 8px;
 }
 
 .resource-links.minister h4 {
@@ -616,6 +623,7 @@ a.news-control .read-more.left {
   padding-bottom: 20px;
   max-width: 304px;
   max-height: 222px;
+  border-radius: 10px;
 }
 
 .menu-content-item .other-items {
@@ -747,7 +755,7 @@ ul.inline li {
 
 ul.inline li a:link,
 .nav ul.inline li a:visited {
-  color: #292929;
+  /*color: #292929;*/
   display: block;
   text-align: center;
 }
@@ -855,20 +863,14 @@ ul.inline li + li {
 }
 
 .home-banner .home-banner-content .stories .story-nav.story-previous {
-  left: -23px;
-  z-index: 4;
-  background-image: url(Images/arrow-left.png);
 }
 
 .home-banner .home-banner-content .stories .story-nav.story-next {
-  right: -23px;
-  z-index: 4;
-  background-image: url(Images/arrow-right.png);
 }
 
 .home-banner .home-banner-content .social-media-bar {
-  position: absolute;
-  bottom: -42px;
+  /*position: absolute;*/
+  bottom: 2px;
   left: 0;
   height: 42px;
   background-color: #38598a;
@@ -878,6 +880,13 @@ ul.inline li + li {
   font-size: 16px;
   color: #fff;
   padding: 8px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+  right: 0;
+  left: 0;
+}
 }
 
 .home-banner .home-banner-content .social-media-bar ul {
@@ -942,7 +951,6 @@ ul.inline li + li {
 
 .home-banner .home-banner-content .story {
   width: 65%;
-  padding: 15px 15px 15px 15px;
   position: absolute;
   top: 25px;
   background-color: rgba(0, 51, 102, 0.83);
@@ -1041,6 +1049,7 @@ ul.inline li + li {
   margin-right: 24px;
   width: 222px;
   margin-bottom: 10px;
+  border-radius: 8px;
 }
 
 .home-body .article .item-date {
@@ -1152,11 +1161,13 @@ ul.inline li + li {
   background-color: #f1f1f1;
   padding: 10px 15px;
   margin-bottom: 50px;
+  border-radius: 8px;
 }
 
 .home-body .news-control .load-more {
   text-transform: uppercase;
   text-decoration: none;
+  border-radius: 6px;
 }
 
 .home-body .news-control .read-more {
@@ -2076,6 +2087,7 @@ ul.inline li + li {
 .story-body .facebook-post img,
 .story-body .backgrounder-content img {
   width: 100%;
+  border-radius: 10px;
 }
 
 .story-body .story-copy img.tall-image,
@@ -2525,6 +2537,7 @@ ul.inline li + li {
   font-size: 16px;
   color: #666;
   margin-top: 30px;
+  border-radius: 6px;
 }
 
 .story-body .resource-links.connect {
@@ -2654,6 +2667,7 @@ ul.inline li + li {
 .expandable-section.expanded .collapse,
 .expandable-section.collapsed .expand {
   display: inline-block;
+  border-radius: 4px;
 }
 
 .expandable-section h3 {
@@ -2666,6 +2680,7 @@ ul.inline li + li {
   font-size: 24px;
   margin: 0;
   padding: 10px 10px 0 10px;
+  border-radius: 6px;
 }
 
 .expandable-section.ustream h3 {
@@ -2778,6 +2793,7 @@ ul.inline li + li {
 
 .media-container .story-parts .related-image img {
   max-width: 304px;
+  border-radius: 10px;
 }
 
 .media-container .connect-with-bc {
@@ -3063,9 +3079,10 @@ ul.inline li + li {
 
 #noticeOfCollection {
   font-size: 13px;
-  background-color: #f9f9f9;
+  background-color: #d4d4d4;
   padding: 16px;
   color: black;
+  border-radius: 10px;
 }
 
 .subscript {
@@ -3562,6 +3579,7 @@ ul.inline li + li {
 .newsletters .home-body .header h4,
 .comm-contacts .header h4 {
   background-color: #003366;
+  border-radius: 8px;
 }
 
 .newsletters .home-body h6 {
