@@ -23,6 +23,7 @@
 
     #header h1 a {
         padding-left: 20px;
+        border-left: 3px solid #036;
     }
 
     #header .content .search {
@@ -268,8 +269,8 @@
 
          .home-banner .home-banner-content .story.right {
              right: 50px;
-             border-top-left-radius: 10px;
-             border-top-right-radius: 10px;
+             border-radius: 10px;
+             border-left: 6px solid #FCBA19;
          }
 
          .home-banner .home-banner-content .story.left {

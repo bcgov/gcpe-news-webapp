@@ -106,7 +106,7 @@ a {
   /*border: 1px solid rgb(46, 93, 215);*/
   border: 1px solid #e7e7e7;
   border-radius: 4px;
-  /*background-color: #ECEAE8;*/
+  background-color: #ECEAE8;
 }
 
 .row div:first-child {
@@ -126,7 +126,7 @@ a {
   width: 100%;
   font-size: 14px;
   font-style: italic;
-  /*background-color: #ECEAE8;*/
+  background-color: #ECEAE8;
 }
 
 #header .search .search-trigger {
@@ -188,6 +188,7 @@ a {
   position: relative;
   z-index: 10;
   border-top: 1px solid #e7e7e7;
+  background-color: #ebebeb;
 }
 
 #nav-container .content {
@@ -754,7 +755,7 @@ ul.inline li {
 
 ul.inline li a:link,
 .nav ul.inline li a:visited {
-  color: #292929;
+  /*color: #292929;*/
   display: block;
   text-align: center;
 }
@@ -862,20 +863,14 @@ ul.inline li + li {
 }
 
 .home-banner .home-banner-content .stories .story-nav.story-previous {
-  left: -23px;
-  z-index: 4;
-  background-image: url(Images/arrow-left.png);
 }
 
 .home-banner .home-banner-content .stories .story-nav.story-next {
-  right: -23px;
-  z-index: 4;
-  background-image: url(Images/arrow-right.png);
 }
 
 .home-banner .home-banner-content .social-media-bar {
-  position: absolute;
-  bottom: -42px;
+  /*position: absolute;*/
+  bottom: 2px;
   left: 0;
   height: 42px;
   background-color: #38598a;
@@ -885,8 +880,13 @@ ul.inline li + li {
   font-size: 16px;
   color: #fff;
   padding: 8px 20px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+  right: 0;
+  left: 0;
+}
 }
 
 .home-banner .home-banner-content .social-media-bar ul {
@@ -951,7 +951,6 @@ ul.inline li + li {
 
 .home-banner .home-banner-content .story {
   width: 65%;
-  padding: 15px 15px 15px 15px;
   position: absolute;
   top: 25px;
   background-color: rgba(0, 51, 102, 0.83);

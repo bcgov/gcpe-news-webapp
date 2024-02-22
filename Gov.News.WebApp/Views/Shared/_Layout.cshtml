@@ -149,7 +149,6 @@
     -->
         <!-- end of COVID banner-->
         <!-- red banner -->
-        <!--
         <div id="covid-banner" class="alert-banner" role="alert" aria-live="assertive">
             <div class="content" style="padding-left: 10px; padding-right:0 !important; display:flex; justify-content:space-between;">
                 <div style="align-items:flex-start; margin-right:15px;"><i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i></div>
@@ -161,7 +160,6 @@
                 <div style="align-items:flex-end;"><button class="btn-link pull-right" id="btnCloseCovidBanner" aria-hidden="true"><strong>×</strong></button></div>
             </div>
         </div>
-            -->
         <!-- end of red banner -->
         <div class="container-fluid">
             <div class="row" id="header-top">
@@ -263,7 +261,7 @@
                                     <li role="menuitem"><a href="@Model.SubscribePath()">Subscribe</a></li>
                                     @*TODO: Remove the following reference to Properties.Settings from the view.*@
 
-                                    @if (Model.WebcastingLive)
+                                    @if (!Model.WebcastingLive)
                                     {
                                         <li role="menuitem" style="float:right;"><a href="/live" aria-label="live cast" class="live_button live_button_show">Live Webcast</a></li>
                                     }
@@ -276,6 +274,10 @@
                         </div>
                     </div>
                 </div>
+                <div id="menu-container" style="margin-left:-30px;">
+                    <div class="content">hello</div>
+                    </div>
+                <!--
                 <div id="menu-container" style="margin-left:-30px;">
                     <div class="content">
                         <div id="ministries-menu" class="menu">
@@ -299,6 +301,8 @@
                         </div>
                     </div>
                 </div>
+                    
+                -->
 
             </div>
         </div>
