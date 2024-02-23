@@ -280,7 +280,7 @@
                         <div id="ministries-menu" class="menu">
                             <div class="item" id="ministry-list-1">
                                 <ul aria-expanded="true" role="menu">
-                                    <li class="list-unstyled">By Ministry</li>
+                                    <li class="list-unstyled" style="font-size:18px; font-weight: 600">By Ministry</li>
                                     @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count+1) / 2))
                                     {
                                         var ministry = ministryModel.Index as Ministry;
@@ -304,7 +304,7 @@
                             </div>
                             <div class="item" id="sector-list">
                                 <ul aria-expanded="true" role="menu">
-                                    <li class="list-unstyled">By Sector</li>
+                                    <li class="list-unstyled" style="font-size:18px; font-weight: 600">By Sector</li>
                                     @foreach (var sectorModel in Model.Sectors)
                                     {
                                         var sector = sectorModel.Index as Sector;
