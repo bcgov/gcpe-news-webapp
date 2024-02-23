@@ -220,7 +220,7 @@ a {
   margin: 0;
 }
 
-#nav-container .nav li:hover {
+#nav-container .nav li:not(:nth-child(4n)):hover {
   background: rgb(237, 235, 233);
 }
 
@@ -230,9 +230,9 @@ a {
   border-right: 1px solid #ffffff;
 */
 }
-
+:not(:last-child)
 #nav-container .nav li.active a {
-  color: #2d2d2d;
+    color: #2d2d2d;
 }
 
 #nav-container .nav li a {
@@ -257,6 +257,17 @@ a {
 
 #nav-container .nav li:first-child a {
   border-left: none;
+}
+
+#nav-container .nav li .subscribe-btn {
+    background-color:#ECEAE8;
+    border-radius: 8px;
+}
+
+#nav-container .nav li .subscribe-btn:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
 }
 
 a.read-more {
@@ -738,6 +749,7 @@ a.news-control .read-more.left {
 
 #nav-container ul.inline li + li {
   border-left: none;
+  margin-left: 20px;
 }
 
 .live_button_show {
