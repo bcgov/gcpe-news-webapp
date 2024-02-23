@@ -451,7 +451,7 @@ a.news-control .read-more.left {
   font-size: 2.3em !important;
 }
 #menu-container .menu {
-  padding: 10px 20px 20px 0px;
+  padding: 25px 20px 20px 0px;
   /*position: absolute;*/
   background-color: #fff;
   margin-left: -25px;
@@ -491,15 +491,16 @@ a.news-control .read-more.left {
     background-color: rgb(237, 235, 233);
 }
 #ministry-list-1 {
-    flex: 0 1 31%;
+    flex: 0 1 35%;
 }
 
 #ministry-list-2 {
-    flex: 0 1 31%;
+    flex: 0 1 35%;
 }
 
 #sector-list {
-    flex: 0 1 31%;
+    flex: 0 1 28%;
+    border-left: 1px solid #e7e7e7
 }
 
 #menu-container .menu .menu-items .link-button {
