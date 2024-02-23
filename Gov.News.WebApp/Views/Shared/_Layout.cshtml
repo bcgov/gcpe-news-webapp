@@ -275,13 +275,13 @@
                         </div>
                     </div>
                 </div>
-                <div id="menu-container" >
+                <div id="menu-container">
                     <div class="content container-fluid">
                         <div id="ministries-menu" class="menu">
                             <div class="item" id="ministry-list-1">
                                 <ul aria-expanded="true" role="menu">
-                                    <li class="list-unstyled" style="font-size:18px; font-weight: 600">By Ministry</li>
-                                    @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count+1) / 2))
+                                    <li class="list-unstyled" style="font-size: 18px; font-weight: 600; padding: 5px 0 5px 5px">By Ministry</li>
+                                    @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count + 1) / 2))
                                     {
                                         var ministry = ministryModel.Index as Ministry;
                                         if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
@@ -292,19 +292,19 @@
                             </div>
                             <div class="item" id="ministry-list-2">
                                 <ul aria-expanded="true" role="menu">
-                                    <li class="list-unstyled" style="opacity: 0;">Ministry</li>
-                                    @foreach (var ministryModel in Model.Ministries.Skip((Model.Ministries.Count()+1) / 2))
+                                    <li class="list-unstyled" style="opacity: 0; padding: 5px 0 5px 5px">Ministry</li>
+                                    @foreach (var ministryModel in Model.Ministries.Skip((Model.Ministries.Count() + 1) / 2))
                                     {
                                         var ministry = ministryModel.Index as Ministry;
                                         if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
 
                                         <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
-                                    }
+                                    }s
                                 </ul>
                             </div>
                             <div class="item" id="sector-list">
                                 <ul aria-expanded="true" role="menu">
-                                    <li class="list-unstyled" style="font-size:18px; font-weight: 600">By Sector</li>
+                                    <li class="list-unstyled" style="font-size: 18px; font-weight: 600; padding: 5px 0 5px 5px">By Sector</li>
                                     @foreach (var sectorModel in Model.Sectors)
                                     {
                                         var sector = sectorModel.Index as Sector;
@@ -314,19 +314,6 @@
                                     }
                                 </ul>
                             </div>
-                            <!--
-        <div class="menu-items">
-        <ul aria-expanded="true" role="menu">
-            @foreach (var ministryModel in Model.Ministries)
-            {
-                var ministry = ministryModel.Index as Ministry;
-                if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
-
-                <li role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
-            }
-        </ul>
-    </div>
-    -->
                         </div>
                     </div>
                 </div>

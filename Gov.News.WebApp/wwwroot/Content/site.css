@@ -61,7 +61,7 @@
 body {
   font-family: "BCSans", "Noto Sans", Verdana, Arial, sans-serif;
   background-color: #fff;
-  color: #292929;
+  color: #2D2D2D;
   font-size: 13px;
   overflow-y: scroll;
 }
@@ -92,7 +92,7 @@ a {
 
 #header h1 a,
 #header h1 a:hover {
-  color: #292929;
+  color: #2d2d2d;
   text-decoration: none;
 }
 
@@ -119,7 +119,7 @@ a {
 
 #header .search input {
   border: 0 none;
-  color: #292929;
+  color: #2d2d2d;
   height: 25px;
   outline: 0 none;
   padding: 3px 10px 3px;
@@ -188,7 +188,7 @@ a {
   position: relative;
   z-index: 10;
   border-top: 1px solid #e7e7e7;
-  background-color: #ebebeb;
+  background-color: #fff;
 }
 
 #nav-container .content {
@@ -204,19 +204,19 @@ a {
 }
 
 #nav-container .nav {
-  font-size: 13px;
   position: relative;
 }
 
+#nav-container .nav li:first-child {
+  padding-left: 15px;
+}
 #nav-container .nav li {
   padding: 0;
   margin: 0;
-  padding-left: 15px;
 }
 
 #nav-container .nav li:hover {
   background: rgb(237, 235, 233);
-  box-shadow: rgba(0, 0, 0, 0.13) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.1) 0px 0.6px 1.8px 0px;
 }
 
 #nav-container .nav li.active {
@@ -227,11 +227,11 @@ a {
 }
 
 #nav-container .nav li.active a {
-  color: #292929;
+  color: #2d2d2d;
 }
 
 #nav-container .nav li a {
-  color: #292929;
+  color: #2d2d2d;
 }
 
 #nav-container .nav li.active + li a {
@@ -247,7 +247,7 @@ a {
   margin: 9px 0;
   display: block;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #nav-container .nav li:first-child a {
@@ -311,7 +311,7 @@ a.news-control .read-more.left {
 .resource-links h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   margin-top: 20px !important;
   padding-bottom: 5px;
 }
@@ -323,7 +323,7 @@ a.news-control .read-more.left {
 .resource-links h4 {
   font-size: 14px;
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   margin-top: 15px;
   margin-bottom: 2px;
 }
@@ -332,7 +332,7 @@ a.news-control .read-more.left {
   line-height: 1.2em;
   font-size: 14px;
   font-weight: normal;
-  color: #292929;
+  color: #2d2d2d;
   padding-bottom: 5px;
 }
 
@@ -350,7 +350,7 @@ a.news-control .read-more.left {
 
 .resource-links ul {
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   list-style-type: square;
   padding-left: 18px;
   margin-bottom: 0;
@@ -437,8 +437,8 @@ a.news-control .read-more.left {
 #menu-container .menu {
   padding: 10px 20px 20px 0px;
   /*position: absolute;*/
-  background-color: #f3f3f3;
-  margin-left: -15px;
+  background-color: #fff;
+  margin-left: -25px;
   /*
       z-index: 200;
   
@@ -460,10 +460,20 @@ a.news-control .read-more.left {
 }
 
 #ministries-menu ul li {
-    padding-top: 20px;
-
+    padding-top: 10px;
 }
 
+#ministries-menu ul li a{
+    color: #2d2d2d;
+    display: block;
+    padding: 5px 0 5px 5px
+}
+
+#ministries-menu ul li a:hover{
+    color: rgb(41, 41, 41);
+    text-decoration: underline;
+    background-color: rgb(237, 235, 233);
+}
 #ministry-list-1 {
     flex: 0 1 31%;
 }
@@ -597,7 +607,7 @@ a.news-control .read-more.left {
 }
 #header-links .menu-content-item h2 {
   font-size: 20px;
-  color: #292929;
+  color: #2d2d2d;
   padding-bottom: 15px;
   margin-bottom: 0;
   margin-top: 10px;
@@ -631,7 +641,7 @@ a.news-control .read-more.left {
 
 .menu-content-item .item-date {
   font-size: 12px;
-  color: #292929;
+  color: #2d2d2d;
   padding-top: 10px;
   padding-bottom: 20px;
 }
@@ -639,7 +649,7 @@ a.news-control .read-more.left {
 .menu-content-item .item-content {
   font-size: 16px;
   line-height: 22px;
-  color: #292929;
+  color: #2d2d2d;
   padding-bottom: 2px;
 }
 
@@ -710,13 +720,15 @@ a.news-control .read-more.left {
 
 #menu-container {
   display: none;
-  background-color: #f3f3f3;
+  background-color: #fff;
   z-index:200;
   width: 100vw;
   height: max-content;
   position: absolute;
   margin-left: -15px;
   margin-right: -15px;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
 }
 
 #nav-container ul.inline li + li {
@@ -798,7 +810,7 @@ ul.inline li {
 
 ul.inline li a:link,
 .nav ul.inline li a:visited {
-  /*color: #292929;*/
+  /*color: #2d2d2d;*/
   display: block;
   text-align: center;
 }
@@ -1135,7 +1147,7 @@ ul.inline li + li {
 .home-body .article p {
   font-size: 16px;
   font-weight: normal;
-  color: #292929;
+  color: #2d2d2d;
 
   display: block;
   word-wrap: break-word;
@@ -1441,7 +1453,7 @@ ul.inline li + li {
 .ministry-listing .home-body .biography-details p {
   font-size: 18px;
   font-weight: normal;
-  color: #292929;
+  color: #2d2d2d;
   padding-bottom: 15px;
   padding-right: 24px;
 }
@@ -1960,7 +1972,7 @@ ul.inline li + li {
 .story-page h2 {
   font-size: 36px;
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   margin-top: 20px;
   margin-bottom: 42px;
 }
@@ -1973,7 +1985,7 @@ ul.inline li + li {
 .story-page h3.subheadline {
   font-size: 30px;
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   margin-top: -35px;
   margin-bottom: 42px;
 }
@@ -1981,7 +1993,7 @@ ul.inline li + li {
 .story-page h4 {
   font-size: 18px;
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   padding-bottom: 15px;
 }
 
@@ -2021,7 +2033,7 @@ ul.inline li + li {
 .story-features .resource-links.more-from-sectors h5,
 .story-features .resource-links h4 {
   font-size: 14px;
-  color: #292929;
+  color: #2d2d2d;
   padding-bottom: 10px;
 }
 
@@ -2185,7 +2197,7 @@ ul.inline li + li {
   padding: 0 12px;
   margin: 5px 0;
   font-size: 14px;
-  color: #292929;
+  color: #2d2d2d;
   word-wrap: break-word;
 }
 
@@ -2339,7 +2351,7 @@ ul.inline li + li {
 .story-body .story-copy {
   font-size: 18px;
   line-height: 1.5em;
-  color: #292929;
+  color: #2d2d2d;
 }
 
 .story-body .story-copy .story-expander {
@@ -2389,7 +2401,7 @@ ul.inline li + li {
 
 .story-body .language-selector {
   font-size: 14px;
-  color: #292929;
+  color: #2d2d2d;
   text-align: right;
   margin-bottom: 40px;
 }
@@ -2404,7 +2416,7 @@ ul.inline li + li {
 
 .story-body .language-selector a.active,
 .translate .language-selector a.active {
-  color: #292929;
+  color: #2d2d2d;
   text-decoration: underline;
 }
 
@@ -2443,7 +2455,7 @@ ul.inline li + li {
   width: 60%;
   font-size: 14px;
   font-weight: 400;
-  color: #292929;
+  color: #2d2d2d;
   padding-top: 15px;
 }
 
@@ -2459,7 +2471,7 @@ ul.inline li + li {
 .story-body .quick-facts ul,
 .story-body .backgrounder ul {
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   list-style-type: square;
   padding-top: 14px;
   padding-left: 18px;
@@ -2480,7 +2492,7 @@ ul.inline li + li {
 
 .story-body .quick-facts ul li span,
 .story-body .backgrounder ul li span {
-  color: #292929;
+  color: #2d2d2d;
   font-size: 14px;
   font-weight: 400;
 }
@@ -2489,7 +2501,7 @@ ul.inline li + li {
   padding: 14px 24px 4px;
   font-size: 14px;
   font-weight: 400;
-  color: #292929;
+  color: #2d2d2d;
 }
 
 .story-body .quotes .quote p {
@@ -2524,7 +2536,7 @@ ul.inline li + li {
 }
 
 .story-body .backgrounder h6 {
-  color: #292929;
+  color: #2d2d2d;
   font-size: 14px;
   font-weight: 600;
   margin-top: 40px;
@@ -2532,7 +2544,7 @@ ul.inline li + li {
 }
 
 .story-body .backgrounder ul li {
-  color: #292929;
+  color: #2d2d2d;
   font-size: 14px;
   font-weight: 400;
 }
@@ -2553,19 +2565,19 @@ ul.inline li + li {
 }
 
 .story-body .backgrounder .comm-contacts h5 {
-  color: #292929;
+  color: #2d2d2d;
   margin-top: 25px;
   margin-bottom: 10px;
 }
 
 .story-body .backgrounder .comm-contacts {
   font-size: 14px;
-  color: #292929;
+  color: #2d2d2d;
 }
 
 .story-body .backgrounder .comm-contacts h6 {
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   margin-top: 10px;
   margin-bottom: 2px;
 }
@@ -2807,7 +2819,7 @@ ul.inline li + li {
   margin-top: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
 }
 
 .media-container .story-parts .related-articles {
@@ -2861,7 +2873,7 @@ ul.inline li + li {
 }
 
 .media-container .connect-with-bc p {
-  color: #292929;
+  color: #2d2d2d;
 }
 
 .back-to-top {
@@ -2879,7 +2891,7 @@ ul.inline li + li {
 
 #footer {
   background-color: #FFF;
-  color: #292929;
+  color: #2d2d2d;
 }
 
 #footer .content {
@@ -2904,7 +2916,7 @@ ul.inline li + li {
 }
 
 #footer ul li a {
-  color: #292929;
+  color: #2d2d2d;
 }
 
 #footer ul li + li {
@@ -3053,7 +3065,7 @@ ul.inline li + li {
   border-bottom: 1px solid #e1e3e6;
   text-align: center;
   padding: 20px 0 18px;
-  color: #292929;
+  color: #2d2d2d;
 }
 
 .event-calendar .event-row {
@@ -3542,7 +3554,7 @@ ul.inline li + li {
 .newsletters h2 {
   font-size: 36px;
   font-weight: 600;
-  color: #292929;
+  color: #2d2d2d;
   margin-top: 20px;
   margin-bottom: 42px;
 }
@@ -3590,13 +3602,13 @@ ul.inline li + li {
         font-size: 20px;
         margin-top: 20px;
         font-weight: 600;
-        color: #292929;
+        color: #2d2d2d;
     }
 
 .newsletters .home-body p {
   font-size: 16px;
   font-weight: normal;
-  color: #292929;
+  color: #2d2d2d;
   padding-bottom: 5px;
   display: block;
   margin-bottom: 5px;
@@ -3655,7 +3667,7 @@ ul.inline li + li {
 .newsletters .home-body .Editions p {
   font-size: 16px;
   font-weight: normal;
-  color: #292929;
+  color: #2d2d2d;
   padding-bottom: 15px;
   display: block;
   word-wrap: break-word;
