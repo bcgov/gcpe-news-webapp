@@ -163,7 +163,7 @@
         <!-- end of red banner -->
         <div class="container-fluid">
             <div class="row" id="header-top">
-                <div class="content" style="padding-right:20px !important; padding-bottom:5px;">
+                <div class="content">
                     <div id="logo" class="child" role="banner">
                         <a id="headerBCGov" href="https://gov.bc.ca">
                             <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
@@ -299,7 +299,7 @@
                                         if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
 
                                         <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
-                                    }s
+                                    }
                                 </ul>
                             </div>
                             <div class="item" id="sector-list">
