@@ -259,7 +259,7 @@
                                     
                                     <li role="menuitem"><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a></li>
                                     <li role="menuitem"><a href="/connect">Connect</a></li>
-                                    <li role="menuitem"><a href="@Model.SubscribePath()">Subscribe</a></li>
+                                    <li role="menuitem"><a type="button" class="btn subscribe-btn" href="@Model.SubscribePath()">Subscribe</a></li>
                                     @*TODO: Remove the following reference to Properties.Settings from the view.*@
 
                                     @if (!Model.WebcastingLive)

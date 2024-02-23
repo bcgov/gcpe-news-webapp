@@ -220,7 +220,7 @@ a {
   margin: 0;
 }
 
-#nav-container .nav li:hover {
+#nav-container .nav li:not(:nth-child(4n)):hover {
   background: rgb(237, 235, 233);
 }
 
@@ -230,9 +230,9 @@ a {
   border-right: 1px solid #ffffff;
 */
 }
-
+:not(:last-child)
 #nav-container .nav li.active a {
-  color: #2d2d2d;
+    color: #2d2d2d;
 }
 
 #nav-container .nav li a {
@@ -257,6 +257,17 @@ a {
 
 #nav-container .nav li:first-child a {
   border-left: none;
+}
+
+#nav-container .nav li .subscribe-btn {
+    background-color:#ECEAE8;
+    border-radius: 8px;
+}
+
+#nav-container .nav li .subscribe-btn:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
 }
 
 a.read-more {
@@ -440,7 +451,7 @@ a.news-control .read-more.left {
   font-size: 2.3em !important;
 }
 #menu-container .menu {
-  padding: 10px 20px 20px 0px;
+  padding: 25px 20px 20px 0px;
   /*position: absolute;*/
   background-color: #fff;
   margin-left: -25px;
@@ -480,15 +491,16 @@ a.news-control .read-more.left {
     background-color: rgb(237, 235, 233);
 }
 #ministry-list-1 {
-    flex: 0 1 31%;
+    flex: 0 1 35%;
 }
 
 #ministry-list-2 {
-    flex: 0 1 31%;
+    flex: 0 1 35%;
 }
 
 #sector-list {
-    flex: 0 1 31%;
+    flex: 0 1 28%;
+    border-left: 1px solid #e7e7e7
 }
 
 #menu-container .menu .menu-items .link-button {
@@ -738,6 +750,7 @@ a.news-control .read-more.left {
 
 #nav-container ul.inline li + li {
   border-left: none;
+  margin-left: 20px;
 }
 
 .live_button_show {
