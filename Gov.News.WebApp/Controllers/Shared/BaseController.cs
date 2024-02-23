@@ -27,6 +27,7 @@ namespace Gov.News.Website.Controllers.Shared
             using (Profiler.StepStatic("Create Ministry Models"))
             {
                 var ministries = await Repository.GetMinistriesAsync();
+                var sectors = await Repository.GetSectorsAsync();
                 List<string> uncachedPostKeys = IndexModel.GetTopPostKeys(ministries).ToList();
                 uncachedPostKeys.AddRange(IndexModel.GetFeaturePostKeys(ministries));
                 if (additionalIndexModels != null)
@@ -43,6 +44,14 @@ namespace Gov.News.Website.Controllers.Shared
                     ministryModel.SetTopPost(loadedPosts);
                     ministryModel.SetFeaturePost(loadedPosts);
                     model.Ministries.Add(ministryModel);
+                }
+
+                foreach (var sector in sectors)
+                {
+                    var sectorModel = new IndexModel(sector);
+                    sectorModel.SetTopPost(loadedPosts);
+                    sectorModel.SetFeaturePost(loadedPosts);
+                    model.Sectors.Add(sectorModel);
                 }
                 if (additionalIndexModels != null)
                 {

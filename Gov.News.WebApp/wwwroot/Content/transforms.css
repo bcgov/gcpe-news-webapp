@@ -39,7 +39,7 @@
     }
 
     #menu-container.just-menu .menu.active {
-        width: auto !important;
+        /*width: auto !important;*/
     }
 
     #menu-container .menu-content {
