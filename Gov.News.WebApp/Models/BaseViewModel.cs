@@ -13,6 +13,7 @@ namespace Gov.News.Website.Models
         public Uri OGMetaImageUrl { get; set; }
 
         public ICollection<IndexModel> Ministries { get; private set; }
+        public ICollection<IndexModel> Sectors { get; private set; }
 
         public IEnumerable<ResourceLink> ResourceLinks { get; set; }
 
@@ -25,6 +26,7 @@ namespace Gov.News.Website.Models
             OGMetaImageUrl = new Uri(Properties.Settings.Default.NewsHostUri, "/Content/Images/Gov/default-og-image.jpg");
 
             Ministries = new List<IndexModel>();
+            Sectors = new List<IndexModel>();
         }
 
         public virtual string SubscribePath()

@@ -166,7 +166,7 @@
                 <div class="content" style="padding-right:20px !important; padding-bottom:5px;">
                     <div id="logo" class="child" role="banner">
                         <a id="headerBCGov" href="https://gov.bc.ca">
-                            <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                            <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                             <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                         </a>
                     </div>
@@ -256,6 +256,7 @@
                                             <i class="caret-icon fa fa-caret-down" aria-hidden="true"></i>
                                         </a>
                                     </li>
+                                    
                                     <li role="menuitem"><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a></li>
                                     <li role="menuitem"><a href="/connect">Connect</a></li>
                                     <li role="menuitem"><a href="@Model.SubscribePath()">Subscribe</a></li>
@@ -274,36 +275,61 @@
                         </div>
                     </div>
                 </div>
-                <div id="menu-container" style="margin-left:-30px;">
-                    <div class="content">hello</div>
-                    </div>
-                <!--
-                <div id="menu-container" style="margin-left:-30px;">
-                    <div class="content">
+                <div id="menu-container" >
+                    <div class="content container-fluid">
                         <div id="ministries-menu" class="menu">
-                            <div class="menu-items">
+                            <div class="item" id="ministry-list-1">
                                 <ul aria-expanded="true" role="menu">
-                                    @foreach (var ministryModel in Model.Ministries)
+                                    <li class="list-unstyled">By Ministry</li>
+                                    @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count+1) / 2))
                                     {
                                         var ministry = ministryModel.Index as Ministry;
                                         if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
 
-                                        <li role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
+                                        <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
                                     }
                                 </ul>
                             </div>
-                            <div class="menu-content">
-                                @foreach (var ministry in Model.Ministries.Where(m => ((Ministry)m.Index).ParentMinistryKey == null))
-                                {
-                                    <partial name="MenuContent" model="ministry" />
-                                }
+                            <div class="item" id="ministry-list-2">
+                                <ul aria-expanded="true" role="menu">
+                                    <li class="list-unstyled" style="opacity: 0;">Ministry</li>
+                                    @foreach (var ministryModel in Model.Ministries.Skip((Model.Ministries.Count()+1) / 2))
+                                    {
+                                        var ministry = ministryModel.Index as Ministry;
+                                        if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
+
+                                        <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
+                                    }
+                                </ul>
                             </div>
+                            <div class="item" id="sector-list">
+                                <ul aria-expanded="true" role="menu">
+                                    <li class="list-unstyled">By Sector</li>
+                                    @foreach (var sectorModel in Model.Sectors)
+                                    {
+                                        var sector = sectorModel.Index as Sector;
+                                        if (sector == null) { continue; };
+
+                                        <li class="list-unstyled" role="menuitem"><a href="@sector.GetUri()">@sector.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <!--
+        <div class="menu-items">
+        <ul aria-expanded="true" role="menu">
+            @foreach (var ministryModel in Model.Ministries)
+            {
+                var ministry = ministryModel.Index as Ministry;
+                if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
+
+                <li role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
+            }
+        </ul>
+    </div>
+    -->
                         </div>
                     </div>
                 </div>
-                    
-                -->
-
             </div>
         </div>
     </div>
@@ -517,8 +543,9 @@
         window.menuCloseDelay = 500;
 
         var fadeSpeed = 200;
-
+        
         $(".menu-content-item").hide();
+        /*
             $(".menu-items li").on('mouseenter', function () {
             clearTimeout(menuSwitchTimeout);
             var index = $(this).index() + 1;
@@ -557,7 +584,7 @@
                     menu.outerHeight(menuItemContent.outerHeight());
                 }
         });
-
+        */
         $(".close-menu").on('click', function (event) {
             event.preventDefault();
             closeMenu();
