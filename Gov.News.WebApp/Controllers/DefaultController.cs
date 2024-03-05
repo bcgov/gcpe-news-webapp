@@ -380,7 +380,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://x.com/BCgovtjobs", Title = "@BCGovtJobs", Summary = "Looking for a job? Find links to BC Public Service job postings" },
                         new Link() { Url = "http://x.com/BC_Housing", Title = "@BC_Housing", Summary = "Learn about housing solutions and the latest projects in BC" },
                         new Link() { Url = "https://x.com/innovate_bc", Title = "@Innovate_BC", Summary = "Info on developing entrepreneurial talent and commercializing technology in BC" },
-                        new Link() { Url = "http://x.com/bcstats", Title = "@BCStats", Summary = "Get the facts from BC's central statistical agency" },
                         new Link() { Url = "https://x.com/BCTradeInvest", Title = "@BCTradeInvest", Summary = "Find expertise to help your business grow internationally" },
                         new Link() { Url = "http://x.com/CRTreaty", Title = "@CRTreaty", Summary = "Join the discussion on the Columbia River Treaty Review" },
                         new Link() { Url = "http://x.com/DriveBC", Title = "@DriveBC" , Summary = "Get developing road closure & weather information in BC" },
