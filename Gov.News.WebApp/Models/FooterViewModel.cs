@@ -15,14 +15,9 @@ namespace Gov.News.Website.Models
 
         public Uri YoutubeMoreUri { get; set; }
 
-        public Uri LatestSoundcloudUri { get; set; }
-
-        public Uri SoundcloudMoreUri { get; set; }
-
         public string FlickrSource { get; set; }
 
         public string YoutubeSource { get; set; }
 
-        public string SoundcloudSource { get; set; }
     }
 }
