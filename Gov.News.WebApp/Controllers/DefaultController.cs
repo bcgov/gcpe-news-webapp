@@ -354,6 +354,7 @@ namespace Gov.News.Website.Controllers
             model.YoutubeLinks = new Link[]
             {                        
                          new Link() { Url = "http://www.youtube.com/bchousing1", Title = "BC Housing" },
+                         new Link() { Url = "https://www.youtube.com/@BCDigitalTrust", Title = "BC Digital Trust" },
                          new Link() { Url = "http://www.youtube.com/BCPublicService", Title = "BC Public Service" },
                          new Link() { Url = "http://www.youtube.com/user/BCTradeInvest", Title = "BC Trade & Invest" },
                          new Link() { Url = "http://www.youtube.com/MinistryofTranBC", Title = "BC Ministry of Transportation" },
@@ -439,7 +440,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.tranbc.ca/", Title = "TranBC" },
                         new Link() { Url = "https://www.workbc.ca/plan-career/blog", Title = "WorkBC" },
                         new Link() { Url = "https://engage.gov.bc.ca/bcparksblog", Title = "BC Parks" },
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www2.gov.bc.ca/govtogetherbc/index.page", Title = "GovTogetherBC" }).ToArray();
+            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://engage.gov.bc.ca/govtogetherbc/", Title = "GovTogetherBC" }).ToArray();
 
             var rssLinks = new List<Link>();
             var ministries = model.Ministries.Select(m => m.Index).OrderBy(c => c.Name == "Office of the Premier" ? 0 : 1).ThenBy(c => c.Name);
