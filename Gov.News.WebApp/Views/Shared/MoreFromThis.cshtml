@@ -32,19 +32,29 @@
             <h3>More from this Ministry</h3>
         }
 
-        <ul>
+    <ul>
 
-            @if (ViewBag.Type == null || ViewBag.Type != "factsheets")
-            {
+        @if (ViewBag.Type == null || ViewBag.Type != "factsheets")
+        {
 
-                <li><a href="@Model.GetUri()/factsheets">Factsheets &amp; Opinion Editorials</a></li>
-            }
+            <li><a href="@Model.GetUri()/factsheets">Factsheets</a></li>
+        }
 
-            @if (Model.MinistryUrl != null)
-            {
-                <li><a href="@Model.MinistryUrl" target="_blank">Visit Ministry Website</a></li>
-            }
-        </ul>
+        @if (Model.MinistryUrl != null)
+        {
+            <li><a href="@Model.MinistryUrl" target="_blank">Ministry Website</a></li>
+        }
+
+        @if (Model.FlickrUri != null)
+        {
+            <li><a href="@Model.FlickrUri" target="_blank">Ministry Photos</a></li>
+        }
+
+        @if (Model.YoutubeUri != null)
+        {
+            <li><a href="@Model.YoutubeUri" target="_blank">Ministry Videos</a></li>
+        }
+    </ul>
     
 
     </div>

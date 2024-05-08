@@ -11,6 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Shared\Components\TopSectors\**" />
+    <Content Remove="Views\Shared\Components\TopSectors\**" />
+    <EmbeddedResource Remove="Views\Shared\Components\TopSectors\**" />
+    <None Remove="Views\Shared\Components\TopSectors\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewComponents\TopSectors.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Shared\SocialMediaFacebookFeed.cshtml" />
     <Content Remove="Views\Shared\SocialMediaTwitterFeed.cshtml" />
     <Content Remove="Views\Shared\_FacebookCard.cshtml" />
@@ -46,7 +57,6 @@
   <ItemGroup>
     <Folder Include="ViewComponents\" />
     <Folder Include="Views\Shared\Components\WebCast\" />
-    <Folder Include="Views\Shared\Components\TopSectors\" />
     <Folder Include="wwwroot\Scripts\accessibility\" />
   </ItemGroup>
 

@@ -259,6 +259,11 @@ namespace Gov.News.Website.Middleware
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/tags", "/news-subscribe") + query);
             }
 
+            if (path.StartsWith("/sectors"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, "/"); 
+            }
+
 
             if (path.StartsWith("/areas/newsroom/images/social/default-og-meta-image.jpg"))
             {
