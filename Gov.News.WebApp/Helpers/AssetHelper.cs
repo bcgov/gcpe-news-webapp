@@ -24,10 +24,6 @@ namespace Gov.News.Website.Helpers
 
             switch (mediaProvider)
             {
-                case "soundcloud":
-                    mediaProviderUrl = "soundcloud.com";
-                    mediaType = "audio";
-                    break;
                 case "youtube":
                     mediaProviderUrl = "youtube.com";
                     mediaType = "video";
@@ -136,24 +132,6 @@ namespace Gov.News.Website.Helpers
                                          "<img src='{0}'/>" +
                                          "</div>"
                                          , uri.ToProxyUrl());
-                        }
-                    }
-                    else if (uri.Host == "w.soundcloud.com")
-                    {
-                        var query = WebUtility.UrlDecode(uri.Query);
-                        //Alternate: uri.Query.Replace("%2F", "/");
-
-                        var soundcloudRegex = new Regex(@"tracks/(\d+)&");
-                        var soundcloudMatch = soundcloudRegex.Match(query);
-
-                        if (soundcloudMatch.Success)
-                        {
-                            var mediaId = soundcloudMatch.Groups[1].Value;
-                            result = ReturnMediaAssetWrapper("soundcloud", mediaId);
-                        }
-                        else
-                        {
-                            result = "";
                         }
                     }
                     else
@@ -300,21 +278,6 @@ namespace Gov.News.Website.Helpers
                                        "<img src='{0}' alt=\"{1}\" title=\"{1}\" />" +
                                        "</div>"
                                        , uri.ToProxyUrl(), altText);
-                    }
-                }
-                else if (uri.Host == "w.soundcloud.com")
-                {
-                    var soundcloudRegex = new Regex(@"tracks/(\d+)&");
-                    var soundcloudMatch = soundcloudRegex.Match(uri.ToString());
-
-                    if (soundcloudMatch.Success)
-                    {
-                        var mediaId = soundcloudMatch.Groups[1].Value;
-                        assetHtml = ReturnMediaAssetWrapper("soundcloud", mediaId);
-                    }
-                    else
-                    {
-                        assetHtml = "";
                     }
                 }
             }

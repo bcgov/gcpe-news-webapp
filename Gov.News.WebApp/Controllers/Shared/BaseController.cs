@@ -105,19 +105,16 @@ namespace Gov.News.Website.Controllers.Shared
             {
                 footer.FlickrMoreUri = new Uri(category.FlickrUri == null ? "http://www.flickr.com/photos/bcgovphotos/" : category.FlickrUri);
                 footer.YoutubeMoreUri = new Uri(category.YoutubeUri == null ? "https://www.youtube.com/user/ProvinceofBC/" : category.YoutubeUri);
-                footer.SoundcloudMoreUri = new Uri(category.AudioUri == null ? "https://soundcloud.com/bcgov/" : category.AudioUri);
 
                 if (category.Name?.ToUpper() == "OFFICE OF THE PREMIER" || category.Name?.ToUpper() == "SPEECHES")
                 {
                     footer.FlickrSource = "Office of the Premier";
                     footer.YoutubeSource = "Office of the Premier";
-                    footer.SoundcloudSource = "Office of the Premier";
                 }
                 else
                 {
                     footer.FlickrSource = category.GetType().Name;
                     footer.YoutubeSource = category.GetType().Name;
-                    footer.SoundcloudSource = category.GetType().Name;
                 }
             }
 
@@ -137,12 +134,6 @@ namespace Gov.News.Website.Controllers.Shared
             {
                 footer.YoutubeSource = "BC Government";
                 footer.YoutubeMoreUri = new System.Uri("https://www.youtube.com/user/ProvinceofBC/");
-            }
-
-            if (footer.SoundcloudMoreUri == null)
-            {
-                footer.SoundcloudSource = "BC Government";
-                footer.SoundcloudMoreUri = new System.Uri("https://soundcloud.com/bcgov/");
             }
 
             return footer;

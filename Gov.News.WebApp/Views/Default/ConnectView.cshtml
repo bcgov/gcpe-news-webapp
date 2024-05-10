@@ -133,6 +133,34 @@
                 </div>
             </div>
 
+            @{bool expandableLinkedin = Model.LinkedinLinks.Count() >= 5;}
+            <div class="expandable-section linkedin @(expandableLinkedin ? "collapsed" : "expanded" )">
+                <a name="linkedin"></a>
+                <h3>Find us on LinkedIn <i class="fa-brands fa-linkedin pull-right" aria-hidden="true"></i></h3>
+                <div class="expandable-section-content">
+                    <div class="expander-body">
+                        @if (Model.LinkedinLinks != null && Model.LinkedinLinks.Any())
+                        {
+                            <ul class="external-links">
+                                @foreach (var link in Model.LinkedinLinks)
+                                {
+                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                                }
+                            </ul>
+                        }
+                        @if (@expandableLinkedin)
+                        {
+                            <div class="article-fade"> </div>
+                        }
+                    </div>
+                    @if (@expandableLinkedin)
+                    {
+                        <a href="#" class="link-button expand">Expand LinkedIn List</a>
+                        <a href="#" class="link-button collapse">Contract LinkedIn List</a>
+                    }
+                </div>
+            </div>
+
             @{bool expandableFlickr = Model.FlickrLinks.Count() >= 5;}
             <div class="expandable-section flickr @(expandableFlickr ? "collapsed" : "expanded" )">
                 <a name="flickr"></a>

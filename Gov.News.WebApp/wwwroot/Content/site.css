@@ -2778,6 +2778,7 @@ ul.inline li + li {
   max-width: 960px;
   margin: auto;
   padding-bottom: 10px;
+  display: flex;
 }
 
 .media-container .media-sections .photos .asset.flickr .image-div,
@@ -2800,8 +2801,8 @@ ul.inline li + li {
 }
 
 .media-container .media-sections > div {
+  width: 50%;
   border-left: 1px solid #fff;
-  width: 314px;
   padding: 0 0 30px 24px;
   max-height: 330px;
   display: inline-block;
