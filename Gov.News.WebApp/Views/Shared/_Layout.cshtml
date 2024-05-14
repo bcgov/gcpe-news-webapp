@@ -47,7 +47,7 @@
 
     <environment names="Testing,Development">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap5.min.css">
         <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
@@ -73,7 +73,7 @@
     </environment>
     <environment names="Staging,Production">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap5.min.css">
         <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
@@ -100,7 +100,7 @@
     @RenderSection("Meta", false)
     <!-- Latest compiled and minified JavaScript -->
     <script src="~/Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
-    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap5.min.js"></script>
     <script src="~/Scripts/jquery.cookie.js" type="text/javascript"></script>
 
     @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
@@ -161,7 +161,7 @@
             </div>
         </div>
         <!-- end of red banner -->
-        <div class="container-fluid">
+        <div class="container">
             <div class="row" id="header-top">
                 <div class="content">
                     <div id="logo" class="child" role="banner">
@@ -262,7 +262,7 @@
                                     <li role="menuitem"><a type="button" class="btn subscribe-btn" href="@Model.SubscribePath()">Subscribe</a></li>
                                     @*TODO: Remove the following reference to Properties.Settings from the view.*@
 
-                                    @if (!Model.WebcastingLive)
+                                    @if (Model.WebcastingLive)
                                     {
                                         <li role="menuitem" style="float:right;"><a href="/live" aria-label="live cast" class="live_button live_button_show">Live Webcast</a></li>
                                     }
