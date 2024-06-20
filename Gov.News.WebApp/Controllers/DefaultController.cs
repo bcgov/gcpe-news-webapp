@@ -354,6 +354,7 @@ namespace Gov.News.Website.Controllers
             model.YoutubeLinks = new Link[]
             {                        
                          new Link() { Url = "http://www.youtube.com/bchousing1", Title = "BC Housing" },
+                         new Link() { Url = "https://www.youtube.com/@BCDigitalTrust", Title = "BC Digital Trust" },
                          new Link() { Url = "http://www.youtube.com/BCPublicService", Title = "BC Public Service" },
                          new Link() { Url = "http://www.youtube.com/user/BCTradeInvest", Title = "BC Trade & Invest" },
                          new Link() { Url = "http://www.youtube.com/MinistryofTranBC", Title = "BC Ministry of Transportation" },
@@ -380,7 +381,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://x.com/BCgovtjobs", Title = "@BCGovtJobs", Summary = "Looking for a job? Find links to BC Public Service job postings" },
                         new Link() { Url = "http://x.com/BC_Housing", Title = "@BC_Housing", Summary = "Learn about housing solutions and the latest projects in BC" },
                         new Link() { Url = "https://x.com/innovate_bc", Title = "@Innovate_BC", Summary = "Info on developing entrepreneurial talent and commercializing technology in BC" },
-                        new Link() { Url = "http://x.com/bcstats", Title = "@BCStats", Summary = "Get the facts from BC's central statistical agency" },
                         new Link() { Url = "https://x.com/BCTradeInvest", Title = "@BCTradeInvest", Summary = "Find expertise to help your business grow internationally" },
                         new Link() { Url = "http://x.com/CRTreaty", Title = "@CRTreaty", Summary = "Join the discussion on the Columbia River Treaty Review" },
                         new Link() { Url = "http://x.com/DriveBC", Title = "@DriveBC" , Summary = "Get developing road closure & weather information in BC" },
@@ -440,7 +440,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://www.tranbc.ca/", Title = "TranBC" },
                         new Link() { Url = "https://www.workbc.ca/plan-career/blog", Title = "WorkBC" },
                         new Link() { Url = "https://engage.gov.bc.ca/bcparksblog", Title = "BC Parks" },
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www2.gov.bc.ca/govtogetherbc/index.page", Title = "GovTogetherBC" }).ToArray();
+            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://engage.gov.bc.ca/govtogetherbc/", Title = "GovTogetherBC" }).ToArray();
 
             var rssLinks = new List<Link>();
             var ministries = model.Ministries.Select(m => m.Index).OrderBy(c => c.Name == "Office of the Premier" ? 0 : 1).ThenBy(c => c.Name);
@@ -461,6 +461,12 @@ namespace Gov.News.Website.Controllers
             {
                 //new Link() { Url="https://weibo.com/governmentofbc", Title="卑诗省府GovernmentofBC" }
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://weibo.com/governmentofbc", Title = "卑诗省府GovernmentofBC", Summary = "" }).ToArray();
+
+            model.LinkedinLinks = new Link[]
+            {
+                new Link() { Url = "https://www.linkedin.com/company/bc-public-service/", Title = "BC Public Service", Summary = ""},
+                new Link() { Url = "https://www.linkedin.com/company/official-workbc/", Title = "WorkBC ", Summary = ""},
+            }.OrderBy(t => t.Title).ToArray();
 
             return model;
         }
