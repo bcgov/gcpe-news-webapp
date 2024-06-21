@@ -128,17 +128,37 @@
 
     <div class="container-fluid header nav-border">
         <div class="container-xl">
-            <nav class="navbar navbar-expand-md" >
-            <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+            <nav class="navbar navbar-expand-md" aria-label="Main menu">
+            <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
             <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
             <a class="navbar-brand ps-3" href="/">BC Gov News</a>
+            <div class="access">
+                <ul>
+                    <li aria-label="Skip to main content">
+                        <a href="#main-content-release">Skip to main content</a>
+                    </li>
+                    <li aria-label="Skip to main navigation">
+                        <a href="#menu" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
+                    </li>
+                    @if (controller != "Subscribe")
+                    {
+                        <li aria-label="Skip to side bar">
+                            <a href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
+                        </li>
+                    }
+                    <li aria-label="Skip to footer">
+                        <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+                    </li>
+                </ul>
+             </div>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="container-fluid gap-3">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" aria-labelledby="ministry-dropdoen">
                                <a class="nav-link " href="#" role="button" id="news-dropdown" aria-expanded="false">
                                 News&nbsp;&nbsp;
                                 <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -157,11 +177,11 @@
                 -->
                 @if (!(Model is SearchViewModel))
                 {
-                        @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "d-flex search d-none d-md-block" }))
+                    @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "d-flex search d-none d-md-block" }))
                     {
                         <div class="input-group">
                             <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
-                            <button class="input-group-text btn-primary-outline search-trigger"><i class="fa fa-search"></i></button>
+                            <button class="input-group-text btn-primary-outline search-trigger"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div>
                     }
                 }
@@ -174,8 +194,6 @@
                 {
                     <button type="button" class="btn btn-primary-blue live_button live_button_hide">Live Webcast</button>
                 }
-                
-                
             </div>
             
         </nav>
@@ -183,7 +201,7 @@
         <div class="container-fluid" id="menu">
             <div class="menu container">
                 <div class="item" id="ministry-list-1">
-                    <ul aria-expanded="true" role="menu">
+                    <ul role="menu">
                         <li class="list-unstyled list-title">By Ministry</li>
                         @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count - 1) / 2))
                         {
@@ -321,6 +339,12 @@
 
         $("#news-dropdown").on('click', function () {
             $("#menu").toggle();
+            if ($(this).attr("aria-expanded")=="false") {
+                $(this).attr('aria-expanded',"true")
+            } else {
+                $(this).attr('aria-expanded',"false")
+            }
+
         });
 
         var collapsibleRegions = $(".collapsible-regions");
