@@ -158,13 +158,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
                             <li class="nav-item dropdown" aria-labelledby="ministry-dropdoen">
-                                <a class="nav-link " href="#" id="news-dropdown">
+                                <a class="nav-link"  id="news-dropdown" aria-expanded="false">
                                     News&nbsp;&nbsp;
                                     <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a>
+                                <a class="nav-link" href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="@Model.SubscribePath()">Subscribe</a>
@@ -196,7 +196,7 @@
                 </div>
             </nav>
         </div>
-        <div class="container-fluid" id="menu" aria-label="ministry-dropdown-menu">
+        <nav class="container-fluid" id="menu" aria-labelledby="ministry-dropdown-menu">
             <div class="menu container">
                 <ul>
                     <li class="list-unstyled list-title">By Ministry</li>
@@ -217,7 +217,7 @@
                     }
                 </ul>
             </div>
-        </div>
+        </nav>
     </header>
         
     <!--
@@ -321,11 +321,13 @@
             $("#menu").toggle();
             
             if ($("#menu").css("display") == "none") {
-                $("#menu").attr('aria-expanded',"false");
+                $("#news-dropdown").attr('aria-expanded',"false");
+                $("#menu").setAttribute("aria-hidden","true");
                 $(this).find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
 
             } else {
-                $("#menu").attr('aria-expanded',"true");
+                $("#news-dropdown").attr('aria-expanded',"true");
+                $("#menu").setAttribute("aria-hidden","false");
                 $(this).find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up')
             }
 
