@@ -62,13 +62,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                                                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                                                    <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
@@ -89,13 +89,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                                                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                                                    <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -124,14 +124,13 @@
 </head>
 <body>
     <!--googleoff: all-->
-    <!-- skip for accessibility-->
-
     <header class="container-fluid header nav-border">
         <div class="container-xl">
             <nav class="navbar navbar-expand-md" aria-label="Main menu">
                 <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <a class="navbar-brand ps-3" href="/">BC Gov News</a>
+                <!-- skip links for accessibility-->
                 <div class="access">
                     <ul>
                         <li aria-label="Skip to main content">
@@ -151,7 +150,7 @@
                         </li>
                     </ul>
                 </div>
-
+                <!-- end of skip links for accessibility-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -159,7 +158,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
                             <li class="nav-item dropdown" aria-labelledby="ministry-dropdoen">
-                                <a class="nav-link " href="#" role="button" id="news-dropdown" aria-expanded="false">
+                                <a class="nav-link " href="#" id="news-dropdown">
                                     News&nbsp;&nbsp;
                                     <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
@@ -199,7 +198,7 @@
         </div>
         <div class="container-fluid" id="menu" aria-label="ministry-dropdown-menu">
             <div class="menu container">
-                <ul aria-label="ministry-dropdown-menu">
+                <ul>
                     <li class="list-unstyled list-title">By Ministry</li>
                     @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count - 1) / 2))
                     {
@@ -314,27 +313,22 @@
             });
         });
 
-        $('.fa-angle-down').on('click', function() {
-            if ($(this).hasClass('fa-angle-down')) {
-                $(this).removeClass('fa-angle-down').addClass('fa-angle-up');
-            } else {
-                $(this).removeClass('fa-angle-up').addClass('fa-angle-down');
-            }
-        });
-
         $(".search-trigger").on('click', function () {
             $(this).parent().submit();
         });
 
         $("#news-dropdown").on('click', function () {
             $("#menu").toggle();
-            //if ($("#menu").attr("display")=="none"
-            //if ($("#menu").attr("aria-expanded")=="false") {
+            
             if ($("#menu").css("display") == "none") {
-                $("#menu").attr('aria-expanded',"false")
+                $("#menu").attr('aria-expanded',"false");
+                $(this).find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
+
             } else {
-                $("#menu").attr('aria-expanded',"true")
+                $("#menu").attr('aria-expanded',"true");
+                $(this).find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up')
             }
+
 
         });
 

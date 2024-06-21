@@ -140,11 +140,11 @@ body {
     columns: 2;
     -webkit-columns: 2;
     -moz-columns: 2;
+
 }
 .menu ul li {
     float: left;
     width: 90%;
-   
 }
 
 .nav-border {
