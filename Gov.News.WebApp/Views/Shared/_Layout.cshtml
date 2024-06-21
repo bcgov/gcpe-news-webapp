@@ -62,13 +62,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                            <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                                                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
@@ -89,13 +89,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                            <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                                                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -218,7 +218,6 @@
                     }
                 </ul>
             </div>
-
         </div>
     </header>
         
@@ -329,10 +328,12 @@
 
         $("#news-dropdown").on('click', function () {
             $("#menu").toggle();
-            if ($(this).attr("aria-expanded")=="false") {
-                $(this).attr('aria-expanded',"true")
+            //if ($("#menu").attr("display")=="none"
+            //if ($("#menu").attr("aria-expanded")=="false") {
+            if ($("#menu").css("display") == "none") {
+                $("#menu").attr('aria-expanded',"false")
             } else {
-                $(this).attr('aria-expanded',"false")
+                $("#menu").attr('aria-expanded',"true")
             }
 
         });
