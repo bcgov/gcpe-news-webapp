@@ -85,6 +85,10 @@ body {
     
 }
 
+#news-dropdown:hover{
+    cursor: pointer;
+}
+
 #menu {
     z-index: 200;
     /*width: 100vw !important;*/

@@ -322,12 +322,12 @@
             
             if ($("#menu").css("display") == "none") {
                 $("#news-dropdown").attr('aria-expanded',"false");
-                $("#menu").setAttribute("aria-hidden","true");
+                $("#menu").attr("aria-hidden","true");
                 $(this).find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
 
             } else {
                 $("#news-dropdown").attr('aria-expanded',"true");
-                $("#menu").setAttribute("aria-hidden","false");
+                $("#menu").attr("aria-hidden","false");
                 $(this).find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up')
             }
 
