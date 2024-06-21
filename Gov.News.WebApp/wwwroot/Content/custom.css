@@ -136,12 +136,15 @@ body {
     background-color: rgb(237, 235, 233);
 }
 
-#ministry-list-1 {
-    flex: 0 45%;
+.menu ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
 }
-
-#ministry-list-2 {
-    flex: 0 1 50%;
+.menu ul li {
+    float: left;
+    width: 90%;
+   
 }
 
 .nav-border {
