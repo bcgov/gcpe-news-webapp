@@ -88,12 +88,6 @@ a.read-more {
   color: #003366;
   text-transform: uppercase;
   display: inline-block;
-  /*
-        padding-left: 12px;
-        background-image: url(Images/link-arrow-bl.png);
-    background-repeat: no-repeat;
-    background-position: 0 3px;
-    */
 }
 
 li.external-link {

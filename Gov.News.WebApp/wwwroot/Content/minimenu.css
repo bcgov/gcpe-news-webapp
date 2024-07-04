@@ -1,4 +1,4 @@
-@media only screen and (min-width: 681px) {
+@media only screen and (min-width: 1024px) {
     #mini-search-container, .mini-menu-container-trigger, .mini-search-container-trigger {
         display: none !important;
     }
@@ -213,12 +213,7 @@
         }
             #mini-menu-container ul li .level-trigger,
             #mini-menu .site-menu ul li .level-trigger {
-                /*
-                background-image: url(Images/mini-menu/menu-arrow-dn.png);
-            background-repeat: no-repeat;
-            background-position: center center;
-                    display: inline-block;
-            */
+                
                 float: right;
                 height: 42px;
                 width: 50px;
@@ -246,9 +241,6 @@
             
         #mini-menu-container ul li .level-trigger.open,       
         #mini-menu .site-menu ul li .level-trigger.open {
-            /*
-                background-image: url(Images/mini-menu/menu-arrow-up.png);
-            */
         }
         #mini-menu-container ul li a,
         #mini-menu .site-menu ul li a {

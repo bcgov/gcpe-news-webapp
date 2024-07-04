@@ -36,7 +36,7 @@
         var ministry = categoryModel.Index as Ministry;
         if (ministry.ContactUser != null)
         {
-            <div class="row">
+            <div class="row" style="padding-bottom:10px;">
                 <div class="col-xs-12 col-sm-4">
                     <a style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px; display:inline-block;" : "")" href="@ministry.GetUri()">@ministry.Name</a>
                     @if (!string.IsNullOrEmpty(ministry.DisplayAdditionalName))
@@ -88,5 +88,19 @@
             </div>
         }
     }
+    <div class="row" style="margin-bottom:20px;padding-bottom:10px;">
+        <div class="col-xs-12 col-sm-4">
+            <a style="" href="https://news.gov.bc.ca/office-of-the-premier">Office of the Premier</a>
+            <div style="">Premier David Eby</div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <span class="contact-name">Media Line</span>
+            <div>
+                            <a href="mailto:Premier.Media@gov.bc.ca">Premier.Media@gov.bc.ca</a><br>
+
+            </div>
+        </div>
+    </div>
+        
     <div class="clear"></div>
 </div>
