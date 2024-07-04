@@ -49,9 +49,11 @@
         <!-- Latest compiled and minified CSS -->
         <!--
              <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap5.min.css">
+             <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css" type="text/css" >
         -->
        
-        <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css">
+        
+        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap5.min.css">
         <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/custom.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
@@ -65,20 +67,20 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                                                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                                                    <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
     </environment>
     <environment names="Staging,Production">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css">
+        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap5.min.css">
         <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/custom.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
