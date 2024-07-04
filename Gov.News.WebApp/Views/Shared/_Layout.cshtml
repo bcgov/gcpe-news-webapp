@@ -65,13 +65,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                                                                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                    <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                                                                    <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
@@ -92,13 +92,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                                                                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                    <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                                                                    <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -122,12 +122,13 @@
 </head>
 <body>
     <!--googleoff: all-->
-    <header class="container-fluid header nav-border">
+    <header class="container-fluid header nav-border" id="main-nav">
         <div class="container-xl" style="--bs-gutter-x: 0.5rem">
             <nav class="navbar navbar-expand-md" aria-label="Main menu">
                 <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <a class="navbar-brand ps-3" href="/">BC Gov News</a>
+                
                 <!-- skip links for accessibility-->
                 <div class="access">
                     <ul>
@@ -156,10 +157,11 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
                             <li class="nav-item dropdown" aria-labelledby="ministry-dropdoen">
-                                <a class="nav-link"  id="news-dropdown" aria-expanded="false">
+                                <a class="nav-link" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
-                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                    <span id="icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
+                                
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a>
@@ -182,7 +184,9 @@
                             </div>
                         }
                         <div class="d-none d-md-block d-lg-none search-md-block"> 
-                            <button class="input-group-text btn-primary-outline search-md"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            <button id="search-md-button" class="input-group-text btn-primary-outline search-md" data-bs-toggle="collapse" data-bs-target="#smd-search-container">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
                         </div>
                     }
 
@@ -198,9 +202,11 @@
                 </div>
             </nav>
         </div>
-        <nav class="container-fluid" id="menu" aria-labelledby="ministry-dropdown-menu">
-            <div class="list-unstyled list-title">By Ministry</div>
+        <!-- ministry drop down menu -->
+        <div class="container-fluid collapse" id="menu" aria-labelledby="ministry-dropdown-menu" data-bs-parent="#main-nav">
+            
             <div class="menu container-lg">
+                <div class="list-unstyled list-title">By Ministry</div>
                 <ul>
                     
                     @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count - 1) / 2))
@@ -220,9 +226,10 @@
                     }
                 </ul>
             </div>
-        </nav>
+        </div>
+        <!-- end of ministry drop down menu -->
         <!-- search input for md and smaller screen-->
-        <div class="container-fluid" id="smd-search-container">
+        <div class="container-fluid collapse" id="smd-search-container" data-bs-parent="#main-nav">
             @using (Html.BeginForm("Search", "Default", FormMethod.Get))
             {
                 <div class="input-group">
@@ -231,11 +238,9 @@
                 </div>
             }
         </div>
+        <!-- end of search input for md and smaller screen-->
     </header>
-        
-    <!--
-
-    -->
+   
     @RenderSection("Carousel", false)
     @RenderSection("StoryNavigator", false)
 
@@ -330,27 +335,21 @@
             $(this).parent().submit();
         });
 
-        $(".search-md").on('click', function () {
-            $("#smd-search-container").toggle();
-            if ($("#smd-search-container").css("display") == "none") {
-                $(this).find('i.fa').removeClass('fa-times').addClass('fa-search');
-            } else {
-                $(this).find('i.fa').removeClass('fa-search').addClass('fa-times');
-            }
+        $("#smd-search-container").on('shown.bs.collapse', function() {
+            $("#search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
+        });
+        $("#smd-search-container").on('hidden.bs.collapse', function() {
+            $("#search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
         });
 
-        $("#news-dropdown").on('click', function () {
-            $("#menu").toggle();
-            
-            if ($("#menu").css("display") == "none") {
-                $("#news-dropdown").attr('aria-expanded',"false");
+        $('#menu').on({
+            "shown.bs.collapse": function () {
+                $("#icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
+                $("#menu").attr("aria-hidden", "false");
+            },
+            "hide.bs.collapse": function () {
+                $("#icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
                 $("#menu").attr("aria-hidden","true");
-                $(this).find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
-
-            } else {
-                $("#news-dropdown").attr('aria-expanded',"true");
-                $("#menu").attr("aria-hidden","false");
-                $(this).find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up')
             }
         });
 
@@ -365,8 +364,6 @@
                 headerToggler.toggleClass('open');
             });
         }
-
-        
 
         var first = true;
         function closeMenu() {
@@ -398,13 +395,11 @@
         window.menuCloseDelay = 500;
 
         var fadeSpeed = 200;
-        
        
         $(".close-menu").on('click', function (event) {
             event.preventDefault();
             closeMenu();
         });
-
         
         $(".print-document").on('click', function (event) {
             event.preventDefault();
@@ -530,38 +525,6 @@
         var link = el.attr('href');
         window.location = link;
     });
-        $('#mini-menu-container').on('shown.bs.collapse', function () {
-            $('#hamburger-button').toggleClass('hidden');
-            $('#close-hamburger-button').toggleClass('hidden');
-        })
-        $('#mini-menu-container').on('hidden.bs.collapse', function () {
-            $('#hamburger-button').toggleClass('hidden');
-            $('#close-hamburger-button').toggleClass('hidden');
-        })
-        $('#mini-search-container').on('shown.bs.collapse', function () {
-            $('#search-button').toggleClass('hidden');
-            $('#close-search-button').toggleClass('hidden');
-            $('.mini-search-container-trigger').addClass('triggered');
-            $('.mini-menu-search').slideDown(200, function () { });
-
-        })
-        $('#mini-search-container').on('hidden.bs.collapse', function () {
-            $('#search-button').toggleClass('hidden');
-            $('#close-search-button').toggleClass('hidden');
-            $('.mini-search-container-trigger').removeClass('triggered');
-            $('.mini-menu-search').hide();
-        })
-
-        $('#mini-ministry-dropdown').on({
-            "shown.bs.dropdown": function () {
-                $('#ministry-dropdown-down').toggleClass('hidden');
-                $('#ministry-dropdown-up').toggleClass('hidden');
-            },
-            "hide.bs.dropdown": function (e) {
-                $('#ministry-dropdown-down').toggleClass('hidden');
-                $('#ministry-dropdown-up').toggleClass('hidden');
-            }
-        });
 
         $(document).ready(function () {
             /* This is for closing the granville banner */

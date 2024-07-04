@@ -101,21 +101,18 @@ body {
 }
 
 #menu {
-    z-index: 300;
+    z-index: 100;
     /*width: 100vw !important;*/
-    height: 100vh !important;
+    min-height: 100vh !important;
     left: 0;
     height: max-content;
     position: absolute;
     transform: translateX(0px);
     background-color: #fff;
-    display: none;
     top: 75px;
 }
 
 .menu {
-    display: flex;
-    display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -132,7 +129,6 @@ body {
 .list-title {
     font-weight: 600;
     font-size: 18px;
-    padding-top: 25px;
     padding-left: 20px;
 }
 
@@ -153,15 +149,22 @@ body {
     background-color: rgb(237, 235, 233);
 }
 
-.menu ul {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-
+@media only screen and (min-width: 1024px) {
+    .menu ul {
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+    }
 }
 .menu ul li {
     float: left;
     width: 90%;
+}
+
+@media only screen and (max-width: 1023px) {
+    .menu ul li a {
+        padding: 3px 0 3px 3px;
+    }
 }
 
 .nav-border {
@@ -208,7 +211,6 @@ body {
     position: absolute;
     transform: translateX(0px);
     background-color: #fff;
-    display: none;
     top: 75px;
     padding-left: 30px;
     padding-right: 35px;
