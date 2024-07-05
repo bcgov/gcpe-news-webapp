@@ -224,4 +224,8 @@ body {
     border-radius:5px;
 }
 
+#navbarSupportedContent {
+    background-color: #FFF;
+    z-index:100;
+}
 
