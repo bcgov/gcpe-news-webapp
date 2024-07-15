@@ -54,7 +54,10 @@
         <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.min.css" media="screen" rel="stylesheet" >
         <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/custom.css" media="screen" type="text/css" />
+        <!--
         <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
+
+        -->
         <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
         <link rel="stylesheet" href="~/Content/css/all.min.css" media="screen" type="text/css">
@@ -65,13 +68,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                    <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
@@ -92,13 +95,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                    <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -123,9 +126,10 @@
 <body>
     <!--googleoff: all-->
     <header class="container-fluid header nav-border" id="main-nav">
-        <div class="container-xl" style="--bs-gutter-x: 0.5rem">
+        <div class="container-xl" id="main-nav-contaier">
             <nav class="navbar navbar-expand-md" aria-label="Main menu">
-                <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                <img id="BCGov-logo" class="d-none d-md-block" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                <img id="sm-BCGov-logo" class="d-md-none" src="~/Content/Images/Gov/BC_Mark.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <a class="navbar-brand ps-3" href="/">BC Gov News</a>
                 
@@ -150,19 +154,60 @@
                     </ul>
                 </div>
                 <!-- end of skip links for accessibility-->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+
+                <button id="nav-menu-sm" class="navbar-toggler collapse-menu-icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
                 </button>
-                <div class="container-fluid" style="padding-top:5px;--bs-gutter-x:none;" >
+                <div class="d-xs-block d-sm-block d-md-none">
+                    <button id="search-md-button" class="input-group-text btn-primary-outline search-md" data-bs-toggle="collapse" data-bs-target="#smd-search-container">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                @if (!Model.WebcastingLive)
+                {
+                    <a href="/live" class="btn btn-primary-blue live_button live_button_show d-sm-block d-md-none"><img src="~/Content/Images/live-cast-button.svg" /></a>
+                }
+                else
+                {
+                    <a href="/live" class="btn btn-primary-blue live_button live_button_hide d-none d-lg-block">Live Webcast</a>
+                }
+                <div class="container-fluid" id="sm-nav-container" data-bs-parent="#main-nav">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
                             <li class="nav-item dropdown" aria-labelledby="ministry-dropdoen">
-                                <a class="nav-link" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
+                                <a class="nav-link d-none d-md-block" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
                                     <span id="icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
-                                
+                                <a class="nav-link d-md-none" id="sm-news-dropdown" data-bs-toggle="collapse" data-bs-target="#sm-menu" aria-expanded="false">
+                                    News&nbsp;&nbsp;
+                                    <span id="sm-icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                </a>
                             </li>
+                            <!-- ministry drop down menu for screen size md and larger -->
+                            <div class="container-fluid collapse d-md-none" id="sm-menu" aria-labelledby="ministry-dropdown-menu">
+                                <div class="menu container-xl">
+                                    <div class="list-unstyled list-title">By Ministry</div>
+                                    <ul>
+                                        @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count - 1) / 2))
+                                        {
+                                            var ministry = ministryModel.Index as Ministry;
+                                            if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
+
+                                            <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
+                                        }
+
+                                        @foreach (var ministryModel in Model.Ministries.Skip((Model.Ministries.Count() - 1) / 2))
+                                        {
+                                            var ministry = ministryModel.Index as Ministry;
+                                            if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
+
+                                            <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- end of ministry drop down menu for screen size md and larger -->
                             <li class="nav-item">
                                 <a class="nav-link" href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a>
                             </li>
@@ -171,9 +216,7 @@
                             </li>
                         </ul>
                     </div>
-                    <!--
-                        <form class="d-flex search d-none d-md-block" role="search" ></form>
-                    -->
+                    
                     @if (!(Model is SearchViewModel))
                     {
                         @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "d-flex search d-none d-lg-block" }))
@@ -202,13 +245,24 @@
                 </div>
             </nav>
         </div>
-        <!-- ministry drop down menu -->
+
+        <!-- search input for md and smaller screen-->
+        <div class="container-fluid collapse" id="smd-search-container" data-bs-parent="#main-nav">
+            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
+            {
+                <div class="input-group">
+                    <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
+                    <button class="input-group-text btn-primary-outline search-trigger"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            }
+        </div>
+        <!-- end of search input for md and smaller screen-->
+
+        <!-- ministry drop down menu for screen size md and larger -->
         <div class="container-fluid collapse" id="menu" aria-labelledby="ministry-dropdown-menu" data-bs-parent="#main-nav">
-            
-            <div class="menu container-lg">
+            <div class="menu container-xl">
                 <div class="list-unstyled list-title">By Ministry</div>
                 <ul>
-                    
                     @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count - 1) / 2))
                     {
                         var ministry = ministryModel.Index as Ministry;
@@ -227,25 +281,15 @@
                 </ul>
             </div>
         </div>
-        <!-- end of ministry drop down menu -->
-        <!-- search input for md and smaller screen-->
-        <div class="container-fluid collapse" id="smd-search-container" data-bs-parent="#main-nav">
-            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
-            {
-                <div class="input-group">
-                    <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
-                    <button class="input-group-text btn-primary-outline search-trigger"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </div>
-            }
-        </div>
-        <!-- end of search input for md and smaller screen-->
+        <!-- end of ministry drop down menu for screen size md and larger -->
+        
     </header>
    
     @RenderSection("Carousel", false)
     @RenderSection("StoryNavigator", false)
 
     <div id="main-content" class="template container" tabindex="0">
-        <main>
+        <main style="display:flex;">
             @RenderBody()
             <div class="clear"></div>
         </main>
@@ -267,7 +311,6 @@
             <div class="connect">
                 <h4>Connect with Us:</h4>
                 <ul class="inline" role="menu">
-
                     <li role="menuitem"><a id="footerBCGov" href="http://www.gov.bc.ca/">BC Gov</a></li>
                     <li role="menuitem"><a id="footerFaceBook" href="/connect#facebook">Facebook</a></li>
                     <li role="menuitem"><a id="footerTwitter" href="/connect#x">X</a></li>
@@ -338,8 +381,17 @@
         $("#smd-search-container").on('shown.bs.collapse', function() {
             $("#search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
         });
+
         $("#smd-search-container").on('hidden.bs.collapse', function() {
             $("#search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
+        });
+
+        $("#navbarSupportedContent").on('shown.bs.collapse', function() {
+            $("#nav-menu-sm").find('i.fa').removeClass('fa-bars').addClass('fa-times');
+        });
+
+        $("#navbarSupportedContent").on('hidden.bs.collapse', function() {
+            $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');         
         });
 
         $('#menu').on({
@@ -350,6 +402,19 @@
             "hide.bs.collapse": function () {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
                 $("#menu").attr("aria-hidden","true");
+            }
+        });
+
+        $('#sm-menu').on({
+            "shown.bs.collapse": function () {
+                $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
+                $("#sm-menu").attr("aria-hidden", "false");
+                $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#f2f2f2");
+            },
+            "hide.bs.collapse": function () {
+                $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
+                $("#sm-menu").attr("aria-hidden","true");
+                $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#FFF");
             }
         });
 
