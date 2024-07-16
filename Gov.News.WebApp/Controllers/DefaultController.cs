@@ -347,7 +347,8 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.facebook.com/bchousing.org/", Title = "BC Housing" },
                         new Link() { Url = "https://www.facebook.com/PreparedBC/", Title = "PreparedBC" },
                         new Link() { Url = "http://www.facebook.com/BCFireSafety", Title = "BC Fire Safety" },
-                        new Link() { Url = "https://www.facebook.com/AgriService-BC-103287979487810", Title = "AgriService BC" }
+                        new Link() { Url = "https://www.facebook.com/AgriService-BC-103287979487810", Title = "AgriService BC" },
+                        new Link() { Url = "https://www.facebook.com/RoadSafetyBC", Title = "Road Safety BC" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" }).ToArray();
 
 
@@ -431,6 +432,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/hellobc/", Title = "Destination British Columbia", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/innovate_bc/", Title = "Innovate BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/prepared_bc/", Title = "Prepared BC", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/roadsafetybc/", Title = "Road Safety BC", Summary = "" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
 
             model.BlogsLinks = new Link[]
