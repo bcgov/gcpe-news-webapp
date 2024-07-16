@@ -163,7 +163,7 @@
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
                 </div>
-                @if (!Model.WebcastingLive)
+                @if (Model.WebcastingLive)
                 {
                     <a href="/live" class="btn btn-primary-blue live_button live_button_show d-sm-block d-md-none"><img src="~/Content/Images/live-cast-button.svg" /></a>
                 }
