@@ -68,13 +68,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                                    <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
@@ -95,13 +95,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                                    <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                                    <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -171,8 +171,8 @@
                 {
                     <a href="/live" class="btn btn-primary-blue live_button live_button_hide d-none d-lg-block">Live Webcast</a>
                 }
-                <div class="container-fluid" id="sm-nav-container" data-bs-parent="#main-nav">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="container-fluid" id="sm-nav-container">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-parent="#main-nav">
                         <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
                             <li class="nav-item dropdown" aria-labelledby="ministry-dropdoen">
                                 <a class="nav-link d-none d-md-block" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
@@ -184,7 +184,7 @@
                                     <span id="sm-icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
                             </li>
-                            <!-- ministry drop down menu for screen size md and larger -->
+                            <!-- ministry drop down menu for screen size xs and sm screen -->
                             <div class="container-fluid collapse d-md-none" id="sm-menu" aria-labelledby="ministry-dropdown-menu">
                                 <div class="menu container-xl">
                                     <div class="list-unstyled list-title">By Ministry</div>

@@ -51,7 +51,7 @@ body {
     color: #2D2D2D;
     font-size: 13px;
     overflow-y: scroll;
-    /*overflow-x: hidden;*/
+    overflow-x: hidden;
     width: 100%;
 }
 
@@ -251,9 +251,8 @@ body {
         --bs-gutter-x: 0;
     }
 
-    #main-nav-contaier {
-        padding-left: 0;
-        padding-right: 0;
+    #smd-search-container {
+        padding-right: 10px;
     }
 
     #main-nav {
@@ -261,7 +260,7 @@ body {
     }
 
     .collapse-menu-icon {
-        padding: 0.6rem 0.8rem;
+        padding: 0.6rem 0.7rem;
         margin-left: auto;
     }
 
@@ -286,22 +285,22 @@ body {
         min-height: 100vh !important;
     }
 
-    #navbarSupportedContent ul li a{
+    #navbarSupportedContent ul li a {
         padding-left: 10px;
     }
 
     #sm-icon-dropdown {
         float: right;
-        padding-right: 20px; 
+        padding-right: 20px;
     }
 
-    #sm-menu .menu{
-        padding-top:10px;
+    #sm-menu .menu {
+        padding-top: 10px;
         font-weight: 400;
     }
 
     #sm-menu .menu ul {
-        padding-left:5px;
+        padding-left: 5px;
     }
 
     .list-title {
@@ -314,3 +313,32 @@ body {
         padding: 10px 10px 10px 10px;
     }
 }
+
+@media only screen and (max-width: 479px) {
+    #main-nav-contaier {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #main-nav-contaier .navbar-brand {
+        margin-right: 0;
+        padding-left: 0.7rem !important;
+    }
+
+    #main-nav-contaier .navbar {
+        justify-content: flex-start;
+    }
+
+    .menu ul li a {
+        white-space: normal;
+    }
+}
+
+@media only screen and (max-width: 350px){
+    .header .navbar-brand {
+        font-weight: 600;
+        font-size: 13px;
+    }
+}
+
+
