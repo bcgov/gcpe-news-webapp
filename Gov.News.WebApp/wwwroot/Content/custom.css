@@ -181,12 +181,12 @@ body {
     height:75px;
 }
 
-#searchform {
-
-}
+.navbar-toggler, #search-md-button {
+    border-color: #2D2D2D;
+} 
 
 .live_button_show {
-    color: #ffffff; 
+    color: #ffffff;
 }
 
 .live_button_show {
@@ -220,7 +220,7 @@ body {
     position: absolute;
     transform: translateX(0px);
     background-color: #fff;
-    top: 75px;
+    top: 74px;
     padding-left: 30px;
     padding-right: 35px;
     padding-top: 10px;
@@ -244,11 +244,11 @@ body {
 
 @media only screen and (max-width: 767px) {
     #sm-nav-container {
-        padding-top: 3px;
         padding-left: 0 !important;
         padding-right: 0;
         width: 100vw !important;
         --bs-gutter-x: 0;
+        border-top: 1px solid #E0DEDC;
     }
 
     #smd-search-container {

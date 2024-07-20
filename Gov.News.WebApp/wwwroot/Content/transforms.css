@@ -274,11 +274,9 @@
 
          .home-banner .home-banner-content .story.left {
              left: 50px;
-             border-top-left-radius: 10px;
-             border-top-right-radius: 10px;
          }
     }
-}
+
 
 @media only screen and (max-width: 916px) {
     #menu-container .menu-content-item .item-asset {
@@ -387,9 +385,7 @@
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
-}
 
-@media only screen and (max-width: 680px) {
     #logo {
         margin-left: 0;
     }
@@ -429,7 +425,7 @@
     }
 
     .home-banner {
-        height: 350px;
+        height: auto;
     }
 
         .home-banner .bottom-fade {
@@ -442,7 +438,7 @@
 
     .home-banner .home-banner-content {
         min-width: 280px;
-        max-width: 680px;
+        max-width: 768px;
     }
 
         .home-banner .home-banner-content .story h2 {
@@ -515,13 +511,6 @@
                 font-size: 16px !important;
                 height: 25px;
             }
-
-    #main-content {
-        min-width: 280px;
-        max-width: 680px;
-        padding: 0px 20px;
-        display: block;
-    }
 
     .home-features,
     .story-features {
