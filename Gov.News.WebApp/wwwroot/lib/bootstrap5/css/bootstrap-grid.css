@@ -29,7 +29,7 @@
     max-width: 720px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
   }
@@ -48,7 +48,7 @@
   --bs-breakpoint-xs: 0;
   --bs-breakpoint-sm: 576px;
   --bs-breakpoint-md: 768px;
-  --bs-breakpoint-lg: 992px;
+  --bs-breakpoint-lg: 1024px; /*customization*/
   --bs-breakpoint-xl: 1200px;
   --bs-breakpoint-xxl: 1400px;
 }
@@ -618,7 +618,8 @@
     --bs-gutter-y: 3rem;
   }
 }
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {*/
+@media (min-width: 1024px) {
   .col-lg {
     flex: 1 0 0%;
   }
