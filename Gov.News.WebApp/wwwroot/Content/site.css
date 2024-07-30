@@ -75,13 +75,6 @@ a {
   clear: both;
 }
 
-.content {
-  min-width: 680px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-
 a.read-more {
   font-size: 13px;
   font-weight: 600;
@@ -572,7 +565,6 @@ ul.inline {
 }
 
 ul.inline li {
-  float: left;
   padding: 2px 10px;
   position: relative;
 }
@@ -582,10 +574,6 @@ ul.inline li a:link,
   /*color: #2d2d2d;*/
   display: block;
   text-align: center;
-}
-
-ul.inline li + li {
-  border-left: 1px solid #4b5e73;
 }
 
 #carousel-holder {
@@ -834,7 +822,6 @@ ul.inline li + li {
 }
 
 .home-body {
-  width: 795px;
   padding-left: 24px;
   float: left;
 }
@@ -2374,10 +2361,6 @@ ul.inline li + li {
   padding-bottom: 20px;
 }
 
-.connect {
-  padding-bottom: 30px;
-}
-
 .connect .home-features:first-child .resource-links {
   border-top: none;
 }
@@ -2658,50 +2641,14 @@ ul.inline li + li {
   text-align: center;
 }
 
-#footer {
-  background-color: #FFF;
-  color: #2d2d2d;
-}
-
-#footer .content {
-  padding: 0 30px 2em;
-}
-
 #footer hr {
   border: 0;
   height: 1px;
   background: #4b5e73;
 }
 
-#footer h4 {
-  font-size: 18px;
-  padding-right: 20px;
-  margin-top: 22px;
-  margin-bottom: 10px;
-}
-
-#footer ul li:first-child {
-  padding-left: 0;
-}
-
 #footer ul li a {
   color: #2d2d2d;
-}
-
-#footer ul li + li {
-  border-color: #4b5e73;
-}
-
-#footer .connect {
-  margin-bottom: 10px;
-}
-
-#footer .connect h4 {
-  float: left;
-}
-
-#footer .connect ul {
-  padding-top: 22px;
 }
 
 #end-cap {
