@@ -147,9 +147,9 @@
     .home-body .top-article .article .item-text.with-image {
         width: 100%;
     }
-    
+
     .home-body .other-articles {
-        width: 63%;
+        /*width: 63%;*/
     }
 
         .home-body .other-articles .asset {
