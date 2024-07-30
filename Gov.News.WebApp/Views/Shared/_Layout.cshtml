@@ -296,42 +296,48 @@
     </div>
 
     @RenderSection("AssortedMedia", false)
-
-    <div id="landAcknowledgement" class="jumbotron jumbotron-fluid" style="background-color: #313132; color: white; margin-bottom: 0; 
-       border-top: 4px solid rgb(252, 186, 25); border-bottom: 4px solid rgb(252, 186, 25); padding-top: 32px; padding-bottom: 32px;">
-        <div class="container" style="padding-left: 60px; padding-right: 50px;">
-            <p style="font-size:14px; margin-top:30px; font-weight:500; ">The B.C. Public Service acknowledges the territories of First Nations 
+    
+    <div id="landAcknowledgement" class="container-fluid">
+        <div class="container-xl">
+            <p style="font-size:14px; font-weight:500; ">The B.C. Public Service acknowledges the territories of First Nations 
             around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of 
             all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, 
             laws, and governments.</p>
         </div>
     </div>
-    <div id="footer" role="navigation">
-        <div class="content">
-            <div class="connect">
-                <h4>Connect with Us:</h4>
-                <ul class="inline" role="menu">
-                    <li role="menuitem"><a id="footerBCGov" href="http://www.gov.bc.ca/">BC Gov</a></li>
-                    <li role="menuitem"><a id="footerFaceBook" href="/connect#facebook">Facebook</a></li>
-                    <li role="menuitem"><a id="footerTwitter" href="/connect#x">X</a></li>
-                    <li role="menuitem"><a id="footerFlickr" href="/connect#flickr">Photos</a></li>
-                    <li role="menuitem"><a id="footerYoutube" href="/connect#youtube">Videos</a></li>
-                    <li role="menuitem"><a id="footerNewsletters" href="/newsletters">Newsletters</a></li>
-                    <li role="menuitem"><a id="footerRSSFeeds" href="/connect#rss">RSS Feeds</a></li>
+    <div id="footer" class="container-fluid" role="navigation">
+        <div class="top container-xl">
+            <div class="footer-bc">
+                <img id="BCGov-logo-footer" src="~/Content/Images/Gov/BCID_H_rgb_pos.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                <p>We can help in over 220 languages and through other accessible options. Calls, email or text us, or find a service centre.</p>
+            </div>
+            <div class="footer-connect">
+                <h4>Connect with Us</h4>
+                <ul class="" role="menu">
+                    <li role="menuitem"><a id="footerNewsletters" href="/subscribe">subscribe</a></li>
+                    <li role="menuitem"><a id="footerRSSFeeds" href="/connect">Social and RSS</a></li>
                 </ul>
             </div>
-            <div class="clear"></div>
+            <div class="footer-more-info">
+                <h4>More info</h4>
+                <ul class="pull-left" role="menu">
+                    <li role="menuitem"><a id="footerHome" href="https://gov.bc.ca">BC Gov</a></li>
+                    <li role="menuitem"><a id="footerDisclaimer" href="http://www2.gov.bc.ca/gov/admin/disclaimer.page">Disclaimer</a></li>
+                    <li role="menuitem"><a id="footerPrivacy" href="/privacy">Privacy</a></li>
+                    <li role="menuitem"><a id="footerAccessibility" href="http://www2.gov.bc.ca/gov/admin/accessibility.page">Accessibility</a></li>
+                    <li role="menuitem"><a id="footerCopyright" href="http://www2.gov.bc.ca/gov/admin/copyright.page">Copyright</a></li>
+                    <li role="menuitem"><a id="footerContact" href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            
             <hr />
-
-            <ul class="inline pull-left" role="menu">
-                <li role="menuitem"><a id="footerHome" href="https://news.gov.bc.ca">Home</a></li>
-                <li role="menuitem"><a id="footerDisclaimer" href="http://www2.gov.bc.ca/gov/admin/disclaimer.page">Disclaimer</a></li>
-                <li role="menuitem"><a id="footerPrivacy" href="/privacy">Privacy</a></li>
-                <li role="menuitem"><a id="footerAccessibility" href="http://www2.gov.bc.ca/gov/admin/accessibility.page">Accessibility</a></li>
-                <li role="menuitem"><a id="footerCopyright" href="http://www2.gov.bc.ca/gov/admin/copyright.page">Copyright</a></li>
-                <li role="menuitem"><a id="footerContact" href="/contact">Contact Us</a></li>
-            </ul>
         </div>
+        <div class="container-xl bottom">
+            <div class="copyright">
+                © <!-- -->2024<!-- --> Government of British Columbia
+            </div>
+        </div>
+        
     </div>
     <div id="end-cap">
         <ul>

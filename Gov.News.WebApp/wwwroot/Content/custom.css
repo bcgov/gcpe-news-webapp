@@ -55,7 +55,6 @@ body {
     width: 100%;
 }
 
-
 .header .navbar-brand {
     color: #2d2d2d;
     font-size: 18px;
@@ -81,13 +80,67 @@ body {
     
 }
 
+#landAcknowledgement {
+    background-color: #313132;
+    color: white;
+    margin-bottom: 0;
+    border-top: 4px solid rgb(252, 186, 25);
+    border-bottom: 4px solid rgb(252, 186, 25);
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+#footer {
+    background-color: #FFF;
+    color: #2d2d2d;
+    padding-top: 40px;
+    font-size: 16px;
+}
+
+#footer .top{
+    display:flex;
+    flex-direction:row;
+    align-items: stretch;
+    justify-content: flex-end;
+    gap: 10px 50px;
+    flex-wrap: wrap;
+}
+
+#footer .bottom {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgb(1, 51, 102);
+}
+
+#BCGov-logo-footer {
+    width:164px;
+    margin-bottom:10px;
+}
+
+#footer h4 {
+  font-size: 18px;
+  padding-right: 20px;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+#footer ul{
+    list-style-type: none;
+    padding-left:0;
+}
+
+#footer ul li{
+    margin-bottom:8px;
+}
+
 @media only screen and (min-width: 1024px) {
     #navbarSupportedContent .navbar-nav li a {
         font-size: 1.2rem;
-    }
-
-    #main-nav-contaier {
-        --bs-gutter-x: 0.5rem;
     }
 
     #navbarSupportedContent ul li a {
@@ -97,14 +150,31 @@ body {
     .live_button_show {
         margin-left: 10px;
     }
+
+    .footer-bc {
+        flex:2;
+    }
+
+    .footer-connect, .footer-more-info {
+        flex: 1;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
     #navbarSupportedContent .navbar-nav li a {
         font-size: 0.9rem;
     }
+
     #main-nav-contaier {
         --bs-gutter-x: 0.5rem;
+    }
+
+    .footer-bc {
+        flex: 0 0 100%;
+    }
+
+    .footer-connect, .footer-more-info {
+        flex: 1;
     }
 }
 
@@ -327,6 +397,14 @@ body {
     #main-nav-contaier {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .footer-bc {
+        flex: 0 0 100%;
+    }
+
+    .footer-connect, .footer-more-info {
+        flex: 1;
     }
 }
 
