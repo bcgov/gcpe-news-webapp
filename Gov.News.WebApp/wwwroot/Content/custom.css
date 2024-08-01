@@ -138,6 +138,10 @@ body {
     margin-bottom:8px;
 }
 
+.ministry-listing {
+    display:flex;
+}
+
 @media only screen and (min-width: 1024px) {
     #navbarSupportedContent .navbar-nav li a {
         font-size: 1.2rem;
