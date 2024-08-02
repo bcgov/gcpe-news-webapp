@@ -122,7 +122,7 @@ body {
 }
 
 #footer h4 {
-  font-size: 18px;
+  font-size: 16px;
   padding-right: 20px;
   margin-top: 22px;
   margin-bottom: 10px;
@@ -409,6 +409,14 @@ body {
 
     .footer-connect, .footer-more-info {
         flex: 1;
+    }
+
+    #footer .top{
+        gap: 10px 5px;
+    }
+
+    #footer h4 {
+        padding-right: 10px;
     }
 }
 
