@@ -53,6 +53,7 @@
         -->
         <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css" media="screen" rel="stylesheet" >
         <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/components.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/custom.css" media="screen" type="text/css" />
         <!--
         <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
@@ -83,6 +84,7 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.min.css" asp-append-version="true" media="screen" rel="stylesheet" >
         <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/components.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/custom.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
@@ -137,19 +139,10 @@
                 <div class="access">
                     <ul>
                         <li aria-label="Skip to main content">
-                            <a href="#main-content-release">Skip to main content</a>
+                            <a class="btn btn-outline-primary skip-link" href="#main-content-release">Skip to main content</a>
                         </li>
-                        <li aria-label="Skip to main navigation">
-                            <a href="#menu" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
-                        </li>
-                        @if (controller != "Subscribe")
-                        {
-                            <li aria-label="Skip to side bar">
-                                <a href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
-                            </li>
-                        }
                         <li aria-label="Skip to footer">
-                            <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+                            <a class="btn btn-outline-primary skip-link" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
                         </li>
                     </ul>
                 </div>
@@ -247,7 +240,7 @@
         </div>
 
         <!-- search input for md and smaller screen-->
-        <div class="container-fluid collapse" id="smd-search-container" data-bs-parent="#main-nav">
+        <div class="container-fluid collapse d-lg-none" id="smd-search-container" data-bs-parent="#main-nav">
             @using (Html.BeginForm("Search", "Default", FormMethod.Get))
             {
                 <div class="input-group">

@@ -19,7 +19,7 @@
 .access {
     display: inline;
     height: 0;
-    position: absolute;
+    
     width: 0;
     z-index: 9;
 }
@@ -30,12 +30,11 @@
     }
 
     .access li a, .access a {
-        margin: 5px 0 0 -5000px;
+        
         width: 120px;
         padding: 5px;
-        position: absolute;
-        top: 0;
-        color: #fcba19;
+        
+      
     }
 
         .access li a:focus, .access a:focus {

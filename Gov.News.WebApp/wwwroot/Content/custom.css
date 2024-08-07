@@ -66,6 +66,10 @@ body {
     width: 164px;
 }
 
+.skip-link{
+
+}
+
 .search input {
     border-right: none;
 }
@@ -78,6 +82,11 @@ body {
 #navbarSupportedContent .navbar-nav li a {
     color: #2D2D2D !important;
     
+}
+
+#sm-nav-container {
+    margin-right: 0;
+    padding-right: 0;
 }
 
 #landAcknowledgement {
@@ -341,10 +350,6 @@ body {
         padding-right: 10px;
     }
 
-    #main-nav {
-        --bs-gutter-x: none !important;
-    }
-
     .collapse-menu-icon {
         padding: 0.6rem 0.7rem;
         margin-left: auto;
@@ -439,6 +444,10 @@ body {
     .header .navbar-brand {
         font-weight: 600;
         font-size: 13px;
+    }
+
+    #main-nav {
+        --bs-gutter-x: none !important;
     }
 }
 
