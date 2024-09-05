@@ -127,8 +127,8 @@
 </head>
 <body>
     <!--googleoff: all-->
-    <header class="container-fluid header nav-border" id="main-nav">
-        <div class="container-xl" id="main-nav-contaier">
+    <header class="container-fluid g-0 header nav-border" id="main-nav">
+        <div class="container-xl g-0" id="main-nav-contaier">
             <nav class="navbar navbar-expand-md" aria-label="Main menu">
                 <img id="BCGov-logo" class="d-none d-md-block" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <img id="sm-BCGov-logo" class="d-md-none" src="~/Content/Images/Gov/BC_Mark.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
@@ -139,10 +139,10 @@
                 <div class="access">
                     <ul>
                         <li aria-label="Skip to main content">
-                            <a class="btn btn-outline-primary skip-link" href="#main-content-release">Skip to main content</a>
+                            <a class="btn skip-link" href="#main-content-release">Skip to main content</a>
                         </li>
                         <li aria-label="Skip to footer">
-                            <a class="btn btn-outline-primary skip-link" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+                            <a class="btn skip-link" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
                         </li>
                     </ul>
                 </div>
@@ -167,12 +167,12 @@
                 <div class="container-fluid" id="sm-nav-container">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-parent="#main-nav">
                         <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
-                            <li class="nav-item dropdown" aria-labelledby="ministry-dropdoen">
-                                <a class="nav-link d-none d-md-block" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link d-none d-md-block" href="#" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
                                     <span id="icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
-                                <a class="nav-link d-md-none" id="sm-news-dropdown" data-bs-toggle="collapse" data-bs-target="#sm-menu" aria-expanded="false">
+                                <a class="nav-link d-md-none" href="#" id="sm-news-dropdown" data-bs-toggle="collapse" data-bs-target="#sm-menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
                                     <span id="sm-icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
@@ -202,7 +202,7 @@
                             </div>
                             <!-- end of ministry drop down menu for screen size md and larger -->
                             <li class="nav-item">
-                                <a class="nav-link" href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a>
+                                <a class="nav-link" href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri" target="_blank">News Archive</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="@Model.SubscribePath()">Subscribe</a>
@@ -241,7 +241,7 @@
 
         <!-- search input for md and smaller screen-->
         <div class="container-fluid collapse d-lg-none" id="smd-search-container" data-bs-parent="#main-nav">
-            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
+            @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "search" }))
             {
                 <div class="input-group">
                     <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">

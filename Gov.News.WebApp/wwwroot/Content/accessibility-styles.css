@@ -19,26 +19,37 @@
 .access {
     display: inline;
     height: 0;
-    
     width: 0;
-    z-index: 9;
+    z-index: 600;
+    position: absolute;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
     .access ul {
         padding-left: 10px;
         list-style: none;
     }
-
+    .access li, .access li::after focus{
+        border: none;
+    }
     .access li a, .access a {
-        
-        width: 120px;
+        margin: 0px 0px 0px -1000px;
+        width: auto;
         padding: 5px;
-        
-      
+        top: 3px;
+        overflow: hidden;
     }
 
         .access li a:focus, .access a:focus {
-            margin-left: 0;
+            margin-left: 320px;
+            width: auto;
+            height: auto;
+            display: inline-block;
+            white-space: nowrap;
+            background-color: #fff;
+            color: #000;
+            border: 2px solid #395CCF;
         }
 
 .story-features .fa.fa-facebook-square {
