@@ -2660,7 +2660,7 @@ ul.inline li a:link,
   position: fixed;
   height: 50px;
   overflow: hidden;
-  bottom: -1px;
+  bottom: 0;
   color: #fff;
   padding: 15px 15px 10px;
 }

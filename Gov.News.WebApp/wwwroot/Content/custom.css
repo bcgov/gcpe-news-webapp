@@ -66,6 +66,10 @@ body {
     width: 164px;
 }
 
+.skip-link{
+
+}
+
 .search input {
     border-right: none;
 }
@@ -78,6 +82,48 @@ body {
 #navbarSupportedContent .navbar-nav li a {
     color: #2D2D2D !important;
     
+}
+
+#navbarSupportedContent .navbar-nav li {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#navbarSupportedContent .navbar-nav li:focus,
+#navbarSupportedContent .navbar-nav li:hover {
+    background-color: #D7D7D7;
+    border-radius: 4px;
+}
+
+#sm-nav-container {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.search {
+    padding-left: 5px;
+}
+
+#site-search-input:focus {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #395CCF;
+    border-right: none;
+}
+
+#site-search-input:focus + .search-trigger {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    border-right: none;
+    border: 1px solid #395CCF;
+}
+
+.search button {
+    border-left: none;
 }
 
 #landAcknowledgement {
@@ -144,7 +190,7 @@ body {
 
 @media only screen and (min-width: 1024px) {
     #navbarSupportedContent .navbar-nav li a {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     #navbarSupportedContent ul li a {
@@ -238,6 +284,7 @@ body {
     color: rgb(41, 41, 41);
     text-decoration: underline;
     background-color: rgb(237, 235, 233);
+    border-radius: 4px;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -341,10 +388,6 @@ body {
         padding-right: 10px;
     }
 
-    #main-nav {
-        --bs-gutter-x: none !important;
-    }
-
     .collapse-menu-icon {
         padding: 0.6rem 0.7rem;
         margin-left: auto;
@@ -400,7 +443,7 @@ body {
     }
     #main-nav-contaier {
         padding-left: 0;
-        padding-right: 0;
+        padding-right: 10px;
     }
 
     .footer-bc {
@@ -411,12 +454,23 @@ body {
         flex: 1;
     }
 
-    #footer .top{
+    #footer{
+        margin-bottom: 80px;
+        position: relative;
+    }
+
+    #end-cap {
+        display: block;
+        height: 50px;
+    }
+
+    #footer .top {
         gap: 10px 5px;
     }
 
     #footer h4 {
         padding-right: 10px;
+        white-space: normal;
     }
 }
 
@@ -428,6 +482,7 @@ body {
 
     #main-nav-contaier .navbar {
         justify-content: flex-start;
+        padding-right: 8px;
     }
 
     .menu ul li a {
@@ -439,6 +494,10 @@ body {
     .header .navbar-brand {
         font-weight: 600;
         font-size: 13px;
+    }
+
+    #main-nav {
+        --bs-gutter-x: none !important;
     }
 }
 
