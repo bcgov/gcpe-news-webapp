@@ -288,7 +288,6 @@ body {
 .menu ul li a:hover {
     color: rgb(41, 41, 41);
     text-decoration: underline;
-    background-color: rgb(237, 235, 233);
     border-radius: 4px;
 }
 
@@ -368,7 +367,6 @@ body {
 #smd-search-container input, #smd-search-container button {
     border:none;
     background-color: #FFF;
-    border-radius:5px;
 }
 
 #navbarSupportedContent {
@@ -440,6 +438,7 @@ body {
     .list-title {
         font-size: 16px;
         padding-left: 0;
+        padding-bottom: 10px;
     }
 
     #sm-BCGov-logo {
