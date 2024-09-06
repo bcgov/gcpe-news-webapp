@@ -122,8 +122,9 @@ body {
     border: 1px solid #395CCF;
 }
 
-.search button {
+.search button, .search span {
     border-left: none;
+    background-color: transparent
 }
 
 #landAcknowledgement {
