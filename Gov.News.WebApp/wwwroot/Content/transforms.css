@@ -540,7 +540,7 @@
     .home-body,
     .story-body {
         float: none;
-        width: 100%;
+        width: 80vw;
         padding-left: 0;
         padding-right: 0;
         clear: both;
