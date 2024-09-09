@@ -383,6 +383,8 @@ body {
         padding-right: 0;
         width: 100vw !important;
         --bs-gutter-x: 0;
+        position: absolute;
+        top: 73px;
     }
 
     #smd-search-container {
@@ -408,7 +410,7 @@ body {
     }
 
     #navbarSupportedContent {
-        margin-top: 5px;
+        margin-top: 2px;
         padding-left: 10px;
         padding-top: 20px;
         font-size: 1rem;
