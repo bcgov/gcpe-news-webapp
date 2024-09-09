@@ -127,9 +127,9 @@
 </head>
 <body>
     <!--googleoff: all-->
-    <header class="container-fluid g-0 header nav-border" id="main-nav">
-        <div class="container-xl g-0" id="main-nav-contaier">
-            <nav class="navbar navbar-expand-md" aria-label="Main menu">
+    <header class="container-fluid sm-g-0 p-0 header nav-border" id="main-nav">
+        <div class="container-xl sm-g-0 p-0" id="main-nav-contaier">
+            <nav class="navbar navbar-expand-md" aria-label="Main menu" id="main-nav" style="padding-right:8px;">
                 <img id="BCGov-logo" class="d-none d-md-block" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <img id="sm-BCGov-logo" class="d-md-none" src="~/Content/Images/Gov/BC_Mark.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
@@ -156,6 +156,7 @@
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
                 </div>
+                
                 @if (Model.WebcastingLive)
                 {
                     <a href="/live" class="btn btn-primary-blue live_button live_button_show d-sm-block d-md-none"><img src="~/Content/Images/live-cast-button.svg" /></a>
@@ -164,6 +165,7 @@
                 {
                     <a href="/live" class="btn btn-primary-blue live_button live_button_hide d-none d-lg-block">Live Webcast</a>
                 }
+                
                 <div class="container-fluid" id="sm-nav-container">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-parent="#main-nav">
                         <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
@@ -219,7 +221,7 @@
                                 <span class="input-group-text btn-primary-outline search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
                             </div>
                         }
-                        <div class="d-none d-md-block d-lg-none search-md-block"> 
+                        <div class="d-none d-md-block d-lg-none search-md-block">
                             <button id="search-md-button" class="input-group-text btn-primary-outline search-md" data-bs-toggle="collapse" data-bs-target="#smd-search-container">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
@@ -235,6 +237,7 @@
                     {
                         <a href="/live" class="btn btn-primary-blue live_button live_button_hide d-none d-lg-block">Live Webcast</a>
                     }
+                    
                 </div>
             </nav>
         </div>
@@ -332,17 +335,20 @@
         </div>
         
     </div>
-    <div id="end-cap">
-        <ul>
-            <li class="connect-label">Connect</li>
-            <li><a aria-label="connect on facebook" href="/connect#facebook"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on x" href="/connect#x"><i class="fa-brands fa-square-x-twitter fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on flickr" href="/connect#flickr"><i class="fa-brands fa-flickr fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on youtube" href="/connect#youtube"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on weibo" href="/connect#weibo"><i class="fa-brands fa-weibo fa-lg" aria-hidden="true"></i></a></li>
-        </ul>
-        <a href="/connect" class="read-more view-all-media">View all Social Media</a>
-    </div>
+    <!--
+        <div id="end-cap">
+            <ul>
+                <li class="connect-label">Connect</li>
+                <li><a aria-label="connect on facebook" href="/connect#facebook"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i></a></li>
+                <li><a aria-label="connect on x" href="/connect#x"><i class="fa-brands fa-square-x-twitter fa-lg" aria-hidden="true"></i></a></li>
+                <li><a aria-label="connect on flickr" href="/connect#flickr"><i class="fa-brands fa-flickr fa-lg" aria-hidden="true"></i></a></li>
+                <li><a aria-label="connect on youtube" href="/connect#youtube"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i></a></li>
+                <li><a aria-label="connect on weibo" href="/connect#weibo"><i class="fa-brands fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+            </ul>
+            <a href="/connect" class="read-more view-all-media">View all Social Media</a>
+        </div>
+    -->
+    
     <input id="hostingEnv" type="hidden" value=@hostingEnv.EnvironmentName />
 
     @if (Gov.News.Website.Properties.Settings.Default.SignalREnabled != null && Gov.News.Website.Properties.Settings.Default.SignalREnabled == "true")

@@ -81,7 +81,6 @@ body {
 
 #navbarSupportedContent .navbar-nav li a {
     color: #2D2D2D !important;
-    
 }
 
 #navbarSupportedContent .navbar-nav li {
@@ -190,6 +189,7 @@ body {
 }
 
 @media only screen and (min-width: 1024px) {
+    
     #navbarSupportedContent .navbar-nav li a {
         font-size: 1rem;
     }
@@ -209,6 +209,7 @@ body {
     .footer-connect, .footer-more-info {
         flex: 1;
     }
+    
 }
 
 
@@ -219,8 +220,6 @@ body {
 
     #main-nav-contaier {
         --bs-gutter-x: 0.5rem;
-        padding-left: 40px;
-        padding-right: 30px;
         text-wrap: nowrap
     }
 
@@ -384,7 +383,6 @@ body {
         padding-right: 0;
         width: 100vw !important;
         --bs-gutter-x: 0;
-        border-top: 1px solid #E0DEDC;
     }
 
     #smd-search-container {
@@ -410,6 +408,7 @@ body {
     }
 
     #navbarSupportedContent {
+        margin-top: 5px;
         padding-left: 10px;
         padding-top: 20px;
         font-size: 1rem;
@@ -444,10 +443,6 @@ body {
     #sm-BCGov-logo {
         width: 70px;
         padding: 10px 10px 10px 10px;
-    }
-    #main-nav-contaier {
-        padding-left: 0;
-        padding-right: 10px;
     }
 
     .footer-bc {
@@ -486,7 +481,6 @@ body {
 
     #main-nav-contaier .navbar {
         justify-content: flex-start;
-        padding-right: 8px;
     }
 
     .menu ul li a {
