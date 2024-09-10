@@ -387,6 +387,16 @@ body {
         top: 73px;
     }
 
+    #main-nav {
+        padding-left: 0 !important;
+        --bs-gutter-x: 0.5rem;
+    }
+
+    #main-nav-contaier {
+        padding-left: 0 !important;
+        --bs-gutter-x: 0.5rem;
+    }
+
     #smd-search-container {
         padding-right: 10px;
     }

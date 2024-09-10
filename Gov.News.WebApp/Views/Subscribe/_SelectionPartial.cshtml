@@ -8,7 +8,7 @@
         <h4>Media Advisories</h4>
         <input id="mediadistributionlistsHidden" style="display:none" name ="MediaDistributionLists" value="@Model.Selection.MediaDistributionLists" />
 
-        <div class="expandable-section-content" style="padding-left: 10px; padding-bottom: 0px;">
+        <div class="expandable-section-content pl-1 pb-0">
             <div class="expander-body">
                 <br />
 
@@ -32,12 +32,12 @@
         <div class="expandable-section-content" style="padding-left: 10px; padding-bottom: 0px;">
             <div class="expander-body">
 
-                <p>
+                <p class="pb-1 pt-1">
                     Get your news delivered to your mobile or desktop. Subscribe to receive your news as it happens or receive a daily news digest at 5 p.m.
                 </p>
 
-                <div>
-                    <span style="font-weight:bold">When would you like your news delivered to your mobile or desktop?</span><br />
+                <div class="pb-1 pt-1" >
+                    <span class="fw-bold">When would you like your news delivered to your mobile or desktop?</span><br />
                     <div>
                         <ul class="external-links">
                             <li>
@@ -50,14 +50,14 @@
                     </div>
                 </div>
 
-                <div style="font-weight:bold">Let us know what areas of the B.C. government you're interested in.</div>
+                <div class="pb-1 pt-1 fw-bold">Let us know what areas of the B.C. government you're interested in.</div>
 
-                <div style="display:none"><label style="font-weight:normal"><input type="radio" name="AllNews" value="true" />&nbsp;I would like to receive news from all ministries and sectors.</label><br /></div>
-                <div style="display:none"><label style="font-weight:normal"><input type="radio" name="AllNews" value="false" />&nbsp;I would like to customize the news that I receive.</label><br /></div>
+                <div style="display:none"><label class="fw-normal"><input type="radio" name="AllNews" value="true" />&nbsp;I would like to receive news from all ministries and sectors.</label><br /></div>
+                <div style="display:none"><label class="fw-normal"><input type="radio" name="AllNews" value="false" />&nbsp;I would like to customize the news that I receive.</label><br /></div>
 
                 <div style="clear:both"></div>
 
-                <div id="newsOnDemandCustomOptions">
+                <div id="newsOnDemandCustomOptions" class="mb-3">
 
                     @{
                         var lists = new[] { new { Category = "", Key = "", Name = "" } }.ToList();
