@@ -2416,7 +2416,16 @@ ul.inline li a:link,
   margin-left: 0;
 }
 
+ul.external-links:first-child {
+    margin-bottom:0;
+}
+
+ul.external-links:last-child {
+    padding-top:0;
+}
+
 .expandable-section ul.external-links li {
+  padding-top:6px;
   font-size: 16px;
   padding-bottom: 6px;
 }
