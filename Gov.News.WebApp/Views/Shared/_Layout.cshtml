@@ -127,6 +127,9 @@
 </head>
 <body>
     <!--googleoff: all-->
+    <!--banner-->
+    <partial name="_Banner.cshtml" />
+    <!--end of banner-->
     <header class="container-fluid sm-g-0 header nav-border" id="main-nav">
         <div class="container-xl sm-g-0" id="main-nav-contaier">
             <nav class="navbar navbar-expand-md" aria-label="Main menu" id="main-nav" style="padding-right:8px;">
@@ -280,7 +283,6 @@
             </div>
         </div>
         <!-- end of ministry drop down menu for screen size md and larger -->
-        
     </header>
    
     @RenderSection("Carousel", false)
@@ -612,17 +614,10 @@
                 $("#granville-bridge-banner").hide();
             });
 
-            $("#btnCloseCovidBanner").click(function (e) {
+            $("#btnCloseBanner").click(function (e) {
                 e.preventDefault();
-                var mini_menu_logo = $('#mini-menu-trigger');
-                var mini_search_logo = $('#mini-search-trigger');
-                $("#covid-banner").hide();
-                if (mini_search_logo.hasClass("covid-mini-search-menu")) {
-                    mini_search_logo.removeClass("covid-mini-search-menu")
-                }
-                if (mini_menu_logo.hasClass("covid-mini-menu-menu")) {
-                    mini_menu_logo.removeClass("covid-mini-menu-menu")
-                }
+                $("#site-banner").hide();
+                
             });
         });
     </script>

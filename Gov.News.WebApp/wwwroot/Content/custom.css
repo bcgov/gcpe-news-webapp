@@ -43,6 +43,12 @@
 :root {
     --primary-blue: #013366;
     --white: #ffffff;
+    --info-blue: #013366;
+    --info-green: #42814A;
+    --warning-yello: #F8BB47;
+    --alert-red: #CE3E39;
+    --dark: #@d2D2D;
+    
 }
 
 body {
@@ -68,6 +74,24 @@ body {
 
 .skip-link{
 
+}
+
+.info-blue-banner {
+    background-color: var(--primary-blue);
+    width: 100%;
+    font-size: 16px;
+    color: #fff;
+}
+
+.info-blue-banner .content {
+    padding: 20px;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.info-blue-banner a:hover{
+    cursor: pointer;
 }
 
 .search input {
@@ -247,10 +271,18 @@ body {
     min-height: 100vh !important;
     left: 0;
     height: max-content;
-    position: absolute;
+    /*position: absolute;*/
     transform: translateX(0px);
     background-color: #fff;
-    top: 75px;
+    /*top: 75px;*/
+    
+    width: 100vw !important;
+    position: relative;
+    top: -10px;
+}
+
+#main-nav {
+    --bs-gutter-x: 0;
 }
 
 .menu {
@@ -356,11 +388,13 @@ body {
     position: absolute;
     transform: translateX(0px);
     background-color: #fff;
-    top: 75px;
     padding-left: 30px;
     padding-right: 35px;
     padding-top: 10px;
     padding-bottom: 10px;
+    position: relative;
+    width: 100vw !important;
+    top: -10px;
 }
 
 #smd-search-container input, #smd-search-container button {
@@ -378,6 +412,10 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    .info-blue-banner {
+        --bs-gutter-x: 0;
+        padding-right: 10px;
+    }
     #sm-nav-container {
         padding-left: 0 !important;
         padding-right: 0;
@@ -398,7 +436,7 @@ body {
     }
 
     #smd-search-container {
-        padding-right: 10px;
+        top: -6px;
     }
 
     .collapse-menu-icon {
