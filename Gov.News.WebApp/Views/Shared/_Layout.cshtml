@@ -29,7 +29,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@(Model.Title == "Home" || string.IsNullOrEmpty(Model.Title) ? "" : Model.Title + " |") BC Gov News</title>
+    <title>BC Gov News</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="twitter:card" content="summary_large_image">
@@ -248,15 +248,18 @@
         </div>
 
         <!-- search input for md and smaller screen-->
-        <div class="container-fluid collapse d-lg-none" id="smd-search-container" data-bs-parent="#main-nav">
-            @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "search" }))
-            {
-                <div class="input-group">
-                    <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
-                    <button class="input-group-text search-trigger"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </div>
-            }
-        </div>
+        @if (!(Model is SearchViewModel))
+        {
+            <div class="container-fluid collapse d-lg-none" id="smd-search-container" data-bs-parent="#main-nav">
+                @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "search" }))
+                {
+                    <div class="input-group">
+                        <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
+                        <button class="input-group-text search-trigger"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                }
+            </div>
+        } 
         <!-- end of search input for md and smaller screen-->
 
         <!-- ministry drop down menu for screen size md and larger -->
@@ -289,7 +292,7 @@
     @RenderSection("StoryNavigator", false)
 
     <div id="main-content" class="template container-xl pt-3">
-        <main style="display:flex;">
+        <main style="display: flex;">
             @RenderBody()
             <div class="clear"></div>
         </main>
@@ -383,8 +386,10 @@
             });
         });
 
-        $(".search-trigger").on('click', function () {
-            $(this).parent().submit();
+        $(".search-trigger").on('click', function (e) {
+            e.preventDefault();
+            $('form:first').submit();
+            //$(this).parent().submit();
         });
 
         $("#smd-search-container").on('shown.bs.collapse', function() {
@@ -403,24 +408,34 @@
             $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');         
         });
 
+        $('#navbarSupportedContent').on('shown.bs.collapse', function () {
+            $('body').css('overflow-y', 'hidden');
+        });
+
+        $('#navbarSupportedContent').on('hidden.bs.collapse', function () {
+            $('body').css('overflow-y', 'auto');
+        })
+
         $('#menu').on({
-            "shown.bs.collapse": function () {
+            "shown.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
                 $("#menu").attr("aria-hidden", "false");
+                $('body').css('overflow-y', 'hidden');
             },
-            "hide.bs.collapse": function () {
+            "hide.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
                 $("#menu").attr("aria-hidden","true");
+                $('body').css('overflow-y', 'auto');
             }
         });
 
         $('#sm-menu').on({
-            "shown.bs.collapse": function () {
+            "shown.bs.collapse": function (e) {   
                 $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
                 $("#sm-menu").attr("aria-hidden", "false");
                 $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#f2f2f2");
             },
-            "hide.bs.collapse": function () {
+            "hide.bs.collapse": function (e) {
                 $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
                 $("#sm-menu").attr("aria-hidden","true");
                 $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#FFF");
@@ -437,42 +452,11 @@
                 headerToggler.parent().find('ul,div').toggle();
                 headerToggler.toggleClass('open');
             });
-        }
-
-        var first = true;
-        function closeMenu() {
-            var menuContainer = $("#menu-container");
-            menuContainer.slideUp();
-            menuContainer.hide();
-            $(".menu.active").removeClass('active');
-            $(".menu-content").hide();
-            $(".menu-items li").removeClass('active');
-            var parent = $(".has-menu").parent();
-            parent.removeClass('active');
-            var icon = parent.find('.caret-icon');
-            if (icon) {
-                icon.toggleClass('fa-caret-up fa-caret-down');
-            }   
-        }
-
-        $('html').on('click', function () {
-            closeMenu();
-        });
+        }   
 
         $('.menu').on('click', function (event) {
-            event.stopPropagation();
-        });
-
-        var menuSwitchTimeout;
-        var menuSwitchDelay = 100;
-
-        window.menuCloseDelay = 500;
-
-        var fadeSpeed = 200;
-       
-        $(".close-menu").on('click', function (event) {
             event.preventDefault();
-            closeMenu();
+            event.stopPropagation();
         });
         
         $(".print-document").on('click', function (event) {
@@ -593,25 +577,18 @@
             }
         };
 
-
-    $('body').on('click touchend', '.footer a, .search-pagination a, #mini-menu a', function (e) {
-        var el = $(this);
-        var link = el.attr('href');
-        window.location = link;
-    });
-
         $(document).ready(function () {
             /* This is for closing the granville banner */
-            if ($.cookie(document.location.host + '-alert-granville') === 'closed') {
-                $("#granville-bridge-banner").hide();
+            if ($.cookie(document.location.host + '-alert-banner') === 'closed') {
+                $("#site-banner").hide();
             }
 
             $("#btnCloseBanner").click(function (e) {
                 e.preventDefault();
                 /* The cookie will be expired in 100 days
                  Set the path as root, so the cookie will be valid across the whole site */
-                $.cookie(document.location.host + '-alert-granville', 'closed', { path: '/', expires: 100 });
-                $("#granville-bridge-banner").hide();
+                $("#site-banner").hide();
+                $.cookie(document.location.host + '-alert-banner', 'closed', { path: '/', expires: 100 });
             });
 
             $("#btnCloseBanner").click(function (e) {

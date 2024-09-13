@@ -286,20 +286,11 @@
                 } else {
                     hiddenInput.remove();
                 }
-                $('form:first').submit();
+                //$('form:first').submit();
             });
-            $(".search-trigger").on('click', function () {
+            $(".search-trigger").on('click', function (e) {
+                e.preventDefault();
                 $('form:first').submit();
-            });
-
-            $(".mini-search-container-trigger").on('click', function (e) {
-                // for mobiles
-                var searchPanels = $(".search-panel");
-                if (searchPanels.is(":visible")) {
-                    searchPanels.hide();
-                } else {
-                    searchPanels.show();
-                }
             });
 
             $(document).on('submit', 'form', function () {

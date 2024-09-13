@@ -3513,7 +3513,6 @@ ul.external-links:last-child {
 .list-container {
     display: flex;
     justify-content: space-between;
-    margin-left: auto;
     flex-wrap: wrap;
 }
 
