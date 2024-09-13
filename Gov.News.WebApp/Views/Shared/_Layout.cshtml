@@ -173,7 +173,7 @@
                 
                 <div class="container-fluid" id="sm-nav-container">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-parent="#main-nav">
-                        <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2">
+                        <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2" id="sm-nav-ul">
                             <li class="nav-item dropdown">
                                 <a class="nav-link d-none d-md-block" href="#" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
@@ -185,7 +185,7 @@
                                 </a>
                             </li>
                             <!-- ministry drop down menu for screen size xs and sm screen -->
-                            <div class="container-fluid collapse d-md-none" id="sm-menu" aria-labelledby="ministry-dropdown-menu">
+                            <div class="container-fluid collapse d-md-none" id="sm-menu" aria-labelledby="ministry-dropdown-menu" >
                                 <div class="menu container-xl">
                                     <div class="list-unstyled list-title">By Ministry</div>
                                     <ul>
@@ -408,14 +408,20 @@
         $("#navbarSupportedContent").on('hidden.bs.collapse', function() {
             $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');
             $('body').css('overflow-y', 'auto');
-        });
+            $('#sm-menu').collapse('hide');
 
+        });
+        $("#sm-news-dropdown").on('click', function (e) {
+            $('#sm-nav-ul').css('min-height', '1600px');
+        });
+            
         $('#menu').on({
             "shown.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
                 $("#menu").attr("aria-hidden", "false");
                 $('body').css('overflow-y', 'hidden');
-                $('#menu').css('overflow-y', 'auto');
+                
+                $('#menu').css('overflow-y', 'scroll');
             },
             "hide.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
@@ -429,6 +435,7 @@
                 $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
                 $("#sm-menu").attr("aria-hidden", "false");
                 $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#f2f2f2");
+                $('#sm-nav-container').css('overflow-y', 'scroll');
             },
             "hide.bs.collapse": function (e) {
                 $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
