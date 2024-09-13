@@ -3439,7 +3439,7 @@ ul.external-links:last-child {
   padding-bottom: 12px;
 }
 
-.comm-contacts .row {
+.comm-contacts .row,  .comm-contacts .d-flex{
   font-size: 16px;
   border-bottom: solid;
   border-bottom-width: 1px;
