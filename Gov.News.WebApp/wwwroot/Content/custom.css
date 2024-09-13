@@ -261,6 +261,12 @@ body {
         text-wrap: nowrap
     }
 
+    .menu ul {
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+    }
+
     .footer-bc {
         flex: 0 0 100%;
     }
@@ -324,7 +330,6 @@ body {
     display: block;
     padding: 5px 0 5px 5px;
     color: #2d2d2d;
-    white-space: nowrap;
 }
 
 .menu ul li a:hover {
@@ -438,6 +443,8 @@ body {
         --bs-gutter-x: 0;
         position: absolute;
         top: 73px;
+        height: 100vh;
+        z-index: 100;
     }
 
     #main-nav {
