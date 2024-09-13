@@ -402,30 +402,25 @@
 
         $("#navbarSupportedContent").on('shown.bs.collapse', function() {
             $("#nav-menu-sm").find('i.fa').removeClass('fa-bars').addClass('fa-times');
-        });
-
-        $("#navbarSupportedContent").on('hidden.bs.collapse', function() {
-            $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');         
-        });
-
-        $('#navbarSupportedContent').on('shown.bs.collapse', function () {
             $('body').css('overflow-y', 'hidden');
         });
 
-        $('#navbarSupportedContent').on('hidden.bs.collapse', function () {
+        $("#navbarSupportedContent").on('hidden.bs.collapse', function() {
+            $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');
             $('body').css('overflow-y', 'auto');
-        })
+        });
 
         $('#menu').on({
             "shown.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
                 $("#menu").attr("aria-hidden", "false");
                 $('body').css('overflow-y', 'hidden');
+                $('#menu').css('overflow-y', 'auto');
             },
             "hide.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
                 $("#menu").attr("aria-hidden","true");
-                $('body').css('overflow-y', 'auto');
+                $('body').css('overflow-y', 'scroll');
             }
         });
 
