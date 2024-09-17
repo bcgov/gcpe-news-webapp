@@ -444,7 +444,7 @@ body {
         position: absolute;
         top: 73px;
         height: 100vh;
-        z-index: 100;
+        /*z-index: 100;*/
     }
 
     #main-nav {
