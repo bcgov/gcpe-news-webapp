@@ -675,10 +675,15 @@ ul.inline li a:link,
 }
 
 .home-banner .home-banner-content .stories .story-nav.story-previous {
+    left: -23px;
+    z-index: 4;
+    background-image: url(Images/arrow-left.png);
 }
 
 .home-banner .home-banner-content .stories .story-nav.story-next {
-    right: 0;
+    right: -23px;
+    z-index: 4;
+    background-image: url(Images/arrow-right.png);
 }
 
 .home-banner .home-banner-content .social-media-bar {
@@ -763,6 +768,7 @@ ul.inline li a:link,
 
 .home-banner .home-banner-content .story {
   width: 65%;
+  padding: 15px 15px 15px 15px;
   position: absolute;
   top: 25px;
   background-color: rgba(0, 51, 102, 0.83);
