@@ -468,6 +468,8 @@ body {
     .collapse-menu-icon {
         padding: 0.6rem 0.7rem;
         margin-left: auto;
+        height: 42px;
+        width: 42px;
     }
 
     #search-md-button {
@@ -566,7 +568,7 @@ body {
 @media only screen and (max-width: 350px){
     .header .navbar-brand {
         font-weight: 600;
-        font-size: 13px;
+        font-size: 16px;
     }
 
     #main-nav {
