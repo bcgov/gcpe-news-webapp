@@ -291,7 +291,7 @@
     @RenderSection("Carousel", false)
     @RenderSection("StoryNavigator", false)
 
-    <div id="main-content" class="template container-xl pt-3">
+    <div id="main-content" class="template container-xl">
         <main style="display: flex;">
             @RenderBody()
             <div class="clear"></div>
@@ -451,17 +451,6 @@
             }
         });
 
-        var collapsibleRegions = $(".collapsible-regions");
-
-        if (collapsibleRegions.length != 0) {
-            // Clone on the client instead of having the server to duplicate and send them
-            $('.home-features').append(collapsibleRegions.children().clone());
-            collapsibleRegions.find(".resource-links > h3").on('click', function () {
-                var headerToggler = $(this);
-                headerToggler.parent().find('ul,div').toggle();
-                headerToggler.toggleClass('open');
-            });
-        }   
 
         $('.menu').on('click', function (event) {
             event.stopPropagation();
