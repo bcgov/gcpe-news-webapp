@@ -579,6 +579,7 @@ ul.inline li a:link,
 #carousel-holder {
   height: 250px;
   position: relative;
+  top: -20px;
 }
 
 .home-banner {
@@ -626,11 +627,7 @@ ul.inline li a:link,
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 1) 100%
   ); /* Opera 11.10+ */
-  background: -ms-linear-gradient(
-    top,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 100%
-  ); /* IE10+ */
+  background: -ms-linear-gradient( top,rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%); /* IE10+ */
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0) 0%,
@@ -688,23 +685,19 @@ ul.inline li a:link,
 
 .home-banner .home-banner-content .social-media-bar {
   /*position: absolute;*/
-  bottom: 2px;
-  left: 0;
-  height: 42px;
-  background-color: #38598a;
-  width: 100%;
-  z-index: 5;
-  font-weight: 600;
-  font-size: 16px;
-  color: #fff;
-  padding: 8px 20px;
-  display: inline-block;
-  position: relative;
-  vertical-align: bottom;
-  right: 0;
-  left: 0;
+      position: absolute;
+    bottom: -42px;
+    left: 0;
+    height: 42px;
+    background-color: #38598a;
+    width: 100%;
+    z-index: 5;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px 20px;
 }
-}
+
 
 .home-banner .home-banner-content .social-media-bar ul {
   list-style-type: none;

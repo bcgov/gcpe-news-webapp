@@ -263,8 +263,6 @@
 
          .home-banner .home-banner-content .story.right {
              right: 50px;
-             border-radius: 10px;
-             border-left: 6px solid #FCBA19;
          }
 
          .home-banner .home-banner-content .story.left {
@@ -420,7 +418,7 @@
     }
 
     .home-banner {
-        height: auto;
+        height: 350px;
     }
 
         .home-banner .bottom-fade {
