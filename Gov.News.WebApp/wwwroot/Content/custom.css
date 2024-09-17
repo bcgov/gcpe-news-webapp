@@ -116,7 +116,10 @@ body {
 
 #navbarSupportedContent .navbar-nav li:focus,
 #navbarSupportedContent .navbar-nav li:hover,
-#navbarSupportedContent .navbar-nav li .active
+#navbarSupportedContent .navbar-nav li:active,
+#navbarSupportedContent .navbar-nav li .active,
+#ministry-dropdown:active,#ministry-dropdown .active
+
 {
     background-color: #D7D7D7;
     border-radius: 4px;
