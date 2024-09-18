@@ -350,6 +350,12 @@ body {
     cursor: pointer;
 }
 
+#search-md-button {
+    padding: 0;
+
+    display: block;
+}
+
 .menu-icon {
     height: 40px;
     width: 40px;
@@ -404,7 +410,7 @@ body {
 }
 
 .search-md {
-    padding: 0.75rem 0.75rem;
+    padding: 0;
 }
 
 .search-md-block {
@@ -485,6 +491,7 @@ body {
 
     #search-md-button {
         margin-left: 5px;
+        display: block;
     }
 
     .live_button_show {
