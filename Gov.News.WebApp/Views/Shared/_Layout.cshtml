@@ -173,7 +173,7 @@
                 
                 <div class="container-fluid" id="sm-nav-container">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-parent="#main-nav">
-                        <ul class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 gap-2" id="sm-nav-ul">
+                        <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0 gap-2" id="sm-nav-ul">
                             <li class="nav-item dropdown" id="ministry-dropdown">
                                 <a class="nav-link d-none d-md-block" href="#" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
@@ -208,9 +208,15 @@
                                 </div>
                             </div>
                             <!-- end of ministry drop down menu for screen size md and larger -->
-                            <li class="nav-item">
+
+                            <!-- hide news archive -->
+                            <!--
+                                <li class="nav-item">
                                 <a class="nav-link" href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri" target="_blank">News Archive</a>
                             </li>
+                            -->
+                            <!-- end of hide news archive-->
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="@Model.SubscribePath()">Subscribe</a>
                             </li>
