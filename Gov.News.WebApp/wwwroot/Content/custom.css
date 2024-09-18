@@ -345,6 +345,17 @@ body {
     border-radius: 4px;
 }
 
+#search-md-button:hover,
+#search-md-button image:hover {
+    cursor: pointer;
+}
+
+.menu-icon {
+    height: 40px;
+    width: 40px;
+    text-align: center;
+}
+
 @media only screen and (min-width: 1024px) {
     .menu ul {
         columns: 2;
@@ -427,7 +438,6 @@ body {
 
 #navbarSupportedContent {
     background-color: #FFF;
-    z-index: 100;
     padding-left: 0;
     padding-right: 0;
     margin-left: 0;
@@ -469,10 +479,8 @@ body {
     }
 
     .collapse-menu-icon {
-        padding: 0.6rem 0.7rem;
+        padding: 0;
         margin-left: auto;
-        height: 42px;
-        width: 42px;
     }
 
     #search-md-button {
