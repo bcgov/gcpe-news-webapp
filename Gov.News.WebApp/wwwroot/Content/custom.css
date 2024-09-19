@@ -124,8 +124,7 @@ body {
 }
 
 #nav-menu-sm.active,
-#search-md-button.active,
-#sm-news-dropdown.active {
+#search-md-button.active {
     background-color: #D7D7D7;
 }
 
