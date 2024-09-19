@@ -6,11 +6,6 @@
     display: none;
 }
 
-.content {
-    min-width: 660px;
-    max-width: 1120px;
-}
-
 @media only screen and (min-width: 1120px) {
     .minister-bio-picture {
         display: none;
@@ -23,6 +18,7 @@
 
     #header h1 a {
         padding-left: 20px;
+        border-left: 3px solid #036;
     }
 
     #header .content .search {
@@ -38,7 +34,7 @@
     }
 
     #menu-container.just-menu .menu.active {
-        width: auto !important;
+        /*width: auto !important;*/
     }
 
     #menu-container .menu-content {
@@ -151,9 +147,9 @@
     .home-body .top-article .article .item-text.with-image {
         width: 100%;
     }
-    
+
     .home-body .other-articles {
-        width: 63%;
+        /*width: 63%;*/
     }
 
         .home-body .other-articles .asset {
@@ -273,7 +269,7 @@
              left: 50px;
          }
     }
-}
+
 
 @media only screen and (max-width: 916px) {
     #menu-container .menu-content-item .item-asset {
@@ -377,9 +373,12 @@
     .translations {
         margin-bottom: 10px;
     }
-}
 
-@media only screen and (max-width: 680px) {
+    #landAcknowledgement .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
     #logo {
         margin-left: 0;
     }
@@ -432,7 +431,7 @@
 
     .home-banner .home-banner-content {
         min-width: 280px;
-        max-width: 680px;
+        max-width: 768px;
     }
 
         .home-banner .home-banner-content .story h2 {
@@ -506,12 +505,6 @@
                 height: 25px;
             }
 
-    #main-content {
-        min-width: 280px;
-        max-width: 680px;
-        padding: 0px 20px;
-    }
-
     .home-features,
     .story-features {
         display: none;
@@ -529,7 +522,7 @@
         .comm-contacts-body h5 {
             font-size: 18px;
             font-weight: 600;
-            color: #292929;
+            color: #2d2d2d;
             margin-top: 20px;
             padding-bottom: 5px;
         }
@@ -537,7 +530,7 @@
         .comm-contacts-body h6 {
             font-size: 14px;
             font-weight: 600;
-            color: #292929;
+            color: #2d2d2d;
             margin-top: 15px;
             margin-bottom: 2px;
         }
@@ -545,7 +538,7 @@
     .home-body,
     .story-body {
         float: none;
-        width: 100%;
+        width: 80vw;
         padding-left: 0;
         padding-right: 0;
         clear: both;
@@ -653,7 +646,7 @@
     .story-page h2 {
         font-size: 26px;
         font-weight: 600;
-        color: #292929;
+        color: #2d2d2d;
         margin-top: 10px;
         margin-bottom: 10px;
         padding-left: 0px;
@@ -929,13 +922,7 @@
     }
 
     .media-container .connect-with-bc p {
-        color: #292929;
-    }
-
-    #footer {
-        -webkit-box-shadow: inset 0 -3px 8px 0 rgba(0, 0, 0, 0.4);
-        -ms-box-shadow: inset 0 -3px 8px 0 rgba(0, 0, 0, 0.4);
-        box-shadow: inset 0 -3px 8px 0 rgba(0, 0, 0, 0.4);
+        color: #2d2d2d;
     }
 
     .back-to-top {
@@ -962,10 +949,6 @@
         font-size: 12px;
     }
 
-    #end-cap {
-        display: block;
-    }
-
     .collapsible-regions {
         display: block;
         margin-bottom: 30px;
@@ -976,6 +959,7 @@
             border: 1px solid #e2e2e2;
             padding: 5px 15px;
             margin-bottom: 10px;
+            border-radius: 8px;
         }
 
             .collapsible-regions .resource-links > h5 {

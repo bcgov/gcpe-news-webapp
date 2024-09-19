@@ -1,4 +1,4 @@
-﻿@using Gov.News.Website.Models
+﻿﻿@using Gov.News.Website.Models
 @using Gov.News.WebApp.Extensions
 @model HomeViewModel
 
@@ -20,7 +20,7 @@
                                 <div onClick="window.location.href='@item.ActionUri';" style="cursor:pointer;">
                                     <h2>@item.Headline</h2>
                                     @*<p class="item-date">@item.PublishFromDateTime.FormatDateLong()</p>*@
-                                    <p class="summary">@item.Summary</p> 
+                                    <p class="summary">@item.Summary</p>
                                     <div>
                                         <a href="#" class="read-more"><i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;@item.ActionLabel</a>
                                     </div>
@@ -28,11 +28,11 @@
 
                                 @if (item.FacebookPostUri != null)
                                 {
-                                <div class="social-media-bar">
-                                    <ul>
-                                        <li class="facebook-info"><a href='@item.GetFacebookPostUri().ToString()' target="_blank"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i> Like or Comment<span class="on-story"> on this story</span><span class="on-facebook"> on Facebook</span></a></li> 
-                                    </ul>
-                                </div>
+                                    <div class="social-media-bar">
+                                        <ul>
+                                            <li class="facebook-info"><a href='@item.GetFacebookPostUri().ToString()' target="_blank"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i> Like or Comment<span class="on-story"> on this story</span><span class="on-facebook"> on Facebook</span></a></li>
+                                        </ul>
+                                    </div>
                                 }
                             </div>
                         }
@@ -42,8 +42,7 @@
                 </div>
                 <div class="bottom-fade"></div>
             </div>
-            slideIndex ++;
+            slideIndex++;
         }
     </div>
-    }
-
+}

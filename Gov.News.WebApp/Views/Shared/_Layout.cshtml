@@ -29,7 +29,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@(Model.Title == "Home" || string.IsNullOrEmpty(Model.Title) ? "" : Model.Title + " |") BC Gov News</title>
+    <title>BC Gov News</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="twitter:card" content="summary_large_image">
@@ -47,9 +47,18 @@
 
     <environment names="Testing,Development">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
+        <!--
+             <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap5.min.css">
+             <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css" type="text/css" >
+        -->
+        <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css" media="screen" rel="stylesheet" >
         <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/components.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/custom.css" media="screen" type="text/css" />
+        <!--
         <link rel="stylesheet" href="~/Content/minimenu.css" media="screen" type="text/css" />
+
+        -->
         <link rel="stylesheet" href="~/Content/transforms.css" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/print.css" media="print" type="text/css" />
         <link rel="stylesheet" href="~/Content/css/all.min.css" media="screen" type="text/css">
@@ -60,21 +69,23 @@
         @{
             if (@Model.GranvilleLive)
             {
-                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                        <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                        <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
     </environment>
     <environment names="Staging,Production">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.min.css" asp-append-version="true" media="screen" rel="stylesheet" >
         <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/components.css" asp-append-version="true" media="screen" type="text/css" />
+        <link rel="stylesheet" href="~/Content/custom.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/minimenu.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/transforms.css" asp-append-version="true" media="screen" type="text/css" />
         <link rel="stylesheet" href="~/Content/print.css" asp-append-version="true" media="print" type="text/css" />
@@ -86,13 +97,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                                            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                                            <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -100,14 +111,9 @@
     @RenderSection("Meta", false)
     <!-- Latest compiled and minified JavaScript -->
     <script src="~/Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
-    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap5/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+   
     <script src="~/Scripts/jquery.cookie.js" type="text/javascript"></script>
-
-    <!--
-        <script src="~/Scripts/accessibility/ik_utils.js" type="text/javascript"></script>
-          <script src="~/Scripts/accessibility/ik_carousel.js" type="text/javascript"></script>
-
-    -->
 
     @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
     {
@@ -117,296 +123,245 @@
     {
         <partial name="_WebAnalytics_Search" />
     }
-    <script type="text/javascript">
-        // inject font-awesome via CDN since IE 11 does not recognize the cached version
-        var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-        if (isIE11)
-            $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css" />');
-    </script>
+   
 </head>
 <body>
     <!--googleoff: all-->
-    <!-- skip for accessibility-->
-
-    <div id="header" class="navbar navbar-default" style="margin-bottom: 0;">
-
-        @{
-            if (@Model.GranvilleLive)
-            {
-                <div id="granville-bridge-banner" class="alert granville-bridge-banner" role="alert">
-                    <div class="content">
-                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.
-                        <button class="btn-link pull-right" id="btnCloseBanner" aria-hidden="true"><strong>×</strong></button>
-                    </div>
+    <!--banner-->
+    <!--<partial name="_Banner.cshtml" />-->
+    <!--end of banner-->
+    <header class="container-fluid sm-g-0 header nav-border" id="main-nav">
+        <div class="container-xl sm-g-0" id="main-nav-contaier">
+            <nav class="navbar navbar-expand-md" aria-label="Main menu" id="main-nav" style="padding-right:8px;">
+                <a href="/">
+                    <img id="BCGov-logo" class="d-none d-md-block" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                    <img id="sm-BCGov-logo" class="d-md-none" src="~/Content/Images/Gov/BC_Mark.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                    <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                </a>
+                <a class="navbar-brand ps-3" href="/">BC Gov News</a>
+                
+                <!-- skip links for accessibility-->
+                <div class="access">
+                    <ul>
+                        <li aria-label="Skip to main content">
+                            <a class="btn skip-link" href="#main-content-release">Skip to main content</a>
+                        </li>
+                        <li aria-label="Skip to footer">
+                            <a class="btn skip-link" href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+                        </li>
+                    </ul>
                 </div>
-            }
-        }
+                <!-- end of skip links for accessibility-->
 
-        <!-- COVID banner -->
-        <!--
-    <div id="covid-banner" class="covid-banner" role="alert" aria-live="assertive">
-        <div class="content" style="padding-left: 10px; padding-right:0 !important; display:flex; justify-content:space-between;">
-            <div style="align-items:flex-start; margin-right:15px;"><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i></div>
-            <div>Flu is causing serious illness in kids. &nbsp;<a href="https://www2.gov.bc.ca/gov/content?id=9D09AB5598064645B70F2197EAD18A75#kids">Protect your family by booking a flu vaccine as soon as possible.</a>&nbsp; </div>
-
-            <div style="align-items:flex-end;"><button class="btn-link pull-right" id="btnCloseCovidBanner" aria-hidden="true"><strong>×</strong></button></div>
-        </div>
-    </div>
-    -->
-        <!-- end of COVID banner-->
-        <!-- red banner -->
-        <!--
-        <div id="covid-banner" class="alert-banner" role="alert" aria-live="assertive">
-            <div class="content" style="padding-left: 10px; padding-right:0 !important; display:flex; justify-content:space-between;">
-                <div style="align-items:flex-start; margin-right:15px;"><i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i></div>
-                <div>
-                    B.C. has declared a provincial state of emergency. &nbsp;<a href="https://www2.gov.bc.ca/gov/content/safety/wildfire-status?utm_campaign=20230907_EMCR__WILDFIRE_4_ALERT_WEB_BCGOVNEWS_EN_BC__NTFCTN">Our wildfire response</a> &nbsp;|&nbsp; <a href="https://www.emergencyinfobc.gov.bc.ca/?utm_campaign=20230907_EMCR__WILDFIRE_5_ALERT_WEB_BCGOVNEWS_EN_BC__NTFCTN">Evacuation information</a>
-                    |&nbsp; <a href="https://www2.gov.bc.ca/gov/content/safety/wildfire-status/recovery/find-wildfire-recovery-resources?utm_campaign=20230907_EMCR__WILDFIRE_6_ALERT_WEB_BCGOVNEWS_EN_BC__NTFCTN">Find wildfire support</a>
+                <button id="nav-menu-sm" class="navbar-toggler collapse-menu-icon menu-icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <div class="d-xs-block d-sm-block d-md-none">
+                    <button id="search-md-button" class="input-group-text btn-primary-outline search-md menu-icon" data-bs-toggle="collapse" data-bs-target="#smd-search-container">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
                 </div>
+                
+                @if (Model.WebcastingLive)
+                {
+                    <a href="/live" class="btn btn-primary-blue live_button live_button_show d-sm-block d-md-none"><img src="~/Content/Images/live-cast-button.svg" /></a>
+                }
+                else
+                {
+                    <a href="/live" class="btn btn-primary-blue live_button live_button_hide d-none d-lg-block">Live Webcast</a>
+                }
+                
+                <div class="container-fluid" id="sm-nav-container">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-parent="#main-nav">
+                        <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0 gap-2" id="sm-nav-ul">
+                            <li class="nav-item dropdown" id="ministry-dropdown">
+                                <a class="nav-link d-none d-md-block" href="#" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
+                                    News&nbsp;&nbsp;
+                                    <span id="icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                </a>
+                                <a class="nav-link d-md-none" href="#" id="sm-news-dropdown" data-bs-toggle="collapse" data-bs-target="#sm-menu" aria-expanded="false">
+                                    News&nbsp;&nbsp;
+                                    <span id="sm-icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                </a>
+                            </li>
+                            <!-- ministry drop down menu for screen size xs and sm screen -->
+                            <div class="container-fluid collapse d-md-none" id="sm-menu" aria-labelledby="ministry-dropdown-menu" data-bs-parent="#navbarSupportedContent">
+                                <div class="menu container-xl">
+                                    <div class="list-unstyled list-title">By Ministry</div>
+                                    <ul>
+                                        @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count - 1) / 2))
+                                        {
+                                            var ministry = ministryModel.Index as Ministry;
+                                            if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
 
-                <div style="align-items:flex-end;"><button class="btn-link pull-right" id="btnCloseCovidBanner" aria-hidden="true"><strong>×</strong></button></div>
-            </div>
-        </div>
-            -->
-        <!-- end of red banner -->
-        <div class="container-fluid">
-            <div class="row" id="header-top">
-                <div class="content" style="padding-right:20px !important;">
-                    <div id="logo" role="banner">
-                        <a id="headerBCGov" href="http://gov.bc.ca">
-                            <img id="BCGov-logo" src="~/Content/Images/Gov/gov_bc_logo.svg" alt="Government of B.C." title="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
-                            <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
-                        </a>
-                    </div>
-                    <div class="access">
-                        <ul>
-                            <li aria-label="Skip to main content">
-                                <a href="#main-content-release">Skip to main content</a>
+                                            <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
+                                        }
+
+                                        @foreach (var ministryModel in Model.Ministries.Skip((Model.Ministries.Count() - 1) / 2))
+                                        {
+                                            var ministry = ministryModel.Index as Ministry;
+                                            if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
+
+                                            <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- end of ministry drop down menu for screen size md and larger -->
+
+                            <!-- hide news archive -->
+                            <!--
+                                <li class="nav-item">
+                                <a class="nav-link" href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri" target="_blank">News Archive</a>
                             </li>
-                            <li aria-label="Skip to main navigation">
-                                <a href="#header-links" onclick="window.scrollTo(0,0);">Skip to main navigation</a>
-                            </li>
-                            <li aria-label="Skip to site search">
-                                <a href="#site-search-label" onclick="window.scrollTo(0,0);">Skip to site search</a>
-                            </li>
-                            @if (controller != "Subscribe")
-                            {
-                                <li aria-label="Skip to side bar">
-                                    <a href="#sidebar" onclick="window.scrollTo(0,0);">Skip to side bar</a>
-                                </li>
-                            }
-                            <li aria-label="Skip to footer">
-                                <a href="#footer" onclick="window.scrollTo(0,0);">Skip to footer</a>
+                            -->
+                            <!-- end of hide news archive-->
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Model.SubscribePath()">Subscribe</a>
                             </li>
                         </ul>
                     </div>
-
-                    <nav class="navbar-dafault">
-                        <div type="button" class="btn btn-link mini-menu-container-trigger navbar-toggle" data-toggle="collapse" data-target="#mini-menu-container">
-                            <i id="hamburger-button" class="fa fa-bars fa-customized" aria-hidden="true"></i>
-                            <i id="close-hamburger-button" class="fa fa-times fa-customized hidden" aria-hidden="true"></i>
-                        </div>
-                    </nav>
-                    <div class="navbar-default" role="search">
-                        <div type="button" class="btn btn-link mini-search-container-trigger navbar-toggle" data-toggle="collapse" data-target="#mini-search-container">
-                            <i id="search-button" class="fa fa-search fa-customized" aria-hidden="true"></i>
-                            <i id="close-search-button" class="fa fa-times fa-customized hidden" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row" id="header-bottom">
-                <div class="content">
-                    <div style="display:inline-block" role="banner">
-                        <h1><a id="headerNewsHome" href="/">BC Gov News</a></h1>
-                    </div>
+                    
                     @if (!(Model is SearchViewModel))
                     {
-                        <div class="search" role="search">
-                            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
-                            {
-                                <label class="sr-only" id="site-search-label" for="site-search-input">Search</label>
-                                <input name="q" type="search" id="site-search-input" placeholder="Search news.gov.bc.ca" />
-                                <div class="search-trigger"><i class="fa fa-search fa-lg" aria-hidden="true"></i> </div>
-                            }
+                        @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "d-flex search d-none d-lg-block" }))
+                        {
+                            <div class="input-group" >
+                                <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
+                                <span class="input-group-text btn-primary-outline search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            </div>
+                        }
+                        <div class="d-none d-md-block d-lg-none search-md-block">
+                            <button id="search-md-button" class="input-group-text btn-primary-outline search-md menu-icon" data-bs-toggle="collapse" data-bs-target="#smd-search-container">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
                         </div>
                     }
 
+                    @if (Model.WebcastingLive)
+                    {
+                        <a href="/live" class="btn btn-primary-blue live_button live_button_show d-none d-lg-block">Live Webcast</a>
+                        <a href="/live" class="btn btn-primary-blue live_button live_button_show d-none d-md-block d-lg-none"><img src="~/Content/Images/live-cast-button.svg" /></a>
+                    }
+                    else
+                    {
+                        <a href="/live" class="btn btn-primary-blue live_button live_button_hide d-none d-lg-block">Live Webcast</a>
+                    }
+                    
                 </div>
-            </div>
-            <div class="row" role="navigation" aria-label="Main menu" id="header-links">
-                <div id="nav-container">
-                    <div class="shadow-box">
-                        <div class="content">
-                            <div class="nav">
-                                <ul class="inline" role="menubar">
-                                    <li role="menuitem"><a href="/">Home</a></li>
-                                    <li role="menuitem" aria-haspopup="true"><a href="/ministries" data-target="ministries-menu" class="has-menu">Ministries</a></li>
-                                    <li role="menuitem"><a href="/sectors">Sectors</a></li>
-                                    <li role="menuitem"><a href="/connect">Connect</a></li>
-                                    <li role="menuitem"><a href="@Model.SubscribePath()">Subscribe</a></li>
-                                    @*TODO: Remove the following reference to Properties.Settings from the view.*@
-                                    <li role="menuitem"><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a></li>
-                                    @if (Model.WebcastingLive)
-                                    {
-                                        <li role="menuitem" style="float:right;"><a href="/live" aria-label="live cast" class="live_button live_button_show">Live Webcast</a></li>
-                                    }
-                                    else
-                                    {
-                                        <li role="menuitem" style="float:right;" aria-hidden="true"><a href="/live" aria-label="no live cast" class="live_button live_button_hide">Live Webcast</a></li>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="menu-container" style="margin-left:-30px;">
-                    <div class="content">
-                        <div id="ministries-menu" class="menu">
-                            <div class="menu-items">
-                                <ul aria-expanded="true" role="menu">
-                                    @foreach (var ministryModel in Model.Ministries)
-                                    {
-                                        var ministry = ministryModel.Index as Ministry;
-                                        if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
-
-                                        <li role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
-                                    }
-                                </ul>
-                            </div>
-                            <div class="menu-content">
-                                @foreach (var ministry in Model.Ministries.Where(m => ((Ministry)m.Index).ParentMinistryKey == null))
-                                {
-                                    <partial name="MenuContent" model="ministry" />
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            </nav>
         </div>
-    </div>
-    <div class="collapse navbar-collapse" id="mini-search-container" role="search">
+
+        <!-- search input for md and smaller screen-->
         @if (!(Model is SearchViewModel))
         {
-        <div class="search mini-menu-search" style="display:block;">
-            @using (Html.BeginForm("Search", "Default", FormMethod.Get))
-            {
-                <label class="sr-only" id="site-mini-search-label" for="mini-menu-search-box">Search</label>
-                <input name="q" id="mini-menu-search-box" class="searchbox" type="text" placeholder="Search news.gov.bc.ca">
-                <div class="search-trigger"> </div>
-            }
-        </div>
-        }
-    </div>
-    <div class="collapse navbar-collapse" id="mini-menu-container" style="overflow: hidden;">
-        <ul>
-            <li class="first-link" role="menuitem"><a href="/">Home</a><div class="no-trigger"></div></li>
-            <li class="dropdown" id="mini-ministry-dropdown" role="menuitem">
-                <a style="width:100%;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Ministries
-                    <div id="ministry-dropdown" class="pull-right">
-                        <i id="ministry-dropdown-down" class="fa fa-chevron-down"></i>
-                        <i id="ministry-dropdown-up" class="fa fa-chevron-up hidden"></i>
+            <div class="container-fluid collapse d-lg-none" id="smd-search-container" data-bs-parent="#main-nav">
+                @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "search" }))
+                {
+                    <div class="input-group">
+                        <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
+                        <button class="input-group-text search-trigger"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
-                </a>
+                }
+            </div>
+        } 
+        <!-- end of search input for md and smaller screen-->
 
-                <ul class="dropdown-menu" role="menu" id="mini-ministry-dropdown-menu">
-                    @foreach (var ministryModel in Model.Ministries)
+        <!-- ministry drop down menu for screen size md and larger -->
+        <div class="container-fluid collapse" id="menu" aria-labelledby="ministry-dropdown-menu" data-bs-parent="#main-nav">
+            <div class="menu container-xl">
+                <div class="list-unstyled list-title">By Ministry</div>
+                <ul>
+                    @foreach (var ministryModel in Model.Ministries.Take((Model.Ministries.Count - 1) / 2))
                     {
                         var ministry = ministryModel.Index as Ministry;
                         if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
-                        <li role="menuitem">
-                            <a href="@ministry.GetUri()">@ministry.Name</a>
-                            <div class="no-trigger"></div>
-                        </li>
+
+                        <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
+                    }
+                    
+                    @foreach (var ministryModel in Model.Ministries.Skip((Model.Ministries.Count() - 1) / 2))
+                    {
+                        var ministry = ministryModel.Index as Ministry;
+                        if (ministry == null || ministry.ParentMinistryKey != null) { continue; };
+
+                        <li class="list-unstyled" role="menuitem"><a href="@ministry.GetUri()">@ministry.Name</a></li>
                     }
                 </ul>
-            </li>
-            <li role="menuitem"><a href="/sectors">Sectors</a><div class="no-trigger"></div></li>
-            <li role="menuitem"><a href="/connect">Connect</a><div class="no-trigger"></div></li>
-            <li role="menuitem"><a href="@Model.SubscribePath()">Subscribe</a></li>
-            @*TODO: Remove the following reference to Properties.Settings from the view.*@
-            <li role="menuitem"><a href="@Gov.News.Website.Properties.Settings.Default.ArchiveHostUri">News Archive</a><div class="no-trigger"></div></li>
-
-            @if (Model.WebcastingLive)
-            {
-                <li role="menuitem"><a href="/live" class="live_button live_button_show" style="width:auto; margin-left:5px;">Live Webcast</a></li>
-            }
-            else
-            {
-                <li role="menuitem"><a href="/live" class="live_button live_button_hide">Live Webcast</a></li>
-            }
-
-        </ul>
-
-    </div>
-    <!--
-
-    -->
+            </div>
+        </div>
+        <!-- end of ministry drop down menu for screen size md and larger -->
+    </header>
+   
     @RenderSection("Carousel", false)
     @RenderSection("StoryNavigator", false)
 
-    <div id="main-content" class="template content" tabindex="0">
-
-        <main>
+    <div id="main-content" class="template container-xl">
+        <main style="display: flex;">
             @RenderBody()
             <div class="clear"></div>
         </main>
-
     </div>
 
     @RenderSection("AssortedMedia", false)
-
-    <div id="landAcknowledgement" class="jumbotron jumbotron-fluid" style="background-color:#313132; color: white; margin-bottom:0;">
-        <div class="container" style="padding-left: 60px; padding-right:50px;">
-            <h3><strong>Acknowledgment</strong></h3>
-            <p style="font-size:1.3em; margin-top:30px; font-weight:500; ">The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful
-            to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First 
-            Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments.</p>
+    
+    <div id="landAcknowledgement" class="container-fluid">
+        <div class="container-xl">
+            <p style="font-size:14px; font-weight:500; ">The B.C. Public Service acknowledges the territories of First Nations 
+            around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of 
+            all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, 
+            laws, and governments.</p>
         </div>
     </div>
-    <div id="footer" role="navigation">
-        <div class="content">
-            <div class="connect">
-                <h4>Connect with Us:</h4>
-                <ul class="inline" role="menu">
-
-                    <li role="menuitem"><a id="footerBCGov" href="http://www.gov.bc.ca/">BC Gov</a></li>
-                    <li role="menuitem"><a id="footerFaceBook" href="/connect#facebook">Facebook</a></li>
-                    <li role="menuitem"><a id="footerTwitter" href="/connect#x">X</a></li>
-                    <li role="menuitem"><a id="footerFlickr" href="/connect#flickr">Photos</a></li>
-                    <li role="menuitem"><a id="footerYoutube" href="/connect#youtube">Videos</a></li>
-                    <li role="menuitem"><a id="footerNewsletters" href="/newsletters">Newsletters</a></li>
-                    <li role="menuitem"><a id="footerRSSFeeds" href="/connect#rss">RSS Feeds</a></li>
+    <div id="footer" class="container-fluid" role="navigation">
+        <div class="top container-xl">
+            <div class="footer-bc">
+                <img id="BCGov-logo-footer" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                <p>We can help in over 220 languages and through other accessible options. Calls, email or text us, or find a service centre.</p>
+            </div>
+            <div class="footer-connect">
+                <h4>Connect with Us</h4>
+                <ul class="" role="menu">
+                    <li role="menuitem"><a id="footerNewsletters" href="/subscribe">Subscribe</a></li>
+                    <li role="menuitem"><a id="footerRSSFeeds" href="/connect">Social and RSS</a></li>
                 </ul>
             </div>
-            <div class="clear"></div>
+            <div class="footer-more-info">
+                <h4>More Info</h4>
+                <ul class="pull-left" role="menu">
+                    <li role="menuitem"><a id="footerHome" href="https://gov.bc.ca">BC Gov</a></li>
+                    <li role="menuitem"><a id="footerDisclaimer" href="http://www2.gov.bc.ca/gov/admin/disclaimer.page">Disclaimer</a></li>
+                    <li role="menuitem"><a id="footerPrivacy" href="/privacy">Privacy</a></li>
+                    <li role="menuitem"><a id="footerAccessibility" href="http://www2.gov.bc.ca/gov/admin/accessibility.page">Accessibility</a></li>
+                    <li role="menuitem"><a id="footerCopyright" href="http://www2.gov.bc.ca/gov/admin/copyright.page">Copyright</a></li>
+                    <li role="menuitem"><a id="footerContact" href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            
             <hr />
-
-            <ul class="inline pull-left" role="menu">
-                <li role="menuitem"><a id="footerHome" href="https://news.gov.bc.ca">Home</a></li>
-                <li role="menuitem"><a id="footerDisclaimer" href="http://www2.gov.bc.ca/gov/admin/disclaimer.page">Disclaimer</a></li>
-                <li role="menuitem"><a id="footerPrivacy" href="/privacy">Privacy</a></li>
-                <li role="menuitem"><a id="footerAccessibility" href="http://www2.gov.bc.ca/gov/admin/accessibility.page">Accessibility</a></li>
-                <li role="menuitem"><a id="footerCopyright" href="http://www2.gov.bc.ca/gov/admin/copyright.page">Copyright</a></li>
-                <li role="menuitem"><a id="footerContact" href="/contact">Contact Us</a></li>
-            </ul>
         </div>
+        <div class="container-xl bottom">
+            <div class="copyright">
+                © <!-- -->2024<!-- --> Government of British Columbia
+            </div>
+        </div>
+        
     </div>
-    <div id="end-cap">
-        <ul>
-            <li class="connect-label">Connect</li>
-            <li><a aria-label="connect on facebook" href="/connect#facebook"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on x" href="/connect#x"><i class="fa-brands fa-square-x-twitter fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on flickr" href="/connect#flickr"><i class="fa-brands fa-flickr fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on youtube" href="/connect#youtube"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i></a></li>
-            <li><a aria-label="connect on weibo" href="/connect#weibo"><i class="fa-brands fa-weibo fa-lg" aria-hidden="true"></i></a></li>
-        </ul>
-        <a href="/connect" class="read-more view-all-media">View all Social Media</a>
-    </div>
+    <!--
+        <div id="end-cap">
+            <ul>
+                <li class="connect-label">Connect</li>
+                <li><a aria-label="connect on facebook" href="/connect#facebook"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i></a></li>
+                <li><a aria-label="connect on x" href="/connect#x"><i class="fa-brands fa-square-x-twitter fa-lg" aria-hidden="true"></i></a></li>
+                <li><a aria-label="connect on flickr" href="/connect#flickr"><i class="fa-brands fa-flickr fa-lg" aria-hidden="true"></i></a></li>
+                <li><a aria-label="connect on youtube" href="/connect#youtube"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i></a></li>
+                <li><a aria-label="connect on weibo" href="/connect#weibo"><i class="fa-brands fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+            </ul>
+            <a href="/connect" class="read-more view-all-media">View all Social Media</a>
+        </div>
+    -->
+    
     <input id="hostingEnv" type="hidden" value=@hostingEnv.EnvironmentName />
 
     @if (Gov.News.Website.Properties.Settings.Default.SignalREnabled != null && Gov.News.Website.Properties.Settings.Default.SignalREnabled == "true")
@@ -437,146 +392,92 @@
             });
         });
 
-        $(".search-trigger").on('click', function () {
-            $(this).parent().submit();
+        $(".search-trigger").on('click', function (e) {
+            e.preventDefault();
+            $('form:first').submit();
+            //$(this).parent().submit();
         });
 
-        var collapsibleRegions = $(".collapsible-regions");
+            var collapsibleRegions = $(".collapsible-regions");
 
-        if (collapsibleRegions.length != 0) {
-            // Clone on the client instead of having the server to duplicate and send them
-            $('.home-features').append(collapsibleRegions.children().clone());
-            collapsibleRegions.find(".resource-links > h3").on('click', function () {
-                var headerToggler = $(this);
-                headerToggler.parent().find('ul,div').toggle();
-                headerToggler.toggleClass('open');
-            });
-        }
-
-        function shortenSummaryText(divToShorten, heightToMatch) {
-                if ($(divToShorten).length > 0) {
-                var heightOfDiv = divToShorten.height();
-                while (heightOfDiv > heightToMatch) {
-                    var textToShorten = $(divToShorten)[0].innerHTML;
-                    var newLengthOfStringToShorten = textToShorten.length - 10;
-                    textToShorten = textToShorten.substr(0, newLengthOfStringToShorten);
-                    textToShorten = textToShorten.substr(0, Math.min(textToShorten.length, textToShorten.lastIndexOf(" "))) + '...';
-                    $(divToShorten).html(textToShorten);
-                    heightOfDiv = $(divToShorten).height();
-                }
+            if (collapsibleRegions.length != 0) {
+                // Clone on the client instead of having the server to duplicate and send them
+                $('.home-features').append(collapsibleRegions.children().clone());
+                collapsibleRegions.find(".resource-links > h3").on('click', function () {
+                    var headerToggler = $(this);
+                    headerToggler.parent().find('ul,div').toggle();
+                    headerToggler.toggleClass('open');
+                });
             }
-        }
 
-        var first = true;
-        function closeMenu() {
-            var menuContainer = $("#menu-container");
-            menuContainer.slideUp();
-            menuContainer.hide();
-            $(".menu.active").removeClass('active');
-            $(".menu-content").hide();
-            $(".menu-items li").removeClass('active');
-            var parent = $(".has-menu").parent();
-            parent.removeClass('active');
-
-        }
-
-        $('html').on('click', function () {
-            closeMenu();
+        $("#smd-search-container").on('shown.bs.collapse', function() {
+            $("#search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
         });
+
+        $("#smd-search-container").on('hidden.bs.collapse', function() {
+            $("#search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
+        });
+
+        $("#navbarSupportedContent").on({
+            'shown.bs.collapse': function() {
+                $("#nav-menu-sm").find('i.fa').removeClass('fa-bars').addClass('fa-times');
+                $('body').css('overflow-y', 'hidden');
+                $('#sm-nav-container').css('z-index', '100');
+            },
+            'hidden.bs.collapse': function() {
+                $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');
+                $('body').css('overflow-y', 'auto');
+                $('#sm-menu').collapse('hide');
+                $('#sm-nav-container').css('z-index', '10');
+            },
+        });
+        
+        $('#menu').on({
+            "shown.bs.collapse": function (e) {
+                $("#icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
+                //$("#menu").attr("aria-hidden", "false");
+                $('body').css('overflow-y', 'hidden');
+                $("#ministry-dropdown").addClass("active");
+            },
+            "hide.bs.collapse": function (e) {
+                $("#icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
+                //$("#menu").attr("aria-hidden","true");
+                $('body').css('overflow-y', 'scroll');
+                $("#ministry-dropdown").removeClass("active");
+            }
+        });
+
+        $('#sm-menu').on({
+            "show.bs.collapse": function (e) {
+                    e.stopPropagation();
+                $('#sm-nav-ul').css('min-height', '1600px');
+                
+            },
+            "shown.bs.collapse": function (e) {
+                    e.stopPropagation();
+                $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
+                //$("#sm-menu").attr("aria-hidden", "false");
+                $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#f2f2f2");
+                $('#sm-nav-container').css('overflow-y', 'scroll');
+            },
+            "hide.bs.collapse": function (e) {
+                    e.stopPropagation();
+                $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
+                //$("#sm-menu").attr("aria-hidden","true");
+                $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#FFF");    
+            },
+            "hidden.bs.collapse": function (e) {
+                    e.stopPropagation();
+                $('#sm-nav-container').css('overflow-y', 'hidden');
+                $('body').css('overflow-y', 'hidden');
+            }
+        });
+
 
         $('.menu').on('click', function (event) {
             event.stopPropagation();
         });
-
-        var menuSwitchTimeout;
-        var menuSwitchDelay = 100;
-
-        window.menuCloseDelay = 500;
-
-        var fadeSpeed = 200;
-
-        $(".menu-content-item").hide();
-            $(".menu-items li").on('mouseenter', function () {
-            clearTimeout(menuSwitchTimeout);
-            var index = $(this).index() + 1;
-            var item = $(this);
-                menuSwitchTimeout = setTimeout(function () {
-                $("#menu-container").removeClass('just-menu');
-                $(".menu-items li").removeClass('active');
-                item.addClass('active');
-                if (!first) {
-                    $(".menu-content-item").fadeOut(fadeSpeed);
-                }
-                first = false;
-                $(".menu-content").show();
-                $(".menu-content-item:nth-child(" + index + ")").fadeIn(fadeSpeed);
-
-                item.find('.item-content').each(function () {
-                    if ($(this).is(':visible')) {
-                        if ($(this).find('.item-asset img').length > 0) {
-                            var summaryDiv = $(this).find('.item-summary');
-                            var heightOfSummaryText = summaryDiv.height();
-                            var heightOfReadMoreLink = $(this).find('.read-more').outerHeight(true);
-                            var heightToMatch = $(this).find('.item-asset img').height() - heightOfReadMoreLink;
-                            if (heightToMatch < heightOfSummaryText) {
-                                shortenSummaryText(summaryDiv, heightToMatch);
-                            }
-                        }
-                    }
-                });
-                }, menuSwitchDelay);
-                var menu = $('#ministries-menu .menu-items');
-                var menuItemContent = $('#ministries-menu .menu-content');
-                if (menu.outerHeight() > menuItemContent.outerHeight()) {
-                    menuItemContent.outerHeight(menu.outerHeight());
-                }
-                if (menu.outerHeight() < menuItemContent.outerHeight()) {
-                    menu.outerHeight(menuItemContent.outerHeight());
-                }
-        });
-
-        $(".close-menu").on('click', function (event) {
-            event.preventDefault();
-            closeMenu();
-        });
-
-        $(".has-menu").on('click', function (event) {
-            event.stopPropagation();
-            event.preventDefault();
-            first = false;
-            //$(".menu.active").removeClass('active');
-            $(".menu-content").hide();
-            clearTimeout(window.menuCloseTimeout);
-            var parent = $(".has-menu").parent();
-            parent.removeClass('active');
-
-            var targetId = $(this).data('target');
-
-            var openMenu = $(".menu.active");
-
-            if (targetId === openMenu.prop('id')) {
-                closeMenu();
-                return;
-            }
-
-            $(this).parent().addClass('active');
-
-            $(".menu.active").removeClass('active');
-            $(".menu").hide();
-
-            var menu = $("#" + targetId);
-            menu.show();
-            menu.addClass('active');
-
-            var menuContainer = $("#menu-container");
-            if (menuContainer.is(":visible")) {
-                return;
-            }
-
-            menuContainer.addClass('just-menu');
-            menuContainer.show();
-        });
-
+        
         $(".print-document").on('click', function (event) {
             event.preventDefault();
             window.print();
@@ -695,70 +596,24 @@
             }
         };
 
-
-    $('body').on('click touchend', '.footer a, .search-pagination a, #mini-menu a', function (e) {
-        var el = $(this);
-        var link = el.attr('href');
-        window.location = link;
-    });
-        $('#mini-menu-container').on('shown.bs.collapse', function () {
-            $('#hamburger-button').toggleClass('hidden');
-            $('#close-hamburger-button').toggleClass('hidden');
-        })
-        $('#mini-menu-container').on('hidden.bs.collapse', function () {
-            $('#hamburger-button').toggleClass('hidden');
-            $('#close-hamburger-button').toggleClass('hidden');
-        })
-        $('#mini-search-container').on('shown.bs.collapse', function () {
-            $('#search-button').toggleClass('hidden');
-            $('#close-search-button').toggleClass('hidden');
-            $('.mini-search-container-trigger').addClass('triggered');
-            $('.mini-menu-search').slideDown(200, function () { });
-
-        })
-        $('#mini-search-container').on('hidden.bs.collapse', function () {
-            $('#search-button').toggleClass('hidden');
-            $('#close-search-button').toggleClass('hidden');
-            $('.mini-search-container-trigger').removeClass('triggered');
-            $('.mini-menu-search').hide();
-        })
-
-        $('#mini-ministry-dropdown').on({
-            "shown.bs.dropdown": function () {
-                $('#ministry-dropdown-down').toggleClass('hidden');
-                $('#ministry-dropdown-up').toggleClass('hidden');
-            },
-            "hide.bs.dropdown": function (e) {
-                $('#ministry-dropdown-down').toggleClass('hidden');
-                $('#ministry-dropdown-up').toggleClass('hidden');
-            }
-        });
-
         $(document).ready(function () {
             /* This is for closing the granville banner */
-            if ($.cookie(document.location.host + '-alert-granville') === 'closed') {
-                $("#granville-bridge-banner").hide();
+            if ($.cookie(document.location.host + '-alert-banner') === 'closed') {
+                $("#site-banner").hide();
             }
 
             $("#btnCloseBanner").click(function (e) {
                 e.preventDefault();
                 /* The cookie will be expired in 100 days
                  Set the path as root, so the cookie will be valid across the whole site */
-                $.cookie(document.location.host + '-alert-granville', 'closed', { path: '/', expires: 100 });
-                $("#granville-bridge-banner").hide();
+                $("#site-banner").hide();
+                $.cookie(document.location.host + '-alert-banner', 'closed', { path: '/', expires: 100 });
             });
 
-            $("#btnCloseCovidBanner").click(function (e) {
+            $("#btnCloseBanner").click(function (e) {
                 e.preventDefault();
-                var mini_menu_logo = $('#mini-menu-trigger');
-                var mini_search_logo = $('#mini-search-trigger');
-                $("#covid-banner").hide();
-                if (mini_search_logo.hasClass("covid-mini-search-menu")) {
-                    mini_search_logo.removeClass("covid-mini-search-menu")
-                }
-                if (mini_menu_logo.hasClass("covid-mini-menu-menu")) {
-                    mini_menu_logo.removeClass("covid-mini-menu-menu")
-                }
+                $("#site-banner").hide();
+                
             });
         });
     </script>
