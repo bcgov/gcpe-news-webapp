@@ -174,14 +174,14 @@
                 <div class="container-fluid" id="sm-nav-container">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-parent="#main-nav">
                         <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0 gap-2" id="sm-nav-ul">
-                            <li class="nav-item dropdown d-none d-md-block" id="ministry-dropdown">
+                            <li class="nav-item dropdown d-none d-md-block ministry-dropdown" id="ministry-dropdown">
                                 <a class="nav-link " href="#" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
                                     <span id="icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
                                 
                             </li>
-                            <li class="nav-item dropdown d-md-none" id="ministry-dropdown">
+                            <li class="nav-item dropdown d-md-none ministry-dropdown" id="ministry-dropdown">
                                 
                                 <a class="nav-link " href="#" id="sm-news-dropdown" data-bs-toggle="collapse" data-bs-target="#sm-menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
@@ -415,13 +415,17 @@
             }
 
         $("#smd-search-container").on('shown.bs.collapse', function() {
-            $("#search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
-            $("#search-md-button").addClass('active');
+            $(".d-md-block #search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
+            $(".d-md-none #search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
+            $(".d-md-block #search-md-button").addClass('active');
+            $(".d-md-none #search-md-button").addClass('active');
         });
 
         $("#smd-search-container").on('hidden.bs.collapse', function() {
-            $("#search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
-            $("#search-md-button").removeClass('active');
+            $(".d-md-block #search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
+            $(".d-md-none #search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
+            $(".d-md-none #search-md-button").removeClass('active');
+            $(".d-md-block #search-md-button").removeClass('active');
         });
 
         $("#navbarSupportedContent").on({
@@ -467,7 +471,7 @@
                 //$("#sm-menu").attr("aria-hidden", "false");
                 $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#f2f2f2");
                 $('#sm-nav-container').css('overflow-y', 'scroll');
-                $("#sm-icon-dropdown").addClass('ative');
+                $(".ministry-dropdown").addClass('active');
             },
             "hide.bs.collapse": function (e) {
                     e.stopPropagation();
@@ -479,7 +483,7 @@
                     e.stopPropagation();
                 $('#sm-nav-container').css('overflow-y', 'hidden');
                 $('body').css('overflow-y', 'hidden');
-                $("#sm-icon-dropdown").removeClass('ative');
+                $(".ministry-dropdown").removeClass('active');
             }
         });
 
