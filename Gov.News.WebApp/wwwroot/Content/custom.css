@@ -117,18 +117,21 @@ body {
 #navbarSupportedContent .navbar-nav li:focus,
 #navbarSupportedContent .navbar-nav li:hover,
 #navbarSupportedContent .navbar-nav li:active,
-#navbarSupportedContent .navbar-nav li .active,
-#ministry-dropdown:active,#ministry-dropdown .active
-
+#ministry-dropdown:active, #ministry-dropdown.active
 {
     background-color: #D7D7D7;
     border-radius: 4px;
 }
 
+#nav-menu-sm.active,
+#search-md-button.active,
+#sm-news-dropdown.active {
+    background-color: #D7D7D7;
+}
+
 .nav-link:hover,
 .nav-link:visited,
-.nav-link:focus
-{
+.nav-link:focus {
     background-color: transparent !important;
 }
 
