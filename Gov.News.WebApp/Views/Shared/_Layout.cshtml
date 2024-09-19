@@ -69,13 +69,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                        <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                        <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                            <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
@@ -97,13 +97,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                            <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                                                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -416,10 +416,12 @@
 
         $("#smd-search-container").on('shown.bs.collapse', function() {
             $("#search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
+            $("#search-md-button").addClass('active');
         });
 
         $("#smd-search-container").on('hidden.bs.collapse', function() {
             $("#search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
+            $("#search-md-button").removeClass('active');
         });
 
         $("#navbarSupportedContent").on({
@@ -427,12 +429,14 @@
                 $("#nav-menu-sm").find('i.fa').removeClass('fa-bars').addClass('fa-times');
                 $('body').css('overflow-y', 'hidden');
                 $('#sm-nav-container').css('z-index', '100');
+                $("#nav-menu-sm").addClass("active");
             },
             'hidden.bs.collapse': function() {
                 $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');
                 $('body').css('overflow-y', 'auto');
                 $('#sm-menu').collapse('hide');
                 $('#sm-nav-container').css('z-index', '10');
+                $("#nav-menu-sm").removeClass("active");
             },
         });
         
@@ -458,11 +462,12 @@
                 
             },
             "shown.bs.collapse": function (e) {
-                    e.stopPropagation();
+                e.stopPropagation();
                 $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
                 //$("#sm-menu").attr("aria-hidden", "false");
                 $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#f2f2f2");
                 $('#sm-nav-container').css('overflow-y', 'scroll');
+                $("#sm-icon-dropdown").addClass('ative');
             },
             "hide.bs.collapse": function (e) {
                     e.stopPropagation();
@@ -474,6 +479,7 @@
                     e.stopPropagation();
                 $('#sm-nav-container').css('overflow-y', 'hidden');
                 $('body').css('overflow-y', 'hidden');
+                $("#sm-icon-dropdown").removeClass('ative');
             }
         });
 
