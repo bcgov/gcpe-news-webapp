@@ -350,6 +350,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.facebook.com/AgriService-BC-103287979487810", Title = "AgriService BC" },
                         new Link() { Url = "https://www.facebook.com/RoadSafetyBC", Title = "Road Safety BC" },
                         new Link() { Url = "https://www.facebook.com/HealthyBritishColumbia", Title = "HealthyBC" },
+                        new Link() { Url = "https://www.facebook.com/EatDrinkBuyBC", Title = "Buy BC" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" }).ToArray();
 
 
@@ -422,6 +423,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://x.com/_BCCOS", Title = "@_BCCOS", Summary = "Conservation Officer Service" },
                         new Link() { Url = "https://x.com/SpillsInfoBC", Title = "@SpillsInfoBC", Summary = "B.C. Spill Response" },
                         new Link() { Url = "https://x.com/BCProsecution", Title = "@BCProsecution", Summary = "BC Prosecution Service" },
+                        new Link() { Url = "https://x.com/EatDrinkBuyBC", Title = "@EatDrinkBuyBC", Summary = "Buy BC helps you choose fresh-tasting food and beverage products that are grown, raised and made right here in BC" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://x.com/BCGovNews", Title = "@BCGovNews", Summary = "Read daily news tweets from the Government of British Columbia" }).ToArray();
 
             model.InstagramLinks = new Link[]
@@ -435,6 +437,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/prepared_bc/", Title = "Prepared BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/roadsafetybc/", Title = "Road Safety BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/_healthy_bc/", Title = "HealthyBC", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/EatDrinkBuyBC/", Title = "Buy BC", Summary = "" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
 
             model.BlogsLinks = new Link[]
