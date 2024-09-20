@@ -452,12 +452,7 @@
                     $('body').css('overflow-y', 'hidden');
                     $("#ministry-dropdown").addClass("active");
             },
-            "shown.bs.collapse": function (e) {
-                
-                //$("#menu").attr("aria-hidden", "false");
-                
-            },
-            "hide.bs.collapse": function (e) {
+            "hiden.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
                 //$("#menu").attr("aria-hidden","true");
                 $('body').css('overflow-y', 'scroll');
