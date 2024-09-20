@@ -205,9 +205,14 @@ body {
     border-top: 1px solid rgb(1, 51, 102);
 }
 
+.footer-bc a{
+    text-decoration: underline;
+    color: #2D2D2D;
+}
+
 #BCGov-logo-footer {
-    width:164px;
-    margin-bottom:10px;
+    width: 164px;
+    margin-bottom: 10px;
 }
 
 #footer h4 {
