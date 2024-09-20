@@ -293,6 +293,16 @@
                 $('form:first').submit();
             });
 
+            $("#search-md-button").on('click', function (e) {
+                // for mobiles
+                var searchPanels = $(".search-panel");
+                if (searchPanels.is(":visible")) {
+                    searchPanels.hide();
+                } else {
+                    searchPanels.show();
+                }
+            });
+
             $(document).on('submit', 'form', function () {
                 // remove default parameters from the url
                 var fromDate = $("[name='fromDate']");
