@@ -439,10 +439,10 @@
             },
             'hidden.bs.collapse': function() {
                 $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');
-                $('body').css('overflow-y', 'auto');
                 $('#sm-menu').collapse('hide');
                 $('#sm-nav-container').css('z-index', '10');
                 $("#nav-menu-sm").removeClass("active");
+                $('body').css('overflow-y', 'scroll');
             },
         });
         
@@ -479,12 +479,12 @@
                     e.stopPropagation();
                 $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
                 //$("#sm-menu").attr("aria-hidden","true");
-                $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#FFF");    
+                $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#FFF");
+                    $('body').css('overflow-y', 'hidden');
             },
             "hidden.bs.collapse": function (e) {
                     e.stopPropagation();
                 $('#sm-nav-container').css('overflow-y', 'hidden');
-                $('body').css('overflow-y', 'hidden');
                 $(".ministry-dropdown").removeClass('active');
             }
         });
