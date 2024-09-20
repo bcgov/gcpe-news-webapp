@@ -133,7 +133,7 @@
     <header class="container-fluid sm-g-0 header nav-border" id="main-nav">
         <div class="container-xl sm-g-0" id="main-nav-contaier">
             <nav class="navbar navbar-expand-md" aria-label="Main menu" id="main-nav" style="padding-right:8px;">
-                <a href="/">
+                <a href="https://gov.bc.ca">
                     <img id="BCGov-logo" class="d-none d-md-block" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                     <img id="sm-BCGov-logo" class="d-md-none" src="~/Content/Images/Gov/BC_Mark.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                     <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
@@ -174,14 +174,14 @@
                 <div class="container-fluid" id="sm-nav-container">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-parent="#main-nav">
                         <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0 gap-2" id="sm-nav-ul">
-                            <li class="nav-item dropdown d-none d-md-block" id="ministry-dropdown">
+                            <li class="nav-item dropdown d-none d-md-block ministry-dropdown" id="ministry-dropdown">
                                 <a class="nav-link " href="#" id="news-dropdown" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
                                     <span id="icon-dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                 </a>
                                 
                             </li>
-                            <li class="nav-item dropdown d-md-none" id="ministry-dropdown">
+                            <li class="nav-item dropdown d-md-none ministry-dropdown" id="ministry-dropdown">
                                 
                                 <a class="nav-link " href="#" id="sm-news-dropdown" data-bs-toggle="collapse" data-bs-target="#sm-menu" aria-expanded="false">
                                     News&nbsp;&nbsp;
@@ -232,7 +232,7 @@
                         @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "d-flex search d-none d-lg-block" }))
                         {
                             <div class="input-group" >
-                                <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
+                                <input name="q" id="mini-site-search-input" type="text" class="form-control" aria-label="search">
                                 <span class="input-group-text btn-primary-outline search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
                             </div>
                         }
@@ -258,9 +258,10 @@
         </div>
 
         <!-- search input for md and smaller screen-->
+        <div class="container-fluid collapse d-lg-none" id="smd-search-container" data-bs-parent="#main-nav">
         @if (!(Model is SearchViewModel))
         {
-            <div class="container-fluid collapse d-lg-none" id="smd-search-container" data-bs-parent="#main-nav">
+            
                 @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "search" }))
                 {
                     <div class="input-group">
@@ -268,8 +269,9 @@
                         <button class="input-group-text search-trigger"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 }
-            </div>
+            
         } 
+        </div>
         <!-- end of search input for md and smaller screen-->
 
         <!-- ministry drop down menu for screen size md and larger -->
@@ -398,8 +400,8 @@
 
         $(".search-trigger").on('click', function (e) {
             e.preventDefault();
-            $('form:first').submit();
-            //$(this).parent().submit();
+            //$('form:first').submit();
+            $(this).parent().parent().submit();
         });
 
             var collapsibleRegions = $(".collapsible-regions");
@@ -415,13 +417,17 @@
             }
 
         $("#smd-search-container").on('shown.bs.collapse', function() {
-            $("#search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
-            $("#search-md-button").addClass('active');
+            $(".d-md-block #search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
+            $(".d-md-none #search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
+            $(".d-md-block #search-md-button").addClass('active');
+            $(".d-md-none #search-md-button").addClass('active');
         });
 
         $("#smd-search-container").on('hidden.bs.collapse', function() {
-            $("#search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
-            $("#search-md-button").removeClass('active');
+            $(".d-md-block #search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
+            $(".d-md-none #search-md-button").find('i.fa').removeClass('fa-times').addClass('fa-search');
+            $(".d-md-none #search-md-button").removeClass('active');
+            $(".d-md-block #search-md-button").removeClass('active');
         });
 
         $("#navbarSupportedContent").on({
@@ -467,7 +473,7 @@
                 //$("#sm-menu").attr("aria-hidden", "false");
                 $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#f2f2f2");
                 $('#sm-nav-container').css('overflow-y', 'scroll');
-                $("#sm-icon-dropdown").addClass('ative');
+                $(".ministry-dropdown").addClass('active');
             },
             "hide.bs.collapse": function (e) {
                     e.stopPropagation();
@@ -479,7 +485,7 @@
                     e.stopPropagation();
                 $('#sm-nav-container').css('overflow-y', 'hidden');
                 $('body').css('overflow-y', 'hidden');
-                $("#sm-icon-dropdown").removeClass('ative');
+                $(".ministry-dropdown").removeClass('active');
             }
         });
 
