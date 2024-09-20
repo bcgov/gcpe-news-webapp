@@ -416,7 +416,7 @@
                 });
             }
 
-        $("#smd-search-container").on('shown.bs.collapse', function() {
+        $("#smd-search-container").on('show.bs.collapse', function() {
             $(".d-md-block #search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
             $(".d-md-none #search-md-button").find('i.fa').removeClass('fa-search').addClass('fa-times');
             $(".d-md-block #search-md-button").addClass('active');
@@ -439,19 +439,18 @@
             },
             'hidden.bs.collapse': function() {
                 $("#nav-menu-sm").find('i.fa').removeClass('fa-times').addClass('fa-bars');
-                $('body').css('overflow-y', 'auto');
                 $('#sm-menu').collapse('hide');
                 $('#sm-nav-container').css('z-index', '10');
                 $("#nav-menu-sm").removeClass("active");
+                $('body').css('overflow-y', 'scroll');
             },
         });
         
         $('#menu').on({
-            "shown.bs.collapse": function (e) {
+            "show.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-down').addClass('fa-angle-up');
-                //$("#menu").attr("aria-hidden", "false");
-                $('body').css('overflow-y', 'hidden');
-                $("#ministry-dropdown").addClass("active");
+                    $('body').css('overflow-y', 'hidden');
+                    $("#ministry-dropdown").addClass("active");
             },
             "hide.bs.collapse": function (e) {
                 $("#icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
@@ -479,13 +478,13 @@
                     e.stopPropagation();
                 $("#sm-icon-dropdown").find('i.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
                 //$("#sm-menu").attr("aria-hidden","true");
-                $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#FFF");    
-            },
-            "hidden.bs.collapse": function (e) {
-                    e.stopPropagation();
-                $('#sm-nav-container').css('overflow-y', 'hidden');
+                $("#navbarSupportedContent").find('#sm-news-dropdown').css("background-color", "#FFF");
                 $('body').css('overflow-y', 'hidden');
                 $(".ministry-dropdown").removeClass('active');
+            },
+            "hidden.bs.collapse": function (e) {
+                e.stopPropagation();
+                $('#sm-nav-container').css('overflow-y', 'hidden');  
             }
         });
 

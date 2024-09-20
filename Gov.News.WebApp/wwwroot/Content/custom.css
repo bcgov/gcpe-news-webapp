@@ -584,6 +584,11 @@ body {
         white-space: normal;
     }
 }
+@media only screen and (max-width: 479px){
+    #footer * {
+        font-size: 14px;
+    }
+}
 
 @media only screen and (max-width: 350px){
     .header .navbar-brand {
