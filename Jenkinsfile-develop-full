@@ -107,4 +107,3 @@ stage('Deploy on Test') {
 	sh 'sleep 3m'
     }
 }
-
