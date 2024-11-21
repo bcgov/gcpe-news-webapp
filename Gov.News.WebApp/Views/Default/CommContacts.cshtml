@@ -4,14 +4,7 @@
 @model BaseViewModel
 
 <div class="comm-contacts">
-    <div style="padding-top: 15px; font-size:16px; background-color: #d4d4d4; padding:16px; margin-top: 16px; border-radius: 8px;" class="text-center">
-        <p><strong>Public inquiries for medical queries related to COVID-19: 8-1-1</strong></p>
-        <p><strong>Public inquiries for non-medical queries related to COVID-19: 1-888-COVID-19</strong></p>
-        <p><strong>Media inquiries related to COVID-19 (not for public queries): 250-952-1887</strong></p>
-    </div>
-
     <h3 class="hidden-xs">Government Communications and Public Engagement</h3>
-
     <div class="clear"></div>
     <div class="header">
         <h4>24 hours Media Relations Contact Line</h4>
@@ -30,50 +23,76 @@
         <h4 class="col-xs-12 col-sm-4 col-md col-lg col-xl">Primary Contact</h4>
         <h4 class="col-xs-12 col-sm-4 col-md col-lg col-xl">Alternate Contact</h4>
     </div>
-
-    @foreach (var categoryModel in Model.Ministries)
-    {
-        var ministry = categoryModel.Index as Ministry;
-        if (ministry.ContactUser != null)
-        {
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-xs-12 col-sm-4">
+            <a style="color: #003366; text-decoration: none;">Media Relations</a>
+            <div>Chinese Media</div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <span class="contact-name">Catherine Chan</span>
+            <div>
+                <span>Cell: 778-686-7925</span>
+            </div>
+            <a href="mailto:Catherine.Chan@gov.bc.ca">Catherine.Chan@gov.bc.ca</a>
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-xs-12 col-sm-4">
+            <a>South Asian Media</a>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <span class="contact-name">Haroon Ghaffar</span>
+            <div>
+                <span>Cell: 604-312-6470</span>
+            </div>
+            <a href="mailto:Haroon.Ghaffar@gov.bc.ca">Haroon.Ghaffar@gov.bc.ca</a>
+        </div>
+    </div>
+            @foreach (var categoryModel in Model.Ministries)
+            {
+                var ministry = categoryModel.Index as Ministry;
+                if (ministry.ContactUser != null)
+                {
             <div class="row" style="padding-bottom:10px;">
                 <div class="col-xs-12 col-sm-4">
                     <a style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px; display:inline-block;" : "")" href="@ministry.GetUri()">@ministry.Name</a>
-                    @if (!string.IsNullOrEmpty(ministry.DisplayAdditionalName))
-                    {
+                            @if (!string.IsNullOrEmpty(ministry.DisplayAdditionalName))
+                            {
                         <div style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px;" : "")"><i>(@ministry.DisplayAdditionalName)</i></div>
-                    }
-                    @if (ministry.Name != "Intergovernmental Relations Secretariat")
-                    {
+                            }
+                            @if (ministry.Name != "Intergovernmental Relations Secretariat")
+                            {
                         <div style="@(ministry.ParentMinistryKey != null ? "margin-left: 25px;" : "")">@ministry.MinisterName</div>
-                    }
+                            }
                 </div>
                 <div class="col-xs-12 col-sm-4">
                     <partial name="CommContact" model="ministry.ContactUser" />
                 </div>
-                @if (ministry.SecondContactUser != null)
-                {
+                        @if (ministry.SecondContactUser != null)
+                        {
                     <div class="col-xs-12 col-sm-4">
                         <partial name="CommContact" model="ministry.SecondContactUser" />
                     </div>
-                }
-                @if (!string.IsNullOrEmpty(ministry.WeekendContactNumber))
-                {
+                        }
+                        @if (!string.IsNullOrEmpty(ministry.WeekendContactNumber))
+                        {
                     <div class="text-center">
-                        <div><span style="padding-left:200px;">
-                            <strong>After hours:</strong> @ministry.WeekendContactNumber</span>
+                        <div>
+                            <span style="padding-left:200px;">
+                                <strong>After hours:</strong> @ministry.WeekendContactNumber
+                            </span>
                         </div>
                     </div>
-                }
+                        }
             </div>
-        }
-        if (ministry.Name == "Education and Child Care")
-        {
+                }
+                if (ministry.Name == "Education and Child Care")
+                {
             <div class="row" style="padding-bottom:10px;">
                 <div class="col-xs-12 col-sm-4">
                     <a style="text-decoration: none; color: #2d2d2d; display:inline-block; margin-left: 25px;">Child Care</a>
                 </div>
-                
+
                 <div class="col-xs-12 col-sm-4">
                     <span class="contact-name">Esme Mills</span>
                     <div>
@@ -81,7 +100,7 @@
                     </div>
                     <a href="mailto:Esme.Mills@gov.bc.ca">Esme.Mills@gov.bc.ca</a><br />
                 </div>
-  
+
                 <div class="col-xs-12 col-sm-4">
                     <span class="contact-name">Clay Suddaby</span>
                     <div>
@@ -90,8 +109,8 @@
                     <a href="mailto:Clay.Suddaby@gov.bc.ca">Clay.Suddaby@gov.bc.ca</a><br />
                 </div>
             </div>
-        }
-    }
+                }
+            }
     <div class="row" style="margin-bottom:20px;padding-bottom:10px;">
         <div class="col-xs-12 col-sm-4">
             <a style="" href="https://news.gov.bc.ca/office-of-the-premier">Office of the Premier</a>
@@ -104,6 +123,6 @@
             </div>
         </div>
     </div>
-        
+
     <div class="clear"></div>
 </div>
