@@ -196,12 +196,12 @@ namespace Gov.News.Website.Controllers
         }
 
         [ResponseCache(CacheProfileName = "Default")]
-        public async Task<ActionResult> Sitemap()
+        public async Task<ActionResult> Sitemap(int? count=null, int skip=0)
         {
             List<Uri> model = new List<Uri>();
 
-            var defaultPostKeys = await Repository.ApiClient.Posts.GetAllKeysAsync("home", "default", "default", null, 0, Repository.APIVersion);
-
+            var defaultPostKeys = await Repository.ApiClient.Posts.GetAllKeysAsync("home", "default", "default", count, skip, Repository.APIVersion);
+            
             foreach (var pair in defaultPostKeys)
             {
                 model.Add(NewsroomExtensions.GetPostUri(pair.Value, pair.Key));
