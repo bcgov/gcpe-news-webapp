@@ -105,6 +105,35 @@
                     }
                 </div>
             </div>
+        @{
+            bool expandableThreads = Model.ThreadsLinks.Count() >= 5;
+        }
+        <div class="expandable-section instagram @(expandableThreads ? "collapsed" : "expanded" )">
+            <a name="threads"></a>
+            <h3>Find us on Threads <i class="fa-brands fa-square-threads pull-right" aria-hidden="true"></i></h3>
+            <div class="expandable-section-content">
+                <div class="expander-body">
+                    @if (Model.ThreadsLinks != null && Model.ThreadsLinks.Any())
+                    {
+                        <ul class="external-links">
+                            @foreach (var link in Model.ThreadsLinks)
+                            {
+                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                            }
+                        </ul>
+                    }
+                    @if (expandableThreads)
+                    {
+                        <div class="article-fade"> </div>
+                    }
+                </div>
+                @if (@expandableThreads)
+                {
+                    <a href="#" class="link-button expand">Expand Threads List</a>
+                    <a href="#" class="link-button collapse">Contract Threads List</a>
+                }
+            </div>
+        </div>
             @{bool expandableWeibo = Model.WeiboLinks.Count() >= 5;}
             <div class="expandable-section weibo @(expandableWeibo ? "collapsed" : "expanded" )">
                 <a name="weibo"></a>
