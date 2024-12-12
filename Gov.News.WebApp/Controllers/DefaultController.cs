@@ -441,6 +441,10 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/bcpublicservice/", Title = "BC Public Service Agency", Summary = "" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
 
+            model.ThreadsLinks = new Link[]
+           {
+           }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.threads.net/@governmentofbc", Title = "Government of BC", Summary = "" }).ToArray();
+
             model.BlogsLinks = new Link[]
             {
                         new Link() { Url = "https://www.britishcolumbia.ca/about-trade-and-invest-bc/news-stories/", Title = "BC Trade and Invest" },
