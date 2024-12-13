@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Gov.News.WebApp;
@@ -60,7 +61,7 @@ namespace Gov.News.Website
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             services.AddMemoryCache();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc(opt =>
