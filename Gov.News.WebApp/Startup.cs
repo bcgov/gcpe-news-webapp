@@ -29,6 +29,7 @@ namespace Gov.News.Website
 
         public Startup(IWebHostEnvironment env)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath);
             //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -96,6 +97,7 @@ namespace Gov.News.Website
             //TODO: Change to ServiceLifetime.Scoped once repository is no longer using static methods
             services.AddSingleton(new Func<IServiceProvider, Gov.News.Api.IClient>((serviceProvider) =>
             {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
                 var client = new Gov.News.Api.Client();
                 client.BaseUri = new Uri(Configuration["NewsApi"]);
                 return client;
@@ -148,6 +150,7 @@ namespace Gov.News.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
