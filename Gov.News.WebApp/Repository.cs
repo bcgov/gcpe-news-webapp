@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,6 +35,7 @@ namespace Gov.News.Website
             _configuration = configuration;
             _logger = logger;
             ApiClient = apiClient;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             ContentDeliveryUri = new Uri(configuration["NewsContentDeliveryNetwork"]);
             Task.Run(async () => await StartSignalR());
 
@@ -294,11 +296,13 @@ namespace Gov.News.Website
         #region GetListAsync
         private async Task<IList<T>> GetListAsync<T>(Func<Task<HttpOperationResponse<IList<T>>>> taskFn) where T : DataModel, new()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetListAsync(ConfigureAwaitFunction(taskFn), _cache[typeof(T)], (item) => item);
         }
 
         private async Task<IEnumerable<T>> GetExpiringListAsync<T>(Func<Task<IList<T>>> taskFn, int expireMinutes = 2) where T : DataModel, new()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             IDictionary<string, object> cacheForType = _cache[typeof(T)];
             lock (cacheForType)
             {
@@ -313,6 +317,7 @@ namespace Gov.News.Website
 
         private async Task<IList<T>> GetListAsync<T, ST>(Func<Task<IList<T>>> taskFn, IDictionary<string, object> cacheForType, Func<T, ST> dataModelFn) where ST : DataModel, new()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             lock (cacheForType)
             {
                 if (cacheForType.Any())
@@ -346,11 +351,13 @@ namespace Gov.News.Website
 
         public async Task<Minister> GetMinisterAsync(string ministryKey)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetDataModelAsync(ministryKey, () => ApiClient.Ministries.GetMinisterWithHttpMessagesAsync(ministryKey, APIVersion, MustRevalidateHeader()));
         }
 
         public async Task<IList<Minister>> GetMinistersAsync(IEnumerable<string> ministryKeys)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             var ministers = new List<Minister>();
             foreach (var ministryKey in ministryKeys)
             {
@@ -361,42 +368,50 @@ namespace Gov.News.Website
 
         public async Task<Ministry> GetMinistryAsync(string key)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return (await GetMinistriesAsync(true)).SingleOrDefault(m => m.Key == key);
             // Do not API fetch 1 ministry at a time as it messes up the cache
         }
 
         public async Task<Sector> GetSectorAsync(string key)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return (await GetSectorsAsync()).SingleOrDefault(s => s.Key == key);
         }
 
         public async Task<Home> GetHomeAsync()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetDataModelAsync("default", async () => await ApiClient.Home.GetWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
         }
 
         public async Task<Slide> GetSlideAsync(string id)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return (await GetSlidesAsync()).SingleOrDefault(s => s.Key == id);
         }
 
         public async Task<Edition> GetEditionAsync(string newsletterKey, string editionKey)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await ApiClient.Newsletters.GetEditionAsync(newsletterKey, editionKey, APIVersion);
         }
 
         public async Task<EditionImage> GetEditionImageAsync(string key)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await ApiClient.Newsletters.GetImageAsync(key, APIVersion);
         }
 
         public async Task<Article> GetArticleAsync(string newsletterKey, string editionKey, string articleKey)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await ApiClient.Newsletters.GetArticleAsync(newsletterKey, editionKey, articleKey, APIVersion);
         }
 
         public async Task<Post> GetPostAsync(string key)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             if (key != null)
             {
                 try
@@ -410,11 +425,13 @@ namespace Gov.News.Website
 
         public async Task<string> GetLatestMediaUriAsync(string mediaType)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await ApiClient.Posts.GetLatestMediaUriAsync(mediaType, APIVersion);
         }
 
         public async Task<IList<Ministry>> GetMinistriesAsync(bool includeInactive = false)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             IList<Ministry> allMinistries = await GetListAsync(() => ApiClient.Ministries.GetAllWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
 
             if (includeInactive)
@@ -425,11 +442,13 @@ namespace Gov.News.Website
 
         public async Task<IList<Sector>> GetSectorsAsync()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetListAsync(() => ApiClient.Sectors.GetAllWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
         }
 
         public async Task<IList<Post>> GetPostsAsync(IEnumerable<string> postKeys, bool revalidate = false)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             postKeys = postKeys.Distinct();
             var posts = new List<Post>();
             if (postKeys.Any())
@@ -467,26 +486,31 @@ namespace Gov.News.Website
 
         public async Task<IList<Theme>> GetThemesAsync()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetListAsync(() => ApiClient.Themes.GetAllWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
         }
 
         public async Task<IList<Tag>> GetTagsAsync()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetListAsync(() => ApiClient.Tags.GetAllWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
         }
 
         public async Task<IList<Slide>> GetSlidesAsync()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetListAsync(() => ApiClient.Slides.GetAllWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
         }
 
         public async Task<IEnumerable<ResourceLink>> GetResourceLinksAsync()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetListAsync(() => ApiClient.ResourceLinks.GetAllWithHttpMessagesAsync(APIVersion, MustRevalidateHeader()));
         }
 
         public async Task<Asset> GetFlickrAssetAsync(string assetUri)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             if (!string.IsNullOrEmpty(assetUri))
             {
                 return await GetAsync(assetUri, () => FetchFlickrAssetAsync(assetUri), _cache[typeof(Asset)]);
@@ -496,6 +520,7 @@ namespace Gov.News.Website
 
         public async Task<Asset> FetchFlickrAssetAsync(string assetUri)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             var flickrAsset = new Asset(assetUri, null, null);
             using (var httpClient = new HttpClient())
             {
@@ -512,16 +537,19 @@ namespace Gov.News.Website
 
         public async Task<IEnumerable<Ministry>> GetPostMinistriesAsync(Post post)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return (await GetMinistriesAsync()).Where(m => post.MinistryKeys.Contains(m.Key));
         }
 
         public async Task<IEnumerable<Sector>> GetPostSectorsAsync(Post post)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return (await GetSectorsAsync()).Where(s => post.SectorKeys.Contains(s.Key));
         }
 
         public async Task<IEnumerable<Newsletter>> GetNewslettersAsync()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             return await GetExpiringListAsync(() => ApiClient.Newsletters.GetAllAsync(APIVersion));
         }
 
@@ -537,6 +565,7 @@ namespace Gov.News.Website
         /// <returns></returns>
         public async Task<IEnumerable<Post>> GetLatestPostsAsync(DataIndex index, int count, string postKind = null, Func<Post, bool> categoryFilter = null, int skip = 0)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             int postCountB4ApiCall;
             IEnumerable<Post> filteredPosts;
             IDictionary<string, object> cacheForPosts = _cache[typeof(Post)];
@@ -581,6 +610,7 @@ namespace Gov.News.Website
 
         public void CacheLatestPosts(IEnumerable<Post> posts, IDictionary<string, object> cacheForPosts, int postCountB4ApiCall)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             lock (cacheForPosts)
             {
                 // check that nobody inserted some new posts
