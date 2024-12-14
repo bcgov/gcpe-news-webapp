@@ -140,7 +140,17 @@ namespace Gov.News.Website
                   ttl: new TimeSpan(0, 1, 0)
               );
 
-            services.AddHttpClient("uri-group") // default healthcheck registration name for uri ( you can change it on AddUrlGroup )	 
+            services.AddHttpClient("uri-group", client =>
+            {
+                client.BaseAddress = new Uri(Configuration["NewsApi"] + "hc");
+                }).ConfigurePrimaryHttpMessageHandler(() =>
+                {
+                // Configure HttpClientHandler to enforce TLS 1.2
+                return new HttpClientHandler
+                {
+                    SslProtocols = SslProtocols.Tls12
+                };
+            }) // default healthcheck registration name for uri ( you can change it on AddUrlGroup )	 
              .AddPolicyHandler(cachePolicy);
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
