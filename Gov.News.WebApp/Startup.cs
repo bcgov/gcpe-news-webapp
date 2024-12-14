@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using Gov.News.WebApp;
 using Gov.News.Website.Middleware;
@@ -95,15 +96,17 @@ namespace Gov.News.Website
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //TODO: Change to ServiceLifetime.Scoped once repository is no longer using static methods
+            var handler = new HttpClientHandler
+            {
+                SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls13
+            };
+
             services.AddSingleton(new Func<IServiceProvider, Gov.News.Api.IClient>((serviceProvider) =>
             {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
-                var client = new Gov.News.Api.Client();
+                var client = new Gov.News.Api.Client(handler);
                 client.BaseUri = new Uri(Configuration["NewsApi"]);
                 return client;
             }));
-
-
 
             /*
             services.AddSingleton(new Func<IServiceProvider, Gcpe.Hub.Services.Legacy.INewslettersClient>((serviceProvider) =>
@@ -117,8 +120,9 @@ namespace Gov.News.Website
             services.Configure<Data.RepositoryOptions>(Configuration.GetSection("Options:Gov.News.Data:Repository"));
                 */
 
-
+            
             services.AddSingleton<Repository, Repository>();
+
             services.AddSingleton<IHostedService, Hubs.LiveHub>();
 
             // Add the Configuration object so that controllers may use it through dependency injection
