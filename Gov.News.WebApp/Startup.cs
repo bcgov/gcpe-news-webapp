@@ -30,7 +30,6 @@ namespace Gov.News.Website
 
         public Startup(IWebHostEnvironment env)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath);
             //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -63,7 +62,6 @@ namespace Gov.News.Website
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             services.AddMemoryCache();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc(opt =>
@@ -164,7 +162,6 @@ namespace Gov.News.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
