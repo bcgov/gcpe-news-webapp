@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using Gov.News.WebApp;
 using Gov.News.Website.Middleware;
@@ -60,7 +62,6 @@ namespace Gov.News.Website
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-
             services.AddMemoryCache();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc(opt =>
@@ -93,14 +94,17 @@ namespace Gov.News.Website
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //TODO: Change to ServiceLifetime.Scoped once repository is no longer using static methods
+            var handler = new HttpClientHandler
+            {
+                SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls13
+            };
+
             services.AddSingleton(new Func<IServiceProvider, Gov.News.Api.IClient>((serviceProvider) =>
             {
-                var client = new Gov.News.Api.Client();
+                var client = new Gov.News.Api.Client(handler);
                 client.BaseUri = new Uri(Configuration["NewsApi"]);
                 return client;
             }));
-
-
 
             /*
             services.AddSingleton(new Func<IServiceProvider, Gcpe.Hub.Services.Legacy.INewslettersClient>((serviceProvider) =>
@@ -114,8 +118,9 @@ namespace Gov.News.Website
             services.Configure<Data.RepositoryOptions>(Configuration.GetSection("Options:Gov.News.Data:Repository"));
                 */
 
-
+            
             services.AddSingleton<Repository, Repository>();
+
             services.AddSingleton<IHostedService, Hubs.LiveHub>();
 
             // Add the Configuration object so that controllers may use it through dependency injection
@@ -133,7 +138,17 @@ namespace Gov.News.Website
                   ttl: new TimeSpan(0, 1, 0)
               );
 
-            services.AddHttpClient("uri-group") // default healthcheck registration name for uri ( you can change it on AddUrlGroup )	 
+            services.AddHttpClient("uri-group", client =>
+            {
+                client.BaseAddress = new Uri(Configuration["NewsApi"] + "hc");
+                }).ConfigurePrimaryHttpMessageHandler(() =>
+                {
+                // Configure HttpClientHandler to enforce TLS 1.2
+                return new HttpClientHandler
+                {
+                    SslProtocols = SslProtocols.Tls12
+                };
+            }) // default healthcheck registration name for uri ( you can change it on AddUrlGroup )	 
              .AddPolicyHandler(cachePolicy);
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
