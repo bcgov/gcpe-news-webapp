@@ -19,7 +19,6 @@ namespace Gov.News.Website
     {
         public static void Main(string[] args)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
             CreateWebHostBuilder(args).Build().Run();
         }
 
