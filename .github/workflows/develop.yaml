@@ -2,7 +2,7 @@ name: develop ci/cd pipeline
 on:
   push:
     branches:
-      - github-action
+      - add-github-action
 jobs:
   build:
     runs-on: ubuntu-latest
