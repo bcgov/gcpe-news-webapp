@@ -33,5 +33,4 @@ jobs:
       - name: Trigger Opneshift Pipeline
         run: |
           oc project ${{ secrets.OPENSHIFT_NAMESPACE }}
-          tkn pipeline start news-webapp-develop-pipeline 
-            --showlog
+          tkn pipeline start news-webapp-develop-pipeline --showlog
