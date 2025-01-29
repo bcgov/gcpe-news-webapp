@@ -41,7 +41,7 @@ jobs:
         #run: |
           #oc start-build bc/hub-api-develop-docker --wait
       
-      - name: Trigger Tekton Pipeline
+      - name: Trigger Opneshift Pipeline
         run: |
           oc project ${{ secrets.OPENSHIFT_NAMESPACE }}
           tkn pipeline start news-webapp-develop-pipeline 
