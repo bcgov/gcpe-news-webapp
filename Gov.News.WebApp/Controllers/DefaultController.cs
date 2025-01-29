@@ -360,6 +360,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "https://www.youtube.com/@BCDigitalTrust", Title = "BC Digital Trust" },
                          new Link() { Url = "http://www.youtube.com/BCPublicService", Title = "BC Public Service" },
                          new Link() { Url = "http://www.youtube.com/user/BCTradeInvest", Title = "BC Trade & Invest" },
+                         new Link() { Url = "https://www.youtube.com/@BCWildfireService", Title = "BC Wildfire Service" },
                          new Link() { Url = "http://www.youtube.com/MinistryofTranBC", Title = "BC Ministry of Transportation" },
                          new Link() { Url = "http://www.youtube.com/CareerTrekBC", Title = "Career Trek BC" },
                          new Link() { Url = "http://www.youtube.com/EmergencyInfoBC", Title = "PreparedBC" },
@@ -439,7 +440,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/_healthy_bc/", Title = "HealthyBC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/EatDrinkBuyBC/", Title = "Buy BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/bcpublicservice/", Title = "BC Public Service", Summary = "" },
-                        new Link() { Url = "https://www.instagram.com/bcgovfireinf/", Title = "BC Wildfire Service", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/bcgovfireinfo/", Title = "BC Wildfire Service", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/workbc.ca/", Title = "WorkBC", Summary = "" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
 
