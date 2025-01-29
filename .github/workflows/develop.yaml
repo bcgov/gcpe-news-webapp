@@ -11,19 +11,6 @@ jobs:
         working-directory: Gov.News.WebApp
     environment: 'DEV'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 5.x
-
-      - name: Build .NET Core App
-        run: |
-          dotnet restore
-          dotnet build
-
       - name: Install oc
         uses: redhat-actions/openshift-tools-installer@v1
         with:
