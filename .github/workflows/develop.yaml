@@ -13,6 +13,11 @@ jobs:
         with:
           oc: 4.10
 
+      - name: setup tektoncd cli
+        uses: tektoncd/actions/setup-tektoncd-cli@main
+        with:
+          version: latest
+
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
         with:
