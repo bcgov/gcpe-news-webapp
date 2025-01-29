@@ -9,7 +9,7 @@ This is a C# application that provides a user interface for the BC Gov News webs
 Repository Map
 --------------
 - .s2i : Source to image bash assemble script
-- **Gov.News.WebApp**: C# Dotnet Core 2 MVC Frontend App
+- **Gov.News.WebApp**: C# Dotnet 5 MVC Frontend App
 - Dotnet-Snyk: Source for a Dotnet + Snyk container
 - Dotnet-Sonar: Source for a SonarQube scanner
 - functional-tests: BDD Tests
@@ -24,7 +24,7 @@ Developer Prerequisites
 -----------------------
 
 **Gov.News.WebApp**
-- Visual Studio 2019
+- Visual Studio 2022
 (or comparable IDE able to edit C# code)
 
 
