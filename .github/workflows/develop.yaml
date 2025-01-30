@@ -2,32 +2,26 @@ name: develop ci/cd pipeline
 on:
   push:
     branches:
-      - github-action
+      - add-github-action
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Gov.News.WebApp
     environment: 'DEV'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 5.x
-
-      - name: Build .NET Core App
-        run: |
-          dotnet restore
-          dotnet build
-
       - name: Install oc
         uses: redhat-actions/openshift-tools-installer@v1
         with:
           oc: 4.10
+
+      - name: setup tektoncd cli
+        uses: tektoncd/actions/setup-tektoncd-cli@main
+        with:
+          version: latest
+      
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
 
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
@@ -36,13 +30,30 @@ jobs:
           openshift_token: ${{ secrets.OPENSHIFT_LOGIN_TOKEN }}
           insecure_skip_tls_verify: true
           namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
-
-      #- name: Start OpenShift Build
-        #run: |
-          #oc start-build bc/hub-api-develop-docker --wait
       
       - name: Trigger Opneshift Pipeline
         run: |
           oc project ${{ secrets.OPENSHIFT_NAMESPACE }}
-          tkn pipeline start news-webapp-develop-pipeline 
-            --showlog
+          tkn pipeline start news-webapp-develop-pipeline --showlog
+
+      - name: Log in to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_LOGIN_TOKEN_DEV }}
+          insecure_skip_tls_verify: true
+          namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+
+      #- name: Restart OpenShift Deployment
+      #  run: |
+      #    oc project ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+      #    oc patch deployment news-webapp -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }} \
+      #    -p '{"spec": {"template": {"metadata": {"annotations": {"openshift.io/restartedAt": "'$(date +%s)'"}}}}}'
+
+      - name: Restart Kubernetes Deployment
+        run: |
+          kubectl rollout restart deployment news-webapp -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+      
+      - name: Check Rollout Status
+        run: |
+          kubectl rollout status deployment/news-webapp -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }} --timeout=90s
