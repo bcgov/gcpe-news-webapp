@@ -35,7 +35,16 @@ jobs:
           oc project ${{ secrets.OPENSHIFT_NAMESPACE }}
           tkn pipeline start news-webapp-develop-pipeline --showlog
 
+      - name: Log in to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_LOGIN_TOKEN_DEV }}
+          insecure_skip_tls_verify: true
+          namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+
       - name: Restart OpenShift Deployment
         run: |
+          oc project ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
           oc patch deployment news-webapp -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }} \
           -p '{"spec": {"template": {"metadata": {"annotations": {"openshift.io/restartedAt": "'$(date +%s)'"}}}}}'
