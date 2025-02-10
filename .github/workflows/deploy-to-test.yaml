@@ -1,0 +1,39 @@
+# This is deploying to test environment
+# Need to run develop action first to build the images
+# This action is only rollout test deployment, not a building, tag action
+name: deploy to test environment
+on:
+  workflow_dispatch:  # Enables manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: 'TEST'
+    steps:
+      - name: Install oc
+        uses: redhat-actions/openshift-tools-installer@v1
+        with:
+          oc: 4.10
+      
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Log in to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_LOGIN_TOKEN_TEST }}
+          insecure_skip_tls_verify: true
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}-test
+
+
+      - name: Restart Kubernetes Deployment
+        run: |
+          oc project ${{ secrets.OPENSHIFT_NAMESPACE }}-test
+          kubectl rollout restart deployment news-webapp -n ${{ secrets.OPENSHIFT_NAMESPACE }}-test
+      
+      - name: Check Rollout Status
+        run: |
+          kubectl rollout status deployment/news-webapp -n ${{ secrets.OPENSHIFT_NAMESPACE }}-test --timeout=90s
