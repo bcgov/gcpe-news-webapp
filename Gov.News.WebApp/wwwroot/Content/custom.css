@@ -68,6 +68,11 @@ body {
     border-left: 2px solid var(--primary-blue);
 }
 
+#site-banner a {
+    color: #fff;
+    text-decoration: underline;
+}
+
 #BCGov-logo {
     width: 164px;
 }
@@ -606,5 +611,6 @@ body {
         --bs-gutter-x: none !important;
     }
 }
+
 
 
