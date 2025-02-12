@@ -79,7 +79,14 @@
                         {
                             foreach (var tag in Model.Tags)
                             {
-                                lists.Add(new { Category = "tags", Key = tag.Key, Name = tag.Value });
+                                if (tag.Value != "Tariffs")
+                                {
+                                    lists.Add(new { Category = "tags", Key = tag.Key, Name = tag.Value });
+                                }
+                                else
+                                {
+                                    lists.Add(new { Category = "tags", Key = tag.Key, Name = "B.C. Tariff Response" });
+                                }
                             }
                         }
 
