@@ -97,13 +97,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -134,9 +134,9 @@
         <div class="container-xl sm-g-0" id="main-nav-contaier">
             <nav class="navbar navbar-expand-md" aria-label="Main menu" id="main-nav" style="padding-right:8px;">
                 <a href="https://gov.bc.ca">
-                    <img id="BCGov-logo" class="d-none d-md-block" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                    <img id="BCGov-logo" class="@(!@Model.GranvilleLive ? "granville-bridge-off d-none d-md-block": "granville-bridge-on")" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C.">
                     <img id="sm-BCGov-logo" class="d-md-none" src="~/Content/Images/Gov/BC_Mark.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
-                    <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                    <img id="BCGov-logo-granville" src="~/Content/Images/Gov/gov_bc_bridge.svg" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
                 </a>
                 <a class="navbar-brand ps-3" href="/">BC Gov News</a>
                 
