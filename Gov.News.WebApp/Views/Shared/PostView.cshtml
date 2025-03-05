@@ -44,6 +44,20 @@
     @*<meta name="NEWSTERMS.sectorKeys" content="@string.Join(",", Model.Sectors.Select(e=>e.Key))" />*@
 }
 
+@section GeneralMeta {
+    <meta property="og:title" content="@(string.IsNullOrWhiteSpace(Model.Title) ? Model.Post.SocialMediaHeadline : Model.Title)" />
+    <meta property="og:description" content="@(string.IsNullOrWhiteSpace(Model.Post.Summary) ? Model.Post.SocialMediaSummary : Model.Post.Summary)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BC Gov News" />
+    @if (@Model.OGMetaImageUrl != null)
+        @if (Model.PostThumbnailUri != null)
+        {
+            {
+                <meta property="og:image" content="@Html.Raw(Model.OGMetaImageUrl)" />
+            }
+        }
+}
+
 @* Doc for the below twitter cards See - https://dev.twitter.com/cards/overview*@
 @section TwitterMeta {
     <meta name="twitter:card" content="summary_large_image">

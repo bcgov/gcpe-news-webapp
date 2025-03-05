@@ -38,6 +38,7 @@
     {
         <meta property="og:image" content="@Html.Raw(Model.OGMetaImageUrl)" />
     }
+    @RenderSection("GeneralMeta", false)
     @RenderSection("TwitterMeta", false)
 
     @if (@Model.CanonicalUri != null)
