@@ -3474,19 +3474,27 @@ ul.external-links:last-child {
   display: none;
 }
 
-.granville-bridge-banner {
-  background-color: #000000;
-  color: #ffffff;
-  border: 1px solid black;
-  margin-bottom: 0;
-  padding-top: 15px;
-  font-size: 18px;
-  text-align: center;
-  border-radius: 0;
+.granville-bridge-color-on {
+    color: #252423;
 }
 
-#btnCloseBanner {
-  color: #ffffff !important;
+.granville-bridge-color-off {
+    color: #013366;
+}
+
+.granville-bridge-banner {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid black;
+    margin-bottom: 0;
+    padding-top: 15px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 0;
+}
+
+#btnCloseBanner, #btnCloseBannerBridge {
+    color: #ffffff !important;
 }
 
 .granville-bridge-banner p {

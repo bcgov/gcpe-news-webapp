@@ -4,7 +4,7 @@
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
 @model BaseViewModel
 @{
-    var dob = new System.DateTime(1926, 4, 21);
+    var dob = new System.DateTime(1948, 11, 14);
     var now = DateTime.Now;
     if (@Startup.granvilleTestDate != DateTime.MinValue)
     {
@@ -49,8 +49,8 @@
     <environment names="Testing,Development">
         <!-- Latest compiled and minified CSS -->
         <!--
-             <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap5.min.css">
-             <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css" type="text/css" >
+        <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap5.min.css">
+        <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css" type="text/css" >
         -->
         <link rel="stylesheet" href="~/lib/bootstrap5/css/bootstrap.css" media="screen" rel="stylesheet" >
         <link rel="stylesheet" href="~/Content/site.css" media="screen" type="text/css" />
@@ -70,13 +70,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                            <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
+                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                            <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
+                <link rel="stylesheet" href="~/Content/covidcategory.css" media="screen" type="text/css">
             }
         }
 
@@ -98,13 +98,13 @@
         @{
             if (@Model.GranvilleLive)
             {
-                                                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
+                <link rel="stylesheet" href="~/Content/granville-bridge-theme.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
         @{
             if (@isCovidTag)
             {
-                                                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
+                <link rel="stylesheet" href="~/Content/covidcategory.css" asp-append-version="true" media="screen" type="text/css">
             }
         }
     </environment>
@@ -113,7 +113,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="~/Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="~/lib/bootstrap5/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-   
+
     <script src="~/Scripts/jquery.cookie.js" type="text/javascript"></script>
 
     @if (ViewContext.RouteData.Values["action"].ToString() != "Search" && ViewContext.RouteData.Values["controller"].ToString() != "Search")
@@ -124,20 +124,33 @@
     {
         <partial name="_WebAnalytics_Search" />
     }
-   
+
 </head>
 <body>
     <!--googleoff: all-->
     <!--banner-->
-    <partial name="_Banner.cshtml" />
+    <div id="banner">
+        @{
+            if (@Model.GranvilleLive)
+            {
+                <partial name="_BlueBridgeBanner.cshtml" />
+            }
+            else
+            {
+                <partial name="_Banner.cshtml" />
+            }
+        }
+    </div>
+    
     <!--end of banner-->
     <header class="container-fluid sm-g-0 header nav-border" id="main-nav">
         <div class="container-xl sm-g-0" id="main-nav-contaier">
             <nav class="navbar navbar-expand-md" aria-label="Main menu" id="main-nav" style="padding-right:8px;">
-                <a href="https://gov.bc.ca">
-                    <img id="BCGov-logo" class="d-none d-md-block" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
-                    <img id="sm-BCGov-logo" class="d-md-none" src="~/Content/Images/Gov/BC_Mark.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
-                    <img id="BCGov-logo-granville" src="~/Content/Images/Gov/BCID_White_Small.png" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                <a href="https://gov.bc.ca">     
+                    <img id="BCGov-logo" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-off d-none d-md-block" : "granville-bridge-on d-none d-md-block")">
+                    <img id="sm-BCGov-logo" src="~/Content/Images/Gov/BC_Mark.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on d-md-none" : "d-md-none granville-bridge-off")">
+                    <img id="BCGov-logo-bridge" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop_bridge.svg" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on d-none d-md-block" : "granville-bridge-off")">
+                    <img id="sm-BCGov-logo-bridge" src="~/Content/Images/Gov/BC_Mark_bridge.svg" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on d-md-none" : "d-md-none granville-bridge-off")">
                 </a>
                 <a class="navbar-brand ps-3" href="/">BC Gov News</a>
                 
@@ -324,7 +337,9 @@
     <div id="footer" class="container-fluid" role="navigation">
         <div class="top container-xl">
             <div class="footer-bc">
-                <img id="BCGov-logo-footer" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on": "granville-bridge-off" )">
+                <img id="BCGov-logo-footer" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop.svg" alt="Government of B.C." class="@(!@Model.GranvilleLive ? "granville-bridge-on" : "granville-bridge-off")">
+                <img id="BCGov-logo-footer-bridge" src="~/Content/Images/Gov/BCID_H_rgb_pos_LH_crop_bridge.svg" alt="Government of B.C." class="@(@Model.GranvilleLive ? "granville-bridge-on" : "granville-bridge-off")">
+               
                 <p>We can help in over 220 languages and through other accessible options. &nbsp; 
                     <a class="" href="https://www2.gov.bc.ca/gov/content/home/get-help-with-government-services">Call, email or text us</a>, or
                     <a class="" href="https://www2.gov.bc.ca/gov/content/home/services-a-z">find a service centre</a>.
@@ -575,24 +590,37 @@
         };
 
         function isGranvilleLiveCallback(isLive) {
-            var banner = $('#granville-bridge-banner');
-            var header = $('#header');
+            var header = $("#main-nav");
+            var banner = $('#bridge-banner');
+            //var header = $('#main-nav');
             var logo = $('#BCGov-logo');
-            var logo_granville = $('#BCGov-logo-granville');
-            var mini_search_logo = $('#mini-menu-container-trigger');
+            var logo_granville = $('#BCGov-logo-bridge');
             var granville_style_sheet = $('link[rel=stylesheet][href~="/Content/granville-bridge-theme.css"]');
             const hostingEnv = document.getElementById('hostingEnv').value;
 
             if (isLive) {
-                if (!banner.length) {
-                    $('<div id="granville-bridge-banner" class="alert granville-bridge-banner"  role="alert"><div class="content"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> ALERT: Her Majesty Queen Elizabeth II, Queen of Canada has passed away at the age of @age.<button class="btn-link pull-right" id="btnCloseBanner"><strong>×</strong></button></div></div>').insertBefore(header);
+                if ($("#site-banner").length){
+                    $("#site-banner").addClass("d-none");
                 }
-                logo.hide();
-                logo_granville.show();
 
-                if (!mini_search_logo.hasClass("granville-bridge-mini-search-menu")) {
-                    mini_search_logo.addClass("granville-bridge-mini-search-menu")
+                if (!banner.length) {
+                    //$("#banner").load('@Url.Action("BridgeBanner")');
+                            $('<div id="bridge-banner" class="info-black-banner" role="alert"><div class="content container-xl sm-g-0"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> His Majesty King Charles III, King of Canada has passed away at the age of @age.<a id="btnCloseBannerBridge"><i class="fa fa-xmark fa-lg" aria-hidden="true"></i></a></div></div>').insertBefore(header);
                 }
+
+                $('#BCGov-logo').removeClass("d-md-block");
+                $('#sm-BCGov-logo').removeClass("d-md-none");
+                $('#BCGov-logo').hide();
+                $('#sm-BCGov-logo').hide();
+
+                $("#BCGov-logo-bridge").show();
+                $("#BCGov-logo-bridge").addClass("d-none d-md-block");
+                $("#sm-BCGov-logo-bridge").show();
+                $("#sm-BCGov-logo-bridge").addClass("d-md-none");
+                
+                $("#BCGov-logo-footer").hide();
+                $("#BCGov-logo-footer-bridge").show();
+
                 if (!granville_style_sheet.length) {
                     if (hostingEnv == "Staging" || hostingEnv == "Production") {
                         $('head').append('<link rel="stylesheet" type="text/css" media="screen" asp-append-version="true" href="/Content/granville-bridge-theme.css">');
@@ -604,11 +632,23 @@
                 if (banner.length) {
                     banner.remove();
                 }
-                logo_granville.hide();
-                logo.show();
-                if (mini_search_logo.hasClass("granville-bridge-mini-search-menu")) {
-                    mini_search_logo.removeClass("granville-bridge-mini-search-menu")
+                if ($("#site-banner").hasClass("d-none")){
+                    $("#site-banner").removeClass("d-none");
                 }
+                /* logo */
+                $("#BCGov-logo").show();
+                $("#BCGov-logo").addClass("d-none d-md-block");
+                $("#sm-BCGov-logo").show();
+                $("#sm-BCGov-logo").addClass("d-md-none");
+
+                $('#BCGov-logo-bridge').removeClass("d-md-block");
+                $('#sm-BCGov-logo-bridge').removeClass("d-md-none");
+                $('#BCGov-logo-bridge').hide();
+                $('#sm-BCGov-logo-bridge').hide();
+
+                $("#BCGov-logo-footer").show();
+                $("#BCGov-logo-footer-bridge").hide();
+
                 if (granville_style_sheet.length) {
                     granville_style_sheet.remove();
                 }
@@ -626,12 +666,26 @@
                 /* The cookie will be expired in 100 days
                  Set the path as root, so the cookie will be valid across the whole site */
                 $("#site-banner").hide();
-                $.cookie(document.location.host + '-alert-banner', 'closed', { path: '/', expires: 100 });
+                $.cookie(document.location.host + '-alert-banner', 'closed', { path: '/', expires: 60 });
             });
 
             $("#btnCloseBanner").click(function (e) {
                 e.preventDefault();
                 $("#site-banner").hide();
+                
+            });
+
+            $("#btnCloseBannerBridge").click(function (e) {
+                e.preventDefault();
+                /* The cookie will be expired in 100 days
+                 Set the path as root, so the cookie will be valid across the whole site */
+                $("#bridge-banner").hide();
+                $.cookie(document.location.host + '-bridge-banner', 'closed', { path: '/', expires: 30 });
+            });
+
+            $("#btnCloseBannerBridge").click(function (e) {
+                e.preventDefault();
+                $("#bridge-banner").hide();
                 
             });
         });

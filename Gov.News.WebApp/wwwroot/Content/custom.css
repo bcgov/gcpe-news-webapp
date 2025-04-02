@@ -73,7 +73,7 @@ body {
     text-decoration: underline;
 }
 
-#BCGov-logo {
+#BCGov-logo, #BCGov-logo-bridge {
     width: 164px;
 }
 
@@ -88,7 +88,7 @@ body {
     color: #fff;
 }
 
-.info-blue-banner .content {
+.info-blue-banner .content, .info-black-banner .content {
     padding: 20px;
     display: flex;
     gap: 8px;
@@ -216,7 +216,7 @@ body {
     color: #2D2D2D;
 }
 
-#BCGov-logo-footer {
+#BCGov-logo-footer, #BCGov-logo-footer-bridge {
     width: 164px;
     margin-bottom: 10px;
 }
@@ -294,6 +294,11 @@ body {
 
 .btn-primary-blue {
     background-color: var(--primary-blue) !important;
+    color: var(--white);
+}
+
+.btn-bridge-black {
+    background-color: #252423 !important;
     color: var(--white);
 }
 
@@ -549,7 +554,7 @@ body {
         padding-bottom: 10px;
     }
 
-    #sm-BCGov-logo {
+    #sm-BCGov-logo, #sm-BCGov-logo-bridge {
         width: 70px;
         padding: 10px 10px 10px 10px;
     }
