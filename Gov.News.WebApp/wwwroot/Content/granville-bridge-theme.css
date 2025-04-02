@@ -14,6 +14,13 @@
     background-color: #2d2d2d;
 }
 
+.info-black-banner {
+    background-color: #252423;
+    width: 100%;
+    font-size: 16px;
+    color: #fff;
+}
+
 #nav-container {
     position: relative;
     z-index: 10;
@@ -135,11 +142,6 @@ ul.inline li + li {
     padding: 10px 10px 0 10px;
 }
 
-#footer {
-    background-color: #333333;
-    color: #fff;
-}
-
 #footer hr {
     border: 0;
     height: 1px;
@@ -162,9 +164,6 @@ ul.inline li + li {
     bottom: -1px;
     color: #fff;
     padding: 15px 15px 10px;
-}
-#btnCloseBanner {
-    padding-right: 25px;
 }
 
 .newsletters .home-body .header h4,
