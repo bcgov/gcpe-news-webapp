@@ -230,6 +230,14 @@ namespace Gov.News.Website.Middleware
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/post-secondary-education-and-future-skills/workforce-development", "/ministries/post-secondary-education-and-future-skills") + query);
             }
+            if (path.StartsWith("/ministries/municipal-affairs"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("municipal-affairs", "housing-and-municipal-affairs"));
+            }
+            if (path.StartsWith("/ministries/mental-health-and-addictions"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("mental-health-and-addictions", "health"));
+            }
             if (path == "/ministries/trade")
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("trade", "jobs-economic-development-and-innovation"));
