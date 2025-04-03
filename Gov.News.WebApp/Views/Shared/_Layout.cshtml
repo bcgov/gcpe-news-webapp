@@ -604,8 +604,7 @@
                 }
 
                 if (!banner.length) {
-                    //$("#banner").load('@Url.Action("BridgeBanner")');
-                            $('<div id="bridge-banner" class="info-black-banner" role="alert"><div class="content container-xl sm-g-0"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> His Majesty King Charles III, King of Canada has passed away at the age of @age.<a id="btnCloseBannerBridge"><i class="fa fa-xmark fa-lg" aria-hidden="true"></i></a></div></div>').insertBefore(header);
+                    $('<div id="bridge-banner" class="info-black-banner" role="alert"><div class="content container-xl sm-g-0"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> His Majesty King Charles III, King of Canada, has passed away at the age of @age.<a id="btnCloseBannerBridge"><i class="fa fa-xmark fa-lg" aria-hidden="true"></i></a></div></div>').insertBefore(header);
                 }
 
                 $('#BCGov-logo').removeClass("d-md-block");
