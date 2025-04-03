@@ -211,16 +211,6 @@ ul.inline li + li {
         border-top: 1px solid #616161;
     }
 
-    #ministry-dropdown {
-        width: 50px;
-        border-left: 1px solid #7590b9;
-        right: 0;
-        position: absolute;
-        top: 0;
-        text-align: center;
-        line-height: 2.5;
-        border-left: 1px solid #616161;
-        border-bottom: 1px solid #616161;
-    }
+    
 }
 
