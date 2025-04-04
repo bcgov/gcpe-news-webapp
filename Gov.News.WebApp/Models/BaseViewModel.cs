@@ -23,7 +23,7 @@ namespace Gov.News.Website.Models
 
         public BaseViewModel()
         {
-            OGMetaImageUrl = new Uri(Properties.Settings.Default.NewsHostUri, "/Content/Images/Gov/default-og-image.jpg");
+            OGMetaImageUrl = new Uri(Properties.Settings.Default.NewsHostUri, "/Content/Images/Gov/default-og-image-new.jpg");
 
             Ministries = new List<IndexModel>();
             Sectors = new List<IndexModel>();
