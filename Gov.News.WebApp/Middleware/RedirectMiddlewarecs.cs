@@ -275,7 +275,7 @@ namespace Gov.News.Website.Middleware
 
             if (path.StartsWith("/areas/newsroom/images/social/default-og-meta-image.jpg"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/areas/newsroom/images/social/default-og-meta-image.jpg", "/Content/Images/Gov/default-og-image.jpg") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/areas/newsroom/images/social/default-og-meta-image.jpg", "/Content/Images/Gov/default-og-image-new.jpg") + query);
             }
 
             /*
