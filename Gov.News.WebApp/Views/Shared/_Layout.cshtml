@@ -37,6 +37,7 @@
     @if (@Model.OGMetaImageUrl != null)
     {
         <meta property="og:image" content="@Html.Raw(Model.OGMetaImageUrl)" />
+        <meta property="twitter:image" content="@Html.Raw(Model.OGMetaImageUrl)" />
     }
     @RenderSection("GeneralMeta", false)
     @RenderSection("TwitterMeta", false)
