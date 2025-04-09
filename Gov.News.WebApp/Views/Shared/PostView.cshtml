@@ -885,6 +885,42 @@
                 event.preventDefault();
             });
 
+            $('a.share-facebook').on('click', function (event) {
+                var top = event.pageY;
+                var left = event.pageX;
+                var url = "https://www.facebook.com/sharer/sharer.php?u=@Model.CanonicalUri";
+
+                window.open(url, "Share on Facebook", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                event.preventDefault();
+            });
+
+            $('a.share-instagram').on('click', function (event) {
+                var top = event.pageY;
+                var left = event.pageX;
+                var url = "https://www.instagram.com/sharer.php?u=@Model.CanonicalUri";
+
+                window.open(url, "Share on Instagram", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                event.preventDefault();
+            });
+
+            $('a.share-threads').on('click', function (event) {
+                var top = event.pageY;
+                var left = event.pageX;
+                var url = "https://threads.net/intent/post?text=@Model.CanonicalUri";
+
+                window.open(url, "Share on Threads", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                event.preventDefault();
+            });
+
+            $('a.share-weibo').on('click', function (event) {
+                var top = event.pageY;
+                var left = event.pageX;
+                var url = "https://service.weibo.com/share/share.php?url=@Model.CanonicalUri";
+
+                window.open(url, "Share on Weibo", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                event.preventDefault();
+            });
+
             $(".assets-link").on('click', function (e) {
                 e.preventDefault();
                 openAssetsExpander();
