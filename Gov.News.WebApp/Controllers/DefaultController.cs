@@ -373,9 +373,7 @@ namespace Gov.News.Website.Controllers
 
             model.FlickrLinks = new Link[]
             {
-                         new Link() { Url = "http://www.flickr.com/photos/tranbc/", Title = "BC Ministry of Transportation & Infrastructure's photostream" },
-                         new Link() { Url = "https://www.flickr.com/photos/preparedbc", Title = "PreparedBC's photostream" },
-                         new Link() { Url = "http://www.flickr.com/photos/bc_housing", Title = "BC Housing's photostream" },
+                         new Link() { Url = "http://www.flickr.com/photos/tranbc/", Title = "BC Ministry of Transportation & Infrastructure's photostream" }
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.flickr.com/photos/bcgovphotos", Title = "Province of BC", Summary = "View and share the latest photos from the Government of British Columbia" }).ToArray();
 
             model.TwitterLinks = new Link[]
@@ -398,7 +396,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://x.com/DriveBC_VI", Title = "@DriveBC_VI" , Summary = "Travel info for Vancouver Island" },
                         new Link() { Url = "http://x.com/emergencyinfobc", Title = "@EmergencyInfoBC" , Summary = "Receive information during extreme weather and natural disasters" },
                         new Link() { Url = "https://x.com/PreparedBC", Title = "@PreparedBC" , Summary = "Ready for a disaster? Get preparedness tips & recovery info here." },
-                        new Link() { Url = "https://x.com/safeeducationbc", Title = "@SafeEducationBC", Summary = "Important info on bullying prevention and safer schools" },
                         new Link() { Url = "http://x.com/govTogetherBC", Title = "@govTogetherBC" , Summary = "Find consultation and engagement opportunities in BC" },
                         new Link() { Url = "https://x.com/immunizebc", Title = "@ImmunizeBC" , Summary = "Find info about immunization as best protection against many diseases" },
                         new Link() { Url = "http://x.com/quitnowbc", Title = "@QuitNowBC", Summary = "Want to quit smoking? We can help!" },
@@ -437,7 +434,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/innovate_bc/", Title = "Innovate BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/prepared_bc/", Title = "Prepared BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/roadsafetybc/", Title = "Road Safety BC", Summary = "" },
-                        new Link() { Url = "https://www.instagram.com/_healthy_bc/", Title = "HealthyBC", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/hellohealthybc/", Title = "HealthyBC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/EatDrinkBuyBC/", Title = "Buy BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/bcpublicservice/", Title = "BC Public Service", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/bcgovfireinfo/", Title = "BC Wildfire Service", Summary = "" },
