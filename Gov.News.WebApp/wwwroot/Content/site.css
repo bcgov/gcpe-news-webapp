@@ -3531,3 +3531,7 @@ ul.external-links:last-child {
 .item-date {
     align-self: flex-start;
 }
+
+.share-facebook, .share-instagram, .share-threads, .share-weibo :hover{
+    cursor: pointer;
+}
