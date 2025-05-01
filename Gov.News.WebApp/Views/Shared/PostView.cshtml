@@ -161,7 +161,19 @@
     }
     else
     {
-        <h3>@leadMinistry.Name <b>Note:</b> This News Release has been archived - the Ministry no longer exists</h3>
+        if (leadMinistry.Name == "Municipal Affairs")
+        {
+            <h3>@leadMinistry.Name <b>Note:</b> the Ministry of Municipal Affairs became the Ministry of Housing and Municipal Affairs on November 18, 2024</h3>
+        }
+        else if (leadMinistry.Name == "Mental Health and Addictions")
+        {
+            <h3>@leadMinistry.Name <b>Note:</b> the Ministry of Mental Health and Addictions became the Ministry of Health on November 18, 2024</h3>
+        }
+        else
+        {
+            <h3>@leadMinistry.Name <b>Note:</b> This News Release has been archived - the Ministry no longer exists</h3>
+        }
+        
     }
 
     <div class="print-title">British Columbia News</div>
