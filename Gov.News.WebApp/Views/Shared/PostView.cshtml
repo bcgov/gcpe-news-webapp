@@ -174,7 +174,7 @@
         }
         else
         {
-            <h3>@leadMinistry.Name <b>Note:</b> This News Release has been archived - the Ministry no longer exists</h3>
+            <h3>@leadMinistry.Name <b>Note:</b> This News Release has been archived - the Ministry no longer exists.</h3>
         }
         
     }
@@ -905,16 +905,17 @@
                 var left = event.pageX;
                 var url = "https://www.facebook.com/sharer/sharer.php?u=@Model.CanonicalUri";
 
-                window.open(url, "Share on Facebook", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                window.open(url, "Share on Facebook", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
                 event.preventDefault();
             });
 
             $('a.share-instagram').on('click', function (event) {
                 var top = event.pageY;
                 var left = event.pageX;
-                var url = "https://www.instagram.com/sharer.php?u=@Model.CanonicalUri";
+                // Link to the official Instagram profile instead
+                var url = "https://www.instagram.com/governmentofbc/";
 
-                window.open(url, "Share on Instagram", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                window.open(url, "Share on Instagram", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
                 event.preventDefault();
             });
 
@@ -923,7 +924,7 @@
                 var left = event.pageX;
                 var url = "https://threads.net/intent/post?text=@Model.CanonicalUri";
 
-                window.open(url, "Share on Threads", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                window.open(url, "Share on Threads", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
                 event.preventDefault();
             });
 
@@ -932,7 +933,7 @@
                 var left = event.pageX;
                 var url = "https://service.weibo.com/share/share.php?url=@Model.CanonicalUri";
 
-                window.open(url, "Share on Weibo", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                window.open(url, "Share on Weibo", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
                 event.preventDefault();
             });
 
