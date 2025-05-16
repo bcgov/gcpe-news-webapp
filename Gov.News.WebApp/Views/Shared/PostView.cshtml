@@ -161,7 +161,22 @@
     }
     else
     {
-        <h3>@leadMinistry.Name <b>Note:</b> This News Release has been archived - the Ministry no longer exists</h3>
+        if (leadMinistry.Name == "Municipal Affairs")
+        {
+            <h3>@leadMinistry.Name <br /></h3>
+
+            <h3 style="padding-top:10px; padding-bottom: 10px;"><i>Note: the Ministry of Municipal Affairs became the Ministry of Housing and Municipal Affairs on November 18, 2024.</i></h3>
+        }
+        else if (leadMinistry.Name == "Mental Health and Addictions")
+        {
+            <h3>@leadMinistry.Name <br/></h3>
+            <h3 style="padding-top:10px; padding-bottom: 10px;"><i>Note: the Ministry of Mental Health and Addictions became the Ministry of Health on November 18, 2024.</i></h3>
+        }
+        else
+        {
+            <h3>@leadMinistry.Name <b>Note:</b> This News Release has been archived - the Ministry no longer exists.</h3>
+        }
+        
     }
 
     <div class="print-title">British Columbia News</div>
@@ -890,16 +905,17 @@
                 var left = event.pageX;
                 var url = "https://www.facebook.com/sharer/sharer.php?u=@Model.CanonicalUri";
 
-                window.open(url, "Share on Facebook", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                window.open(url, "Share on Facebook", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
                 event.preventDefault();
             });
 
             $('a.share-instagram').on('click', function (event) {
                 var top = event.pageY;
                 var left = event.pageX;
-                var url = "https://www.instagram.com/sharer.php?u=@Model.CanonicalUri";
+                // Link to the official Instagram profile instead
+                var url = "https://www.instagram.com/governmentofbc/";
 
-                window.open(url, "Share on Instagram", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                window.open(url, "Share on Instagram", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
                 event.preventDefault();
             });
 
@@ -908,7 +924,7 @@
                 var left = event.pageX;
                 var url = "https://threads.net/intent/post?text=@Model.CanonicalUri";
 
-                window.open(url, "Share on Threads", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                window.open(url, "Share on Threads", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
                 event.preventDefault();
             });
 
@@ -917,7 +933,7 @@
                 var left = event.pageX;
                 var url = "https://service.weibo.com/share/share.php?url=@Model.CanonicalUri";
 
-                window.open(url, "Share on Weibo", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=0");
+                window.open(url, "Share on Weibo", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
                 event.preventDefault();
             });
 
