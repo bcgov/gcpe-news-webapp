@@ -401,7 +401,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://x.com/quitnowbc", Title = "@QuitNowBC", Summary = "Want to quit smoking? We can help!" },
                         new Link() { Url = "http://x.com/RoadSafetyBC", Title = "@RoadSafetyBC" , Summary = "Get information on road safety and driver behaviour" },
                         new Link() { Url = "https://x.com/SBRoundtableBC", Title = "@SBRoundtableBC" , Summary = "Consulting with small businesses on issues, strategies & actions" },
-                        new Link() { Url = "http://x.com/studentaidbc", Title = "@StudentAidBC" , Summary = "Learn more about student loans, grants and scholarships in BC" },
                         new Link() { Url = "http://x.com/TranBC", Title = "@TranBC" , Summary = "Engaging on BC transportation and infrastructure services, projects and safety" },
                         new Link() { Url = "https://x.com/TranBC_BVLDS", Title = "@TranBC_BVLDS" , Summary = "Keeping the Bulkley Valley, Lakes, and Stikine District informed" },
                         new Link() { Url = "https://x.com/TranBC_Cariboo", Title = "@TranBC_Cariboo" , Summary = "Keeping the Cariboo District informed" },
