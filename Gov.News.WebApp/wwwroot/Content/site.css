@@ -187,6 +187,10 @@ a.news-control .read-more.left {
   color: #003366;
 }
 
+#connect-content {
+    display: flex;
+}
+
 .resource-links.connect h3 {
   margin-top: 0;
 }

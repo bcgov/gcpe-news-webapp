@@ -308,19 +308,18 @@ body {
 
 #menu {
     z-index: 100;
-    /*width: 100vw !important;*/
+    width: 100vw !important;
     left: 0;
     /*position: absolute;*/
     transform: translateX(0px);
     background-color: #fff;
-    /*top: 75px;*/
-
     width: 100vw !important;
     position: relative;
     top: -10px;
-    min-height: 100vh !important;
-    height: max-content;
-    height: 100vh !important;
+    height: calc(100vh - 75px) !important;
+    min-height: calc(100vh - 75px) !important; /* Keep consistent */
+    overflow-y: auto;
+    box-sizing: border-box; /* ADDED: Includes padding and border in the element's total width and height */
 }
 
 #main-nav {
