@@ -1,4 +1,4 @@
-﻿@font-face {
+﻿﻿@font-face {
     font-family: "BCSans";
     font-style: italic;
     font-weight: normal;
@@ -145,10 +145,6 @@ body {
     padding-right: 0;
 }
 
-.search {
-    padding-left: 5px;
-}
-
 #site-search-input:focus {
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -252,6 +248,10 @@ body {
         white-space: nowrap;
     }
 
+    .nav-item-link {
+        padding-right: 0px !important;
+    }
+
     .live_button_show {
         margin-left: 10px;
     }
@@ -281,6 +281,10 @@ body {
         columns: 2;
         -webkit-columns: 2;
         -moz-columns: 2;
+    }
+
+    .nav-item-link {
+        padding-right: 0px !important;
     }
 
     .footer-bc {
@@ -362,14 +366,20 @@ body {
     border-radius: 4px;
 }
 
+#bannerToggleLink:hover,
 #search-md-button:hover,
 #search-md-button image:hover {
     cursor: pointer;
 }
 
+#navbarSupportedContent .navbar-nav .nav-item-link:focus,
+#navbarSupportedContent .navbar-nav .nav-item-link:hover,
+#navbarSupportedContent .navbar-nav .nav-item-link:active {
+    background-color: transparent;
+}
+
 #search-md-button {
     padding: 0;
-
     display: block;
 }
 
@@ -413,6 +423,38 @@ body {
 
 .navbar-toggler, #search-md-button {
     border-color: #2D2D2D;
+}
+
+.banner-toggle-container {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+    order: 1; /* This will place it first in the flex order */
+}
+
+.banner-toggle-btn {
+    padding: 8px 4px !important;
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+    height: 40px;
+    width:40px;
+    border: none;
+}
+
+.banner-toggle-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.navbar-toggler {
+    margin-left: 0;
+    padding: 8px;
+    order: 2; /* This will place it second in the flex order */
+}
+
+.search-toggle-container {
+    order: 3; /* This will place it third in the flex order */
 }
 
 .live_button_show {
@@ -472,6 +514,27 @@ body {
         --bs-gutter-x: 0;
         padding-right: 10px;
     }
+
+    .banner-toggle-container {
+        margin-left: auto;
+        margin-right: 0;
+        order: 1;
+    }
+
+    .banner-toggle-btn {
+        margin-right: 4px;
+    }
+
+    .navbar-toggler {
+        order: 2;
+    }
+
+    .search-toggle-container {
+        order: 3;
+        height: 40px;
+        width: 40px;
+    }
+
     #sm-nav-container {
         padding-left: 0 !important;
         padding-right: 0;
@@ -503,7 +566,7 @@ body {
 
     .collapse-menu-icon {
         padding: 0;
-        margin-left: auto;
+        margin-left: 0;
     }
 
     #search-md-button {
