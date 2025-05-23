@@ -168,10 +168,13 @@
                 </div>
                 <!-- end of skip links for accessibility-->
 
+                <div class="d-xs-block d-sm-block d-md-none banner-toggle-container">
+                    <a class="btn btn-link banner-toggle-btn"><img src="~/Content/Images/banner-toggle.svg" /></a>
+                </div>
                 <button id="nav-menu-sm" class="navbar-toggler collapse-menu-icon menu-icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <div class="d-xs-block d-sm-block d-md-none">
+                <div class="d-xs-block d-sm-block d-md-none search-toggle-container">
                     <button id="search-md-button" class="input-group-text btn-primary-outline search-md menu-icon" data-bs-toggle="collapse" data-bs-target="#smd-search-container">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
@@ -239,6 +242,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="@Model.SubscribePath()">Subscribe</a>
                             </li>
+                            <!-- #banner toggle -->
+                            <li class="nav-item-link">
+                                <a class="nav-link" id="bannerToggleLink" style="width: 40px;"><img src="~/Content/Images/banner-toggle.svg" /></a>
+                            </li>
+                            <!-- #end of banner toggle -->
                         </ul>
                     </div>
                     
@@ -276,15 +284,13 @@
         <div class="container-fluid collapse d-lg-none" id="smd-search-container" data-bs-parent="#main-nav">
         @if (!(Model is SearchViewModel))
         {
-            
                 @using (Html.BeginForm("Search", "Default", FormMethod.Get, new { @class = "search" }))
                 {
                     <div class="input-group">
                         <input name="q" id="site-search-input" type="text" class="form-control" aria-label="search">
                         <button class="input-group-text search-trigger"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
-                }
-            
+                }   
         } 
         </div>
         <!-- end of search input for md and smaller screen-->
@@ -656,38 +662,32 @@
         };
 
         $(document).ready(function () {
-            /* This is for closing the granville banner */
-            if ($.cookie(document.location.host + '-alert-banner') === 'closed') {
-                $("#site-banner").hide();
-            }
-
+            
             $("#btnCloseBanner").click(function (e) {
                 e.preventDefault();
-                /* The cookie will be expired in 100 days
-                 Set the path as root, so the cookie will be valid across the whole site */
-                $("#site-banner").hide();
-                $.cookie(document.location.host + '-alert-banner', 'closed', { path: '/', expires: 60 });
-            });
-
-            $("#btnCloseBanner").click(function (e) {
-                e.preventDefault();
-                $("#site-banner").hide();
+                $("#banner").hide();
                 
             });
 
             $("#btnCloseBannerBridge").click(function (e) {
                 e.preventDefault();
-                /* The cookie will be expired in 100 days
-                 Set the path as root, so the cookie will be valid across the whole site */
-                $("#bridge-banner").hide();
-                $.cookie(document.location.host + '-bridge-banner', 'closed', { path: '/', expires: 30 });
-            });
-
-            $("#btnCloseBannerBridge").click(function (e) {
-                e.preventDefault();
-                $("#bridge-banner").hide();
+                $("#banner").hide();
                 
             });
+
+            // Target the link by its new ID
+            $('#bannerToggleLink').on('click', function(event) {
+                // Prevent the default link navigation behavior
+                event.preventDefault();
+                $('#banner').toggle();
+            });
+
+            $('.banner-toggle-btn').on('click', function(event) {
+                // Prevent the default link navigation behavior
+                event.preventDefault();
+                $('#banner').toggle();
+            });
+
         });
     </script>
 
