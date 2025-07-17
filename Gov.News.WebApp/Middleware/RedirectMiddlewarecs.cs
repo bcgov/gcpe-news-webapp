@@ -216,7 +216,7 @@ namespace Gov.News.Website.Middleware
             }
             if (path.StartsWith("/ministries/jobs-economic-development-and-innovation/trade"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/jobs-economic-development-and-innovation/trade", "/ministries/jobs-economic-development-and-innovation") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/jobs-economic-development-and-innovation/trade", "/ministries/jobs-and-economic-growth") + query);
             }
             if (path.StartsWith("/ministries/transportation-and-infrastructure/infrastructure-and-transit"))
             {
@@ -225,6 +225,10 @@ namespace Gov.News.Website.Middleware
             if (path.StartsWith("/ministries/education-and-child-care/child-care"))
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/education-and-child-care/child-care", "/ministries/education-and-child-care") + query);
+            }
+            if (path.StartsWith("/ministries/jobs-economic-development-and-innovation"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("jobs-economic-development-and-innovation", "jobs-and-economic-growth"));
             }
             if (path.StartsWith("/ministries/post-secondary-education-and-future-skills/workforce-development"))
             {
@@ -240,7 +244,7 @@ namespace Gov.News.Website.Middleware
             }
             if (path == "/ministries/trade")
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("trade", "jobs-economic-development-and-innovation"));
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("trade", "jobs-and-economic-growth"));
             }
             if (path == "/ministries/infrastructure-and-transit")
             {
@@ -483,6 +487,8 @@ namespace Gov.News.Website.Middleware
                                 "/ministries/emergency-management-and-climate-readiness");
             redirectMappings.Add("/ministries/jobs-economic-recovery-and-innovation",
                                 "/ministries/jobs-economic-development-and-innovation");
+            redirectMappings.Add("/ministries/jobs-economic-development-and-innovation",
+                                "/ministries/jobs-and-economic-growth");
 
             redirectMappings.Add("/regions/vancouver-island-coast",
                                 "/regions/vancouver-island-and-coast");
