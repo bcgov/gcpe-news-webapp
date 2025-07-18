@@ -49,6 +49,12 @@ jobs:
           oc logs -f build/$BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
           oc get build $BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools -o jsonpath='{.status.phase}' | grep -q "Complete" || (echo "Build failed!" && exit 1)
 
+      - name: Wait before tagging
+        run: |
+          echo "Waiting 1 minute before proceeding with tagging..."
+          sleep 60
+          echo "Wait complete, proceeding with tagging..."
+
       - name: Execute oc tag command
         id: oc_tag_command
         run: |
@@ -58,11 +64,10 @@ jobs:
 
           echo "Attempting to tag '$SOURCE_IMAGE' to '$DESTINATION_IMAGE' in project '$NAMESPACE'..."
           oc tag "$SOURCE_IMAGE" "$DESTINATION_IMAGE" -n "$NAMESPACE"
-
           echo "Tagging command executed. Checking status..."
           
 
-      - name: Verify New Tag (Optional, but highly recommended)
+      - name: Verify New Tag
         run: |
           DEST_IMAGE_STREAM="news-webapp"
           DEST_TAG="dev"
@@ -77,6 +82,12 @@ jobs:
           echo ""
           echo "For detailed information on the specific tag, run this in your terminal:"
           echo "oc get istag/${DEST_IMAGE_STREAM}:${DEST_TAG} -n ${NAMESPACE} -o yaml"
+
+      - name: Wait before switching environments
+        run: |
+          echo "Waiting 1 minute before switching to dev environment..."
+          sleep 60
+          echo "Wait complete, proceeding with environment switch..."
 
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
