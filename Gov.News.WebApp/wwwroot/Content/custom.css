@@ -320,8 +320,8 @@ body {
     width: 100vw !important;
     position: relative;
     top: -10px;
-    height: calc(100vh - 75px) !important;
-    min-height: calc(100vh - 75px) !important; /* Keep consistent */
+    height: calc(100vh - 130px) !important;
+    min-height: calc(100vh - 130px) !important; /* Keep consistent */
     overflow-y: auto;
     box-sizing: border-box; /* ADDED: Includes padding and border in the element's total width and height */
 }
