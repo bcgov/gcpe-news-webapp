@@ -37,7 +37,7 @@ jobs:
           echo "Starting OpenShift build for news-webapp-develop..."
           
           oc project ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
-          oc start-build news-webapp-develop --from-dir=. -n ${{ secrets.OPENSHIFT_NAMESPACE }} --wait
+          oc start-build news-webapp-develop --from-dir=. -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools --wait
 
           echo "OpenShift build triggered successfully!"
 
