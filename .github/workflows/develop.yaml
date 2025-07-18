@@ -62,7 +62,7 @@ jobs:
           echo "Tagging command executed. Checking status..."
           
 
-      - name: Verify New Tag (Optional, but highly recommended)
+      - name: Verify New Tag
         run: |
           DEST_IMAGE_STREAM="news-webapp"
           DEST_TAG="dev"
