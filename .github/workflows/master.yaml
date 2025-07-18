@@ -31,10 +31,62 @@ jobs:
           insecure_skip_tls_verify: true
           namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
       
-      - name: Trigger Opneshift Pipeline
+      - name: Trigger OpenShift Build
         run: |
+          echo "Starting OpenShift build for news-webapp-master..."
+          
           oc project ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
-          tkn pipeline start news-webapp-master-pipeline --showlog
+          oc start-build news-webapp-master -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools --wait
+
+          echo "OpenShift build triggered successfully!"
+
+      - name: Check OpenShift Build Status
+        run: |
+          # Get the latest build for 'news-webapp-master'
+          BUILD_NAME=$(oc get builds -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools -l "buildconfig=news-webapp-master" --sort-by=.metadata.creationTimestamp -o custom-columns=NAME:.metadata.name --no-headers | tail -n 1)
+          echo "Monitoring build: $BUILD_NAME"
+          oc logs -f build/$BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
+          oc get build $BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools -o jsonpath='{.status.phase}' | grep -q "Complete" || (echo "Build failed!" && exit 1)
+
+      - name: Wait before tagging
+        run: |
+          echo "Waiting 1 minute before proceeding with tagging..."
+          sleep 60
+          echo "Wait complete, proceeding with tagging..."
+
+      - name: Execute oc tag command
+        id: oc_tag_command
+        run: |
+          SOURCE_IMAGE="news-webapp-master:latest"
+          DESTINATION_IMAGE="news-webapp:uat"
+          NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}-tools"
+
+          echo "Attempting to tag '$SOURCE_IMAGE' to '$DESTINATION_IMAGE' in project '$NAMESPACE'..."
+          oc tag "$SOURCE_IMAGE" "$DESTINATION_IMAGE" -n "$NAMESPACE"
+          echo "Tagging command executed. Checking status..."
+          
+
+      - name: Verify New Tag
+        run: |
+          DEST_IMAGE_STREAM="news-webapp"
+          DEST_TAG="uat"
+          NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}-tools"
+
+          echo "Describing ImageStream '${DEST_IMAGE_STREAM}' in namespace '${NAMESPACE}' to verify tag '${DEST_TAG}':"
+          # 'grep -A 5' shows the line with the tag and the 5 lines following it (often includes image digest)
+          # '|| true' prevents the step from failing if the grep command doesn't find a match immediately,
+          # though in a successful scenario it should.
+          oc describe is/"${DEST_IMAGE_STREAM}" -n "${NAMESPACE}" | grep -A 5 "Tag: ${DEST_TAG}" || true
+
+          echo ""
+          echo "For detailed information on the specific tag, run this in your terminal:"
+          echo "oc get istag/${DEST_IMAGE_STREAM}:${DEST_TAG} -n ${NAMESPACE} -o yaml"
+
+      - name: Wait before switching environments
+        run: |
+          echo "Waiting 1 minute before switching to test environment..."
+          sleep 60
+          echo "Wait complete, proceeding with environment switch..."
 
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1

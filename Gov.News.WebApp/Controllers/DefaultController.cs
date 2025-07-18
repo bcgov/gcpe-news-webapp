@@ -361,7 +361,7 @@ namespace Gov.News.Website.Controllers
                          new Link() { Url = "http://www.youtube.com/BCPublicService", Title = "BC Public Service" },
                          new Link() { Url = "http://www.youtube.com/user/BCTradeInvest", Title = "BC Trade & Invest" },
                          new Link() { Url = "https://www.youtube.com/@BCWildfireService", Title = "BC Wildfire Service" },
-                         new Link() { Url = "http://www.youtube.com/MinistryofTranBC", Title = "BC Ministry of Transportation" },
+                         new Link() { Url = "http://www.youtube.com/MinistryofTranBC", Title = "BC Ministry of Transportation and Transit" },
                          new Link() { Url = "http://www.youtube.com/CareerTrekBC", Title = "Career Trek BC" },
                          new Link() { Url = "http://www.youtube.com/EmergencyInfoBC", Title = "PreparedBC" },
                          new Link() { Url = "https://www.youtube.com/user/QuitNowBC", Title = "QuitNowBC" },
@@ -372,7 +372,7 @@ namespace Gov.News.Website.Controllers
 
             model.FlickrLinks = new Link[]
             {
-                         new Link() { Url = "http://www.flickr.com/photos/tranbc/", Title = "BC Ministry of Transportation & Infrastructure's photostream" }
+                         new Link() { Url = "http://www.flickr.com/photos/tranbc/", Title = "BC Ministry of Transportation & Transit's photostream" }
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.flickr.com/photos/bcgovphotos", Title = "Province of BC", Summary = "View and share the latest photos from the Government of British Columbia" }).ToArray();
 
             model.TwitterLinks = new Link[]
@@ -398,7 +398,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "http://x.com/quitnowbc", Title = "@QuitNowBC", Summary = "Want to quit smoking? We can help!" },
                         new Link() { Url = "http://x.com/RoadSafetyBC", Title = "@RoadSafetyBC" , Summary = "Get information on road safety and driver behaviour" },
                         new Link() { Url = "https://x.com/SBRoundtableBC", Title = "@SBRoundtableBC" , Summary = "Consulting with small businesses on issues, strategies & actions" },
-                        new Link() { Url = "http://x.com/TranBC", Title = "@TranBC" , Summary = "Engaging on BC transportation and infrastructure services, projects and safety" },
+                        new Link() { Url = "http://x.com/TranBC", Title = "@TranBC" , Summary = "Engaging on BC transportation and transit services, projects and safety" },
                         new Link() { Url = "https://x.com/TranBC_BVLDS", Title = "@TranBC_BVLDS" , Summary = "Keeping the Bulkley Valley, Lakes, and Stikine District informed" },
                         new Link() { Url = "https://x.com/TranBC_Cariboo", Title = "@TranBC_Cariboo" , Summary = "Keeping the Cariboo District informed" },
                         new Link() { Url = "https://x.com/TranBC_FtGeorge", Title = "@TranBC_FtGeorge" , Summary = "Keeping the Fort George District informed" },
@@ -424,7 +424,7 @@ namespace Gov.News.Website.Controllers
             {
                         new Link() { Url = "https://www.instagram.com/bchousing/", Title = "BC Housing", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/yourbcparks/", Title = "BC Parks", Summary = "" },
-                        new Link() { Url = "https://www.instagram.com/ministryoftranbc/", Title = "BC Ministry of Transportation", Summary = "" },
+                        new Link() { Url = "https://www.instagram.com/ministryoftranbc/", Title = "BC Ministry of Transportation and Transit", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/creativebcs/", Title = "Creative BC", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/hellobc/", Title = "Destination British Columbia", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/innovate_bc/", Title = "Innovate BC", Summary = "" },
