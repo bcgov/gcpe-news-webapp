@@ -31,14 +31,9 @@ jobs:
           insecure_skip_tls_verify: true
           namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
       
-      - name: Trigger Opneshift Pipeline
-        run: |
-          oc project ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
-          tkn pipeline start news-webapp-develop-pipeline --showlog
 
       - name: Trigger OpenShift Build
         run: |
-          # Example 1: Start a new build from a BuildConfig named 'my-app'
           echo "Starting OpenShift build for news-webapp-develop..."
           
           oc project ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
