@@ -44,10 +44,10 @@ jobs:
       - name: Check OpenShift Build Status
         run: |
           # Get the latest build for 'news-webapp-develop'
-          BUILD_NAME=$(oc get builds -n ${{ secrets.OPENSHIFT_NAMESPACE }} -l "buildconfig=news-webapp-develop" --sort-by=.metadata.creationTimestamp -o custom-columns=NAME:.metadata.name --no-headers | tail -n 1)
+          BUILD_NAME=$(oc get builds -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools -l "buildconfig=news-webapp-develop" --sort-by=.metadata.creationTimestamp -o custom-columns=NAME:.metadata.name --no-headers | tail -n 1)
           echo "Monitoring build: $BUILD_NAME"
-          oc logs -f build/$BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}
-          oc get build $BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }} -o jsonpath='{.status.phase}' | grep -q "Complete" || (echo "Build failed!" && exit 1)
+          oc logs -f build/$BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
+          oc get build $BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools -o jsonpath='{.status.phase}' | grep -q "Complete" || (echo "Build failed!" && exit 1)
 
       - name: Execute oc tag command
         id: oc_tag_command
