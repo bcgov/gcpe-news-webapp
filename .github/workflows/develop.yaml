@@ -54,7 +54,7 @@ jobs:
         run: |
           SOURCE_IMAGE="news-webapp-develop:latest"
           DESTINATION_IMAGE="news-webapp:dev"
-          NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}"
+          NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}-tools"
 
           echo "Attempting to tag '$SOURCE_IMAGE' to '$DESTINATION_IMAGE' in project '$NAMESPACE'..."
           oc tag "$SOURCE_IMAGE" "$DESTINATION_IMAGE" -n "$NAMESPACE"
@@ -66,7 +66,7 @@ jobs:
         run: |
           DEST_IMAGE_STREAM="news-webapp"
           DEST_TAG="dev"
-          NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}"
+          NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}-tools"
 
           echo "Describing ImageStream '${DEST_IMAGE_STREAM}' in namespace '${NAMESPACE}' to verify tag '${DEST_TAG}':"
           # 'grep -A 5' shows the line with the tag and the 5 lines following it (often includes image digest)
