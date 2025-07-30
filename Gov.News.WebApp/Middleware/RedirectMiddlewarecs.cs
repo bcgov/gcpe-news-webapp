@@ -325,9 +325,10 @@ namespace Gov.News.Website.Middleware
             //    <httpRedirect enabled="true" destination="/subscribe?newsletters=" httpResponseStatus="Found" />
             //  </system.webServer>
             //</location>
-            if (path == "/newsletters/subscribe")
+            if (path == "/newsletters/subscribe" ||
+                (path == "/subscribe" && query.Contains("newsletters")))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, "/subscribe?newsletters=");
+                return new Uri(Properties.Settings.Default.NewsHostUri, "/subscribe");
             }
 
             //<location path="files/newsroom/downloads/media_contacts.pdf">
