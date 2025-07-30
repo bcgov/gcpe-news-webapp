@@ -331,6 +331,11 @@ namespace Gov.News.Website.Middleware
                 return new Uri(Properties.Settings.Default.NewsHostUri, "/subscribe");
             }
 
+            if (path == "/newsletters")
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+            }
+
             //<location path="files/newsroom/downloads/media_contacts.pdf">
             //  <system.webServer>
             //    <httpRedirect enabled="true" destination="https://news.gov.bc.ca/files/Media_Contacts.pdf" httpResponseStatus="Found" />
