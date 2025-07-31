@@ -336,6 +336,11 @@ namespace Gov.News.Website.Middleware
                 return new Uri(Properties.Settings.Default.NewsHostUri, "/");
             }
 
+            if (path == "/newsletters/columbia-river-treaty") return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+            if (path == "/newsletters/bc-non-profits-newsletter") return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+            if (path == "/newsletters/bc-groundwater-updates") return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+            if (path == "/newsletters/caribou-recovery-program") return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+
             //<location path="files/newsroom/downloads/media_contacts.pdf">
             //  <system.webServer>
             //    <httpRedirect enabled="true" destination="https://news.gov.bc.ca/files/Media_Contacts.pdf" httpResponseStatus="Found" />
