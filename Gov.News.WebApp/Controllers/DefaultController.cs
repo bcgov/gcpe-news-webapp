@@ -332,7 +332,7 @@ namespace Gov.News.Website.Controllers
             model.FacebookLinks = new Link[]
             {                 
                         new Link() { Url = "http://www.facebook.com/BizPaLBC", Title = "BC BizPaL" },
-                        new Link() { Url = "http://www.facebook.com/ImmunizeBC", Title = "BC Centre for Disease Control: ImmunizeBC" },
+                        new Link() { Url = "https://www.facebook.com/bchonours", Title = "BC Honours" },
                         new Link() { Url = "http://www.facebook.com/pages/BCIC/124363430933347", Title = "Innovate BC" },
                         new Link() { Url = "http://www.facebook.com/YourBCParks", Title = "BC Parks" },
                         new Link() { Url = "http://www.facebook.com/TranBC", Title = "BC Transportation and Infrastructure" },
@@ -422,6 +422,7 @@ namespace Gov.News.Website.Controllers
 
             model.InstagramLinks = new Link[]
             {
+                        new Link() { Url = "https://www.instagram.com/bchonours", Title = "BC Honours", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/bchousing/", Title = "BC Housing", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/yourbcparks/", Title = "BC Parks", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/ministryoftranbc/", Title = "BC Ministry of Transportation and Transit", Summary = "" },
@@ -436,6 +437,10 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/bcgovfireinfo/", Title = "BC Wildfire Service", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/workbc.ca/", Title = "WorkBC", Summary = "" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
+
+            model.BlueskyLinks = new Link[]
+            {
+            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://governmentofbc.bsky.social", Title = "@GovernmentOfBC.bsky.social", Summary = "Read daily news from the Government of British Columbia" }).ToArray();
 
             model.ThreadsLinks = new Link[]
            {
