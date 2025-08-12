@@ -134,6 +134,38 @@
                 }
             </div>
         </div>
+
+
+        @{
+            bool expandableBluesky = Model.BlueskyLinks.Count() >= 5;
+        }
+        <div class="expandable-section bluesky @(expandableBluesky ? "collapsed" : "expanded")">
+            <a name="bluesky"></a>
+            <h3>Find us on Bluesky <i class="fa-brands fa-square-bluesky pull-right" aria-hidden="true"></i></h3>
+            <div class="expandable-section-content">
+                <div class="expander-body">
+                    @if (Model.BlueskyLinks != null && Model.BlueskyLinks.Any())
+                    {
+                        <ul class="external-links">
+                            @foreach (var link in Model.BlueskyLinks)
+                            {
+                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
+                            }
+                        </ul>
+                    }
+                    @if (expandableBluesky)
+                    {
+                        <div class="article-fade"> </div>
+                    }
+                </div>
+                @if (expandableBluesky)
+                {
+                    <a href="#" class="link-button expand">Expand Bluesky List</a>
+                    <a href="#" class="link-button collapse">Contract Bluesky List</a>
+                }
+            </div>
+        </div>
+
             @{bool expandableWeibo = Model.WeiboLinks.Count() >= 5;}
             <div class="expandable-section weibo @(expandableWeibo ? "collapsed" : "expanded" )">
                 <a name="weibo"></a>
@@ -220,36 +252,6 @@
                     }
                 </div>
             </div>
-
-        @{
-            bool expandableBluesky = Model.BlueskyLinks.Count() >= 5;
-        }
-        <div class="expandable-section bluesky @(expandableBluesky ? "collapsed" : "expanded")">
-            <a name="bluesky"></a>
-            <h3>Find us on Bluesky <i class="fa-brands fa-square-bluesky pull-right" aria-hidden="true"></i></h3>
-            <div class="expandable-section-content">
-                <div class="expander-body">
-                    @if (Model.BlueskyLinks != null && Model.BlueskyLinks.Any())
-                    {
-                        <ul class="external-links">
-                            @foreach (var link in Model.BlueskyLinks)
-                            {
-                                <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                            }
-                        </ul>
-                    }
-                    @if (expandableBluesky)
-                    {
-                        <div class="article-fade"> </div>
-                    }
-                </div>
-                @if (expandableBluesky)
-                {
-                    <a href="#" class="link-button expand">Expand Bluesky List</a>
-                    <a href="#" class="link-button collapse">Contract Bluesky List</a>
-                }
-            </div>
-        </div>
 
             @{bool expandableYoutube = Model.YoutubeLinks.Count() >= 5;}
             <div class="expandable-section youtube @(expandableYoutube ? "collapsed" : "expanded" )">

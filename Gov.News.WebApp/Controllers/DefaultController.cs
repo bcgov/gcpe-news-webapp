@@ -440,7 +440,7 @@ namespace Gov.News.Website.Controllers
 
             model.BlueskyLinks = new Link[]
             {
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://governmentofbc.bsky.social", Title = "@GovernmentOfBC.bsky.social", Summary = "Read daily news from the Government of British Columbia" }).ToArray();
+            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://governmentofbc.bsky.social", Title = "Government of BC", Summary = "Read daily news from the Government of British Columbia" }).ToArray();
 
             model.ThreadsLinks = new Link[]
            {
