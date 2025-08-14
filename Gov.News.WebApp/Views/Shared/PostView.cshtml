@@ -928,6 +928,15 @@
                 event.preventDefault();
             });
 
+            $('a.share-bluesky').on('click', function (event) {
+                var top = event.pageY;
+                var left = event.pageX;
+                var url = "https://bsky.app/intent/compose?text=" + encodeURIComponent("@Model.CanonicalUri");
+
+                window.open(url, "Share on Bluesky", "top=" + top + ",left=" + left + ",width=500,height=300,scrollbars=1,toolbar=0,resizable=1");
+                event.preventDefault();
+            });
+
             $('a.share-weibo').on('click', function (event) {
                 var top = event.pageY;
                 var left = event.pageX;
