@@ -3555,6 +3555,6 @@ ul.external-links:last-child {
     align-self: flex-start;
 }
 
-.share-facebook, .share-instagram, .share-threads, .share-weibo :hover{
+.share-facebook, .share-instagram, .share-threads, .share-bluesky, .share-weibo :hover{
     cursor: pointer;
 }
