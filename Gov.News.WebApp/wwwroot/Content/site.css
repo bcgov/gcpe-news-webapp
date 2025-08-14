@@ -246,6 +246,25 @@ a.news-control .read-more.left {
   margin-top: 15px;
 }
 
+/* Apply consistent horizontal spacing to all connect icons */
+.resource-links.connect ul {
+    display: flex;
+    gap: 14px; /* even gap between icons */
+    justify-content: flex-start; /* or center if you want them centered */
+    padding-left: 0;
+    margin: 0 0 8px 0; /* space between rows */
+}
+
+    .resource-links.connect ul li {
+        margin: 0; /* remove old % margin */
+        list-style: none;
+    }
+
+        /* Ensure all icons align perfectly */
+        .resource-links.connect ul li img {
+            display: block;
+        }
+
 .fa-customized {
   font-size: 2.3em !important;
 }
