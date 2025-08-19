@@ -479,7 +479,8 @@ namespace Gov.News.Website.Controllers
             {
                 new Link() { Url = "https://www.linkedin.com/company/bc-public-service/", Title = "BC Public Service", Summary = ""},
                 new Link() { Url = "https://www.linkedin.com/company/official-workbc/", Title = "WorkBC ", Summary = ""},
-            }.OrderBy(t => t.Title).ToArray();
+                new Link() { Url = "https://www.linkedin.com/company/trade-invest-british-columbia/", Title = "Trade & Invest BC", Summary = "" },
+            }.Prepend(new Link() { Url = "https://www.linkedin.com/company/bcgov/", Title = "Government of BC", Summary = "" }).ToArray();
 
             return model;
         }
