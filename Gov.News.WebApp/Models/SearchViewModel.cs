@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -32,15 +32,16 @@ namespace Gov.News.Website.Models
 
         public IDictionary<string, string> AllQueryFilters(bool includePage = true)
         {
-            var filters = Query.Filters != null ? new Dictionary<string, string>(Query.Filters) 
+            var query = Query ?? new SearchQuery(null);
+            var filters = query.Filters != null ? new Dictionary<string, string>(query.Filters) 
                                                 : new Dictionary<string, string>();
-            if (Query.FromDate != MinDate)
+            if (query.FromDate != MinDate)
             {
-                filters["FromDate"] = Query.FromDate.ToString("MM/dd/yyyy");
+                filters["FromDate"] = query.FromDate.ToString("MM/dd/yyyy");
             }
-            if (Query.ToDate != DateTime.Today)
+            if (query.ToDate != DateTime.Today)
             {
-                filters["ToDate"] = Query.ToDate.ToString("MM/dd/yyyy");
+                filters["ToDate"] = query.ToDate.ToString("MM/dd/yyyy");
             }
             if (includePage && FirstResult != 1)
             {
@@ -50,14 +51,16 @@ namespace Gov.News.Website.Models
         }
         public string QueryString(string key, string value)
         {
+            var query = Query ?? new SearchQuery(null);
             var queryFilters = AllQueryFilters(false);
-            queryFilters["q"] = Query.Text;
+            queryFilters["q"] = query.Text;
             queryFilters[key] = value;
             return string.Join("&", queryFilters.Where(f => f.Value != null).Select(f => f.Key + "=" + f.Value));
         }
 
         public SearchViewModel()
         {
+            Query = new SearchQuery(null);
             Success = true;
             Results = new List<Result>();
             FacetResults = new Dictionary<string, IEnumerable<FacetHit>>();

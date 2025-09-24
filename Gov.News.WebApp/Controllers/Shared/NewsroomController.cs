@@ -47,9 +47,11 @@ namespace Gov.News.Website.Controllers.Shared
 
         protected async Task<SearchViewModel> Search(SearchViewModel.SearchQuery query, string page = null)
         {
+            query ??= new SearchViewModel.SearchQuery(null);
             var model = new SearchViewModel();
             int ResultsPerPage = 10;
             model.ResultsPerPage = ResultsPerPage;
+            model.Query = query;
 
             await LoadAsync(model);
 
