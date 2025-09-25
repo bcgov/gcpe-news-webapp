@@ -128,13 +128,26 @@ namespace Gov.News.Website.Controllers.Shared
 
         private ActionResult GetFallbackImage()
         {
-            var placeholderPath = Path.Combine(_environment.WebRootPath, PlaceholderImageRelativePath.Replace('/', Path.DirectorySeparatorChar));
-            if (System.IO.File.Exists(placeholderPath))
+            var candidateRelativePaths = new[]
             {
-                return PhysicalFile(placeholderPath, "image/png");
+                PlaceholderImageRelativePath,
+                "Content/Images/Gov/default-og-image-new.jpg"
+            };
+
+            foreach (var relativePath in candidateRelativePaths)
+            {
+                var normalized = relativePath.Replace('/', Path.DirectorySeparatorChar);
+                var fullPath = Path.Combine(_environment.WebRootPath, normalized);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    var contentType = fullPath.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ? "image/png" : "image/jpeg";
+                    return PhysicalFile(fullPath, contentType);
+                }
+
+                _logger.LogDebug("Fallback candidate missing at path {FallbackPath}.", fullPath);
             }
 
-            _logger.LogWarning("Placeholder thumbnail not found at path {PlaceholderPath}.", placeholderPath);
+            _logger.LogWarning("No fallback thumbnail image found. Candidates: {Candidates}.", string.Join(", ", candidateRelativePaths));
             return StatusCode(StatusCodes.Status502BadGateway);
         }
 
