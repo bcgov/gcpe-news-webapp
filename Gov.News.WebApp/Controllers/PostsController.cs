@@ -1,7 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.IO;
+using System.Security.Authentication;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Gov.News.Api.Models;
@@ -16,8 +20,14 @@ namespace Gov.News.Website.Controllers.Shared
 {
     public class PostsController : IndexController<DataIndex>
     {
-        public PostsController(Repository repository, IConfiguration configuration) : base(repository, configuration)
+        private const string PlaceholderImageRelativePath = "Content/Images/Gov/BC_Gov_News_1280x720.png";
+        private readonly IWebHostEnvironment _environment;
+        private readonly ILogger<PostsController> _logger;
+
+        public PostsController(Repository repository, IConfiguration configuration, IWebHostEnvironment environment, ILogger<PostsController> logger) : base(repository, configuration)
         {
+            _environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<ActionResult> Details(string key)
@@ -53,31 +63,56 @@ namespace Gov.News.Website.Controllers.Shared
             }
 
             var thumbnailUri = post.GetThumbnailUri();
+            if (thumbnailUri == null)
+            {
+                _logger.LogWarning("No thumbnail uri available for post {PostKey}.", key);
+                return GetFallbackImage();
+            }
 
             var thumbnailUriProxy = thumbnailUri.ToProxyUrl();
+            if (string.IsNullOrWhiteSpace(thumbnailUriProxy))
+            {
+                _logger.LogWarning("Proxy thumbnail url missing for post {PostKey}.", key);
+                return GetFallbackImage();
+            }
 
-            var client = new System.Net.Http.HttpClient(new HttpClientHandler() { UseDefaultCredentials = true });
-
+            using var client = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true });
             client.DefaultRequestHeaders.Referrer = new Uri(string.Concat(Request.Scheme, "://", Request.Host.ToUriComponent(), Request.PathBase.ToUriComponent(), Request.Path, Request.QueryString));
 
-            //Originally tried to get the stream directly using the httpclient as per below, but from the stream there is no way to 
-            //accurately tell the content type. Which is needed in order to send the stream correctly. 
+            try
+            {
+                using var response = await client.GetAsync(thumbnailUriProxy);
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogWarning("Thumbnail request for post {PostKey} returned status {StatusCode}.", key, response.StatusCode);
+                    return GetFallbackImage();
+                }
 
-            //var stream = await client.GetStreamAsync(thumbnailUriProxy);
+                var contentType = response.Content.Headers.ContentType?.ToString() ?? "image/jpeg";
+                var payload = await response.Content.ReadAsByteArrayAsync();
+                if (payload == null || payload.Length == 0)
+                {
+                    _logger.LogWarning("Thumbnail response for post {PostKey} was empty.", key);
+                    return GetFallbackImage();
+                }
 
-            //Instead we simply get the HTTP Request Response 
-            var result = await client.GetAsync(thumbnailUriProxy);
-
-            //Get the type from the response as interpreted by the proxy server
-            var type = result.Content.Headers.ContentType;
-
-            //Then create the stream based on the response content.
-            var stream = await result.Content.ReadAsStreamAsync();
-
-            if (stream == null)
-                return await SearchNotFound();
-
-            return File(stream, type.ToString());
+                return new FileContentResult(payload, contentType);
+            }
+            catch (HttpRequestException ex) when (ex.InnerException is AuthenticationException)
+            {
+                _logger.LogWarning(ex, "SSL certificate validation failed for thumbnail request on post {PostKey}.", key);
+                return GetFallbackImage();
+            }
+            catch (AuthenticationException ex)
+            {
+                _logger.LogWarning(ex, "Authentication error when retrieving thumbnail for post {PostKey}.", key);
+                return GetFallbackImage();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error retrieving thumbnail for post {PostKey}.", key);
+                return GetFallbackImage();
+            }
         }
 
         [ResponseCache(CacheProfileName = "Default"), Noindex]
@@ -89,6 +124,18 @@ namespace Gov.News.Website.Controllers.Shared
                 return await SearchNotFound();
 
             return View("PostsView", model);
+        }
+
+        private ActionResult GetFallbackImage()
+        {
+            var placeholderPath = Path.Combine(_environment.WebRootPath, PlaceholderImageRelativePath.Replace('/', Path.DirectorySeparatorChar));
+            if (System.IO.File.Exists(placeholderPath))
+            {
+                return PhysicalFile(placeholderPath, "image/png");
+            }
+
+            _logger.LogWarning("Placeholder thumbnail not found at path {PlaceholderPath}.", placeholderPath);
+            return StatusCode(StatusCodes.Status502BadGateway);
         }
 
         const int RelatedArticlesLength = 3;
