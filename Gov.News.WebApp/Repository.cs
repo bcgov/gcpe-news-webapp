@@ -81,7 +81,7 @@ namespace Gov.News.Website
                 }
                 catch (Exception e)
                 {
-                    _logger.LogError(e.Message.ToString());
+                    _logger.LogError(e, "The SSL connection could not be established, see inner exception.");
                     Thread.Sleep(10000); // 10 seconds
                 }
             }
@@ -598,4 +598,5 @@ namespace Gov.News.Website
             }
         }
     }
+
 }
