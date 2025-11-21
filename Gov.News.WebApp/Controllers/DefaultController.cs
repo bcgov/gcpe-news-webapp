@@ -444,6 +444,7 @@ namespace Gov.News.Website.Controllers
 
             model.ThreadsLinks = new Link[]
            {
+               new Link() { Url = "https://www.threads.com/@prepared_bc", Title = "Prepared BC", Summary = "" },
            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.threads.net/@governmentofbc", Title = "Government of BC", Summary = "" }).ToArray();
 
             model.BlogsLinks = new Link[]
