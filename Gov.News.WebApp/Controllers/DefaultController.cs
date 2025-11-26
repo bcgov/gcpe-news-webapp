@@ -351,7 +351,10 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.facebook.com/RoadSafetyBC", Title = "Road Safety BC" },
                         new Link() { Url = "https://www.facebook.com/HealthyBritishColumbia", Title = "HealthyBC" },
                         new Link() { Url = "https://www.facebook.com/EatDrinkBuyBC", Title = "Buy BC" },
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" }).ToArray();
+            }.OrderBy(t => t.Title)
+            .Prepend(new Link() { Url = "https://www.facebook.com/GovernmentOfBCChinese", Title = "Government of British Columbia Chinese (卑詩省政府中文官方帳號)", Summary = "" })
+            .Prepend(new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" })
+            .ToArray();
 
 
             model.YoutubeLinks = new Link[]
