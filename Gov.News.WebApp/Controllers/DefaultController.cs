@@ -351,7 +351,10 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.facebook.com/RoadSafetyBC", Title = "Road Safety BC" },
                         new Link() { Url = "https://www.facebook.com/HealthyBritishColumbia", Title = "HealthyBC" },
                         new Link() { Url = "https://www.facebook.com/EatDrinkBuyBC", Title = "Buy BC" },
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" }).ToArray();
+            }.OrderBy(t => t.Title)
+            .Prepend(new Link() { Url = "https://www.facebook.com/GovernmentOfBCChinese", Title = "Government of British Columbia Chinese (卑詩省政府中文官方帳號)", Summary = "" })
+            .Prepend(new Link() { Url = "http://www.facebook.com/BCProvincialGovernment", Title = "Government of British Columbia", Summary = "Join us for BC news, information and updates" })
+            .ToArray();
 
 
             model.YoutubeLinks = new Link[]
@@ -444,6 +447,7 @@ namespace Gov.News.Website.Controllers
 
             model.ThreadsLinks = new Link[]
            {
+               new Link() { Url = "https://www.threads.com/@prepared_bc", Title = "Prepared BC", Summary = "" },
            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.threads.net/@governmentofbc", Title = "Government of BC", Summary = "" }).ToArray();
 
             model.BlogsLinks = new Link[]
