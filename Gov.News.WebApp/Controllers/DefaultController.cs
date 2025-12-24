@@ -77,7 +77,12 @@ namespace Gov.News.Website.Controllers
                 content.AppendLine("Disallow: /assets");
                 content.AppendLine("Disallow: /error");
                 content.AppendLine("Disallow: /files");
+
+                // search pages (all case variants)
                 content.AppendLine("Disallow: /search");
+                content.AppendLine("Disallow: /Search");
+                content.AppendLine("Disallow: /SEARCH");
+
                 content.AppendLine("Disallow: /subscribe");
             }
 
