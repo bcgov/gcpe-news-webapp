@@ -47,6 +47,11 @@
         <link rel="canonical" href="@Model.CanonicalUri" />
     }
 
+    @if (Model is SearchViewModel)
+    {
+        <meta name="robots" content="noindex, nofollow" />
+    }
+
     <environment names="Testing,Development">
         <!-- Latest compiled and minified CSS -->
         <!--
