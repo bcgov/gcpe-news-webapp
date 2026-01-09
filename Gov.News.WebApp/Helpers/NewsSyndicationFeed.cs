@@ -35,7 +35,7 @@ namespace Gov.News.Website
 
             foreach (var e in Model.Entries)
             {
-                if (newsOnDemand && !(bool)e.IsNewsOnDemand)
+                if (newsOnDemand && e.IsNewsOnDemand != true)
                     continue;
 
                 SyndicationItem item = await ToSyndicationItem(e);
@@ -134,7 +134,8 @@ namespace Gov.News.Website
                 {
                     //TODO: No name for asset
                     Asset flickrAsset = await _repository.GetFlickrAssetAsync(entry.AssetUrl);
-                    item.Links.Add(new SyndicationLink(thumbnailUri, "enclosure", "", "image/jpeg", (long)flickrAsset.Length));
+                    var enclosureLength = flickrAsset?.Length ?? 0;
+                    item.Links.Add(new SyndicationLink(thumbnailUri, "enclosure", "", "image/jpeg", enclosureLength));
                 }
                 else
                 {

@@ -166,34 +166,6 @@
             </div>
         </div>
 
-            @{bool expandableWeibo = Model.WeiboLinks.Count() >= 5;}
-            <div class="expandable-section weibo @(expandableWeibo ? "collapsed" : "expanded" )">
-                <a name="weibo"></a>
-                <h3>Find us on Weibo <i class="fa-brands fa-weibo pull-right" aria-hidden="true"></i></h3>
-                <div class="expandable-section-content">
-                    <div class="expander-body">
-                        @if (Model.WeiboLinks != null && Model.WeiboLinks.Any())
-                        {
-                            <ul class="external-links">
-                                @foreach (var link in Model.WeiboLinks)
-                                {
-                                    <li><a href="@link.Url">@link.Title</a> <span>@link.Summary</span></li>
-                                }
-                            </ul>
-                        }
-                        @if (@expandableWeibo)
-                        {
-                            <div class="article-fade"> </div>
-                        }
-                    </div>
-                    @if (@expandableWeibo)
-                    {
-                        <a href="#" class="link-button expand">Expand Weibo List</a>
-                        <a href="#" class="link-button collapse">Contract Weibo List</a>
-                    }
-                </div>
-            </div>
-
             @{bool expandableLinkedin = Model.LinkedinLinks.Count() >= 5;}
             <div class="expandable-section linkedin @(expandableLinkedin ? "collapsed" : "expanded" )">
                 <a name="linkedin"></a>
