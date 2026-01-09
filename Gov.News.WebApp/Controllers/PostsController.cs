@@ -77,25 +77,7 @@ namespace Gov.News.Website.Controllers.Shared
             }
 
             using var client = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true });
-            var referrerHeader = Request.Headers["Referer"].FirstOrDefault();
-            if (!string.IsNullOrWhiteSpace(referrerHeader) && System.Uri.TryCreate(referrerHeader, UriKind.Absolute, out var parsedReferrer))
-            {
-                client.DefaultRequestHeaders.Referrer = parsedReferrer;
-            }
-            else
-            {
-                var scheme = string.IsNullOrWhiteSpace(Request?.Scheme) ? Properties.Settings.Default.NewsHostUri.Scheme : Request.Scheme;
-                var hostComponent = Request?.Host.HasValue == true ? Request.Host.ToUriComponent() : Properties.Settings.Default.NewsHostUri.Host;
-                var pathBaseComponent = Request?.PathBase.HasValue == true ? Request.PathBase.Value : string.Empty;
-                var pathComponent = Request?.Path.HasValue == true ? Request.Path.Value : string.Empty;
-                var queryComponent = Request?.QueryString.HasValue == true ? Request.QueryString.Value : string.Empty;
-                var fallbackReferrer = $"{scheme}://{hostComponent}{pathBaseComponent}{pathComponent}{queryComponent}";
-                if (!System.Uri.TryCreate(fallbackReferrer, UriKind.Absolute, out var constructedReferrer))
-                {
-                    constructedReferrer = Properties.Settings.Default.NewsHostUri;
-                }
-                client.DefaultRequestHeaders.Referrer = constructedReferrer;
-            }
+            client.DefaultRequestHeaders.Referrer = new Uri(string.Concat(Request.Scheme, "://", Request.Host.ToUriComponent(), Request.PathBase.ToUriComponent(), Request.Path, Request.QueryString));
 
             try
             {
@@ -118,12 +100,12 @@ namespace Gov.News.Website.Controllers.Shared
             }
             catch (HttpRequestException ex) when (ex.InnerException is AuthenticationException)
             {
-                _logger.LogWarning("SSL certificate validation failed for thumbnail request on post {PostKey}; using fallback image.", key);
+                _logger.LogWarning(ex, "SSL certificate validation failed for thumbnail request on post {PostKey}.", key);
                 return GetFallbackImage();
             }
             catch (AuthenticationException ex)
             {
-                _logger.LogWarning("Authentication error when retrieving thumbnail for post {PostKey}; using fallback image.", key);
+                _logger.LogWarning(ex, "Authentication error when retrieving thumbnail for post {PostKey}.", key);
                 return GetFallbackImage();
             }
             catch (Exception ex)
