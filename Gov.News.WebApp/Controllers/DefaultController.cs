@@ -392,14 +392,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://x.com/BCTradeInvest", Title = "@BCTradeInvest", Summary = "Find expertise to help your business grow internationally" },
                         new Link() { Url = "http://x.com/CRTreaty", Title = "@CRTreaty", Summary = "Join the discussion on the Columbia River Treaty Review" },
                         new Link() { Url = "http://x.com/DriveBC", Title = "@DriveBC" , Summary = "Get developing road closure & weather information in BC" },
-                        new Link() { Url = "https://x.com/DriveBC_c", Title = "@DriveBC_C" , Summary = "Travel info for the Cariboo region" },
-                        new Link() { Url = "https://x.com/DriveBC_K", Title = "@DriveBC_K" , Summary = "Travel info for the Kootenays" },
-                        new Link() { Url = "https://x.com/DriveBC_LM", Title = "@DriveBC_LM" , Summary = "Travel info for the Lower Mainland" },
-                        new Link() { Url = "https://x.com/DriveBC_nc", Title = "@DriveBC_NC" , Summary = "Travel info for the North Central region" },
-                        new Link() { Url = "https://x.com/DriveBC_ne", Title = "@DriveBC_NE" , Summary = "Travel info for the North East region" },
-                        new Link() { Url = "https://x.com/drivebc_nw", Title = "@DriveBC_NW" , Summary = "Travel info for the North West region" },
-                        new Link() { Url = "https://x.com/DriveBC_tok", Title = "@DriveBC_TOK" , Summary = "Travel info for the Thompson Okanagan region" },
-                        new Link() { Url = "https://x.com/DriveBC_VI", Title = "@DriveBC_VI" , Summary = "Travel info for Vancouver Island" },
                         new Link() { Url = "http://x.com/emergencyinfobc", Title = "@EmergencyInfoBC" , Summary = "Receive information during extreme weather and natural disasters" },
                         new Link() { Url = "https://x.com/PreparedBC", Title = "@PreparedBC" , Summary = "Ready for a disaster? Get preparedness tips & recovery info here." },
                         new Link() { Url = "http://x.com/govTogetherBC", Title = "@govTogetherBC" , Summary = "Find consultation and engagement opportunities in BC" },
@@ -477,11 +469,6 @@ namespace Gov.News.Website.Controllers
                 .OrderBy(t => t.Title)
                 .Prepend(new Link() { Url = "https://news.gov.bc.ca/factsheets/feed", Title = "Factsheets & Opinion Editorials" })
                 .Prepend(new Link() { Url = "https://news.gov.bc.ca/feed", Title = "BC Gov News" }).ToArray();
-
-            model.WeiboLinks = new Link[]
-            {
-                //new Link() { Url="https://weibo.com/governmentofbc", Title="卑诗省府GovernmentofBC" }
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://weibo.com/governmentofbc", Title = "卑诗省府GovernmentofBC", Summary = "" }).ToArray();
 
             model.LinkedinLinks = new Link[]
             {
