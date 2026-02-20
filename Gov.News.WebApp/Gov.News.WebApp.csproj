@@ -37,7 +37,7 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.9.9" />
-    <PackageReference Include="Gov.News.Api.Client" Version="1.0.209" />
+    <PackageReference Include="Gov.News.Api.Client" Version="1.0.214" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.9" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="5.0.1" />
