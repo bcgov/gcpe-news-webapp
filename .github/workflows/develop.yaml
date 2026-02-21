@@ -34,17 +34,17 @@ jobs:
 
       - name: Trigger OpenShift Build
         run: |
-          echo "Starting OpenShift build for news-webapp-develop..."
+          echo "Starting OpenShift build for news-webapp-develop-docker..."
           
           oc project ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
-          oc start-build news-webapp-develop -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools --wait
+          oc start-build news-webapp-develop-docker -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools --wait
 
           echo "OpenShift build triggered successfully!"
 
       - name: Check OpenShift Build Status
         run: |
-          # Get the latest build for 'news-webapp-develop'
-          BUILD_NAME=$(oc get builds -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools -l "buildconfig=news-webapp-develop" --sort-by=.metadata.creationTimestamp -o custom-columns=NAME:.metadata.name --no-headers | tail -n 1)
+          # Get the latest build for 'news-webapp-develop-docker'
+          BUILD_NAME=$(oc get builds -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools -l "buildconfig=news-webapp-develop-docker" --sort-by=.metadata.creationTimestamp -o custom-columns=NAME:.metadata.name --no-headers | tail -n 1)
           echo "Monitoring build: $BUILD_NAME"
           oc logs -f build/$BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
           oc get build $BUILD_NAME -n ${{ secrets.OPENSHIFT_NAMESPACE }}-tools -o jsonpath='{.status.phase}' | grep -q "Complete" || (echo "Build failed!" && exit 1)
@@ -58,7 +58,7 @@ jobs:
       - name: Execute oc tag command
         id: oc_tag_command
         run: |
-          SOURCE_IMAGE="news-webapp-develop:latest"
+          SOURCE_IMAGE="news-webapp-develop-docker:latest"
           DESTINATION_IMAGE="news-webapp:dev"
           NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}-tools"
 
