@@ -1,0 +1,14 @@
+#=========================================================
+# OpenShift template parameters for:
+# Component: .
+# JSON Template File: templates/news-webapp/news-webapp-develop-docker.build.json
+#=========================================================
+NAME=news-webapp-develop-docker
+GIT_REPO_URL=https://github.com/bcgov/gcpe-news-webapp.git
+GIT_REF=develop
+SOURCE_CONTEXT_DIR=
+OUTPUT_IMAGE_TAG=latest
+CPU_LIMIT=2
+MEMORY_LIMIT=6Gi
+CPU_REQUEST=1
+MEMORY_REQUEST=4Gi
