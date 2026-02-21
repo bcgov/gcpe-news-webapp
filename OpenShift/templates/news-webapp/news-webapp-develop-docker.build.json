@@ -1,4 +1,3 @@
-
 {
   "kind": "Template",
   "apiVersion": "v1",
@@ -9,11 +8,19 @@
   },
   "objects": [
     {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata":
+      {
+        "name": "${NAME}"
+      }
+    },
+    {
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata":
       {
-        "name": "${NAME}-master",
+        "name": "${NAME}",
         "labels":
         {
           "app": "${NAME}"
@@ -38,24 +45,14 @@
             "uri": "${GIT_REPO_URL}",
             "ref": "${GIT_REF}"
           },
-          "contextDir": "${SOURCE_CONTEXT_DIR}"          
+          "contextDir": "${SOURCE_CONTEXT_DIR}"
         },
         "strategy":
         {
-          "type": "Source",
-          "sourceStrategy":
+          "type": "Docker",
+          "dockerStrategy":
           {
-            "from":
-            {
-              "kind": "${SOURCE_IMAGE_KIND}",
-              "name": "${SOURCE_IMAGE_NAME}:${SOURCE_IMAGE_TAG}"              
-            },
-            "env": [
-              {
-                "name": "DOTNET_STARTUP_PROJECT",
-                "value": "${DOTNET_STARTUP_PROJECT}"
-              }
-            ]
+            "dockerfilePath": "Dockerfile"
           }
         },
         "output":
@@ -85,7 +82,7 @@
       "displayName": "Name",
       "description": "The name assigned to all of the resources defined in this template.",
       "required": true,
-      "value": "news-webapp"
+      "value": "news-webapp-develop-docker"
     },
     {
       "name": "GIT_REPO_URL",
@@ -99,7 +96,7 @@
       "displayName": "Git Reference",
       "description": "The git reference or branch.",
       "required": true,
-      "value": "master"
+      "value": "develop"
     },
     {
       "name": "SOURCE_CONTEXT_DIR",
@@ -109,39 +106,11 @@
       "value": ""
     },
     {
-      "name": "SOURCE_IMAGE_KIND",
-      "displayName": "Source Image Kind",
-      "description": "The 'kind' (type) of the  source image; typically ImageStreamTag, or DockerImage.",
-      "required": true,
-      "value": "DockerImage"
-    },
-    {
-      "name": "SOURCE_IMAGE_NAME",
-      "displayName": "Source Image Name",
-      "description": "The name of the source image.",
-      "required": true,
-      "value": "registry.access.redhat.com/dotnet/dotnet-22-rhel7"
-    },
-    {
-      "name": "SOURCE_IMAGE_TAG",
-      "displayName": "Source Image Tag",
-      "description": "The tag of the source image.",
-      "required": true,
-      "value": "latest"
-    },
-    {
-      "name": "DOTNET_STARTUP_PROJECT",
-      "displayName": "DotNet Startup Project",
-      "description": "The path to the startup project for the .Net application.",
-      "required": true,
-      "value": "Gov.News.WebApp"
-    },
-    {
       "name": "OUTPUT_IMAGE_TAG",
       "displayName": "Output Image Tag",
       "description": "The tag given to the built image.",
       "required": true,
-      "value": "uat"
+      "value": "latest"
     },
     {
       "name": "CPU_LIMIT",
@@ -156,7 +125,7 @@
       "description": "The resources Memory limit (in Mi, Gi, etc) for this build.",
       "required": true,
       "value": "6Gi"
-    },   
+    },
     {
       "name": "CPU_REQUEST",
       "displayName": "Resources CPU Request",
@@ -170,6 +139,6 @@
       "description": "The resources Memory request (in Mi, Gi, etc) for this build.",
       "required": true,
       "value": "4Gi"
-    }    
+    }
   ]
 }
