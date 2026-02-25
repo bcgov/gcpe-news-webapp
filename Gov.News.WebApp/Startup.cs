@@ -63,7 +63,6 @@ namespace Gov.News.Website
         {
             // Add framework services.
             services.AddMemoryCache();
-            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc(opt =>
                 {
                     opt.EnableEndpointRouting = false;
@@ -89,7 +88,8 @@ namespace Gov.News.Website
                 options.Filters.Add(new TypeFilterAttribute(typeof(RequirePermanentHttpsAttribute)));
 
                 options.Filters.Add(new ExceptionReportingFilter());
-            });
+            })
+                .AddRazorRuntimeCompilation();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -150,12 +150,15 @@ namespace Gov.News.Website
                 };
             }) // default healthcheck registration name for uri ( you can change it on AddUrlGroup )	 
              .AddPolicyHandler(cachePolicy);
-            services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
+            services.Configure<MvcOptions>(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
             ConfigureServices(services);
         }
 
