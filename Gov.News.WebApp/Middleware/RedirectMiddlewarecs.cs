@@ -57,7 +57,7 @@ namespace Gov.News.Website.Middleware
             var request = context.Request;
             string host = request.Host.Value.ToLowerInvariant();
             string path = string.Concat(request.PathBase, request.Path).ToLowerInvariant();
-            string query = request.QueryString.Value;
+            string query = request.QueryString.HasValue ? request.QueryString.Value : string.Empty;
             var response = context.Response;
 
             if (host == "www." + Properties.Settings.Default.NewsHostUri.Host)
@@ -216,7 +216,7 @@ namespace Gov.News.Website.Middleware
             }
             if (path.StartsWith("/ministries/jobs-economic-development-and-innovation/trade"))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/jobs-economic-development-and-innovation/trade", "/ministries/jobs-economic-development-and-innovation") + query);
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/jobs-economic-development-and-innovation/trade", "/ministries/jobs-and-economic-growth") + query);
             }
             if (path.StartsWith("/ministries/transportation-and-infrastructure/infrastructure-and-transit"))
             {
@@ -225,6 +225,10 @@ namespace Gov.News.Website.Middleware
             if (path.StartsWith("/ministries/education-and-child-care/child-care"))
             {
                 return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("/ministries/education-and-child-care/child-care", "/ministries/education-and-child-care") + query);
+            }
+            if (path.StartsWith("/ministries/jobs-economic-development-and-innovation"))
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("jobs-economic-development-and-innovation", "jobs-and-economic-growth"));
             }
             if (path.StartsWith("/ministries/post-secondary-education-and-future-skills/workforce-development"))
             {
@@ -240,7 +244,7 @@ namespace Gov.News.Website.Middleware
             }
             if (path == "/ministries/trade")
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("trade", "jobs-economic-development-and-innovation"));
+                return new Uri(Properties.Settings.Default.NewsHostUri, path.Replace("trade", "jobs-and-economic-growth"));
             }
             if (path == "/ministries/infrastructure-and-transit")
             {
@@ -321,10 +325,21 @@ namespace Gov.News.Website.Middleware
             //    <httpRedirect enabled="true" destination="/subscribe?newsletters=" httpResponseStatus="Found" />
             //  </system.webServer>
             //</location>
-            if (path == "/newsletters/subscribe")
+            if (path == "/newsletters/subscribe" ||
+                (path == "/subscribe" && query.Contains("newsletters")))
             {
-                return new Uri(Properties.Settings.Default.NewsHostUri, "/subscribe?newsletters=");
+                return new Uri(Properties.Settings.Default.NewsHostUri, "/subscribe");
             }
+
+            if (path == "/newsletters")
+            {
+                return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+            }
+
+            if (path == "/newsletters/columbia-river-treaty") return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+            if (path == "/newsletters/bc-non-profits-newsletter") return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+            if (path == "/newsletters/bc-groundwater-updates") return new Uri(Properties.Settings.Default.NewsHostUri, "/");
+            if (path == "/newsletters/caribou-recovery-program") return new Uri(Properties.Settings.Default.NewsHostUri, "/");
 
             //<location path="files/newsroom/downloads/media_contacts.pdf">
             //  <system.webServer>
@@ -483,6 +498,8 @@ namespace Gov.News.Website.Middleware
                                 "/ministries/emergency-management-and-climate-readiness");
             redirectMappings.Add("/ministries/jobs-economic-recovery-and-innovation",
                                 "/ministries/jobs-economic-development-and-innovation");
+            redirectMappings.Add("/ministries/jobs-economic-development-and-innovation",
+                                "/ministries/jobs-and-economic-growth");
 
             redirectMappings.Add("/regions/vancouver-island-coast",
                                 "/regions/vancouver-island-and-coast");

@@ -24,10 +24,47 @@ jobs:
         uses: redhat-actions/oc-login@v1
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_LOGIN_TOKEN }}
+          insecure_skip_tls_verify: true
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
+      
+      - name: Execute oc tag command
+        id: oc_tag_command
+        run: |
+          oc project ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
+          SOURCE_IMAGE="news-webapp-develop:latest"
+          DESTINATION_IMAGE="news-webapp:test"
+          NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}-tools"
+
+          echo "Attempting to tag '$SOURCE_IMAGE' to '$DESTINATION_IMAGE' in project '$NAMESPACE'..."
+          oc tag "$SOURCE_IMAGE" "$DESTINATION_IMAGE" -n "$NAMESPACE"
+
+          echo "Tagging command executed. Checking status..."
+          
+
+      - name: Verify New Tag
+        run: |
+          DEST_IMAGE_STREAM="news-webapp"
+          DEST_TAG="test"
+          NAMESPACE="${{ secrets.OPENSHIFT_NAMESPACE }}-tools"
+
+          echo "Describing ImageStream '${DEST_IMAGE_STREAM}' in namespace '${NAMESPACE}' to verify tag '${DEST_TAG}':"
+          # 'grep -A 5' shows the line with the tag and the 5 lines following it (often includes image digest)
+          # '|| true' prevents the step from failing if the grep command doesn't find a match immediately,
+          # though in a successful scenario it should.
+          oc describe is/"${DEST_IMAGE_STREAM}" -n "${NAMESPACE}" | grep -A 5 "Tag: ${DEST_TAG}" || true
+
+          echo ""
+          echo "For detailed information on the specific tag, run this in your terminal:"
+          echo "oc get istag/${DEST_IMAGE_STREAM}:${DEST_TAG} -n ${NAMESPACE} -o yaml"
+
+      - name: Log in to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
           openshift_token: ${{ secrets.OPENSHIFT_LOGIN_TOKEN_TEST }}
           insecure_skip_tls_verify: true
           namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}-test
-
 
       - name: Restart Kubernetes Deployment
         run: |

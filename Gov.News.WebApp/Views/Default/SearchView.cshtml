@@ -45,7 +45,7 @@
         }
 
     </div>
-
+    @* Facet links are nofollow to prevent crawl amplification *@
     <div class="clear"></div>
     @using (Html.BeginForm("Search", "Default", FormMethod.Get))
     {
@@ -94,26 +94,26 @@
                                     {
                                         if (facetResult.Key == "Language")
                                         {
-                                            <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span dir="ltr"> @facetHitValue.ToTranslatedLanguageName()</span>
+                                            <a href="Search?@Model.QueryString(facetResult.Key, null)" rel="nofollow"><img src="~/Content/Images/close-icon.png" /></a><span dir="ltr"> @facetHitValue.ToTranslatedLanguageName()</span>
                                         }
                                         else
                                         {
-                                            <a href="Search?@Model.QueryString(facetResult.Key, null)"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
+                                            <a href="Search?@Model.QueryString(facetResult.Key, null)" rel="nofollow"><img src="~/Content/Images/close-icon.png" /></a><span> @facetHitValue</span>
                                         }
                                     }
                                     else
                                     {
                                         if (facetResult.Key == "Date")
                                         {
-                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()">@facetHitValue</a>
+                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value).ToConstrainedDateRangeQueryString()" rel="nofollow">@facetHitValue</a>
                                         }
                                         else if (facetResult.Key == "Language")
                                         {
-                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)"><span dir="ltr">@facetHitValue.ToTranslatedLanguageName()</span></a>
+                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)" rel="nofollow"><span dir="ltr">@facetHitValue.ToTranslatedLanguageName()</span></a>
                                         }
                                         else
                                         {
-                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)">@facetHitValue</a>
+                                            <a href="Search?@Model.QueryString(facetResult.Key, @facetHit.Value)" rel="nofollow">@facetHitValue</a>
                                         }
                                     }
                                     <span>: @facetHit.Count.ToString("N0")</span>
@@ -142,7 +142,7 @@
                 @if (facetResult.Key == "Date")
                 {
                     <div style="margin-bottom: 10px">
-                        <a href="/search" class="link-button">RESET SEARCH</a>
+                        <a href="/search" class="link-button" rel="nofollow">RESET SEARCH</a>
                     </div>
                 }
             }
@@ -223,7 +223,7 @@
 
                 @if (Model.Page > 1)
                 {
-                    <li> <a id="prev" href="Search?@Model.QueryString("Page", (Model.Page - 1).ToString())">&laquo;prev</a></li>
+                    <li> <a id="prev" href="Search?@Model.QueryString("Page", (Model.Page - 1).ToString())" rel="nofollow">&laquo;prev</a></li>
                 }
 
                 @for (long i = Math.Max(1, Model.Page - 4); i <= Math.Min(Model.LastPage, Model.Page + 4); i++)
@@ -234,13 +234,13 @@
                     }
                     else
                     {
-                        <li><a href="Search?@Model.QueryString("Page", i.ToString())">@i</a></li>
+                        <li><a href="Search?@Model.QueryString("Page", i.ToString())" rel="nofollow">@i</a></li>
                     }
                 }
 
                 @if (Model.Page < Model.LastPage)
                 {
-                    <li><a id="next" href="Search?@Model.QueryString("Page", (Model.Page + 1).ToString())">next &raquo;</a></li>
+                    <li><a id="next" href="Search?@Model.QueryString("Page", (Model.Page + 1).ToString())" rel="nofollow">next &raquo;</a></li>
                 }
             </ul>
             <input name='page' type='hidden' disabled='disabled' />
