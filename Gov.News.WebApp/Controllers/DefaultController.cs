@@ -432,7 +432,7 @@ namespace Gov.News.Website.Controllers
 
             model.BlueskyLinks = new Link[]
             {
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://governmentofbc.bsky.social", Title = "Government of BC", Summary = "Read daily news from the Government of British Columbia" }).ToArray();
+            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://governmentofbc.bsky.social", Title = "Government of BC", Summary = "Read news from the Government of British Columbia" }).ToArray();
 
             model.ThreadsLinks = new Link[]
            {
@@ -454,8 +454,6 @@ namespace Gov.News.Website.Controllers
             var categories = ministries.Union(sectors).Union(tags).OrderBy(c => c.Name).ToList();
             foreach (var category in categories)
                 rssLinks.Add(new Link() { Url = category.GetUri().ToString().TrimEnd('/') + "/feed", Title = category.Name });
-
-            rssLinks.Add(new Link() { Url = "http://www.healthlinkbc.ca/publichealthalerts", Title = "HealthLinkBC" });
 
             model.RssLinks = rssLinks
                 .OrderBy(t => t.Title)
