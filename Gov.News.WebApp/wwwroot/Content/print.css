@@ -1,5 +1,7 @@
-﻿#header, #nav-container, #menu-container, #footer, .story-features, .media-assets, .translations, .media-container, .mini-search-trigger, .mini-menu-trigger, #mini-menu-container,
-.print-document, .story-page h3, .resource-links, img, .link-button, #end-cap, .story-copy.primary-asset, .share-permalink {
+#header, #nav-container, #menu-container, #footer, #main-nav, #navbarSupportedContent, #sm-menu, #menu, #smd-search-container,
+.story-navigator, .story-features, .media-assets, .translations, .media-container, .mini-search-trigger, .mini-menu-trigger, #mini-menu-container,
+.access, .skip-link,
+.print-document, .resource-links, img, .link-button, #end-cap, .story-copy.primary-asset, .share-permalink {
     display: none;
 }
 
