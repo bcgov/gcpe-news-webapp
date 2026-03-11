@@ -43,7 +43,7 @@
 #header, #nav-container, #menu-container, #footer, #main-nav, #navbarSupportedContent, #sm-menu, #menu, #smd-search-container,
 .story-navigator, .story-features, .media-assets, .translations, .media-container, .mini-search-trigger, .mini-menu-trigger, #mini-menu-container,
 .access, .skip-link,
-.print-document, .resource-links, img, .link-button, #end-cap, .story-copy.primary-asset, .share-permalink {
+.print-document, .resource-links, .link-button, #end-cap, .share-permalink {
     display: none;
 }
 
@@ -93,6 +93,22 @@ body
 {
   margin: 5mm 5mm 5mm 5mm;
   font-family: "BCSans", "Noto Sans", Verdana, Arial, sans-serif;
+}
+
+.story-copy.primary-asset,
+.story-body img {
+    display: block;
+}
+
+.story-copy.primary-asset {
+    margin-bottom: 12px;
+}
+
+.story-body img {
+    max-width: 100%;
+    height: auto;
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .comm-contacts-body-section {
