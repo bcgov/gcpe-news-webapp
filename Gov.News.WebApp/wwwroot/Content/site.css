@@ -1764,7 +1764,7 @@ ul.inline li a:link,
   font-weight: 600;
   color: #2d2d2d;
   margin-top: -35px;
-  margin-bottom: 42px;
+  margin-bottom: 16px;
 }
 
 .story-page h4 {
@@ -2133,6 +2133,10 @@ ul.inline li a:link,
 
 .story-body .story-copy .story-expander {
   position: relative;
+}
+
+.story-body .story-copy article > :first-child {
+  margin-top: 0;
 }
 
 .story-body .story-copy .link-button {
