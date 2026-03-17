@@ -76,7 +76,12 @@
 
 .print-url {
     margin-top: 0;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+}
+
+.print-date {
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 
