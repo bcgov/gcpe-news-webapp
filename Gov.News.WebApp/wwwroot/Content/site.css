@@ -1751,7 +1751,7 @@ ul.inline li a:link,
   font-weight: 600;
   color: #2d2d2d;
   margin-top: 20px;
-  margin-bottom: 42px;
+  margin-bottom: 16px;
 }
 
 .story-page h3 {
@@ -1763,7 +1763,7 @@ ul.inline li a:link,
   font-size: 30px;
   font-weight: 600;
   color: #2d2d2d;
-  margin-top: -35px;
+  margin-top: 0;
   margin-bottom: 16px;
 }
 
@@ -2858,7 +2858,8 @@ ul.external-links:last-child {
 }
 
 .print-title,
-.print-url {
+.print-url,
+.print-date {
   display: none;
 }
 
