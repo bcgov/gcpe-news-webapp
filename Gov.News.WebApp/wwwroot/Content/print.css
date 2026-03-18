@@ -65,8 +65,9 @@
 }
 
 .location-and-date div {
-    position: absolute;
-   
+    position: static;
+    display: block;
+    clear: both;
 }
 
 .story-page h2.story-lang {
@@ -74,14 +75,25 @@
     margin-bottom: 12px;
 }
 
+.story-page h3.subheadline {
+    margin-top: 0;
+    clear: both;
+}
+
+.print-title,
 .print-url {
+    display: block;
     margin-top: 0;
     margin-bottom: 4px;
+    clear: both;
 }
 
 .print-date {
+    display: block;
     margin-bottom: 10px;
     font-size: 14px;
+    line-height: 1.4;
+    clear: both;
 }
 
 
