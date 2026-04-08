@@ -428,7 +428,7 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/bcpublicservice/", Title = "BC Public Service", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/bcgovfireinfo/", Title = "BC Wildfire Service", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/workbc.ca/", Title = "WorkBC", Summary = "" },
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = " Trade and Invest British Columbia", Summary = "" }).ToArray();
+            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
 
             model.BlueskyLinks = new Link[]
             {
