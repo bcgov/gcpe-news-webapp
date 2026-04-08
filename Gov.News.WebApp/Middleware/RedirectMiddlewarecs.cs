@@ -57,7 +57,7 @@ namespace Gov.News.Website.Middleware
             var request = context.Request;
             string host = request.Host.Value.ToLowerInvariant();
             string path = string.Concat(request.PathBase, request.Path).ToLowerInvariant();
-            string query = request.QueryString.Value;
+            string query = request.QueryString.HasValue ? request.QueryString.Value : string.Empty;
             var response = context.Response;
 
             if (host == "www." + Properties.Settings.Default.NewsHostUri.Host)
