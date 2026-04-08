@@ -428,10 +428,11 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://www.instagram.com/bcpublicservice/", Title = "BC Public Service", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/bcgovfireinfo/", Title = "BC Wildfire Service", Summary = "" },
                         new Link() { Url = "https://www.instagram.com/workbc.ca/", Title = "WorkBC", Summary = "" },
-            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = "Government of BC", Summary = "" }).ToArray();
+            }.OrderBy(t => t.Title).Prepend(new Link() { Url = "https://www.instagram.com/governmentofbc/", Title = " Trade and Invest British Columbia", Summary = "" }).ToArray();
 
             model.BlueskyLinks = new Link[]
             {
+                new Link() { Url = "https://bsky.app/profile/tradeandinvestbc.bsky.social", Title = "Trade and Invest British Columbia", Summary = "" },
             }.OrderBy(t => t.Title).Prepend(new Link() { Url = "http://governmentofbc.bsky.social", Title = "Government of BC", Summary = "Read news from the Government of British Columbia" }).ToArray();
 
             model.ThreadsLinks = new Link[]
