@@ -190,6 +190,7 @@
     <!--googleoff: all-->
 
     <div class="print-url">@Model.Post.GetPermanentUri()</div>
+    <div class="print-date">@Model.Post.PublishDate.Value.DateTime.FormatDateLong()</div>
 
     @if (firstDoc.Subheadline != "")
     {
