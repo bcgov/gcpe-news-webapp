@@ -1,0 +1,31 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: dotnet-50-bctz
+objects:
+  - apiVersion: image.openshift.io/v1
+    kind: ImageStream
+    metadata:
+      name: dotnet-50-bctz
+  - apiVersion: build.openshift.io/v1
+    kind: BuildConfig
+    metadata:
+      name: dotnet-50-bctz
+    spec:
+      runPolicy: Serial
+      source:
+        type: Binary
+        binary: {}
+      strategy:
+        type: Docker
+        dockerStrategy:
+          from:
+            kind: ImageStreamTag
+            name: dotnet-50:latest
+          dockerfilePath: Dockerfile
+          noCache: true
+      output:
+        to:
+          kind: ImageStreamTag
+          name: dotnet-50-bctz:latest
+      triggers: []
