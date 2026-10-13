@@ -1,6 +1,6 @@
-# OpenShift overrides FROM with the existing dotnet-50:latest ImageStreamTag
-# configured in build-template.yaml. This digest is the local-build fallback.
-FROM registry.redhat.io/rhel8/dotnet-50@sha256:23f50b511b8cc0ef9b4dde4baeddde0cb677ab36650eb0feda56fb39ecabc8c6
+# OpenShift overrides FROM with the tools project's dotnet-50:latest
+# ImageStreamTag configured in build-template.yaml.
+FROM image-registry.openshift-image-registry.svc:5000/47ba99-tools/dotnet-50:latest
 
 USER 0
 
