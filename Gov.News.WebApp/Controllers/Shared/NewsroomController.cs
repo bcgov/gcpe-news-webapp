@@ -123,7 +123,7 @@ namespace Gov.News.Website.Controllers.Shared
                 DateTime toUtcExclusive = TimeZoneInfo.ConvertTimeToUtc(toDateExclusive, bcTimeZone);
 
                 filters.Add("publishDateTime ge " + fromUtc.ToString("s") + "Z");
-                filters.Add("publishDateTime lt " + toUtcExclusive.ToString("s") + "Z"); // include the selected day too
+                filters.Add("publishDateTime lt " + toUtcExclusive.ToString("s") + "Z"); 
             }
             if (query.Filters != null)
             {
