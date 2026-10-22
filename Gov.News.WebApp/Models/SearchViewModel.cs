@@ -112,7 +112,7 @@ namespace Gov.News.Website.Models
 
             public Uri ThumbnailUri { get; set; }
 
-            public DateTime PublishDate { get; set; }
+            public DateTimeOffset PublishDate { get; set; }
 
             public string AssetUrl { get; set; }
 

@@ -7,6 +7,7 @@ using AngleSharp.Parser.Html;
 using Microsoft.AspNetCore.Html;
 using Gov.News.Api.Models;
 using TimeSpan = System.TimeSpan;
+using TimeZoneConverter;
 
 namespace Gov.News.Website.Helpers
 {
@@ -40,14 +41,16 @@ namespace Gov.News.Website.Helpers
         {
             TimeZoneInfo tzi = null;
 
-            // try the Unix timezone first, as we are deploying to a container.
             try
             {
-                tzi = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+                // TZConvert resolves "America/Vancouver" to Linux IANA or the correct 
+                // new Windows "British Columbia Standard Time" registry key natively.
+                tzi = TZConvert.GetTimeZoneInfo("America/Vancouver");
             }
-            catch (TimeZoneNotFoundException e)
+            catch (TimeZoneNotFoundException)
             {
-                tzi = TimeZoneInfo.FindSystemTimeZoneById("PST8PDT");
+                // Safe emergency default fallback if the host OS is heavily outdated
+                tzi = TimeZoneInfo.Local;
             }
 
             var date = TimeZoneInfo.ConvertTime(dateOffset.ToUniversalTime().DateTime, TimeZoneInfo.Utc, tzi);
