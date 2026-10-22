@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 using Gov.News.Website.Helpers;
 using Gov.News.Website.Middleware;
 using Gov.News.Website.Models;
@@ -10,6 +5,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
+using TimeZoneConverter;
 
 namespace Gov.News.Website.Controllers.Shared
 {
@@ -108,8 +109,21 @@ namespace Gov.News.Website.Controllers.Shared
             }
             if (useCustomRange)
             {
-                filters.Add("publishDateTime le " + query.ToDate.ToUniversalTime().AddDays(1).ToString("s") + "Z"); // include the selected day too
-                filters.Add("publishDateTime ge " + query.FromDate.ToUniversalTime().ToString("s") + "Z");
+                TimeZoneInfo bcTimeZone = TZConvert.GetTimeZoneInfo("America/Vancouver");
+
+                DateTime fromDate = DateTime.SpecifyKind(
+                    query.FromDate.Date,
+                    DateTimeKind.Unspecified);
+
+                DateTime toDateExclusive = DateTime.SpecifyKind(
+                    query.ToDate.Date.AddDays(1),
+                    DateTimeKind.Unspecified);
+
+                DateTime fromUtc = TimeZoneInfo.ConvertTimeToUtc(fromDate, bcTimeZone);
+                DateTime toUtcExclusive = TimeZoneInfo.ConvertTimeToUtc(toDateExclusive, bcTimeZone);
+
+                filters.Add("publishDateTime ge " + fromUtc.ToString("s") + "Z");
+                filters.Add("publishDateTime lt " + toUtcExclusive.ToString("s") + "Z"); // include the selected day too
             }
             if (query.Filters != null)
             {
