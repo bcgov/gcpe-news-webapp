@@ -32,6 +32,27 @@ jobs:
           namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
       
 
+      - name: Use builder with updated BC time zone data
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
+        run: |
+          set -euo pipefail
+          BUILDER_IMAGE=$(oc get istag dotnet-50-bctz:latest -n "$TOOLS_NAMESPACE" \
+            -o jsonpath='{.image.dockerImageReference}')
+          if [[ "$BUILDER_IMAGE" != *@sha256:* ]]; then
+            echo "dotnet-50-bctz:latest must resolve to an image digest." >&2
+            exit 1
+          fi
+
+          # Use the existing builder's immutable version for this application build.
+          # A DockerImage reference also avoids a strategy ImageChange build
+          # when switching the builder; the next step starts the build explicitly.
+          jq -n --arg image "$BUILDER_IMAGE" \
+            '{spec: {strategy: {sourceStrategy: {from: {kind: "DockerImage", name: $image, namespace: null}}}}}' \
+            > "$RUNNER_TEMP/bctz-builder-patch.json"
+          oc patch bc news-webapp-develop -n "$TOOLS_NAMESPACE" --type=merge \
+            --patch-file="$RUNNER_TEMP/bctz-builder-patch.json"
+
       - name: Trigger OpenShift Build
         run: |
           echo "Starting OpenShift build for news-webapp-develop..."
