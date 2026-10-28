@@ -336,7 +336,6 @@ namespace Gov.News.Website.Controllers
 
             model.FacebookLinks = new Link[]
             {                 
-                        new Link() { Url = "https://www.facebook.com/BizPaLBC", Title = "BC BizPaL" },
                         new Link() { Url = "https://www.facebook.com/bchonours", Title = "BC Honours" },
                         new Link() { Url = "https://www.facebook.com/innovatebc", Title = "Innovate BC" },
                         new Link() { Url = "https://www.facebook.com/YourBCParks", Title = "BC Parks" },
@@ -366,7 +365,6 @@ namespace Gov.News.Website.Controllers
             model.YoutubeLinks = new Link[]
             {                        
                          new Link() { Url = "https://www.youtube.com/bchousing1", Title = "BC Housing" },
-                         new Link() { Url = "https://www.youtube.com/@BCDigitalTrust", Title = "BC Digital Trust" },
                          new Link() { Url = "https://www.youtube.com/BCPublicService", Title = "BC Public Service" },
                          new Link() { Url = "https://www.youtube.com/user/BCTradeInvest", Title = "BC Trade & Invest" },
                          new Link() { Url = "https://www.youtube.com/@BCWildfireService", Title = "BC Wildfire Service" },
@@ -396,7 +394,6 @@ namespace Gov.News.Website.Controllers
                         new Link() { Url = "https://x.com/emergencyinfobc", Title = "@EmergencyInfoBC" , Summary = "Receive current and verified updates, safety instructions, and links to official sources during emergencies in B.C." },
                         new Link() { Url = "https://x.com/PreparedBC", Title = "@PreparedBC" , Summary = "Ready for a disaster? Get preparedness tips & recovery info here." },
                         new Link() { Url = "https://x.com/govTogetherBC", Title = "@govTogetherBC" , Summary = "Find consultation and engagement opportunities in BC" },
-                        new Link() { Url = "https://x.com/quitnowbc", Title = "@QuitNowBC", Summary = "Want to quit smoking? We can help!" },
                         new Link() { Url = "https://x.com/RoadSafetyBC", Title = "@RoadSafetyBC" , Summary = "Get information on road safety and driver behaviour" },
                         new Link() { Url = "https://x.com/WorkBC", Title = "@WorkBC", Summary = "Explore career paths and get tips for finding jobs in British Columbia" },
                         new Link() { Url = "https://x.com/BCSheriffs", Title = "@BCSheriffs", Summary = "Learn about the diverse responsibilities and activities of the BC Sheriff Service" },
