@@ -31,6 +31,25 @@ jobs:
           insecure_skip_tls_verify: true
           namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
       
+      - name: Use builder with updated BC time zone data
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
+        run: |
+          set -euo pipefail
+          BUILDER_IMAGE=$(oc get istag dotnet-50-bctz:latest -n "$TOOLS_NAMESPACE" \
+            -o jsonpath='{.image.dockerImageReference}')
+          if [[ "$BUILDER_IMAGE" != *@sha256:* ]]; then
+            echo "dotnet-50-bctz:latest must resolve to an image digest." >&2
+            exit 1
+          fi
+
+          # The runner's oc is 4.1.x, which has no --patch-file, so pass the patch inline.
+          jq -n --arg image "$BUILDER_IMAGE" \
+            '{spec: {strategy: {sourceStrategy: {from: {kind: "DockerImage", name: $image, namespace: null}}}}}' \
+            > "$RUNNER_TEMP/bctz-builder-patch.json"
+          oc patch bc news-webapp-master -n "$TOOLS_NAMESPACE" --type=merge \
+            --patch="$(cat "$RUNNER_TEMP/bctz-builder-patch.json")"
+
       - name: Trigger OpenShift Build
         run: |
           echo "Starting OpenShift build for news-webapp-master..."
