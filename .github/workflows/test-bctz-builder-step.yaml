@@ -1,0 +1,72 @@
+# Temporary workflow to test the oc patch step on the GitHub runner.
+# Runs only on the test branch and only patches the throwaway BuildConfig.
+# It does not start builds, tag images, or roll out deployments.
+name: test bctz builder step
+on:
+  push:
+    branches:
+      - test/bctz-patch-step
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    environment: 'DEV'
+    env:
+      TOOLS_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
+      TEST_BC: news-webapp-tztest
+    steps:
+      - name: Install oc
+        uses: redhat-actions/openshift-tools-installer@v1
+        with:
+          oc: 4.10
+
+      - name: Show oc version
+        run: |
+          command -v oc
+          oc version --client
+
+      - name: Log in to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_LOGIN_TOKEN }}
+          insecure_skip_tls_verify: true
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}-tools
+
+      - name: Prepare builder patch
+        run: |
+          set -euo pipefail
+          BUILDER_IMAGE=$(oc get istag dotnet-50-bctz:latest -n "$TOOLS_NAMESPACE" \
+            -o jsonpath='{.image.dockerImageReference}')
+          echo "Builder image: $BUILDER_IMAGE"
+          if [[ "$BUILDER_IMAGE" != *@sha256:* ]]; then
+            echo "dotnet-50-bctz:latest must resolve to an image digest." >&2
+            exit 1
+          fi
+          jq -n --arg image "$BUILDER_IMAGE" \
+            '{spec: {strategy: {sourceStrategy: {from: {kind: "DockerImage", name: $image, namespace: null}}}}}' \
+            > "$RUNNER_TEMP/bctz-builder-patch.json"
+          cat "$RUNNER_TEMP/bctz-builder-patch.json"
+
+      - name: Old syntax (--patch-file)
+        id: old_syntax
+        continue-on-error: true
+        run: |
+          oc patch bc "$TEST_BC" -n "$TOOLS_NAMESPACE" --type=merge \
+            --patch-file="$RUNNER_TEMP/bctz-builder-patch.json"
+
+      - name: New syntax (--patch)
+        id: new_syntax
+        run: |
+          oc patch bc "$TEST_BC" -n "$TOOLS_NAMESPACE" --type=merge \
+            --patch="$(cat "$RUNNER_TEMP/bctz-builder-patch.json")"
+
+      - name: Verify patched builder
+        run: |
+          oc get bc "$TEST_BC" -n "$TOOLS_NAMESPACE" -o jsonpath='{.spec.strategy.sourceStrategy.from}{"\n"}'
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "Old syntax (--patch-file): ${{ steps.old_syntax.outcome }}"
+          echo "New syntax (--patch): ${{ steps.new_syntax.outcome }}"
