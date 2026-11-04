@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - develop
+      - test/bctz-patch-step # temporary: remove before merging
 jobs:
   build:
     runs-on: ubuntu-24.04
