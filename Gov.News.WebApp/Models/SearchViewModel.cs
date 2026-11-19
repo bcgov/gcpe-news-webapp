@@ -69,6 +69,7 @@ namespace Gov.News.Website.Models
         public static Dictionary<string, string> DateCollections = new Dictionary<string, string> {
                 { "2026-2030", "November 20, 2026 to current date" },
                 { "2024-2028", "November 18, 2024 to November 19, 2026" },
+                { "2020-2024", "November 26, 2020 to November 17, 2024" },
                 { "2017-2021", "July 18, 2017 to November 25, 2020" },
                 { "2017-2017", "June 12, 2017 to July 17, 2017" },
                 { "2013-2017", "June 10, 2013 to June 11, 2017" },
