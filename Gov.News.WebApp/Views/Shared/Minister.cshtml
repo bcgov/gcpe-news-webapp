@@ -14,6 +14,11 @@
         minister_lastname = Minister.Headline.Split(" ").Last();
     }
     var minister_large_pic_url = string.Format("https://www2.gov.bc.ca/assets/gov/government/ministries-organizations/premier-cabinet-mlas/minister-large/{0}_{1}_large.jpg", minister_firstname, minister_lastname);
+    if (MinisterPhotoHelper.HasSpecialCharacters(minister_firstname, minister_lastname) &&
+        MinisterPhotoHelper.IsInSpecialNameList(minister_firstname, minister_lastname))
+    {
+        minister_large_pic_url = MinisterPhotoHelper.GetLargePhotoUrl(minister_firstname, minister_lastname);
+    }
 }
 
 @if (Model != null && !string.IsNullOrWhiteSpace(Minister.Headline))
